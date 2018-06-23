@@ -1,0 +1,192 @@
+.news-card{
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.news-card .card-style{
+    border:1px solid rgba(0,40,100,0.12);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-clip: border-box;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+.news-thumbnail{
+    width:30%;
+    min-width: 5rem;
+    flex:0 0 30%;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: no-repeat center/cover;
+}
+.card-body{
+    padding: 1.5rem;
+}
+.d-flex{
+    display: flex !important;
+}
+.avatar-md{
+    width: 3rem;
+    height:3rem;
+}
+.my-avatar{
+    border-radius: 50%;
+    display: inline-block;
+    background: no-repeat center/cover;
+    vertical-align: bottom;
+}
+.align-items-center{
+    align-items: center;
+}
+.pt-3{
+    padding-top: 3rem !important;
+}
+.pt-5{
+    margin-top: 1.5rem !important;
+}
+.mr-5{
+    margin-right: 1.5rem;
+}
+.mr-1{
+    margin-right: 7rem;
+}
+.mr-5{
+    margin-right: 1.5rem;
+}
+.mr-6{
+    margin-right: 0.5rem;
+}
+.ml-auto{
+    margin-left:auto;
+}
+.ml-1{
+    margin-left:7rem;
+}
+.ml-3{
+    margin-left:3rem;
+}
+.ml-5{
+    margin-left:1.5rem;
+}
+.ml-6{
+    margin-left: 1rem;
+}
+.ml-7{
+    margin-left: 0.5rem;
+}
+.f-size-16{
+    font-size:16px;
+}
+.article-list{
+    padding:3rem 5rem;
+}
+.mt-3{
+    margin-top:5rem;
+}
+.mt-5{
+    margin-top:1.5rem;
+}
+.mt-6{
+    margin-top: 1rem;
+}
+.mb-5{
+    margin-bottom: 1.5rem;
+}
+.mb-0{
+    margin-bottom: 0;
+}
+.pl-0{
+    padding-left:0 !important;
+}
+
+.inline-button {
+    margin: 0;
+    margin-left: 1.5rem;
+}
+.prue-input{
+
+    outline-color: invert ;
+    outline-style: none ;
+    outline-width: 0px ;
+    border: none ;
+    border-style: none ;
+    text-shadow: none ;
+    -webkit-appearance: none ;
+    -webkit-user-select: text ;
+    outline-color: transparent ;
+    box-shadow: none;
+
+}
+.area-show{
+    display: block;
+}
+.area-hide{
+    display: none;
+}
+
+.white-area{
+    background-color: #fff;
+    padding: 8px 24px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgb(0,0,0,0.5);
+}
+.add-node:hover{
+    text-decoration: underline;
+}
+
+.form-mt-0 .checkbox{
+    padding-top: 0;
+}
+.delete-icon-a{
+    position: relative;
+}
+.delete-icon-a:hover > .delete-icon {
+    display: block;
+    position: absolute;
+    top: -8px;
+    font-size: 16px;
+    right: -13px;
+}
+.delete-icon{
+    display: none;
+}
+.color-success{
+    color: #26B99A;
+}
+.color-warning{
+    color: red;
+}
+.color-primary{
+    color: #337ab7;
+}
+.file-label-width{
+    width: 20%;
+}
+.file-select-width{
+    width: 50%;
+}
+.file-table-width{
+    width: 80%;
+}
+.pro-desc-btn{
+    padding: 5px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.my-jumbotron{
+    padding:30px 60px;
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+}
