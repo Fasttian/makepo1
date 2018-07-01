@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.catikco.makepo.mapper.FileMapper" >
+  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.File" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="fileSize" property="filesize" jdbcType="VARCHAR" />
+    <result column="filePrefix" property="fileprefix" jdbcType="VARCHAR" />
+    <result column="fileSuffix" property="filesuffix" jdbcType="VARCHAR" />
+    <result column="fileDesc" property="filedesc" jdbcType="VARCHAR" />
+    <result column="fileStatus" property="filestatus" jdbcType="VARCHAR" />
+    <result column="filePath" property="filepath" jdbcType="VARCHAR" />
+    <result column="creteTime" property="cretetime" jdbcType="DATE" />
+    <result column="upDataTime" property="updatatime" jdbcType="DATE" />
+    <result column="createBy" property="createby" jdbcType="INTEGER" />
+    <result column="upDataBy" property="updataby" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, fileSize, filePrefix, fileSuffix, fileDesc, fileStatus, filePath, creteTime, 
+    upDataTime, createBy, upDataBy, remark, deleted
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from File
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FileExample" >
+    delete from File
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.catikco.makepo.entity.File" >
+    insert into File (id, fileSize, filePrefix, 
+      fileSuffix, fileDesc, fileStatus, 
+      filePath, creteTime, upDataTime, 
+      createBy, upDataBy, remark, 
+      deleted)
+    values (#{id,jdbcType=INTEGER}, #{filesize,jdbcType=VARCHAR}, #{fileprefix,jdbcType=VARCHAR}, 
+      #{filesuffix,jdbcType=VARCHAR}, #{filedesc,jdbcType=VARCHAR}, #{filestatus,jdbcType=VARCHAR}, 
+      #{filepath,jdbcType=VARCHAR}, #{cretetime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
+      #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.File" >
+    insert into File
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="filesize != null" >
+        fileSize,
+      </if>
+      <if test="fileprefix != null" >
+        filePrefix,
+      </if>
+      <if test="filesuffix != null" >
+        fileSuffix,
+      </if>
+      <if test="filedesc != null" >
+        fileDesc,
+      </if>
+      <if test="filestatus != null" >
+        fileStatus,
+      </if>
+      <if test="filepath != null" >
+        filePath,
+      </if>
+      <if test="cretetime != null" >
+        creteTime,
+      </if>
+      <if test="updatatime != null" >
+        upDataTime,
+      </if>
+      <if test="createby != null" >
+        createBy,
+      </if>
+      <if test="updataby != null" >
+        upDataBy,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="filesize != null" >
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="fileprefix != null" >
+        #{fileprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="filesuffix != null" >
+        #{filesuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="filedesc != null" >
+        #{filedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="filestatus != null" >
+        #{filestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="cretetime != null" >
+        #{cretetime,jdbcType=DATE},
+      </if>
+      <if test="updatatime != null" >
+        #{updatatime,jdbcType=DATE},
+      </if>
+      <if test="createby != null" >
+        #{createby,jdbcType=INTEGER},
+      </if>
+      <if test="updataby != null" >
+        #{updataby,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.FileExample" resultType="java.lang.Integer" >
+    select count(*) from File
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update File
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.filesize != null" >
+        fileSize = #{record.filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileprefix != null" >
+        filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filesuffix != null" >
+        fileSuffix = #{record.filesuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filedesc != null" >
+        fileDesc = #{record.filedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filestatus != null" >
+        fileStatus = #{record.filestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filepath != null" >
+        filePath = #{record.filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cretetime != null" >
+        creteTime = #{record.cretetime,jdbcType=DATE},
+      </if>
+      <if test="record.updatatime != null" >
+        upDataTime = #{record.updatatime,jdbcType=DATE},
+      </if>
+      <if test="record.createby != null" >
+        createBy = #{record.createby,jdbcType=INTEGER},
+      </if>
+      <if test="record.updataby != null" >
+        upDataBy = #{record.updataby,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update File
+    set id = #{record.id,jdbcType=INTEGER},
+      fileSize = #{record.filesize,jdbcType=VARCHAR},
+      filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
+      fileSuffix = #{record.filesuffix,jdbcType=VARCHAR},
+      fileDesc = #{record.filedesc,jdbcType=VARCHAR},
+      fileStatus = #{record.filestatus,jdbcType=VARCHAR},
+      filePath = #{record.filepath,jdbcType=VARCHAR},
+      creteTime = #{record.cretetime,jdbcType=DATE},
+      upDataTime = #{record.updatatime,jdbcType=DATE},
+      createBy = #{record.createby,jdbcType=INTEGER},
+      upDataBy = #{record.updataby,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
