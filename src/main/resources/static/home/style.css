@@ -725,7 +725,7 @@ transform: scale(1);
   content: "";
   height: 100%;
   left: 0;
-  opacity: 0.6;
+  opacity: 0;
   position: absolute;
   top: 0;
   transition: all 0.3s ease 0s;
@@ -736,12 +736,12 @@ transform: scale(1);
   z-index: 10;
 }
 .breadcrumbs-title {
-  color: #575757;
+  color: #fff;
   font-size: 30px;
   font-weight: 600;
   line-height: 24px;
   margin-bottom: 0;
-  padding: 150px 0 85px;
+  padding: 200px 0 85px;
   text-align: center;
   text-transform: uppercase;
 }
