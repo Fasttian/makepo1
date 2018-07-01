@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.catikco.makepo.mapper.PowerMapper" >
+  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.Power" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="productTitleImageFileid" property="producttitleimagefileid" jdbcType="INTEGER" />
+    <result column="productContentImagesFileid" property="productcontentimagesfileid" jdbcType="VARCHAR" />
+    <result column="power" property="power" jdbcType="DOUBLE" />
+    <result column="input" property="input" jdbcType="DOUBLE" />
+    <result column="output" property="output" jdbcType="DOUBLE" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="decription" property="decription" jdbcType="VARCHAR" />
+    <result column="creteTime" property="cretetime" jdbcType="DATE" />
+    <result column="upDataTime" property="updatatime" jdbcType="DATE" />
+    <result column="createBy" property="createby" jdbcType="INTEGER" />
+    <result column="upDataBy" property="updataby" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.Power" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, productTitleImageFileid, productContentImagesFileid, power, input, output, size, 
+    title, keywords, decription, creteTime, upDataTime, createBy, upDataBy, remark, deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.PowerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Power
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.PowerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Power
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.PowerExample" >
+    delete from Power
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.catikco.makepo.entity.Power" >
+    insert into Power (id, productTitleImageFileid, productContentImagesFileid, 
+      power, input, output, 
+      size, title, keywords, 
+      decription, creteTime, upDataTime, 
+      createBy, upDataBy, remark, 
+      deleted, description)
+    values (#{id,jdbcType=INTEGER}, #{producttitleimagefileid,jdbcType=INTEGER}, #{productcontentimagesfileid,jdbcType=VARCHAR}, 
+      #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
+      #{size,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{decription,jdbcType=VARCHAR}, #{cretetime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
+      #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Power" >
+    insert into Power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="producttitleimagefileid != null" >
+        productTitleImageFileid,
+      </if>
+      <if test="productcontentimagesfileid != null" >
+        productContentImagesFileid,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="input != null" >
+        input,
+      </if>
+      <if test="output != null" >
+        output,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="decription != null" >
+        decription,
+      </if>
+      <if test="cretetime != null" >
+        creteTime,
+      </if>
+      <if test="updatatime != null" >
+        upDataTime,
+      </if>
+      <if test="createby != null" >
+        createBy,
+      </if>
+      <if test="updataby != null" >
+        upDataBy,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="producttitleimagefileid != null" >
+        #{producttitleimagefileid,jdbcType=INTEGER},
+      </if>
+      <if test="productcontentimagesfileid != null" >
+        #{productcontentimagesfileid,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=DOUBLE},
+      </if>
+      <if test="input != null" >
+        #{input,jdbcType=DOUBLE},
+      </if>
+      <if test="output != null" >
+        #{output,jdbcType=DOUBLE},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="decription != null" >
+        #{decription,jdbcType=VARCHAR},
+      </if>
+      <if test="cretetime != null" >
+        #{cretetime,jdbcType=DATE},
+      </if>
+      <if test="updatatime != null" >
+        #{updatatime,jdbcType=DATE},
+      </if>
+      <if test="createby != null" >
+        #{createby,jdbcType=INTEGER},
+      </if>
+      <if test="updataby != null" >
+        #{updataby,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.PowerExample" resultType="java.lang.Integer" >
+    select count(*) from Power
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Power
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.producttitleimagefileid != null" >
+        productTitleImageFileid = #{record.producttitleimagefileid,jdbcType=INTEGER},
+      </if>
+      <if test="record.productcontentimagesfileid != null" >
+        productContentImagesFileid = #{record.productcontentimagesfileid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.power != null" >
+        power = #{record.power,jdbcType=DOUBLE},
+      </if>
+      <if test="record.input != null" >
+        input = #{record.input,jdbcType=DOUBLE},
+      </if>
+      <if test="record.output != null" >
+        output = #{record.output,jdbcType=DOUBLE},
+      </if>
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywords != null" >
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decription != null" >
+        decription = #{record.decription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cretetime != null" >
+        creteTime = #{record.cretetime,jdbcType=DATE},
+      </if>
+      <if test="record.updatatime != null" >
+        upDataTime = #{record.updatatime,jdbcType=DATE},
+      </if>
+      <if test="record.createby != null" >
+        createBy = #{record.createby,jdbcType=INTEGER},
+      </if>
+      <if test="record.updataby != null" >
+        upDataBy = #{record.updataby,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Power
+    set id = #{record.id,jdbcType=INTEGER},
+      productTitleImageFileid = #{record.producttitleimagefileid,jdbcType=INTEGER},
+      productContentImagesFileid = #{record.productcontentimagesfileid,jdbcType=VARCHAR},
+      power = #{record.power,jdbcType=DOUBLE},
+      input = #{record.input,jdbcType=DOUBLE},
+      output = #{record.output,jdbcType=DOUBLE},
+      size = #{record.size,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      decription = #{record.decription,jdbcType=VARCHAR},
+      creteTime = #{record.cretetime,jdbcType=DATE},
+      upDataTime = #{record.updatatime,jdbcType=DATE},
+      createBy = #{record.createby,jdbcType=INTEGER},
+      upDataBy = #{record.updataby,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Power
+    set id = #{record.id,jdbcType=INTEGER},
+      productTitleImageFileid = #{record.producttitleimagefileid,jdbcType=INTEGER},
+      productContentImagesFileid = #{record.productcontentimagesfileid,jdbcType=VARCHAR},
+      power = #{record.power,jdbcType=DOUBLE},
+      input = #{record.input,jdbcType=DOUBLE},
+      output = #{record.output,jdbcType=DOUBLE},
+      size = #{record.size,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      decription = #{record.decription,jdbcType=VARCHAR},
+      creteTime = #{record.cretetime,jdbcType=DATE},
+      upDataTime = #{record.updatatime,jdbcType=DATE},
+      createBy = #{record.createby,jdbcType=INTEGER},
+      upDataBy = #{record.updataby,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
