@@ -19,6 +19,6 @@ public class ProductsController {
 
     @RequestMapping("/ProductPageDetail")
     public String VisitProductPageDetail(){
-        return "home/single-product-left-sidebar";
+        return "home/productDetail";
     }
 }
