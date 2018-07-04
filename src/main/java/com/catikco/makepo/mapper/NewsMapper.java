@@ -5,7 +5,9 @@ import com.catikco.makepo.entity.NewsExample;
 import com.catikco.makepo.entity.NewsWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface NewsMapper {
     int countByExample(NewsExample example);
 
