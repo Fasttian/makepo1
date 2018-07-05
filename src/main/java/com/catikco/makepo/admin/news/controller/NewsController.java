@@ -1,6 +1,7 @@
 package com.catikco.makepo.admin.news.controller;
 
 import com.catikco.makepo.admin.common.DatatablesResponsePageModel;
+import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
@@ -35,25 +36,25 @@ public class NewsController {
      * 后台管理初始页
      * @return
      */
-    @RequestMapping("news-post")
+    @RequestMapping("admin-init")
     public String adminInit(){
         return "admin/index";
     }
 
     /**
-     * 新闻管理列表页
+     * 新闻管理页面
      * @return
      */
-    @RequestMapping("news-init")
+    @RequestMapping("news-list")
     public String newsInit(){
-        return "admin/news-init";
+        return "admin/news/news-list";
     }
 
     /**
-     * 加载数据列表
+     * 加载新闻列表
      * @return
      */
-    @RequestMapping("load-list")
+    @RequestMapping("load-news-list")
     @ResponseBody
     public DatatablesResponsePageModel<NewsListPageModel> loadList(NewsRequestPageModel newsRequestPageModel){
         return newsService.getNewsList(newsRequestPageModel);
@@ -64,9 +65,35 @@ public class NewsController {
      * 初始化新闻编辑/添加页面
      * @return
      */
-    @RequestMapping("summernote")
+    @RequestMapping("edit-news")
     public String visitSummernote(Integer id,HttpServletResponse response){
-        return "admin/form-summernote";
+        return "admin/news/edit-news";
+    }
+
+    /**
+     * 保存新闻
+     * @param newsEditPageModel  新闻编辑页面model
+     * @param files 新闻概要图片文件
+     * @param response 请求响应
+     */
+    @RequestMapping("save-news")
+    @ResponseBody
+    public void saveNews(NewsEditPageModel newsEditPageModel,@RequestParam("file")MultipartFile[] files,  HttpServletResponse response){
+
+        //1.保存新闻
+
+        //2.保存图片
+        fileStorageService.uploads(files,response);
+    }
+
+
+    /**
+     * 根据id删除新闻
+     * @param id
+     */
+    @RequestMapping("delete-news")
+    public void deleteNews(Integer id){
+
     }
 
     /**

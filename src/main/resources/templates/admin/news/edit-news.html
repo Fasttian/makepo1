@@ -633,7 +633,7 @@
 <script>
 
     $(document).ready(function () {
-
+        //初始化文本编辑器
         $('.summernote').summernote({
             height: 700,                 // set editor height
             minHeight: null,             // set minimum height of editor
@@ -647,37 +647,52 @@
                 }
             },
         });
-
-
-        function UploadFiles(file, el) {
-            console.log(110);
-            //这里files是因为我设置了可上传多张图片，所以需要依次添加到formData中
-            var formData = new FormData();
-
-            formData.append("file", file);
-            console.log(formData);
-
-            $.ajax({
-                data: formData,
-                type: "POST",
-                url: "/editTor/saveFile",
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                    $(el).summernote('editor.insertImage', response.list[0].url, response.name);
-
-                },
-                error: function () {
-                    console.log("uploadError");
-                }
-            })
-        }
-
-
     });
+
+    function UploadFiles(file, el) {
+        console.log(110);
+        //这里files是因为我设置了可上传多张图片，所以需要依次添加到formData中
+        var formData = new FormData();
+        formData.append("file", file);
+        console.log(formData);
+        $.ajax({
+            data: formData,
+            type: "POST",
+            url: "/save-editorfiles",
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $(el).summernote('editor.insertImage', response.list[0].url, response.name);
+            },
+            error: function () {
+                console.log("uploadError");
+            }
+        })
+    }
+
+
+
+    //提交新闻
+    function submitNews() {
+        $.ajax({
+            type: "GET",
+            url: "/save-news",
+            data: {username:$("#username").val(), content:$("#content").val()},
+            dataType: "json",
+            success: function(data){
+
+                //保存成功回到新闻列表页面
+                location.href="/news-list";
+            }
+
+        });
+    }
+
+
+
 </script>
 
 </body>
