@@ -47,10 +47,10 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-      <!--  <table schema="" tableName="Lamp" ></table>
+     <!--   <table schema="" tableName="Lamp" ></table>
          <table schema="" tableName="Power" ></table>
          <table schema="" tableName="News"></table>
-         <table schema="" tableName="File" ></table>-->
+         <table schema="" tableName="FileStorage" ></table>-->
 
 
     </context>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.catikco.makepo.mapper.FileMapper" >
-  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.File" >
+<mapper namespace="com.catikco.makepo.mapper.FilestorageMapper" >
+  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.Filestorage" >
     <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="fileSize" property="filesize" jdbcType="VARCHAR" />
+    <result column="fileSize" property="filesize" jdbcType="BIGINT" />
     <result column="filePrefix" property="fileprefix" jdbcType="VARCHAR" />
     <result column="fileSuffix" property="filesuffix" jdbcType="VARCHAR" />
     <result column="fileDesc" property="filedesc" jdbcType="VARCHAR" />
@@ -78,13 +78,13 @@
     id, fileSize, filePrefix, fileSuffix, fileDesc, fileStatus, filePath, creteTime, 
     upDataTime, createBy, upDataBy, remark, deleted
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FileExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FilestorageExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from File
+    from FileStorage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,26 +92,26 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FileExample" >
-    delete from File
+  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FilestorageExample" >
+    delete from FileStorage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.File" >
-    insert into File (id, fileSize, filePrefix, 
+  <insert id="insert" parameterType="com.catikco.makepo.entity.Filestorage" >
+    insert into FileStorage (id, fileSize, filePrefix, 
       fileSuffix, fileDesc, fileStatus, 
       filePath, creteTime, upDataTime, 
       createBy, upDataBy, remark, 
       deleted)
-    values (#{id,jdbcType=INTEGER}, #{filesize,jdbcType=VARCHAR}, #{fileprefix,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{filesize,jdbcType=BIGINT}, #{fileprefix,jdbcType=VARCHAR}, 
       #{filesuffix,jdbcType=VARCHAR}, #{filedesc,jdbcType=VARCHAR}, #{filestatus,jdbcType=VARCHAR}, 
       #{filepath,jdbcType=VARCHAR}, #{cretetime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
       #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.File" >
-    insert into File
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Filestorage" >
+    insert into FileStorage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -158,7 +158,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="filesize != null" >
-        #{filesize,jdbcType=VARCHAR},
+        #{filesize,jdbcType=BIGINT},
       </if>
       <if test="fileprefix != null" >
         #{fileprefix,jdbcType=VARCHAR},
@@ -195,20 +195,20 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.catikco.makepo.entity.FileExample" resultType="java.lang.Integer" >
-    select count(*) from File
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.FilestorageExample" resultType="java.lang.Integer" >
+    select count(*) from FileStorage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update File
+    update FileStorage
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.filesize != null" >
-        fileSize = #{record.filesize,jdbcType=VARCHAR},
+        fileSize = #{record.filesize,jdbcType=BIGINT},
       </if>
       <if test="record.fileprefix != null" >
         filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
@@ -249,9 +249,9 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update File
+    update FileStorage
     set id = #{record.id,jdbcType=INTEGER},
-      fileSize = #{record.filesize,jdbcType=VARCHAR},
+      fileSize = #{record.filesize,jdbcType=BIGINT},
       filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
       fileSuffix = #{record.filesuffix,jdbcType=VARCHAR},
       fileDesc = #{record.filedesc,jdbcType=VARCHAR},

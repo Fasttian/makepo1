@@ -1,4 +1,4 @@
-package com.catikco.makepo.editor.controller;
+package com.catikco.makepo.oss;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -2,10 +2,10 @@ package com.catikco.makepo.entity;
 
 import java.util.Date;
 
-public class File {
+public class Filestorage {
     private Integer id;
 
-    private String filesize;
+    private Long filesize;
 
     private String fileprefix;
 
@@ -37,12 +37,12 @@ public class File {
         this.id = id;
     }
 
-    public String getFilesize() {
+    public Long getFilesize() {
         return filesize;
     }
 
-    public void setFilesize(String filesize) {
-        this.filesize = filesize == null ? null : filesize.trim();
+    public void setFilesize(Long filesize) {
+        this.filesize = filesize;
     }
 
     public String getFileprefix() {
