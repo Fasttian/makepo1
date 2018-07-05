@@ -30,7 +30,7 @@ public class editorController {
 
     @RequestMapping("summernote")
     public String visitSummernote(){
-        return "admin/form-summernote";
+        return "admin/editArticle";
     }
 
     /**n
@@ -102,7 +102,7 @@ public class editorController {
                         e.printStackTrace();
                     }
 
-//                    String httpUrl = request.getScheme()+"://"+ request.getServerName() + ":" + request.getServerPort() + "/" +savePath;
+                    String httpUrl = request.getScheme()+"://"+ request.getServerName() + ":" + request.getServerPort() + "/" +savePath;
 
                     result.append("{\"sn\":\"" + sn + "\", \"name\":\"" + tempName + "\",\"url\":\"" + savePath + "\"},");
                 }
