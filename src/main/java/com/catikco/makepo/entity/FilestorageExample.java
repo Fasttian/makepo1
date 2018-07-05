@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class FileExample {
+public class FilestorageExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public FileExample() {
+    public FilestorageExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -202,62 +202,52 @@ public class FileExample {
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeEqualTo(String value) {
+        public Criteria andFilesizeEqualTo(Long value) {
             addCriterion("fileSize =", value, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeNotEqualTo(String value) {
+        public Criteria andFilesizeNotEqualTo(Long value) {
             addCriterion("fileSize <>", value, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeGreaterThan(String value) {
+        public Criteria andFilesizeGreaterThan(Long value) {
             addCriterion("fileSize >", value, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeGreaterThanOrEqualTo(String value) {
+        public Criteria andFilesizeGreaterThanOrEqualTo(Long value) {
             addCriterion("fileSize >=", value, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeLessThan(String value) {
+        public Criteria andFilesizeLessThan(Long value) {
             addCriterion("fileSize <", value, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeLessThanOrEqualTo(String value) {
+        public Criteria andFilesizeLessThanOrEqualTo(Long value) {
             addCriterion("fileSize <=", value, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeLike(String value) {
-            addCriterion("fileSize like", value, "filesize");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesizeNotLike(String value) {
-            addCriterion("fileSize not like", value, "filesize");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesizeIn(List<String> values) {
+        public Criteria andFilesizeIn(List<Long> values) {
             addCriterion("fileSize in", values, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeNotIn(List<String> values) {
+        public Criteria andFilesizeNotIn(List<Long> values) {
             addCriterion("fileSize not in", values, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeBetween(String value1, String value2) {
+        public Criteria andFilesizeBetween(Long value1, Long value2) {
             addCriterion("fileSize between", value1, value2, "filesize");
             return (Criteria) this;
         }
 
-        public Criteria andFilesizeNotBetween(String value1, String value2) {
+        public Criteria andFilesizeNotBetween(Long value1, Long value2) {
             addCriterion("fileSize not between", value1, value2, "filesize");
             return (Criteria) this;
         }

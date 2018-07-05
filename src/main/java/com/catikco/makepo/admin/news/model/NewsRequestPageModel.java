@@ -8,6 +8,8 @@ import com.catikco.makepo.admin.common.DatatablesRequestPageModel;
  * Description：
  */
 public class NewsRequestPageModel extends DatatablesRequestPageModel {
+
+    /**************************** 查询条件 *******************************************/
     private String title;   //按新闻标题查询
 
     public String getTitle() {
