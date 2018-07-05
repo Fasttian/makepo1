@@ -471,7 +471,7 @@
                                     <a href="#">Forms </a>
                                 </li>
                                 <li class="active">
-                                    Summernote Editor
+                                  Summernote Editor
                                 </li>
                             </ol>
                             <div class="clearfix"></div>
@@ -479,12 +479,12 @@
                     </div>
                 </div>
                 <!-- end row -->
-
+                <button onclick="javascript:getsumm()">code</button>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
                             <h4 class="m-b-30 m-t-0 header-title"><b>Default Editor</b></h4>
-                            <div class="summernote">
+                            <div id="summernote">
                                 <h3>Hello Summernote</h3>
                             </div>
 
@@ -549,6 +549,7 @@
                 </div>
             </div>
 
+
             <div class="row m-t-20">
                 <div class="col-xs-8">
                     <h5 class="m-0">API Access</h5>
@@ -572,7 +573,6 @@
                     <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
                 </div>
             </div>
-
             <div class="row m-t-20">
                 <div class="col-xs-8">
                     <h5 class="m-0">Online Status</h5>
@@ -616,9 +616,10 @@
 
 <script>
 
-    $(document).ready(function () {
+    var editor =null
 
-        $('.summernote').summernote({
+    $(document).ready(function () {
+        editor = $('#summernote').summernote({
             height: 350,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
@@ -644,7 +645,7 @@
             $.ajax({
                 data: formData,
                 type: "POST",
-                url: "/editTor/saveFile",
+                url: "save-editorfiles",
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -662,6 +663,13 @@
 
 
     });
+   function getsumm(){
+
+       var markupStr = 'hello worldwerrtetertytyhtyjh';
+      var  b =  $('#summernote').summernote('code');
+            console.log(b);
+            alert(b);
+   }
 </script>
 
 </body>

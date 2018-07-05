@@ -457,7 +457,7 @@
                                     <h4 class="page-title">新闻管理 </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="#">返加用户中心</a>
+                                            <a href="#">返回用户中心</a>
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -638,6 +638,7 @@
             //清空查询条件
             function clearQuery() {
                 $('#newsForm')[0].reset();
+                table.ajax.reload();
             }
 
             //按标题查询
@@ -658,8 +659,7 @@
                         url: '/load-list',
                         type: 'POST',
                         "data":function(d){
-                            d.title=$("#newsTitle").val();
-                            // d.title="ddd";
+                            getQueryCondition(d);
                         }
                     },
 
@@ -707,6 +707,27 @@
                 } );
             }
 
+
+            function getQueryCondition(data) {
+                //组装排序参数
+                if (data.order&&data.order.length&&data.order[0]) {
+                    switch (data.order[0].column) {
+                        case 0:
+                            data.orderColumn = "title";//数据库列名称
+                            break;
+                        case 1:
+                            data.orderColumn = "keywords";//数据库列名称
+                            break;
+                    }
+                    //排序方式asc或者desc
+                    data.orderDir = data.order[0].dir;
+                    data.title=$("#newsTitle").val();
+                }
+
+                console.log(data);
+
+                return data;
+            }
         </script>
 
 

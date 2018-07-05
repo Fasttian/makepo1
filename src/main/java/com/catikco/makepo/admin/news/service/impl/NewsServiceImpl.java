@@ -37,6 +37,21 @@ public class NewsServiceImpl implements NewsService {
         Integer length = newsRequestPageModel.getLength();      //请求条数
         Integer start=newsRequestPageModel.getStart();          //起始记录
         Integer currentPage = start/length+1;                   //当前页
+        String sortName = newsRequestPageModel.getOrderColumn();   //排序字段名
+        String sort = newsRequestPageModel.getOrderDir();           //排序方式 asc/desc
+
+        String title = newsRequestPageModel.getTitle();         //按新闻标题查询
+
+        // order by
+        if (sortName != null && !sortName.isEmpty()) {
+            newsExample.setOrderByClause(sortName + " " + sort);
+        }
+
+        // 按新闻标题查询
+        if (!"".equals(title)) {
+            title = "%" + title + "%";
+            criteria.andTitleLike(title);
+        }
 
         //设置分页信息
         PageHelper.startPage(currentPage,length);
@@ -47,9 +62,10 @@ public class NewsServiceImpl implements NewsService {
         //让pageInfo对象进行分页的处理
         PageInfo<News> pageInfo = new PageInfo<>(newsList);
 
-        datatablesResponsePageModel.setRecordsFiltered(pageInfo.getPageSize());
+        datatablesResponsePageModel.setRecordsFiltered((int)pageInfo.getTotal());
         datatablesResponsePageModel.setRecordsTotal((int)pageInfo.getTotal());
         datatablesResponsePageModel.setDraw(newsRequestPageModel.getDraw());
+
         datatablesResponsePageModel.setData(this.changeToNewsListPageModel(newsList));
 
         return datatablesResponsePageModel;
