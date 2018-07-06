@@ -15,6 +15,9 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="decription" property="decription" jdbcType="VARCHAR" />
+    <result column="productUrl" property="producturl" jdbcType="VARCHAR" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="productCreateTime" property="productcreatetime" jdbcType="DATE" />
     <result column="createTime" property="createtime" jdbcType="DATE" />
     <result column="upDataTime" property="updatatime" jdbcType="DATE" />
     <result column="createBy" property="createby" jdbcType="INTEGER" />
@@ -85,8 +88,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, model, voltage, power, lumen, 
-    powerFactor, size, material, title, keywords, decription, createTime, upDataTime, 
-    createBy, upDataBy, remark, deleted
+    powerFactor, size, material, title, keywords, decription, productUrl, views, productCreateTime, 
+    createTime, upDataTime, createBy, upDataBy, remark, deleted
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -127,23 +130,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.Lamp" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.Lamp" useGeneratedKeys="true" keyProperty="id">
     insert into Lamp (id, productTitleImageFileid, productContentImagesFileid, 
       model, voltage, power, 
       lumen, powerFactor, size, 
       material, title, keywords, 
-      decription, createTime, upDataTime, 
+      decription, productUrl, views, 
+      productCreateTime, createTime, upDataTime, 
       createBy, upDataBy, remark, 
       deleted, description)
     values (#{id,jdbcType=INTEGER}, #{producttitleimagefileid,jdbcType=INTEGER}, #{productcontentimagesfileid,jdbcType=VARCHAR}, 
       #{model,jdbcType=VARCHAR}, #{voltage,jdbcType=DOUBLE}, #{power,jdbcType=DOUBLE}, 
       #{lumen,jdbcType=DOUBLE}, #{powerfactor,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
       #{material,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
-      #{decription,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
+      #{decription,jdbcType=VARCHAR}, #{producturl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
+      #{productcreatetime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
       #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Lamp" >
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Lamp" useGeneratedKeys="true" keyProperty="id">
     insert into Lamp
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -184,6 +189,15 @@
       </if>
       <if test="decription != null" >
         decription,
+      </if>
+      <if test="producturl != null" >
+        productUrl,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="productcreatetime != null" >
+        productCreateTime,
       </if>
       <if test="createtime != null" >
         createTime,
@@ -246,6 +260,15 @@
       </if>
       <if test="decription != null" >
         #{decription,jdbcType=VARCHAR},
+      </if>
+      <if test="producturl != null" >
+        #{producturl,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="productcreatetime != null" >
+        #{productcreatetime,jdbcType=DATE},
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=DATE},
@@ -318,6 +341,15 @@
       <if test="record.decription != null" >
         decription = #{record.decription,jdbcType=VARCHAR},
       </if>
+      <if test="record.producturl != null" >
+        productUrl = #{record.producturl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.views != null" >
+        views = #{record.views,jdbcType=INTEGER},
+      </if>
+      <if test="record.productcreatetime != null" >
+        productCreateTime = #{record.productcreatetime,jdbcType=DATE},
+      </if>
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=DATE},
       </if>
@@ -359,6 +391,9 @@
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       decription = #{record.decription,jdbcType=VARCHAR},
+      productUrl = #{record.producturl,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      productCreateTime = #{record.productcreatetime,jdbcType=DATE},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},
@@ -385,6 +420,9 @@
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       decription = #{record.decription,jdbcType=VARCHAR},
+      productUrl = #{record.producturl,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      productCreateTime = #{record.productcreatetime,jdbcType=DATE},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},

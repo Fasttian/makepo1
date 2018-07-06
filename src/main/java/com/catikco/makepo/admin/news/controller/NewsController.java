@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+import static com.catikco.makepo.common.StringUtils.cutContentFileId;
+import static com.catikco.makepo.common.StringUtils.mergeContentFileId;
 
 
 /**
@@ -38,6 +42,10 @@ public class NewsController {
      */
     @RequestMapping("admin-init")
     public String adminInit(){
+        String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"24\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"22\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"23\" style=\"width: 974px;\">Hello Summernote</h3>";
+        String fileIds =  mergeContentFileId(htmlContent);
+        List<Integer> fidList = cutContentFileId(fileIds);
+
         return "admin/index";
     }
 
@@ -66,24 +74,20 @@ public class NewsController {
      * @return
      */
     @RequestMapping("edit-news")
-    public String visitSummernote(Integer id,HttpServletResponse response){
+    public String edit(Integer id,HttpServletResponse response){
         return "admin/news/edit-news";
     }
 
     /**
-     * 保存新闻
-     * @param newsEditPageModel  新闻编辑页面model
-     * @param files 新闻概要图片文件
-     * @param response 请求响应
+     *
+     * @param newsEditPageModel 编辑页面model
+     * @param multipartFile 文件
+     * @param response 响应页面请求
      */
     @RequestMapping("save-news")
     @ResponseBody
-    public void saveNews(NewsEditPageModel newsEditPageModel,@RequestParam("file")MultipartFile[] files,  HttpServletResponse response){
-
-        //1.保存新闻
-
-        //2.保存图片
-        fileStorageService.uploads(files,response);
+    public void saveNews(NewsEditPageModel newsEditPageModel,@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
+        newsService.saveNews(multipartFile,newsEditPageModel,response);
     }
 
 
@@ -98,13 +102,14 @@ public class NewsController {
 
     /**
      * 对富文本编辑器中的图片文件执行保存操作
-     * @param files
+     * @param multipartFile
+     * @param isRichTextImgage 标记是否为富文本上传图片，如果是，则把富文本中的多个文件id拼为一个字符串，用于存入产品/新闻的ContentImagesFileid
      * @param response
      */
-    @RequestMapping("/save-editorfiles")
+    @RequestMapping("/save-file")
     @ResponseBody
-    public void saveFiles(@RequestParam("file")MultipartFile[] files,  HttpServletResponse response){
-      fileStorageService.uploads(files,response);
+    public void saveFiles(@RequestParam("file")MultipartFile multipartFile, Boolean isRichTextImgage,HttpServletResponse response){
+       fileStorageService.uploads(multipartFile,isRichTextImgage,response);
     }
 
 

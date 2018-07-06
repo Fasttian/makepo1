@@ -13,7 +13,7 @@ public class Filestorage {
 
     private String filedesc;
 
-    private String filestatus;
+    private Byte filestatus;
 
     private String filepath;
 
@@ -69,12 +69,12 @@ public class Filestorage {
         this.filedesc = filedesc == null ? null : filedesc.trim();
     }
 
-    public String getFilestatus() {
+    public Byte getFilestatus() {
         return filestatus;
     }
 
-    public void setFilestatus(String filestatus) {
-        this.filestatus = filestatus == null ? null : filestatus.trim();
+    public void setFilestatus(Byte filestatus) {
+        this.filestatus = filestatus;
     }
 
     public String getFilepath() {

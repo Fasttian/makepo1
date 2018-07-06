@@ -602,6 +602,196 @@ public class NewsExample {
             return (Criteria) this;
         }
 
+        public Criteria andViewsIsNull() {
+            addCriterion("views is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsIsNotNull() {
+            addCriterion("views is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsEqualTo(Integer value) {
+            addCriterion("views =", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsNotEqualTo(Integer value) {
+            addCriterion("views <>", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsGreaterThan(Integer value) {
+            addCriterion("views >", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsGreaterThanOrEqualTo(Integer value) {
+            addCriterion("views >=", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsLessThan(Integer value) {
+            addCriterion("views <", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsLessThanOrEqualTo(Integer value) {
+            addCriterion("views <=", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsIn(List<Integer> values) {
+            addCriterion("views in", values, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsNotIn(List<Integer> values) {
+            addCriterion("views not in", values, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsBetween(Integer value1, Integer value2) {
+            addCriterion("views between", value1, value2, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsNotBetween(Integer value1, Integer value2) {
+            addCriterion("views not between", value1, value2, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlIsNull() {
+            addCriterion("newsUrl is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlIsNotNull() {
+            addCriterion("newsUrl is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlEqualTo(String value) {
+            addCriterion("newsUrl =", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlNotEqualTo(String value) {
+            addCriterion("newsUrl <>", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlGreaterThan(String value) {
+            addCriterion("newsUrl >", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlGreaterThanOrEqualTo(String value) {
+            addCriterion("newsUrl >=", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlLessThan(String value) {
+            addCriterion("newsUrl <", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlLessThanOrEqualTo(String value) {
+            addCriterion("newsUrl <=", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlLike(String value) {
+            addCriterion("newsUrl like", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlNotLike(String value) {
+            addCriterion("newsUrl not like", value, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlIn(List<String> values) {
+            addCriterion("newsUrl in", values, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlNotIn(List<String> values) {
+            addCriterion("newsUrl not in", values, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlBetween(String value1, String value2) {
+            addCriterion("newsUrl between", value1, value2, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsurlNotBetween(String value1, String value2) {
+            addCriterion("newsUrl not between", value1, value2, "newsurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeIsNull() {
+            addCriterion("newsCreateTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeIsNotNull() {
+            addCriterion("newsCreateTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime =", value, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime <>", value, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("newsCreateTime >", value, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime >=", value, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeLessThan(Date value) {
+            addCriterionForJDBCDate("newsCreateTime <", value, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime <=", value, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeIn(List<Date> values) {
+            addCriterionForJDBCDate("newsCreateTime in", values, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("newsCreateTime not in", values, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("newsCreateTime between", value1, value2, "newscreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewscreatetimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("newsCreateTime not between", value1, value2, "newscreatetime");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatetimeIsNull() {
             addCriterion("createTime is null");
             return (Criteria) this;

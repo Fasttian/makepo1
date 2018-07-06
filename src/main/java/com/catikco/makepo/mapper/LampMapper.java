@@ -4,7 +4,9 @@ import com.catikco.makepo.entity.Lamp;
 import com.catikco.makepo.entity.LampExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface LampMapper {
     int countByExample(LampExample example);
 
