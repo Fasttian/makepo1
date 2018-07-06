@@ -992,6 +992,196 @@ public class LampExample {
             return (Criteria) this;
         }
 
+        public Criteria andProducturlIsNull() {
+            addCriterion("productUrl is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlIsNotNull() {
+            addCriterion("productUrl is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlEqualTo(String value) {
+            addCriterion("productUrl =", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlNotEqualTo(String value) {
+            addCriterion("productUrl <>", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlGreaterThan(String value) {
+            addCriterion("productUrl >", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlGreaterThanOrEqualTo(String value) {
+            addCriterion("productUrl >=", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlLessThan(String value) {
+            addCriterion("productUrl <", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlLessThanOrEqualTo(String value) {
+            addCriterion("productUrl <=", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlLike(String value) {
+            addCriterion("productUrl like", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlNotLike(String value) {
+            addCriterion("productUrl not like", value, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlIn(List<String> values) {
+            addCriterion("productUrl in", values, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlNotIn(List<String> values) {
+            addCriterion("productUrl not in", values, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlBetween(String value1, String value2) {
+            addCriterion("productUrl between", value1, value2, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducturlNotBetween(String value1, String value2) {
+            addCriterion("productUrl not between", value1, value2, "producturl");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsIsNull() {
+            addCriterion("views is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsIsNotNull() {
+            addCriterion("views is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsEqualTo(Integer value) {
+            addCriterion("views =", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsNotEqualTo(Integer value) {
+            addCriterion("views <>", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsGreaterThan(Integer value) {
+            addCriterion("views >", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsGreaterThanOrEqualTo(Integer value) {
+            addCriterion("views >=", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsLessThan(Integer value) {
+            addCriterion("views <", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsLessThanOrEqualTo(Integer value) {
+            addCriterion("views <=", value, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsIn(List<Integer> values) {
+            addCriterion("views in", values, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsNotIn(List<Integer> values) {
+            addCriterion("views not in", values, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsBetween(Integer value1, Integer value2) {
+            addCriterion("views between", value1, value2, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewsNotBetween(Integer value1, Integer value2) {
+            addCriterion("views not between", value1, value2, "views");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeIsNull() {
+            addCriterion("productCreateTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeIsNotNull() {
+            addCriterion("productCreateTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeEqualTo(Date value) {
+            addCriterionForJDBCDate("productCreateTime =", value, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("productCreateTime <>", value, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("productCreateTime >", value, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("productCreateTime >=", value, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeLessThan(Date value) {
+            addCriterionForJDBCDate("productCreateTime <", value, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("productCreateTime <=", value, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeIn(List<Date> values) {
+            addCriterionForJDBCDate("productCreateTime in", values, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("productCreateTime not in", values, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("productCreateTime between", value1, value2, "productcreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductcreatetimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("productCreateTime not between", value1, value2, "productcreatetime");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatetimeIsNull() {
             addCriterion("createTime is null");
             return (Criteria) this;

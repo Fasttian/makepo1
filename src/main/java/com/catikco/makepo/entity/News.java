@@ -17,6 +17,12 @@ public class News {
 
     private String newsresources;
 
+    private Integer views;
+
+    private String newsurl;
+
+    private Date newscreatetime;
+
     private Date createtime;
 
     private Date updatatime;
@@ -83,6 +89,30 @@ public class News {
 
     public void setNewsresources(String newsresources) {
         this.newsresources = newsresources == null ? null : newsresources.trim();
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
+    public String getNewsurl() {
+        return newsurl;
+    }
+
+    public void setNewsurl(String newsurl) {
+        this.newsurl = newsurl == null ? null : newsurl.trim();
+    }
+
+    public Date getNewscreatetime() {
+        return newscreatetime;
+    }
+
+    public void setNewscreatetime(Date newscreatetime) {
+        this.newscreatetime = newscreatetime;
     }
 
     public Date getCreatetime() {

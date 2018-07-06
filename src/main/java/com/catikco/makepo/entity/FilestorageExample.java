@@ -472,62 +472,52 @@ public class FilestorageExample {
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusEqualTo(String value) {
+        public Criteria andFilestatusEqualTo(Byte value) {
             addCriterion("fileStatus =", value, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusNotEqualTo(String value) {
+        public Criteria andFilestatusNotEqualTo(Byte value) {
             addCriterion("fileStatus <>", value, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusGreaterThan(String value) {
+        public Criteria andFilestatusGreaterThan(Byte value) {
             addCriterion("fileStatus >", value, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusGreaterThanOrEqualTo(String value) {
+        public Criteria andFilestatusGreaterThanOrEqualTo(Byte value) {
             addCriterion("fileStatus >=", value, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusLessThan(String value) {
+        public Criteria andFilestatusLessThan(Byte value) {
             addCriterion("fileStatus <", value, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusLessThanOrEqualTo(String value) {
+        public Criteria andFilestatusLessThanOrEqualTo(Byte value) {
             addCriterion("fileStatus <=", value, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusLike(String value) {
-            addCriterion("fileStatus like", value, "filestatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilestatusNotLike(String value) {
-            addCriterion("fileStatus not like", value, "filestatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilestatusIn(List<String> values) {
+        public Criteria andFilestatusIn(List<Byte> values) {
             addCriterion("fileStatus in", values, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusNotIn(List<String> values) {
+        public Criteria andFilestatusNotIn(List<Byte> values) {
             addCriterion("fileStatus not in", values, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusBetween(String value1, String value2) {
+        public Criteria andFilestatusBetween(Byte value1, Byte value2) {
             addCriterion("fileStatus between", value1, value2, "filestatus");
             return (Criteria) this;
         }
 
-        public Criteria andFilestatusNotBetween(String value1, String value2) {
+        public Criteria andFilestatusNotBetween(Byte value1, Byte value2) {
             addCriterion("fileStatus not between", value1, value2, "filestatus");
             return (Criteria) this;
         }

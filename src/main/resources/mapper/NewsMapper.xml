@@ -9,6 +9,9 @@
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="decription" property="decription" jdbcType="VARCHAR" />
     <result column="newsResources" property="newsresources" jdbcType="VARCHAR" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="newsUrl" property="newsurl" jdbcType="VARCHAR" />
+    <result column="newsCreateTime" property="newscreatetime" jdbcType="DATE" />
     <result column="createTime" property="createtime" jdbcType="DATE" />
     <result column="upDataTime" property="updatatime" jdbcType="DATE" />
     <result column="createBy" property="createby" jdbcType="INTEGER" />
@@ -19,7 +22,6 @@
   <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.NewsWithBLOBs" extends="BaseResultMap" >
     <result column="digest" property="digest" jdbcType="LONGVARCHAR" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
-    <result column="views" property="views" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,10 +83,11 @@
   </sql>
   <sql id="Base_Column_List" >
     id, newsTitleImageFileid, newsContentImagesFileid, title, keywords, decription, newsResources, 
-    createTime, upDataTime, createBy, upDataBy, remark, deleted
+    views, newsUrl, newsCreateTime, createTime, upDataTime, createBy, upDataBy, remark, 
+    deleted
   </sql>
   <sql id="Blob_Column_List" >
-    digest, content, views
+    digest, content
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.NewsExample" >
     select
@@ -122,21 +125,23 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id" >
     insert into News (id, newsTitleImageFileid, newsContentImagesFileid, 
       title, keywords, decription, 
-      newsResources, createTime, upDataTime, 
+      newsResources, views, newsUrl, 
+      newsCreateTime, createTime, upDataTime, 
       createBy, upDataBy, remark, 
-      deleted, digest, content, 
-      views)
+      deleted, digest, content
+      )
     values (#{id,jdbcType=INTEGER}, #{newstitleimagefileid,jdbcType=INTEGER}, #{newscontentimagesfileid,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{decription,jdbcType=VARCHAR}, 
-      #{newsresources,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
+      #{newsresources,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{newsurl,jdbcType=VARCHAR}, 
+      #{newscreatetime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
       #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}, 
-      #{views,jdbcType=LONGVARCHAR})
+      #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -159,6 +164,15 @@
       </if>
       <if test="newsresources != null" >
         newsResources,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="newsurl != null" >
+        newsUrl,
+      </if>
+      <if test="newscreatetime != null" >
+        newsCreateTime,
       </if>
       <if test="createtime != null" >
         createTime,
@@ -184,9 +198,6 @@
       <if test="content != null" >
         content,
       </if>
-      <if test="views != null" >
-        views,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -209,6 +220,15 @@
       </if>
       <if test="newsresources != null" >
         #{newsresources,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="newsurl != null" >
+        #{newsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="newscreatetime != null" >
+        #{newscreatetime,jdbcType=DATE},
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=DATE},
@@ -233,9 +253,6 @@
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="views != null" >
-        #{views,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -269,6 +286,15 @@
       <if test="record.newsresources != null" >
         newsResources = #{record.newsresources,jdbcType=VARCHAR},
       </if>
+      <if test="record.views != null" >
+        views = #{record.views,jdbcType=INTEGER},
+      </if>
+      <if test="record.newsurl != null" >
+        newsUrl = #{record.newsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newscreatetime != null" >
+        newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
+      </if>
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=DATE},
       </if>
@@ -293,9 +319,6 @@
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
-      <if test="record.views != null" >
-        views = #{record.views,jdbcType=LONGVARCHAR},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -310,6 +333,9 @@
       keywords = #{record.keywords,jdbcType=VARCHAR},
       decription = #{record.decription,jdbcType=VARCHAR},
       newsResources = #{record.newsresources,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      newsUrl = #{record.newsurl,jdbcType=VARCHAR},
+      newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},
@@ -317,8 +343,7 @@
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       digest = #{record.digest,jdbcType=LONGVARCHAR},
-      content = #{record.content,jdbcType=LONGVARCHAR},
-      views = #{record.views,jdbcType=LONGVARCHAR}
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -332,6 +357,9 @@
       keywords = #{record.keywords,jdbcType=VARCHAR},
       decription = #{record.decription,jdbcType=VARCHAR},
       newsResources = #{record.newsresources,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      newsUrl = #{record.newsurl,jdbcType=VARCHAR},
+      newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},

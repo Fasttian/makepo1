@@ -23,6 +23,12 @@ public class Power {
 
     private String decription;
 
+    private String producturl;
+
+    private Integer views;
+
+    private Date productcreatetime;
+
     private Date cretetime;
 
     private Date updatatime;
@@ -115,6 +121,30 @@ public class Power {
 
     public void setDecription(String decription) {
         this.decription = decription == null ? null : decription.trim();
+    }
+
+    public String getProducturl() {
+        return producturl;
+    }
+
+    public void setProducturl(String producturl) {
+        this.producturl = producturl == null ? null : producturl.trim();
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
+    public Date getProductcreatetime() {
+        return productcreatetime;
+    }
+
+    public void setProductcreatetime(Date productcreatetime) {
+        this.productcreatetime = productcreatetime;
     }
 
     public Date getCretetime() {

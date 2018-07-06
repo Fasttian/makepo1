@@ -7,7 +7,7 @@
     <result column="filePrefix" property="fileprefix" jdbcType="VARCHAR" />
     <result column="fileSuffix" property="filesuffix" jdbcType="VARCHAR" />
     <result column="fileDesc" property="filedesc" jdbcType="VARCHAR" />
-    <result column="fileStatus" property="filestatus" jdbcType="VARCHAR" />
+    <result column="fileStatus" property="filestatus" jdbcType="TINYINT" />
     <result column="filePath" property="filepath" jdbcType="VARCHAR" />
     <result column="creteTime" property="cretetime" jdbcType="DATE" />
     <result column="upDataTime" property="updatatime" jdbcType="DATE" />
@@ -98,19 +98,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.Filestorage" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.Filestorage" useGeneratedKeys="true" keyProperty="id">
     insert into FileStorage (id, fileSize, filePrefix, 
       fileSuffix, fileDesc, fileStatus, 
       filePath, creteTime, upDataTime, 
       createBy, upDataBy, remark, 
       deleted)
     values (#{id,jdbcType=INTEGER}, #{filesize,jdbcType=BIGINT}, #{fileprefix,jdbcType=VARCHAR}, 
-      #{filesuffix,jdbcType=VARCHAR}, #{filedesc,jdbcType=VARCHAR}, #{filestatus,jdbcType=VARCHAR}, 
+      #{filesuffix,jdbcType=VARCHAR}, #{filedesc,jdbcType=VARCHAR}, #{filestatus,jdbcType=TINYINT}, 
       #{filepath,jdbcType=VARCHAR}, #{cretetime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
       #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Filestorage" >
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Filestorage" useGeneratedKeys="true" keyProperty="id" >
     insert into FileStorage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -170,7 +170,7 @@
         #{filedesc,jdbcType=VARCHAR},
       </if>
       <if test="filestatus != null" >
-        #{filestatus,jdbcType=VARCHAR},
+        #{filestatus,jdbcType=TINYINT},
       </if>
       <if test="filepath != null" >
         #{filepath,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.catikco.makepo.entity.FilestorageExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.FilestorageExample" resultType="java.lang.Integer"  >
     select count(*) from FileStorage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -220,7 +220,7 @@
         fileDesc = #{record.filedesc,jdbcType=VARCHAR},
       </if>
       <if test="record.filestatus != null" >
-        fileStatus = #{record.filestatus,jdbcType=VARCHAR},
+        fileStatus = #{record.filestatus,jdbcType=TINYINT},
       </if>
       <if test="record.filepath != null" >
         filePath = #{record.filepath,jdbcType=VARCHAR},
@@ -255,7 +255,7 @@
       filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
       fileSuffix = #{record.filesuffix,jdbcType=VARCHAR},
       fileDesc = #{record.filedesc,jdbcType=VARCHAR},
-      fileStatus = #{record.filestatus,jdbcType=VARCHAR},
+      fileStatus = #{record.filestatus,jdbcType=TINYINT},
       filePath = #{record.filepath,jdbcType=VARCHAR},
       creteTime = #{record.cretetime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},

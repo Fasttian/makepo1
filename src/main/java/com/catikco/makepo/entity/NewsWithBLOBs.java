@@ -5,8 +5,6 @@ public class NewsWithBLOBs extends News {
 
     private String content;
 
-    private String views;
-
     public String getDigest() {
         return digest;
     }
@@ -21,13 +19,5 @@ public class NewsWithBLOBs extends News {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
-    }
-
-    public String getViews() {
-        return views;
-    }
-
-    public void setViews(String views) {
-        this.views = views == null ? null : views.trim();
     }
 }

@@ -4,7 +4,9 @@ import com.catikco.makepo.entity.Power;
 import com.catikco.makepo.entity.PowerExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PowerMapper {
     int countByExample(PowerExample example);
 
