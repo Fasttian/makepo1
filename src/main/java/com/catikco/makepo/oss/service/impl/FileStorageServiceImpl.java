@@ -82,8 +82,6 @@ public class FileStorageServiceImpl implements FileStorageService {
 
                     filestorageMapper.insert(filestorage);      //插数据库
 
-                    fileId = filestorage.getId();               //给fileId赋值
-
                     result.append("{ \"url\":\"" +filestorage.getFilePath() + "\"},");
                     //把文件id存入页面，然后再返回后台存入数据库（ContentImagesFileid）
                     result.append("{ \"fileId\":\"" +filestorage.getId() + "\"},");

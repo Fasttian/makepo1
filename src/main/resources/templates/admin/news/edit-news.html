@@ -692,14 +692,14 @@
         $.ajax({
             data: formData,
             type: "POST",
-            url: "/save-editorfiles",
+            url: "/save-file",
             cache: false,
             contentType: false,
             processData: false,
             dataType: "json",
             success: function (response) {
                 console.log(response);
-                $(el).summernote('editor.insertImage', response.list[0].url, response.name);
+                $(el).summernote('editor.insertImage', response.list[0].url,  response.list[0].fileId);
             },
             error: function () {
                 console.log("uploadError");

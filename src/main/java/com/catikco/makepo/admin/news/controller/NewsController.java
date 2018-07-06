@@ -42,7 +42,7 @@ public class NewsController {
      */
     @RequestMapping("admin-init")
     public String adminInit(HttpServletResponse response){
-        String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"24\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"22\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"23\" style=\"width: 974px;\">Hello Summernote</h3>";
+        String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"1\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"2\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"3\" style=\"width: 974px;\">Hello Summernote</h3>";
         String fileIds =  mergeContentFileId(htmlContent);
         List<Integer> fidList = cutContentFileId(fileIds);
         NewsEditPageModel newsEditPageModel = new NewsEditPageModel();
