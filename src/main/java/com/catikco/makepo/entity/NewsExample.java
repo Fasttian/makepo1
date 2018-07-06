@@ -792,6 +792,66 @@ public class NewsExample {
             return (Criteria) this;
         }
 
+        public Criteria andNewstypeIsNull() {
+            addCriterion("newsType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeIsNotNull() {
+            addCriterion("newsType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeEqualTo(Byte value) {
+            addCriterion("newsType =", value, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeNotEqualTo(Byte value) {
+            addCriterion("newsType <>", value, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeGreaterThan(Byte value) {
+            addCriterion("newsType >", value, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("newsType >=", value, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeLessThan(Byte value) {
+            addCriterion("newsType <", value, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeLessThanOrEqualTo(Byte value) {
+            addCriterion("newsType <=", value, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeIn(List<Byte> values) {
+            addCriterion("newsType in", values, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeNotIn(List<Byte> values) {
+            addCriterion("newsType not in", values, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeBetween(Byte value1, Byte value2) {
+            addCriterion("newsType between", value1, value2, "newstype");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewstypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("newsType not between", value1, value2, "newstype");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatetimeIsNull() {
             addCriterion("createTime is null");
             return (Criteria) this;

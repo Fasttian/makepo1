@@ -12,6 +12,7 @@
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="newsUrl" property="newsurl" jdbcType="VARCHAR" />
     <result column="newsCreateTime" property="newscreatetime" jdbcType="DATE" />
+    <result column="newsType" property="newstype" jdbcType="TINYINT" />
     <result column="createTime" property="createtime" jdbcType="DATE" />
     <result column="upDataTime" property="updatatime" jdbcType="DATE" />
     <result column="createBy" property="createby" jdbcType="INTEGER" />
@@ -83,8 +84,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, newsTitleImageFileid, newsContentImagesFileid, title, keywords, decription, newsResources, 
-    views, newsUrl, newsCreateTime, createTime, upDataTime, createBy, upDataBy, remark, 
-    deleted
+    views, newsUrl, newsCreateTime, newsType, createTime, upDataTime, createBy, upDataBy, 
+    remark, deleted
   </sql>
   <sql id="Blob_Column_List" >
     digest, content
@@ -125,21 +126,21 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News (id, newsTitleImageFileid, newsContentImagesFileid, 
       title, keywords, decription, 
       newsResources, views, newsUrl, 
-      newsCreateTime, createTime, upDataTime, 
-      createBy, upDataBy, remark, 
-      deleted, digest, content
-      )
+      newsCreateTime, newsType, createTime, 
+      upDataTime, createBy, upDataBy, 
+      remark, deleted, digest, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{newstitleimagefileid,jdbcType=INTEGER}, #{newscontentimagesfileid,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{decription,jdbcType=VARCHAR}, 
       #{newsresources,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{newsurl,jdbcType=VARCHAR}, 
-      #{newscreatetime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
-      #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{newscreatetime,jdbcType=DATE}, #{newstype,jdbcType=TINYINT}, #{createtime,jdbcType=DATE}, 
+      #{updatatime,jdbcType=DATE}, #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News
@@ -173,6 +174,9 @@
       </if>
       <if test="newscreatetime != null" >
         newsCreateTime,
+      </if>
+      <if test="newstype != null" >
+        newsType,
       </if>
       <if test="createtime != null" >
         createTime,
@@ -229,6 +233,9 @@
       </if>
       <if test="newscreatetime != null" >
         #{newscreatetime,jdbcType=DATE},
+      </if>
+      <if test="newstype != null" >
+        #{newstype,jdbcType=TINYINT},
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=DATE},
@@ -295,6 +302,9 @@
       <if test="record.newscreatetime != null" >
         newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
       </if>
+      <if test="record.newstype != null" >
+        newsType = #{record.newstype,jdbcType=TINYINT},
+      </if>
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=DATE},
       </if>
@@ -336,6 +346,7 @@
       views = #{record.views,jdbcType=INTEGER},
       newsUrl = #{record.newsurl,jdbcType=VARCHAR},
       newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
+      newsType = #{record.newstype,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},
@@ -360,6 +371,7 @@
       views = #{record.views,jdbcType=INTEGER},
       newsUrl = #{record.newsurl,jdbcType=VARCHAR},
       newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
+      newsType = #{record.newstype,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},

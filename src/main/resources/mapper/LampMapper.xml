@@ -18,6 +18,7 @@
     <result column="productUrl" property="producturl" jdbcType="VARCHAR" />
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="productCreateTime" property="productcreatetime" jdbcType="DATE" />
+    <result column="productType" property="producttype" jdbcType="TINYINT" />
     <result column="createTime" property="createtime" jdbcType="DATE" />
     <result column="upDataTime" property="updatatime" jdbcType="DATE" />
     <result column="createBy" property="createby" jdbcType="INTEGER" />
@@ -89,7 +90,7 @@
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, model, voltage, power, lumen, 
     powerFactor, size, material, title, keywords, decription, productUrl, views, productCreateTime, 
-    createTime, upDataTime, createBy, upDataBy, remark, deleted
+    productType, createTime, upDataTime, createBy, upDataBy, remark, deleted
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -136,17 +137,19 @@
       lumen, powerFactor, size, 
       material, title, keywords, 
       decription, productUrl, views, 
-      productCreateTime, createTime, upDataTime, 
-      createBy, upDataBy, remark, 
-      deleted, description)
+      productCreateTime, productType, createTime, 
+      upDataTime, createBy, upDataBy, 
+      remark, deleted, description
+      )
     values (#{id,jdbcType=INTEGER}, #{producttitleimagefileid,jdbcType=INTEGER}, #{productcontentimagesfileid,jdbcType=VARCHAR}, 
       #{model,jdbcType=VARCHAR}, #{voltage,jdbcType=DOUBLE}, #{power,jdbcType=DOUBLE}, 
       #{lumen,jdbcType=DOUBLE}, #{powerfactor,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
       #{material,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
       #{decription,jdbcType=VARCHAR}, #{producturl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
-      #{productcreatetime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
-      #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR})
+      #{productcreatetime,jdbcType=DATE}, #{producttype,jdbcType=TINYINT}, #{createtime,jdbcType=DATE}, 
+      #{updatatime,jdbcType=DATE}, #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Lamp" useGeneratedKeys="true" keyProperty="id">
     insert into Lamp
@@ -198,6 +201,9 @@
       </if>
       <if test="productcreatetime != null" >
         productCreateTime,
+      </if>
+      <if test="producttype != null" >
+        productType,
       </if>
       <if test="createtime != null" >
         createTime,
@@ -269,6 +275,9 @@
       </if>
       <if test="productcreatetime != null" >
         #{productcreatetime,jdbcType=DATE},
+      </if>
+      <if test="producttype != null" >
+        #{producttype,jdbcType=TINYINT},
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=DATE},
@@ -350,6 +359,9 @@
       <if test="record.productcreatetime != null" >
         productCreateTime = #{record.productcreatetime,jdbcType=DATE},
       </if>
+      <if test="record.producttype != null" >
+        productType = #{record.producttype,jdbcType=TINYINT},
+      </if>
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=DATE},
       </if>
@@ -394,6 +406,7 @@
       productUrl = #{record.producturl,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productcreatetime,jdbcType=DATE},
+      productType = #{record.producttype,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},
@@ -423,6 +436,7 @@
       productUrl = #{record.producturl,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productcreatetime,jdbcType=DATE},
+      productType = #{record.producttype,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=DATE},
       upDataTime = #{record.updatatime,jdbcType=DATE},
       createBy = #{record.createby,jdbcType=INTEGER},

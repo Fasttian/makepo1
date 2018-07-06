@@ -29,6 +29,8 @@ public class Power {
 
     private Date productcreatetime;
 
+    private Byte producttype;
+
     private Date cretetime;
 
     private Date updatatime;
@@ -145,6 +147,14 @@ public class Power {
 
     public void setProductcreatetime(Date productcreatetime) {
         this.productcreatetime = productcreatetime;
+    }
+
+    public Byte getProducttype() {
+        return producttype;
+    }
+
+    public void setProducttype(Byte producttype) {
+        this.producttype = producttype;
     }
 
     public Date getCretetime() {

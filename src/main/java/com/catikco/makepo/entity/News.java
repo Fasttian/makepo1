@@ -23,6 +23,8 @@ public class News {
 
     private Date newscreatetime;
 
+    private Byte newstype;
+
     private Date createtime;
 
     private Date updatatime;
@@ -113,6 +115,14 @@ public class News {
 
     public void setNewscreatetime(Date newscreatetime) {
         this.newscreatetime = newscreatetime;
+    }
+
+    public Byte getNewstype() {
+        return newstype;
+    }
+
+    public void setNewstype(Byte newstype) {
+        this.newstype = newstype;
     }
 
     public Date getCreatetime() {

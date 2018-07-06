@@ -35,6 +35,8 @@ public class Lamp {
 
     private Date productcreatetime;
 
+    private Byte producttype;
+
     private Date createtime;
 
     private Date updatatime;
@@ -175,6 +177,14 @@ public class Lamp {
 
     public void setProductcreatetime(Date productcreatetime) {
         this.productcreatetime = productcreatetime;
+    }
+
+    public Byte getProducttype() {
+        return producttype;
+    }
+
+    public void setProducttype(Byte producttype) {
+        this.producttype = producttype;
     }
 
     public Date getCreatetime() {

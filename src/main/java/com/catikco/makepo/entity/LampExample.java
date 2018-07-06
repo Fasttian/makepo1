@@ -1182,6 +1182,66 @@ public class LampExample {
             return (Criteria) this;
         }
 
+        public Criteria andProducttypeIsNull() {
+            addCriterion("productType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeIsNotNull() {
+            addCriterion("productType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeEqualTo(Byte value) {
+            addCriterion("productType =", value, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeNotEqualTo(Byte value) {
+            addCriterion("productType <>", value, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeGreaterThan(Byte value) {
+            addCriterion("productType >", value, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("productType >=", value, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeLessThan(Byte value) {
+            addCriterion("productType <", value, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeLessThanOrEqualTo(Byte value) {
+            addCriterion("productType <=", value, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeIn(List<Byte> values) {
+            addCriterion("productType in", values, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeNotIn(List<Byte> values) {
+            addCriterion("productType not in", values, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeBetween(Byte value1, Byte value2) {
+            addCriterion("productType between", value1, value2, "producttype");
+            return (Criteria) this;
+        }
+
+        public Criteria andProducttypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("productType not between", value1, value2, "producttype");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatetimeIsNull() {
             addCriterion("createTime is null");
             return (Criteria) this;

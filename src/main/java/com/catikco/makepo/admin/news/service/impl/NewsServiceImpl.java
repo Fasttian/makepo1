@@ -137,6 +137,7 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setContent(newsEditPageModel.getContent());
         newsWithBLOBs.setDecription(newsEditPageModel.getDecription());
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
+        newsWithBLOBs.setNewstype(newsEditPageModel.getNewsType());         //新闻类型
         newsWithBLOBs.setNewscontentimagesfileid(newsContentImagesFileid);  //新闻内容中的图片id
         newsWithBLOBs.setNewstitleimagefileid(newsTitleImageFileid);        //新闻概要图中的id
         newsWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
