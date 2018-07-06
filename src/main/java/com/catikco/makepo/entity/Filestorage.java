@@ -2,28 +2,28 @@ package com.catikco.makepo.entity;
 
 import java.util.Date;
 
-public class Filestorage {
+public class FileStorage {
     private Integer id;
 
-    private Long filesize;
+    private Long fileSize;
 
-    private String fileprefix;
+    private String filePrefix;
 
-    private String filesuffix;
+    private String fileSuffix;
 
-    private String filedesc;
+    private String fileDesc;
 
-    private Byte filestatus;
+    private Byte fileStatus;
 
-    private String filepath;
+    private String filePath;
 
-    private Date cretetime;
+    private Date creteTime;
 
-    private Date updatatime;
+    private Date upDataTime;
 
-    private Integer createby;
+    private Integer createBy;
 
-    private Integer updataby;
+    private Integer upDataBy;
 
     private String remark;
 
@@ -37,84 +37,84 @@ public class Filestorage {
         this.id = id;
     }
 
-    public Long getFilesize() {
-        return filesize;
+    public Long getFileSize() {
+        return fileSize;
     }
 
-    public void setFilesize(Long filesize) {
-        this.filesize = filesize;
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
     }
 
-    public String getFileprefix() {
-        return fileprefix;
+    public String getFilePrefix() {
+        return filePrefix;
     }
 
-    public void setFileprefix(String fileprefix) {
-        this.fileprefix = fileprefix == null ? null : fileprefix.trim();
+    public void setFilePrefix(String filePrefix) {
+        this.filePrefix = filePrefix == null ? null : filePrefix.trim();
     }
 
-    public String getFilesuffix() {
-        return filesuffix;
+    public String getFileSuffix() {
+        return fileSuffix;
     }
 
-    public void setFilesuffix(String filesuffix) {
-        this.filesuffix = filesuffix == null ? null : filesuffix.trim();
+    public void setFileSuffix(String fileSuffix) {
+        this.fileSuffix = fileSuffix == null ? null : fileSuffix.trim();
     }
 
-    public String getFiledesc() {
-        return filedesc;
+    public String getFileDesc() {
+        return fileDesc;
     }
 
-    public void setFiledesc(String filedesc) {
-        this.filedesc = filedesc == null ? null : filedesc.trim();
+    public void setFileDesc(String fileDesc) {
+        this.fileDesc = fileDesc == null ? null : fileDesc.trim();
     }
 
-    public Byte getFilestatus() {
-        return filestatus;
+    public Byte getFileStatus() {
+        return fileStatus;
     }
 
-    public void setFilestatus(Byte filestatus) {
-        this.filestatus = filestatus;
+    public void setFileStatus(Byte fileStatus) {
+        this.fileStatus = fileStatus;
     }
 
-    public String getFilepath() {
-        return filepath;
+    public String getFilePath() {
+        return filePath;
     }
 
-    public void setFilepath(String filepath) {
-        this.filepath = filepath == null ? null : filepath.trim();
+    public void setFilePath(String filePath) {
+        this.filePath = filePath == null ? null : filePath.trim();
     }
 
-    public Date getCretetime() {
-        return cretetime;
+    public Date getCreteTime() {
+        return creteTime;
     }
 
-    public void setCretetime(Date cretetime) {
-        this.cretetime = cretetime;
+    public void setCreteTime(Date creteTime) {
+        this.creteTime = creteTime;
     }
 
-    public Date getUpdatatime() {
-        return updatatime;
+    public Date getUpDataTime() {
+        return upDataTime;
     }
 
-    public void setUpdatatime(Date updatatime) {
-        this.updatatime = updatatime;
+    public void setUpDataTime(Date upDataTime) {
+        this.upDataTime = upDataTime;
     }
 
-    public Integer getCreateby() {
-        return createby;
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public void setCreateby(Integer createby) {
-        this.createby = createby;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
     }
 
-    public Integer getUpdataby() {
-        return updataby;
+    public Integer getUpDataBy() {
+        return upDataBy;
     }
 
-    public void setUpdataby(Integer updataby) {
-        this.updataby = updataby;
+    public void setUpDataBy(Integer upDataBy) {
+        this.upDataBy = upDataBy;
     }
 
     public String getRemark() {

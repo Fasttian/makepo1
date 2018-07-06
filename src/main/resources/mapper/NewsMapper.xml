@@ -2,20 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.catikco.makepo.mapper.NewsMapper" >
   <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.News" >
-    <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="newsTitleImageFileid" property="newstitleimagefileid" jdbcType="INTEGER" />
-    <result column="newsContentImagesFileid" property="newscontentimagesfileid" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="newsTitleImageFileid" property="newsTitleImageFileid" jdbcType="INTEGER" />
+    <result column="newsContentImagesFileid" property="newsContentImagesFileid" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="decription" property="decription" jdbcType="VARCHAR" />
-    <result column="newsResources" property="newsresources" jdbcType="VARCHAR" />
+    <result column="newsResources" property="newsResources" jdbcType="VARCHAR" />
     <result column="views" property="views" jdbcType="INTEGER" />
-    <result column="newsUrl" property="newsurl" jdbcType="VARCHAR" />
-    <result column="newsCreateTime" property="newscreatetime" jdbcType="DATE" />
-    <result column="createTime" property="createtime" jdbcType="DATE" />
-    <result column="upDataTime" property="updatatime" jdbcType="DATE" />
-    <result column="createBy" property="createby" jdbcType="INTEGER" />
-    <result column="upDataBy" property="updataby" jdbcType="INTEGER" />
+    <result column="newsUrl" property="newsUrl" jdbcType="VARCHAR" />
+    <result column="newsCreateTime" property="newsCreateTime" jdbcType="DATE" />
+    <result column="newsType" property="newsType" jdbcType="TINYINT" />
+    <result column="createTime" property="createTime" jdbcType="DATE" />
+    <result column="upDataTime" property="upDataTime" jdbcType="DATE" />
+    <result column="createBy" property="createBy" jdbcType="INTEGER" />
+    <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
   </resultMap>
@@ -83,8 +84,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, newsTitleImageFileid, newsContentImagesFileid, title, keywords, decription, newsResources, 
-    views, newsUrl, newsCreateTime, createTime, upDataTime, createBy, upDataBy, remark, 
-    deleted
+    views, newsUrl, newsCreateTime, newsType, createTime, upDataTime, createBy, upDataBy, 
+    remark, deleted
   </sql>
   <sql id="Blob_Column_List" >
     digest, content
@@ -119,27 +120,39 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from News
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from News
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.NewsExample" >
     delete from News
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News (id, newsTitleImageFileid, newsContentImagesFileid, 
       title, keywords, decription, 
       newsResources, views, newsUrl, 
-      newsCreateTime, createTime, upDataTime, 
-      createBy, upDataBy, remark, 
-      deleted, digest, content
-      )
-    values (#{id,jdbcType=INTEGER}, #{newstitleimagefileid,jdbcType=INTEGER}, #{newscontentimagesfileid,jdbcType=VARCHAR}, 
+      newsCreateTime, newsType, createTime, 
+      upDataTime, createBy, upDataBy, 
+      remark, deleted, digest, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{newsTitleImageFileid,jdbcType=INTEGER}, #{newsContentImagesFileid,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{decription,jdbcType=VARCHAR}, 
-      #{newsresources,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{newsurl,jdbcType=VARCHAR}, 
-      #{newscreatetime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
-      #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{newsResources,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{newsUrl,jdbcType=VARCHAR}, 
+      #{newsCreateTime,jdbcType=DATE}, #{newsType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, 
+      #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News
@@ -147,10 +160,10 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="newstitleimagefileid != null" >
+      <if test="newsTitleImageFileid != null" >
         newsTitleImageFileid,
       </if>
-      <if test="newscontentimagesfileid != null" >
+      <if test="newsContentImagesFileid != null" >
         newsContentImagesFileid,
       </if>
       <if test="title != null" >
@@ -162,28 +175,31 @@
       <if test="decription != null" >
         decription,
       </if>
-      <if test="newsresources != null" >
+      <if test="newsResources != null" >
         newsResources,
       </if>
       <if test="views != null" >
         views,
       </if>
-      <if test="newsurl != null" >
+      <if test="newsUrl != null" >
         newsUrl,
       </if>
-      <if test="newscreatetime != null" >
+      <if test="newsCreateTime != null" >
         newsCreateTime,
       </if>
-      <if test="createtime != null" >
+      <if test="newsType != null" >
+        newsType,
+      </if>
+      <if test="createTime != null" >
         createTime,
       </if>
-      <if test="updatatime != null" >
+      <if test="upDataTime != null" >
         upDataTime,
       </if>
-      <if test="createby != null" >
+      <if test="createBy != null" >
         createBy,
       </if>
-      <if test="updataby != null" >
+      <if test="upDataBy != null" >
         upDataBy,
       </if>
       <if test="remark != null" >
@@ -203,11 +219,11 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="newstitleimagefileid != null" >
-        #{newstitleimagefileid,jdbcType=INTEGER},
+      <if test="newsTitleImageFileid != null" >
+        #{newsTitleImageFileid,jdbcType=INTEGER},
       </if>
-      <if test="newscontentimagesfileid != null" >
-        #{newscontentimagesfileid,jdbcType=VARCHAR},
+      <if test="newsContentImagesFileid != null" >
+        #{newsContentImagesFileid,jdbcType=VARCHAR},
       </if>
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
@@ -218,29 +234,32 @@
       <if test="decription != null" >
         #{decription,jdbcType=VARCHAR},
       </if>
-      <if test="newsresources != null" >
-        #{newsresources,jdbcType=VARCHAR},
+      <if test="newsResources != null" >
+        #{newsResources,jdbcType=VARCHAR},
       </if>
       <if test="views != null" >
         #{views,jdbcType=INTEGER},
       </if>
-      <if test="newsurl != null" >
-        #{newsurl,jdbcType=VARCHAR},
+      <if test="newsUrl != null" >
+        #{newsUrl,jdbcType=VARCHAR},
       </if>
-      <if test="newscreatetime != null" >
-        #{newscreatetime,jdbcType=DATE},
+      <if test="newsCreateTime != null" >
+        #{newsCreateTime,jdbcType=DATE},
       </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=DATE},
+      <if test="newsType != null" >
+        #{newsType,jdbcType=TINYINT},
       </if>
-      <if test="updatatime != null" >
-        #{updatatime,jdbcType=DATE},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
       </if>
-      <if test="createby != null" >
-        #{createby,jdbcType=INTEGER},
+      <if test="upDataTime != null" >
+        #{upDataTime,jdbcType=DATE},
       </if>
-      <if test="updataby != null" >
-        #{updataby,jdbcType=INTEGER},
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="upDataBy != null" >
+        #{upDataBy,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -268,11 +287,11 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.newstitleimagefileid != null" >
-        newsTitleImageFileid = #{record.newstitleimagefileid,jdbcType=INTEGER},
+      <if test="record.newsTitleImageFileid != null" >
+        newsTitleImageFileid = #{record.newsTitleImageFileid,jdbcType=INTEGER},
       </if>
-      <if test="record.newscontentimagesfileid != null" >
-        newsContentImagesFileid = #{record.newscontentimagesfileid,jdbcType=VARCHAR},
+      <if test="record.newsContentImagesFileid != null" >
+        newsContentImagesFileid = #{record.newsContentImagesFileid,jdbcType=VARCHAR},
       </if>
       <if test="record.title != null" >
         title = #{record.title,jdbcType=VARCHAR},
@@ -283,29 +302,32 @@
       <if test="record.decription != null" >
         decription = #{record.decription,jdbcType=VARCHAR},
       </if>
-      <if test="record.newsresources != null" >
-        newsResources = #{record.newsresources,jdbcType=VARCHAR},
+      <if test="record.newsResources != null" >
+        newsResources = #{record.newsResources,jdbcType=VARCHAR},
       </if>
       <if test="record.views != null" >
         views = #{record.views,jdbcType=INTEGER},
       </if>
-      <if test="record.newsurl != null" >
-        newsUrl = #{record.newsurl,jdbcType=VARCHAR},
+      <if test="record.newsUrl != null" >
+        newsUrl = #{record.newsUrl,jdbcType=VARCHAR},
       </if>
-      <if test="record.newscreatetime != null" >
-        newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
+      <if test="record.newsCreateTime != null" >
+        newsCreateTime = #{record.newsCreateTime,jdbcType=DATE},
       </if>
-      <if test="record.createtime != null" >
-        createTime = #{record.createtime,jdbcType=DATE},
+      <if test="record.newsType != null" >
+        newsType = #{record.newsType,jdbcType=TINYINT},
       </if>
-      <if test="record.updatatime != null" >
-        upDataTime = #{record.updatatime,jdbcType=DATE},
+      <if test="record.createTime != null" >
+        createTime = #{record.createTime,jdbcType=DATE},
       </if>
-      <if test="record.createby != null" >
-        createBy = #{record.createby,jdbcType=INTEGER},
+      <if test="record.upDataTime != null" >
+        upDataTime = #{record.upDataTime,jdbcType=DATE},
       </if>
-      <if test="record.updataby != null" >
-        upDataBy = #{record.updataby,jdbcType=INTEGER},
+      <if test="record.createBy != null" >
+        createBy = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.upDataBy != null" >
+        upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -327,19 +349,20 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update News
     set id = #{record.id,jdbcType=INTEGER},
-      newsTitleImageFileid = #{record.newstitleimagefileid,jdbcType=INTEGER},
-      newsContentImagesFileid = #{record.newscontentimagesfileid,jdbcType=VARCHAR},
+      newsTitleImageFileid = #{record.newsTitleImageFileid,jdbcType=INTEGER},
+      newsContentImagesFileid = #{record.newsContentImagesFileid,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       decription = #{record.decription,jdbcType=VARCHAR},
-      newsResources = #{record.newsresources,jdbcType=VARCHAR},
+      newsResources = #{record.newsResources,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
-      newsUrl = #{record.newsurl,jdbcType=VARCHAR},
-      newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
-      createTime = #{record.createtime,jdbcType=DATE},
-      upDataTime = #{record.updatatime,jdbcType=DATE},
-      createBy = #{record.createby,jdbcType=INTEGER},
-      upDataBy = #{record.updataby,jdbcType=INTEGER},
+      newsUrl = #{record.newsUrl,jdbcType=VARCHAR},
+      newsCreateTime = #{record.newsCreateTime,jdbcType=DATE},
+      newsType = #{record.newsType,jdbcType=TINYINT},
+      createTime = #{record.createTime,jdbcType=DATE},
+      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       digest = #{record.digest,jdbcType=LONGVARCHAR},
@@ -351,23 +374,126 @@
   <update id="updateByExample" parameterType="map" >
     update News
     set id = #{record.id,jdbcType=INTEGER},
-      newsTitleImageFileid = #{record.newstitleimagefileid,jdbcType=INTEGER},
-      newsContentImagesFileid = #{record.newscontentimagesfileid,jdbcType=VARCHAR},
+      newsTitleImageFileid = #{record.newsTitleImageFileid,jdbcType=INTEGER},
+      newsContentImagesFileid = #{record.newsContentImagesFileid,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       decription = #{record.decription,jdbcType=VARCHAR},
-      newsResources = #{record.newsresources,jdbcType=VARCHAR},
+      newsResources = #{record.newsResources,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
-      newsUrl = #{record.newsurl,jdbcType=VARCHAR},
-      newsCreateTime = #{record.newscreatetime,jdbcType=DATE},
-      createTime = #{record.createtime,jdbcType=DATE},
-      upDataTime = #{record.updatatime,jdbcType=DATE},
-      createBy = #{record.createby,jdbcType=INTEGER},
-      upDataBy = #{record.updataby,jdbcType=INTEGER},
+      newsUrl = #{record.newsUrl,jdbcType=VARCHAR},
+      newsCreateTime = #{record.newsCreateTime,jdbcType=DATE},
+      newsType = #{record.newsType,jdbcType=TINYINT},
+      createTime = #{record.createTime,jdbcType=DATE},
+      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
+    update News
+    <set >
+      <if test="newsTitleImageFileid != null" >
+        newsTitleImageFileid = #{newsTitleImageFileid,jdbcType=INTEGER},
+      </if>
+      <if test="newsContentImagesFileid != null" >
+        newsContentImagesFileid = #{newsContentImagesFileid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="decription != null" >
+        decription = #{decription,jdbcType=VARCHAR},
+      </if>
+      <if test="newsResources != null" >
+        newsResources = #{newsResources,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="newsUrl != null" >
+        newsUrl = #{newsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="newsCreateTime != null" >
+        newsCreateTime = #{newsCreateTime,jdbcType=DATE},
+      </if>
+      <if test="newsType != null" >
+        newsType = #{newsType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="upDataTime != null" >
+        upDataTime = #{upDataTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        createBy = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="upDataBy != null" >
+        upDataBy = #{upDataBy,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="digest != null" >
+        digest = #{digest,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
+    update News
+    set newsTitleImageFileid = #{newsTitleImageFileid,jdbcType=INTEGER},
+      newsContentImagesFileid = #{newsContentImagesFileid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      decription = #{decription,jdbcType=VARCHAR},
+      newsResources = #{newsResources,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      newsUrl = #{newsUrl,jdbcType=VARCHAR},
+      newsCreateTime = #{newsCreateTime,jdbcType=DATE},
+      newsType = #{newsType,jdbcType=TINYINT},
+      createTime = #{createTime,jdbcType=DATE},
+      upDataTime = #{upDataTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      digest = #{digest,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.News" >
+    update News
+    set newsTitleImageFileid = #{newsTitleImageFileid,jdbcType=INTEGER},
+      newsContentImagesFileid = #{newsContentImagesFileid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      decription = #{decription,jdbcType=VARCHAR},
+      newsResources = #{newsResources,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      newsUrl = #{newsUrl,jdbcType=VARCHAR},
+      newsCreateTime = #{newsCreateTime,jdbcType=DATE},
+      newsType = #{newsType,jdbcType=TINYINT},
+      createTime = #{createTime,jdbcType=DATE},
+      upDataTime = #{upDataTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

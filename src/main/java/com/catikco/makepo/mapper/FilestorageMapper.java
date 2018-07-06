@@ -1,24 +1,32 @@
 package com.catikco.makepo.mapper;
 
-import com.catikco.makepo.entity.Filestorage;
-import com.catikco.makepo.entity.FilestorageExample;
+import com.catikco.makepo.entity.FileStorage;
+import com.catikco.makepo.entity.FileStorageExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FilestorageMapper {
-    int countByExample(FilestorageExample example);
+public interface FileStorageMapper {
+    int countByExample(FileStorageExample example);
 
-    int deleteByExample(FilestorageExample example);
+    int deleteByExample(FileStorageExample example);
 
-    int insert(Filestorage record);
+    int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(Filestorage record);
+    int insert(FileStorage record);
 
-    List<Filestorage> selectByExample(FilestorageExample example);
+    int insertSelective(FileStorage record);
 
-    int updateByExampleSelective(@Param("record") Filestorage record, @Param("example") FilestorageExample example);
+    List<FileStorage> selectByExample(FileStorageExample example);
 
-    int updateByExample(@Param("record") Filestorage record, @Param("example") FilestorageExample example);
+    FileStorage selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") FileStorage record, @Param("example") FileStorageExample example);
+
+    int updateByExample(@Param("record") FileStorage record, @Param("example") FileStorageExample example);
+
+    int updateByPrimaryKeySelective(FileStorage record);
+
+    int updateByPrimaryKey(FileStorage record);
 }
