@@ -23,6 +23,8 @@
     <link href="admin/assets/css/menu.css" rel="stylesheet" type="text/css"/>
     <link href="admin/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="admin/plugins/switchery/switchery.min.css">
+    <link href="admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="admin/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -462,7 +464,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">发布文章</h4>
+                            <h4 class="page-title">发布新闻</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="#">Zircos</a>
@@ -483,10 +485,10 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
-                            <h4 class="m-b-30 m-t-0 header-title"><b>编辑文章</b></h4>
+                            <h4 class="m-b-30 m-t-0 header-title"><b>编辑新闻</b></h4>
                             <div class="row form-horizontal">
                                 <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">文章标题</label>
+                                    <label class="col-md-2 control-label">新闻标题</label>
                                     <div class="col-md-10">
                                         <input type="text" class="form-control" value="">
                                     </div>
@@ -510,22 +512,48 @@
                                     </div>
                                 </div>
                                 <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻来源</label>
+                                    <label class="col-md-2 control-label">上传图片</label>
                                     <div class="col-md-10">
-                                        <input type="file" class="filestyle" data-buttonname="btn-default" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">
-                                        <div class="bootstrap-filestyle input-group"><input type="text" class="form-control " placeholder="" disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-0" class="btn btn-default "><span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> <span class="buttonText">Choose file</span></label></span></div> </div>
+                                        <input type="file" class="filestyle" data-buttonname="btn-default">
+                                    </div>
                                 </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">发布时间</label>
+                                    <div class="col-md-10">
+                                        <div>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy"
+                                                       id="datepicker-autoclose">
+                                                <span class="input-group-addon bg-custom b-0"><i
+                                                        class="mdi mdi-calendar text-white"></i></span>
+                                            </div><!-- input-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">新闻类型</label>
+                                    <div class="col-md-10">
+                                        <select class="selectpicker" data-style="btn-custom">
+                                            <option>行业新闻</option>
+                                            <option>企业新闻</option>
+                                            <option>国内新闻</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group  col-md-6 col-sm-6">
                                     <label class="col-md-2 control-label">摘要</label>
                                     <div class="col-md-10">
-                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3" placeholder="最多225个字符"></textarea>
+                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3"
+                                                  placeholder="最多225个字符"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="summernote col-md-12 col-sm-12">
-                                <h3>Hello Summernote</h3>
+                            <div style="margin-top: 1rem;">
+                                <div class="summernote col-md-12 col-sm-12">
+                                    <h3>Hello Summernote</h3>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -626,9 +654,15 @@
 <!--Summernote js-->
 <script src="admin/plugins/summernote/summernote.min.js"></script>
 
+<script src="admin/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
+
+<script src="admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<script src="admin/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 <!-- App js -->
 <script src="admin/assets/js/jquery.core.js"></script>
 <script src="admin/assets/js/jquery.app.js"></script>
+
 
 <script>
 
@@ -674,44 +708,32 @@
     }
 
 
-
     //提交新闻
     function submitNews() {
-
-        //FormData 提交表单
-        var form = new FormData(document.getElementById("editNewsForm"));
-
-        //取出富文本中的内容追加进入
-        var content = null;
-        form.append("content",content);
-
-
         $.ajax({
-            type: 'POST',
-            url: '/save-news',
-            data: form,
-            processData:false,
-            contentType:false,
-            dataType: 'json',
-            beforeSend: function(xhr) {
-                //loading层
-                loading = layer.load(0, {
-                    shade: [0.1,'#585858'] //0.1透明度的白色背景
-                });
-            },
-            complete: function(xhr, ts){
-                layer.close(loading);
-            },
-            success: function(data){
+            type: "GET",
+            url: "/save-news",
+            data: {username: $("#username").val(), content: $("#content").val()},
+            dataType: "json",
+            success: function (data) {
 
                 //保存成功回到新闻列表页面
-                location.href="/news-list";
+                location.href = "/news-list";
             }
 
         });
     }
 
 
+    // Date Picker
+    $('#datepicker-autoclose').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    //file upload
+    $(":file").filestyle({input: true});
+    $('.selectpicker').selectpicker();
 
 </script>
 
