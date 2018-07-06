@@ -5,9 +5,9 @@ import java.util.Date;
 public class News {
     private Integer id;
 
-    private Integer newstitleimagefileid;
+    private Integer newsTitleImageFileid;
 
-    private String newscontentimagesfileid;
+    private String newsContentImagesFileid;
 
     private String title;
 
@@ -15,21 +15,23 @@ public class News {
 
     private String decription;
 
-    private String newsresources;
+    private String newsResources;
 
     private Integer views;
 
-    private String newsurl;
+    private String newsUrl;
 
-    private Date newscreatetime;
+    private Date newsCreateTime;
 
-    private Date createtime;
+    private Byte newsType;
 
-    private Date updatatime;
+    private Date createTime;
 
-    private Integer createby;
+    private Date upDataTime;
 
-    private Integer updataby;
+    private Integer createBy;
+
+    private Integer upDataBy;
 
     private String remark;
 
@@ -43,20 +45,20 @@ public class News {
         this.id = id;
     }
 
-    public Integer getNewstitleimagefileid() {
-        return newstitleimagefileid;
+    public Integer getNewsTitleImageFileid() {
+        return newsTitleImageFileid;
     }
 
-    public void setNewstitleimagefileid(Integer newstitleimagefileid) {
-        this.newstitleimagefileid = newstitleimagefileid;
+    public void setNewsTitleImageFileid(Integer newsTitleImageFileid) {
+        this.newsTitleImageFileid = newsTitleImageFileid;
     }
 
-    public String getNewscontentimagesfileid() {
-        return newscontentimagesfileid;
+    public String getNewsContentImagesFileid() {
+        return newsContentImagesFileid;
     }
 
-    public void setNewscontentimagesfileid(String newscontentimagesfileid) {
-        this.newscontentimagesfileid = newscontentimagesfileid == null ? null : newscontentimagesfileid.trim();
+    public void setNewsContentImagesFileid(String newsContentImagesFileid) {
+        this.newsContentImagesFileid = newsContentImagesFileid == null ? null : newsContentImagesFileid.trim();
     }
 
     public String getTitle() {
@@ -83,12 +85,12 @@ public class News {
         this.decription = decription == null ? null : decription.trim();
     }
 
-    public String getNewsresources() {
-        return newsresources;
+    public String getNewsResources() {
+        return newsResources;
     }
 
-    public void setNewsresources(String newsresources) {
-        this.newsresources = newsresources == null ? null : newsresources.trim();
+    public void setNewsResources(String newsResources) {
+        this.newsResources = newsResources == null ? null : newsResources.trim();
     }
 
     public Integer getViews() {
@@ -99,52 +101,60 @@ public class News {
         this.views = views;
     }
 
-    public String getNewsurl() {
-        return newsurl;
+    public String getNewsUrl() {
+        return newsUrl;
     }
 
-    public void setNewsurl(String newsurl) {
-        this.newsurl = newsurl == null ? null : newsurl.trim();
+    public void setNewsUrl(String newsUrl) {
+        this.newsUrl = newsUrl == null ? null : newsUrl.trim();
     }
 
-    public Date getNewscreatetime() {
-        return newscreatetime;
+    public Date getNewsCreateTime() {
+        return newsCreateTime;
     }
 
-    public void setNewscreatetime(Date newscreatetime) {
-        this.newscreatetime = newscreatetime;
+    public void setNewsCreateTime(Date newsCreateTime) {
+        this.newsCreateTime = newsCreateTime;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Byte getNewsType() {
+        return newsType;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setNewsType(Byte newsType) {
+        this.newsType = newsType;
     }
 
-    public Date getUpdatatime() {
-        return updatatime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setUpdatatime(Date updatatime) {
-        this.updatatime = updatatime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Integer getCreateby() {
-        return createby;
+    public Date getUpDataTime() {
+        return upDataTime;
     }
 
-    public void setCreateby(Integer createby) {
-        this.createby = createby;
+    public void setUpDataTime(Date upDataTime) {
+        this.upDataTime = upDataTime;
     }
 
-    public Integer getUpdataby() {
-        return updataby;
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public void setUpdataby(Integer updataby) {
-        this.updataby = updataby;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
+    }
+
+    public Integer getUpDataBy() {
+        return upDataBy;
+    }
+
+    public void setUpDataBy(Integer upDataBy) {
+        this.upDataBy = upDataBy;
     }
 
     public String getRemark() {

@@ -5,9 +5,9 @@ import java.util.Date;
 public class Power {
     private Integer id;
 
-    private Integer producttitleimagefileid;
+    private Integer productTitleImageFileid;
 
-    private String productcontentimagesfileid;
+    private String productContentImagesFileid;
 
     private Double power;
 
@@ -23,19 +23,21 @@ public class Power {
 
     private String decription;
 
-    private String producturl;
+    private String productUrl;
 
     private Integer views;
 
-    private Date productcreatetime;
+    private Date productCreateTime;
 
-    private Date cretetime;
+    private Byte productType;
 
-    private Date updatatime;
+    private Date creteTime;
 
-    private Integer createby;
+    private Date upDataTime;
 
-    private Integer updataby;
+    private Integer createBy;
+
+    private Integer upDataBy;
 
     private String remark;
 
@@ -51,20 +53,20 @@ public class Power {
         this.id = id;
     }
 
-    public Integer getProducttitleimagefileid() {
-        return producttitleimagefileid;
+    public Integer getProductTitleImageFileid() {
+        return productTitleImageFileid;
     }
 
-    public void setProducttitleimagefileid(Integer producttitleimagefileid) {
-        this.producttitleimagefileid = producttitleimagefileid;
+    public void setProductTitleImageFileid(Integer productTitleImageFileid) {
+        this.productTitleImageFileid = productTitleImageFileid;
     }
 
-    public String getProductcontentimagesfileid() {
-        return productcontentimagesfileid;
+    public String getProductContentImagesFileid() {
+        return productContentImagesFileid;
     }
 
-    public void setProductcontentimagesfileid(String productcontentimagesfileid) {
-        this.productcontentimagesfileid = productcontentimagesfileid == null ? null : productcontentimagesfileid.trim();
+    public void setProductContentImagesFileid(String productContentImagesFileid) {
+        this.productContentImagesFileid = productContentImagesFileid == null ? null : productContentImagesFileid.trim();
     }
 
     public Double getPower() {
@@ -123,12 +125,12 @@ public class Power {
         this.decription = decription == null ? null : decription.trim();
     }
 
-    public String getProducturl() {
-        return producturl;
+    public String getProductUrl() {
+        return productUrl;
     }
 
-    public void setProducturl(String producturl) {
-        this.producturl = producturl == null ? null : producturl.trim();
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl == null ? null : productUrl.trim();
     }
 
     public Integer getViews() {
@@ -139,44 +141,52 @@ public class Power {
         this.views = views;
     }
 
-    public Date getProductcreatetime() {
-        return productcreatetime;
+    public Date getProductCreateTime() {
+        return productCreateTime;
     }
 
-    public void setProductcreatetime(Date productcreatetime) {
-        this.productcreatetime = productcreatetime;
+    public void setProductCreateTime(Date productCreateTime) {
+        this.productCreateTime = productCreateTime;
     }
 
-    public Date getCretetime() {
-        return cretetime;
+    public Byte getProductType() {
+        return productType;
     }
 
-    public void setCretetime(Date cretetime) {
-        this.cretetime = cretetime;
+    public void setProductType(Byte productType) {
+        this.productType = productType;
     }
 
-    public Date getUpdatatime() {
-        return updatatime;
+    public Date getCreteTime() {
+        return creteTime;
     }
 
-    public void setUpdatatime(Date updatatime) {
-        this.updatatime = updatatime;
+    public void setCreteTime(Date creteTime) {
+        this.creteTime = creteTime;
     }
 
-    public Integer getCreateby() {
-        return createby;
+    public Date getUpDataTime() {
+        return upDataTime;
     }
 
-    public void setCreateby(Integer createby) {
-        this.createby = createby;
+    public void setUpDataTime(Date upDataTime) {
+        this.upDataTime = upDataTime;
     }
 
-    public Integer getUpdataby() {
-        return updataby;
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public void setUpdataby(Integer updataby) {
-        this.updataby = updataby;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
+    }
+
+    public Integer getUpDataBy() {
+        return upDataBy;
+    }
+
+    public void setUpDataBy(Integer upDataBy) {
+        this.upDataBy = upDataBy;
     }
 
     public String getRemark() {

@@ -12,6 +12,8 @@ public interface LampMapper {
 
     int deleteByExample(LampExample example);
 
+    int deleteByPrimaryKey(Integer id);
+
     int insert(Lamp record);
 
     int insertSelective(Lamp record);
@@ -20,9 +22,17 @@ public interface LampMapper {
 
     List<Lamp> selectByExample(LampExample example);
 
+    Lamp selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") Lamp record, @Param("example") LampExample example);
 
     int updateByExampleWithBLOBs(@Param("record") Lamp record, @Param("example") LampExample example);
 
     int updateByExample(@Param("record") Lamp record, @Param("example") LampExample example);
+
+    int updateByPrimaryKeySelective(Lamp record);
+
+    int updateByPrimaryKeyWithBLOBs(Lamp record);
+
+    int updateByPrimaryKey(Lamp record);
 }

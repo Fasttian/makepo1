@@ -41,10 +41,17 @@ public class NewsController {
      * @return
      */
     @RequestMapping("admin-init")
-    public String adminInit(){
+    public String adminInit(HttpServletResponse response){
         String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"24\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"22\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"23\" style=\"width: 974px;\">Hello Summernote</h3>";
         String fileIds =  mergeContentFileId(htmlContent);
         List<Integer> fidList = cutContentFileId(fileIds);
+        NewsEditPageModel newsEditPageModel = new NewsEditPageModel();
+        newsEditPageModel.setContent(htmlContent);
+        newsEditPageModel.setTitle("新闻测试");
+        newsEditPageModel.setKeywords("关键字测试");
+        newsEditPageModel.setDigest("摘要测试");
+
+        newsService.saveNews(newsEditPageModel,response);
 
         return "admin/index";
     }
@@ -87,7 +94,7 @@ public class NewsController {
     @RequestMapping("save-news")
     @ResponseBody
     public void saveNews(NewsEditPageModel newsEditPageModel,@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
-        newsService.saveNews(multipartFile,newsEditPageModel,response);
+        newsService.saveNews(newsEditPageModel,response);
     }
 
 
@@ -103,13 +110,12 @@ public class NewsController {
     /**
      * 对富文本编辑器中的图片文件执行保存操作
      * @param multipartFile
-     * @param isRichTextImgage 标记是否为富文本上传图片，如果是，则把富文本中的多个文件id拼为一个字符串，用于存入产品/新闻的ContentImagesFileid
      * @param response
      */
     @RequestMapping("/save-file")
     @ResponseBody
-    public void saveFiles(@RequestParam("file")MultipartFile multipartFile, Boolean isRichTextImgage,HttpServletResponse response){
-       fileStorageService.uploads(multipartFile,isRichTextImgage,response);
+    public void saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
+       fileStorageService.uploads(multipartFile,response);
     }
 
 

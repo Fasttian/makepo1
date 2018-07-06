@@ -27,13 +27,15 @@ public class NewsEditPageModel {
 
     private Date createtime;                        //新闻发布时间
 
-    private String newsUrl;                         //新闻链接
+    private String newsUrl;                         //新闻链接（预留属性：以后在后台新闻列表点击跳转到新闻页面功能的实现）
 
     private MultipartFile multipartFile;            //新闻要图片
 
     private String digest;                          //新闻摘要
 
     private String content;                         //新闻内容
+
+    private Byte newsType;                          //新闻类型
 
     public Integer getId() {
         return id;
@@ -129,5 +131,13 @@ public class NewsEditPageModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Byte getNewsType() {
+        return newsType;
+    }
+
+    public void setNewsType(Byte newsType) {
+        this.newsType = newsType;
     }
 }

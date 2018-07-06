@@ -3,14 +3,17 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
+
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="C:\Tools\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
+    <classPathEntry location="C:\Tools\all\repo\mysql\mysql-connector-java\5.1.25\mysql-connector-java-5.1.25.jar" />
     <context id="testTables" targetRuntime="MyBatis3">
+
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
+
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://47.97.185.22:3306/makepo" userId="root"
@@ -46,12 +49,24 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
-        <!-- 指定数据库表 -->
-        <!-- <table schema="" tableName="Lamp" ></table>
-         <table schema="" tableName="Power" ></table>
-         <table schema="" tableName="News"></table>
-         <table schema="" tableName="FileStorage" ></table>-->
 
+
+        <!-- 指定数据库表 -->
+        <!-- <table schema="" tableName="Lamp"  domainObjectName="Lamp">
+             <property name="useActualColumnNames" value="true"/>
+         </table>
+         <table schema="" tableName="Power" domainObjectName="Power">
+             <property name="useActualColumnNames" value="true"/>
+         </table>
+         <table schema="" tableName="News" domainObjectName="News">
+             <property name="useActualColumnNames" value="true"/>
+         </table>
+         <table schema="" tableName="FileStorage" domainObjectName="FileStorage">
+             <property name="useActualColumnNames" value="true"/>
+         </table>-->
 
     </context>
+
 </generatorConfiguration>
+
+
