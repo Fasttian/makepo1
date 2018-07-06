@@ -5,21 +5,22 @@ import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
-import com.catikco.makepo.entity.News;
-import com.catikco.makepo.entity.NewsExample;
-import com.catikco.makepo.entity.NewsWithBLOBs;
+import com.catikco.makepo.entity.*;
+import com.catikco.makepo.mapper.FileStorageMapper;
 import com.catikco.makepo.mapper.NewsMapper;
 import com.catikco.makepo.oss.service.FileStorageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.catikco.makepo.common.StringUtils.cutContentFileId;
+import static com.catikco.makepo.common.StringUtils.mergeContentFileId;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -34,6 +35,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private FileStorageService fileStorageService;
+
+    @Autowired
+    private FileStorageMapper filestorageMapper;
 
     /**
      * 加载新闻列表
@@ -87,13 +91,36 @@ public class NewsServiceImpl implements NewsService {
 
     /**
      *
-     * @param multipartFile 上传的文件
      * @param newsEditPageModel 编辑框页面model
      * @param response  响应页面请求
      */
-    public void saveNews(MultipartFile multipartFile, NewsEditPageModel newsEditPageModel, HttpServletResponse response){
+    public void saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
+        //Integer newsTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getMultipartFile(), response);      //概要图片文件id
+        Integer newsTitleImageFileid = 24;
 
+        String newsContentImagesFileid = mergeContentFileId(newsEditPageModel.getContent());      //处理内容中的文件id(多个)
 
+        NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newsTitleImageFileid, newsContentImagesFileid);
+
+        //把文件状态改为正常
+        List<Integer> fileIdList = cutContentFileId(newsContentImagesFileid);
+        for(Integer fid:fileIdList){
+            FileStorageExample filestorageExample = new FileStorageExample();
+            FileStorageExample.Criteria criteria = filestorageExample.createCriteria();
+            criteria.andIdEqualTo(fid);
+
+            FileStorage filestorage = new FileStorage();
+            List<FileStorage> filestorageList = filestorageMapper.selectByExample(filestorageExample);
+            if (!filestorageList.isEmpty())
+            filestorage=filestorageList.get(0);
+
+            filestorage.setFileStatus((byte)2);     //设置文件状态正常
+            filestorage.setRemark("不正常文件");
+            filestorageMapper.updateByPrimaryKey(filestorage);
+        }
+
+        //插数据库
+        newsMapper.insert(newsWithBLOBs);
 
     }
 
@@ -137,17 +164,14 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setContent(newsEditPageModel.getContent());
         newsWithBLOBs.setDecription(newsEditPageModel.getDecription());
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
-        newsWithBLOBs.setNewstype(newsEditPageModel.getNewsType());         //新闻类型
-        newsWithBLOBs.setNewscontentimagesfileid(newsContentImagesFileid);  //新闻内容中的图片id
-        newsWithBLOBs.setNewstitleimagefileid(newsTitleImageFileid);        //新闻概要图中的id
+        newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
+        newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
+        newsWithBLOBs.setNewsTitleImageFileid(newsTitleImageFileid);        //新闻概要图中的id
         newsWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         newsWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
-        newsWithBLOBs.setNewsurl("/news-detail");                           //新闻链接默认为news-detail
-        newsWithBLOBs.setNewsresources(newsEditPageModel.getNewsresources());
-        newsWithBLOBs.setCreatetime(new Date());                            //新闻创建时间为用户指定时间
-
-
-
+        newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail
+        newsWithBLOBs.setNewsResources(newsEditPageModel.getNewsresources());
+        newsWithBLOBs.setCreateTime(new Date());                            //新闻创建时间为用户指定时间
 
 
         return newsWithBLOBs;

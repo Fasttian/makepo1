@@ -192,133 +192,133 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidIsNull() {
+        public Criteria andNewsTitleImageFileidIsNull() {
             addCriterion("newsTitleImageFileid is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidIsNotNull() {
+        public Criteria andNewsTitleImageFileidIsNotNull() {
             addCriterion("newsTitleImageFileid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidEqualTo(Integer value) {
-            addCriterion("newsTitleImageFileid =", value, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidEqualTo(Integer value) {
+            addCriterion("newsTitleImageFileid =", value, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidNotEqualTo(Integer value) {
-            addCriterion("newsTitleImageFileid <>", value, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidNotEqualTo(Integer value) {
+            addCriterion("newsTitleImageFileid <>", value, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidGreaterThan(Integer value) {
-            addCriterion("newsTitleImageFileid >", value, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidGreaterThan(Integer value) {
+            addCriterion("newsTitleImageFileid >", value, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("newsTitleImageFileid >=", value, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("newsTitleImageFileid >=", value, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidLessThan(Integer value) {
-            addCriterion("newsTitleImageFileid <", value, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidLessThan(Integer value) {
+            addCriterion("newsTitleImageFileid <", value, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidLessThanOrEqualTo(Integer value) {
-            addCriterion("newsTitleImageFileid <=", value, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidLessThanOrEqualTo(Integer value) {
+            addCriterion("newsTitleImageFileid <=", value, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidIn(List<Integer> values) {
-            addCriterion("newsTitleImageFileid in", values, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidIn(List<Integer> values) {
+            addCriterion("newsTitleImageFileid in", values, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidNotIn(List<Integer> values) {
-            addCriterion("newsTitleImageFileid not in", values, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidNotIn(List<Integer> values) {
+            addCriterion("newsTitleImageFileid not in", values, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidBetween(Integer value1, Integer value2) {
-            addCriterion("newsTitleImageFileid between", value1, value2, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidBetween(Integer value1, Integer value2) {
+            addCriterion("newsTitleImageFileid between", value1, value2, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewstitleimagefileidNotBetween(Integer value1, Integer value2) {
-            addCriterion("newsTitleImageFileid not between", value1, value2, "newstitleimagefileid");
+        public Criteria andNewsTitleImageFileidNotBetween(Integer value1, Integer value2) {
+            addCriterion("newsTitleImageFileid not between", value1, value2, "newsTitleImageFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidIsNull() {
+        public Criteria andNewsContentImagesFileidIsNull() {
             addCriterion("newsContentImagesFileid is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidIsNotNull() {
+        public Criteria andNewsContentImagesFileidIsNotNull() {
             addCriterion("newsContentImagesFileid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidEqualTo(String value) {
-            addCriterion("newsContentImagesFileid =", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidEqualTo(String value) {
+            addCriterion("newsContentImagesFileid =", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidNotEqualTo(String value) {
-            addCriterion("newsContentImagesFileid <>", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidNotEqualTo(String value) {
+            addCriterion("newsContentImagesFileid <>", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidGreaterThan(String value) {
-            addCriterion("newsContentImagesFileid >", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidGreaterThan(String value) {
+            addCriterion("newsContentImagesFileid >", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidGreaterThanOrEqualTo(String value) {
-            addCriterion("newsContentImagesFileid >=", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidGreaterThanOrEqualTo(String value) {
+            addCriterion("newsContentImagesFileid >=", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidLessThan(String value) {
-            addCriterion("newsContentImagesFileid <", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidLessThan(String value) {
+            addCriterion("newsContentImagesFileid <", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidLessThanOrEqualTo(String value) {
-            addCriterion("newsContentImagesFileid <=", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidLessThanOrEqualTo(String value) {
+            addCriterion("newsContentImagesFileid <=", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidLike(String value) {
-            addCriterion("newsContentImagesFileid like", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidLike(String value) {
+            addCriterion("newsContentImagesFileid like", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidNotLike(String value) {
-            addCriterion("newsContentImagesFileid not like", value, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidNotLike(String value) {
+            addCriterion("newsContentImagesFileid not like", value, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidIn(List<String> values) {
-            addCriterion("newsContentImagesFileid in", values, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidIn(List<String> values) {
+            addCriterion("newsContentImagesFileid in", values, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidNotIn(List<String> values) {
-            addCriterion("newsContentImagesFileid not in", values, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidNotIn(List<String> values) {
+            addCriterion("newsContentImagesFileid not in", values, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidBetween(String value1, String value2) {
-            addCriterion("newsContentImagesFileid between", value1, value2, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidBetween(String value1, String value2) {
+            addCriterion("newsContentImagesFileid between", value1, value2, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
-        public Criteria andNewscontentimagesfileidNotBetween(String value1, String value2) {
-            addCriterion("newsContentImagesFileid not between", value1, value2, "newscontentimagesfileid");
+        public Criteria andNewsContentImagesFileidNotBetween(String value1, String value2) {
+            addCriterion("newsContentImagesFileid not between", value1, value2, "newsContentImagesFileid");
             return (Criteria) this;
         }
 
@@ -532,73 +532,73 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesIsNull() {
+        public Criteria andNewsResourcesIsNull() {
             addCriterion("newsResources is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesIsNotNull() {
+        public Criteria andNewsResourcesIsNotNull() {
             addCriterion("newsResources is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesEqualTo(String value) {
-            addCriterion("newsResources =", value, "newsresources");
+        public Criteria andNewsResourcesEqualTo(String value) {
+            addCriterion("newsResources =", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesNotEqualTo(String value) {
-            addCriterion("newsResources <>", value, "newsresources");
+        public Criteria andNewsResourcesNotEqualTo(String value) {
+            addCriterion("newsResources <>", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesGreaterThan(String value) {
-            addCriterion("newsResources >", value, "newsresources");
+        public Criteria andNewsResourcesGreaterThan(String value) {
+            addCriterion("newsResources >", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesGreaterThanOrEqualTo(String value) {
-            addCriterion("newsResources >=", value, "newsresources");
+        public Criteria andNewsResourcesGreaterThanOrEqualTo(String value) {
+            addCriterion("newsResources >=", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesLessThan(String value) {
-            addCriterion("newsResources <", value, "newsresources");
+        public Criteria andNewsResourcesLessThan(String value) {
+            addCriterion("newsResources <", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesLessThanOrEqualTo(String value) {
-            addCriterion("newsResources <=", value, "newsresources");
+        public Criteria andNewsResourcesLessThanOrEqualTo(String value) {
+            addCriterion("newsResources <=", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesLike(String value) {
-            addCriterion("newsResources like", value, "newsresources");
+        public Criteria andNewsResourcesLike(String value) {
+            addCriterion("newsResources like", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesNotLike(String value) {
-            addCriterion("newsResources not like", value, "newsresources");
+        public Criteria andNewsResourcesNotLike(String value) {
+            addCriterion("newsResources not like", value, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesIn(List<String> values) {
-            addCriterion("newsResources in", values, "newsresources");
+        public Criteria andNewsResourcesIn(List<String> values) {
+            addCriterion("newsResources in", values, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesNotIn(List<String> values) {
-            addCriterion("newsResources not in", values, "newsresources");
+        public Criteria andNewsResourcesNotIn(List<String> values) {
+            addCriterion("newsResources not in", values, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesBetween(String value1, String value2) {
-            addCriterion("newsResources between", value1, value2, "newsresources");
+        public Criteria andNewsResourcesBetween(String value1, String value2) {
+            addCriterion("newsResources between", value1, value2, "newsResources");
             return (Criteria) this;
         }
 
-        public Criteria andNewsresourcesNotBetween(String value1, String value2) {
-            addCriterion("newsResources not between", value1, value2, "newsresources");
+        public Criteria andNewsResourcesNotBetween(String value1, String value2) {
+            addCriterion("newsResources not between", value1, value2, "newsResources");
             return (Criteria) this;
         }
 
@@ -662,433 +662,433 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlIsNull() {
+        public Criteria andNewsUrlIsNull() {
             addCriterion("newsUrl is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlIsNotNull() {
+        public Criteria andNewsUrlIsNotNull() {
             addCriterion("newsUrl is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlEqualTo(String value) {
-            addCriterion("newsUrl =", value, "newsurl");
+        public Criteria andNewsUrlEqualTo(String value) {
+            addCriterion("newsUrl =", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlNotEqualTo(String value) {
-            addCriterion("newsUrl <>", value, "newsurl");
+        public Criteria andNewsUrlNotEqualTo(String value) {
+            addCriterion("newsUrl <>", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlGreaterThan(String value) {
-            addCriterion("newsUrl >", value, "newsurl");
+        public Criteria andNewsUrlGreaterThan(String value) {
+            addCriterion("newsUrl >", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlGreaterThanOrEqualTo(String value) {
-            addCriterion("newsUrl >=", value, "newsurl");
+        public Criteria andNewsUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("newsUrl >=", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlLessThan(String value) {
-            addCriterion("newsUrl <", value, "newsurl");
+        public Criteria andNewsUrlLessThan(String value) {
+            addCriterion("newsUrl <", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlLessThanOrEqualTo(String value) {
-            addCriterion("newsUrl <=", value, "newsurl");
+        public Criteria andNewsUrlLessThanOrEqualTo(String value) {
+            addCriterion("newsUrl <=", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlLike(String value) {
-            addCriterion("newsUrl like", value, "newsurl");
+        public Criteria andNewsUrlLike(String value) {
+            addCriterion("newsUrl like", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlNotLike(String value) {
-            addCriterion("newsUrl not like", value, "newsurl");
+        public Criteria andNewsUrlNotLike(String value) {
+            addCriterion("newsUrl not like", value, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlIn(List<String> values) {
-            addCriterion("newsUrl in", values, "newsurl");
+        public Criteria andNewsUrlIn(List<String> values) {
+            addCriterion("newsUrl in", values, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlNotIn(List<String> values) {
-            addCriterion("newsUrl not in", values, "newsurl");
+        public Criteria andNewsUrlNotIn(List<String> values) {
+            addCriterion("newsUrl not in", values, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlBetween(String value1, String value2) {
-            addCriterion("newsUrl between", value1, value2, "newsurl");
+        public Criteria andNewsUrlBetween(String value1, String value2) {
+            addCriterion("newsUrl between", value1, value2, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewsurlNotBetween(String value1, String value2) {
-            addCriterion("newsUrl not between", value1, value2, "newsurl");
+        public Criteria andNewsUrlNotBetween(String value1, String value2) {
+            addCriterion("newsUrl not between", value1, value2, "newsUrl");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeIsNull() {
+        public Criteria andNewsCreateTimeIsNull() {
             addCriterion("newsCreateTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeIsNotNull() {
+        public Criteria andNewsCreateTimeIsNotNull() {
             addCriterion("newsCreateTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeEqualTo(Date value) {
-            addCriterionForJDBCDate("newsCreateTime =", value, "newscreatetime");
+        public Criteria andNewsCreateTimeEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime =", value, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("newsCreateTime <>", value, "newscreatetime");
+        public Criteria andNewsCreateTimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime <>", value, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("newsCreateTime >", value, "newscreatetime");
+        public Criteria andNewsCreateTimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("newsCreateTime >", value, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("newsCreateTime >=", value, "newscreatetime");
+        public Criteria andNewsCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime >=", value, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeLessThan(Date value) {
-            addCriterionForJDBCDate("newsCreateTime <", value, "newscreatetime");
+        public Criteria andNewsCreateTimeLessThan(Date value) {
+            addCriterionForJDBCDate("newsCreateTime <", value, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("newsCreateTime <=", value, "newscreatetime");
+        public Criteria andNewsCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("newsCreateTime <=", value, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeIn(List<Date> values) {
-            addCriterionForJDBCDate("newsCreateTime in", values, "newscreatetime");
+        public Criteria andNewsCreateTimeIn(List<Date> values) {
+            addCriterionForJDBCDate("newsCreateTime in", values, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("newsCreateTime not in", values, "newscreatetime");
+        public Criteria andNewsCreateTimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("newsCreateTime not in", values, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("newsCreateTime between", value1, value2, "newscreatetime");
+        public Criteria andNewsCreateTimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("newsCreateTime between", value1, value2, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewscreatetimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("newsCreateTime not between", value1, value2, "newscreatetime");
+        public Criteria andNewsCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("newsCreateTime not between", value1, value2, "newsCreateTime");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeIsNull() {
+        public Criteria andNewsTypeIsNull() {
             addCriterion("newsType is null");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeIsNotNull() {
+        public Criteria andNewsTypeIsNotNull() {
             addCriterion("newsType is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeEqualTo(Byte value) {
-            addCriterion("newsType =", value, "newstype");
+        public Criteria andNewsTypeEqualTo(Byte value) {
+            addCriterion("newsType =", value, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeNotEqualTo(Byte value) {
-            addCriterion("newsType <>", value, "newstype");
+        public Criteria andNewsTypeNotEqualTo(Byte value) {
+            addCriterion("newsType <>", value, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeGreaterThan(Byte value) {
-            addCriterion("newsType >", value, "newstype");
+        public Criteria andNewsTypeGreaterThan(Byte value) {
+            addCriterion("newsType >", value, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeGreaterThanOrEqualTo(Byte value) {
-            addCriterion("newsType >=", value, "newstype");
+        public Criteria andNewsTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("newsType >=", value, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeLessThan(Byte value) {
-            addCriterion("newsType <", value, "newstype");
+        public Criteria andNewsTypeLessThan(Byte value) {
+            addCriterion("newsType <", value, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeLessThanOrEqualTo(Byte value) {
-            addCriterion("newsType <=", value, "newstype");
+        public Criteria andNewsTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("newsType <=", value, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeIn(List<Byte> values) {
-            addCriterion("newsType in", values, "newstype");
+        public Criteria andNewsTypeIn(List<Byte> values) {
+            addCriterion("newsType in", values, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeNotIn(List<Byte> values) {
-            addCriterion("newsType not in", values, "newstype");
+        public Criteria andNewsTypeNotIn(List<Byte> values) {
+            addCriterion("newsType not in", values, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeBetween(Byte value1, Byte value2) {
-            addCriterion("newsType between", value1, value2, "newstype");
+        public Criteria andNewsTypeBetween(Byte value1, Byte value2) {
+            addCriterion("newsType between", value1, value2, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andNewstypeNotBetween(Byte value1, Byte value2) {
-            addCriterion("newsType not between", value1, value2, "newstype");
+        public Criteria andNewsTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("newsType not between", value1, value2, "newsType");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNull() {
+        public Criteria andCreateTimeIsNull() {
             addCriterion("createTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNotNull() {
+        public Criteria andCreateTimeIsNotNull() {
             addCriterion("createTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime =", value, "createtime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime <>", value, "createtime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("createTime >", value, "createtime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("createTime >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime >=", value, "createtime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThan(Date value) {
-            addCriterionForJDBCDate("createTime <", value, "createtime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterionForJDBCDate("createTime <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("createTime <=", value, "createtime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIn(List<Date> values) {
-            addCriterionForJDBCDate("createTime in", values, "createtime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterionForJDBCDate("createTime in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("createTime not in", values, "createtime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("createTime not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("createTime between", value1, value2, "createtime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("createTime between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("createTime not between", value1, value2, "createtime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("createTime not between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeIsNull() {
+        public Criteria andUpDataTimeIsNull() {
             addCriterion("upDataTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeIsNotNull() {
+        public Criteria andUpDataTimeIsNotNull() {
             addCriterion("upDataTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime =", value, "updatatime");
+        public Criteria andUpDataTimeEqualTo(Date value) {
+            addCriterionForJDBCDate("upDataTime =", value, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime <>", value, "updatatime");
+        public Criteria andUpDataTimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("upDataTime <>", value, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("upDataTime >", value, "updatatime");
+        public Criteria andUpDataTimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("upDataTime >", value, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime >=", value, "updatatime");
+        public Criteria andUpDataTimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("upDataTime >=", value, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeLessThan(Date value) {
-            addCriterionForJDBCDate("upDataTime <", value, "updatatime");
+        public Criteria andUpDataTimeLessThan(Date value) {
+            addCriterionForJDBCDate("upDataTime <", value, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime <=", value, "updatatime");
+        public Criteria andUpDataTimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("upDataTime <=", value, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeIn(List<Date> values) {
-            addCriterionForJDBCDate("upDataTime in", values, "updatatime");
+        public Criteria andUpDataTimeIn(List<Date> values) {
+            addCriterionForJDBCDate("upDataTime in", values, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("upDataTime not in", values, "updatatime");
+        public Criteria andUpDataTimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("upDataTime not in", values, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("upDataTime between", value1, value2, "updatatime");
+        public Criteria andUpDataTimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("upDataTime between", value1, value2, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatatimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("upDataTime not between", value1, value2, "updatatime");
+        public Criteria andUpDataTimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("upDataTime not between", value1, value2, "upDataTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyIsNull() {
+        public Criteria andCreateByIsNull() {
             addCriterion("createBy is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyIsNotNull() {
+        public Criteria andCreateByIsNotNull() {
             addCriterion("createBy is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyEqualTo(Integer value) {
-            addCriterion("createBy =", value, "createby");
+        public Criteria andCreateByEqualTo(Integer value) {
+            addCriterion("createBy =", value, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyNotEqualTo(Integer value) {
-            addCriterion("createBy <>", value, "createby");
+        public Criteria andCreateByNotEqualTo(Integer value) {
+            addCriterion("createBy <>", value, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyGreaterThan(Integer value) {
-            addCriterion("createBy >", value, "createby");
+        public Criteria andCreateByGreaterThan(Integer value) {
+            addCriterion("createBy >", value, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyGreaterThanOrEqualTo(Integer value) {
-            addCriterion("createBy >=", value, "createby");
+        public Criteria andCreateByGreaterThanOrEqualTo(Integer value) {
+            addCriterion("createBy >=", value, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyLessThan(Integer value) {
-            addCriterion("createBy <", value, "createby");
+        public Criteria andCreateByLessThan(Integer value) {
+            addCriterion("createBy <", value, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyLessThanOrEqualTo(Integer value) {
-            addCriterion("createBy <=", value, "createby");
+        public Criteria andCreateByLessThanOrEqualTo(Integer value) {
+            addCriterion("createBy <=", value, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyIn(List<Integer> values) {
-            addCriterion("createBy in", values, "createby");
+        public Criteria andCreateByIn(List<Integer> values) {
+            addCriterion("createBy in", values, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyNotIn(List<Integer> values) {
-            addCriterion("createBy not in", values, "createby");
+        public Criteria andCreateByNotIn(List<Integer> values) {
+            addCriterion("createBy not in", values, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyBetween(Integer value1, Integer value2) {
-            addCriterion("createBy between", value1, value2, "createby");
+        public Criteria andCreateByBetween(Integer value1, Integer value2) {
+            addCriterion("createBy between", value1, value2, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyNotBetween(Integer value1, Integer value2) {
-            addCriterion("createBy not between", value1, value2, "createby");
+        public Criteria andCreateByNotBetween(Integer value1, Integer value2) {
+            addCriterion("createBy not between", value1, value2, "createBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyIsNull() {
+        public Criteria andUpDataByIsNull() {
             addCriterion("upDataBy is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyIsNotNull() {
+        public Criteria andUpDataByIsNotNull() {
             addCriterion("upDataBy is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyEqualTo(Integer value) {
-            addCriterion("upDataBy =", value, "updataby");
+        public Criteria andUpDataByEqualTo(Integer value) {
+            addCriterion("upDataBy =", value, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyNotEqualTo(Integer value) {
-            addCriterion("upDataBy <>", value, "updataby");
+        public Criteria andUpDataByNotEqualTo(Integer value) {
+            addCriterion("upDataBy <>", value, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyGreaterThan(Integer value) {
-            addCriterion("upDataBy >", value, "updataby");
+        public Criteria andUpDataByGreaterThan(Integer value) {
+            addCriterion("upDataBy >", value, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyGreaterThanOrEqualTo(Integer value) {
-            addCriterion("upDataBy >=", value, "updataby");
+        public Criteria andUpDataByGreaterThanOrEqualTo(Integer value) {
+            addCriterion("upDataBy >=", value, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyLessThan(Integer value) {
-            addCriterion("upDataBy <", value, "updataby");
+        public Criteria andUpDataByLessThan(Integer value) {
+            addCriterion("upDataBy <", value, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyLessThanOrEqualTo(Integer value) {
-            addCriterion("upDataBy <=", value, "updataby");
+        public Criteria andUpDataByLessThanOrEqualTo(Integer value) {
+            addCriterion("upDataBy <=", value, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyIn(List<Integer> values) {
-            addCriterion("upDataBy in", values, "updataby");
+        public Criteria andUpDataByIn(List<Integer> values) {
+            addCriterion("upDataBy in", values, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyNotIn(List<Integer> values) {
-            addCriterion("upDataBy not in", values, "updataby");
+        public Criteria andUpDataByNotIn(List<Integer> values) {
+            addCriterion("upDataBy not in", values, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyBetween(Integer value1, Integer value2) {
-            addCriterion("upDataBy between", value1, value2, "updataby");
+        public Criteria andUpDataByBetween(Integer value1, Integer value2) {
+            addCriterion("upDataBy between", value1, value2, "upDataBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatabyNotBetween(Integer value1, Integer value2) {
-            addCriterion("upDataBy not between", value1, value2, "updataby");
+        public Criteria andUpDataByNotBetween(Integer value1, Integer value2) {
+            addCriterion("upDataBy not between", value1, value2, "upDataBy");
             return (Criteria) this;
         }
 

@@ -12,6 +12,8 @@ public interface PowerMapper {
 
     int deleteByExample(PowerExample example);
 
+    int deleteByPrimaryKey(Integer id);
+
     int insert(Power record);
 
     int insertSelective(Power record);
@@ -20,9 +22,17 @@ public interface PowerMapper {
 
     List<Power> selectByExample(PowerExample example);
 
+    Power selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") Power record, @Param("example") PowerExample example);
 
     int updateByExampleWithBLOBs(@Param("record") Power record, @Param("example") PowerExample example);
 
     int updateByExample(@Param("record") Power record, @Param("example") PowerExample example);
+
+    int updateByPrimaryKeySelective(Power record);
+
+    int updateByPrimaryKeyWithBLOBs(Power record);
+
+    int updateByPrimaryKey(Power record);
 }

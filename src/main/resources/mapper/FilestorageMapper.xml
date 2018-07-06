@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.catikco.makepo.mapper.FilestorageMapper" >
-  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.Filestorage" >
-    <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="fileSize" property="filesize" jdbcType="BIGINT" />
-    <result column="filePrefix" property="fileprefix" jdbcType="VARCHAR" />
-    <result column="fileSuffix" property="filesuffix" jdbcType="VARCHAR" />
-    <result column="fileDesc" property="filedesc" jdbcType="VARCHAR" />
-    <result column="fileStatus" property="filestatus" jdbcType="TINYINT" />
-    <result column="filePath" property="filepath" jdbcType="VARCHAR" />
-    <result column="creteTime" property="cretetime" jdbcType="DATE" />
-    <result column="upDataTime" property="updatatime" jdbcType="DATE" />
-    <result column="createBy" property="createby" jdbcType="INTEGER" />
-    <result column="upDataBy" property="updataby" jdbcType="INTEGER" />
+<mapper namespace="com.catikco.makepo.mapper.FileStorageMapper" >
+  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.FileStorage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fileSize" property="fileSize" jdbcType="BIGINT" />
+    <result column="filePrefix" property="filePrefix" jdbcType="VARCHAR" />
+    <result column="fileSuffix" property="fileSuffix" jdbcType="VARCHAR" />
+    <result column="fileDesc" property="fileDesc" jdbcType="VARCHAR" />
+    <result column="fileStatus" property="fileStatus" jdbcType="TINYINT" />
+    <result column="filePath" property="filePath" jdbcType="VARCHAR" />
+    <result column="creteTime" property="creteTime" jdbcType="DATE" />
+    <result column="upDataTime" property="upDataTime" jdbcType="DATE" />
+    <result column="createBy" property="createBy" jdbcType="INTEGER" />
+    <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
   </resultMap>
@@ -78,7 +78,7 @@
     id, fileSize, filePrefix, fileSuffix, fileDesc, fileStatus, filePath, creteTime, 
     upDataTime, createBy, upDataBy, remark, deleted
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FilestorageExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FileStorageExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,58 +92,68 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FilestorageExample" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from FileStorage
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from FileStorage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FileStorageExample" >
     delete from FileStorage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.Filestorage" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
     insert into FileStorage (id, fileSize, filePrefix, 
       fileSuffix, fileDesc, fileStatus, 
       filePath, creteTime, upDataTime, 
       createBy, upDataBy, remark, 
       deleted)
-    values (#{id,jdbcType=INTEGER}, #{filesize,jdbcType=BIGINT}, #{fileprefix,jdbcType=VARCHAR}, 
-      #{filesuffix,jdbcType=VARCHAR}, #{filedesc,jdbcType=VARCHAR}, #{filestatus,jdbcType=TINYINT}, 
-      #{filepath,jdbcType=VARCHAR}, #{cretetime,jdbcType=DATE}, #{updatatime,jdbcType=DATE}, 
-      #{createby,jdbcType=INTEGER}, #{updataby,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{fileSize,jdbcType=BIGINT}, #{filePrefix,jdbcType=VARCHAR}, 
+      #{fileSuffix,jdbcType=VARCHAR}, #{fileDesc,jdbcType=VARCHAR}, #{fileStatus,jdbcType=TINYINT}, 
+      #{filePath,jdbcType=VARCHAR}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
+      #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Filestorage" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
     insert into FileStorage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="filesize != null" >
+      <if test="fileSize != null" >
         fileSize,
       </if>
-      <if test="fileprefix != null" >
+      <if test="filePrefix != null" >
         filePrefix,
       </if>
-      <if test="filesuffix != null" >
+      <if test="fileSuffix != null" >
         fileSuffix,
       </if>
-      <if test="filedesc != null" >
+      <if test="fileDesc != null" >
         fileDesc,
       </if>
-      <if test="filestatus != null" >
+      <if test="fileStatus != null" >
         fileStatus,
       </if>
-      <if test="filepath != null" >
+      <if test="filePath != null" >
         filePath,
       </if>
-      <if test="cretetime != null" >
+      <if test="creteTime != null" >
         creteTime,
       </if>
-      <if test="updatatime != null" >
+      <if test="upDataTime != null" >
         upDataTime,
       </if>
-      <if test="createby != null" >
+      <if test="createBy != null" >
         createBy,
       </if>
-      <if test="updataby != null" >
+      <if test="upDataBy != null" >
         upDataBy,
       </if>
       <if test="remark != null" >
@@ -157,35 +167,35 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="filesize != null" >
-        #{filesize,jdbcType=BIGINT},
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=BIGINT},
       </if>
-      <if test="fileprefix != null" >
-        #{fileprefix,jdbcType=VARCHAR},
+      <if test="filePrefix != null" >
+        #{filePrefix,jdbcType=VARCHAR},
       </if>
-      <if test="filesuffix != null" >
-        #{filesuffix,jdbcType=VARCHAR},
+      <if test="fileSuffix != null" >
+        #{fileSuffix,jdbcType=VARCHAR},
       </if>
-      <if test="filedesc != null" >
-        #{filedesc,jdbcType=VARCHAR},
+      <if test="fileDesc != null" >
+        #{fileDesc,jdbcType=VARCHAR},
       </if>
-      <if test="filestatus != null" >
-        #{filestatus,jdbcType=TINYINT},
+      <if test="fileStatus != null" >
+        #{fileStatus,jdbcType=TINYINT},
       </if>
-      <if test="filepath != null" >
-        #{filepath,jdbcType=VARCHAR},
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
       </if>
-      <if test="cretetime != null" >
-        #{cretetime,jdbcType=DATE},
+      <if test="creteTime != null" >
+        #{creteTime,jdbcType=DATE},
       </if>
-      <if test="updatatime != null" >
-        #{updatatime,jdbcType=DATE},
+      <if test="upDataTime != null" >
+        #{upDataTime,jdbcType=DATE},
       </if>
-      <if test="createby != null" >
-        #{createby,jdbcType=INTEGER},
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="updataby != null" >
-        #{updataby,jdbcType=INTEGER},
+      <if test="upDataBy != null" >
+        #{upDataBy,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -195,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.catikco.makepo.entity.FilestorageExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.FileStorageExample" resultType="java.lang.Integer" >
     select count(*) from FileStorage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -207,35 +217,35 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.filesize != null" >
-        fileSize = #{record.filesize,jdbcType=BIGINT},
+      <if test="record.fileSize != null" >
+        fileSize = #{record.fileSize,jdbcType=BIGINT},
       </if>
-      <if test="record.fileprefix != null" >
-        filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
+      <if test="record.filePrefix != null" >
+        filePrefix = #{record.filePrefix,jdbcType=VARCHAR},
       </if>
-      <if test="record.filesuffix != null" >
-        fileSuffix = #{record.filesuffix,jdbcType=VARCHAR},
+      <if test="record.fileSuffix != null" >
+        fileSuffix = #{record.fileSuffix,jdbcType=VARCHAR},
       </if>
-      <if test="record.filedesc != null" >
-        fileDesc = #{record.filedesc,jdbcType=VARCHAR},
+      <if test="record.fileDesc != null" >
+        fileDesc = #{record.fileDesc,jdbcType=VARCHAR},
       </if>
-      <if test="record.filestatus != null" >
-        fileStatus = #{record.filestatus,jdbcType=TINYINT},
+      <if test="record.fileStatus != null" >
+        fileStatus = #{record.fileStatus,jdbcType=TINYINT},
       </if>
-      <if test="record.filepath != null" >
-        filePath = #{record.filepath,jdbcType=VARCHAR},
+      <if test="record.filePath != null" >
+        filePath = #{record.filePath,jdbcType=VARCHAR},
       </if>
-      <if test="record.cretetime != null" >
-        creteTime = #{record.cretetime,jdbcType=DATE},
+      <if test="record.creteTime != null" >
+        creteTime = #{record.creteTime,jdbcType=DATE},
       </if>
-      <if test="record.updatatime != null" >
-        upDataTime = #{record.updatatime,jdbcType=DATE},
+      <if test="record.upDataTime != null" >
+        upDataTime = #{record.upDataTime,jdbcType=DATE},
       </if>
-      <if test="record.createby != null" >
-        createBy = #{record.createby,jdbcType=INTEGER},
+      <if test="record.createBy != null" >
+        createBy = #{record.createBy,jdbcType=INTEGER},
       </if>
-      <if test="record.updataby != null" >
-        upDataBy = #{record.updataby,jdbcType=INTEGER},
+      <if test="record.upDataBy != null" >
+        upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -251,20 +261,78 @@
   <update id="updateByExample" parameterType="map" >
     update FileStorage
     set id = #{record.id,jdbcType=INTEGER},
-      fileSize = #{record.filesize,jdbcType=BIGINT},
-      filePrefix = #{record.fileprefix,jdbcType=VARCHAR},
-      fileSuffix = #{record.filesuffix,jdbcType=VARCHAR},
-      fileDesc = #{record.filedesc,jdbcType=VARCHAR},
-      fileStatus = #{record.filestatus,jdbcType=TINYINT},
-      filePath = #{record.filepath,jdbcType=VARCHAR},
-      creteTime = #{record.cretetime,jdbcType=DATE},
-      upDataTime = #{record.updatatime,jdbcType=DATE},
-      createBy = #{record.createby,jdbcType=INTEGER},
-      upDataBy = #{record.updataby,jdbcType=INTEGER},
+      fileSize = #{record.fileSize,jdbcType=BIGINT},
+      filePrefix = #{record.filePrefix,jdbcType=VARCHAR},
+      fileSuffix = #{record.fileSuffix,jdbcType=VARCHAR},
+      fileDesc = #{record.fileDesc,jdbcType=VARCHAR},
+      fileStatus = #{record.fileStatus,jdbcType=TINYINT},
+      filePath = #{record.filePath,jdbcType=VARCHAR},
+      creteTime = #{record.creteTime,jdbcType=DATE},
+      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.FileStorage" >
+    update FileStorage
+    <set >
+      <if test="fileSize != null" >
+        fileSize = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="filePrefix != null" >
+        filePrefix = #{filePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSuffix != null" >
+        fileSuffix = #{fileSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="fileDesc != null" >
+        fileDesc = #{fileDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fileStatus != null" >
+        fileStatus = #{fileStatus,jdbcType=TINYINT},
+      </if>
+      <if test="filePath != null" >
+        filePath = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="creteTime != null" >
+        creteTime = #{creteTime,jdbcType=DATE},
+      </if>
+      <if test="upDataTime != null" >
+        upDataTime = #{upDataTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        createBy = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="upDataBy != null" >
+        upDataBy = #{upDataBy,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.FileStorage" >
+    update FileStorage
+    set fileSize = #{fileSize,jdbcType=BIGINT},
+      filePrefix = #{filePrefix,jdbcType=VARCHAR},
+      fileSuffix = #{fileSuffix,jdbcType=VARCHAR},
+      fileDesc = #{fileDesc,jdbcType=VARCHAR},
+      fileStatus = #{fileStatus,jdbcType=TINYINT},
+      filePath = #{filePath,jdbcType=VARCHAR},
+      creteTime = #{creteTime,jdbcType=DATE},
+      upDataTime = #{upDataTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -5,9 +5,9 @@ import java.util.Date;
 public class Lamp {
     private Integer id;
 
-    private Integer producttitleimagefileid;
+    private Integer productTitleImageFileid;
 
-    private String productcontentimagesfileid;
+    private String productContentImagesFileid;
 
     private String model;
 
@@ -17,7 +17,7 @@ public class Lamp {
 
     private Double lumen;
 
-    private String powerfactor;
+    private String powerFactor;
 
     private String size;
 
@@ -29,21 +29,21 @@ public class Lamp {
 
     private String decription;
 
-    private String producturl;
+    private String productUrl;
 
     private Integer views;
 
-    private Date productcreatetime;
+    private Date productCreateTime;
 
-    private Byte producttype;
+    private Byte productType;
 
-    private Date createtime;
+    private Date createTime;
 
-    private Date updatatime;
+    private Date upDataTime;
 
-    private Integer createby;
+    private Integer createBy;
 
-    private Integer updataby;
+    private Integer upDataBy;
 
     private String remark;
 
@@ -59,20 +59,20 @@ public class Lamp {
         this.id = id;
     }
 
-    public Integer getProducttitleimagefileid() {
-        return producttitleimagefileid;
+    public Integer getProductTitleImageFileid() {
+        return productTitleImageFileid;
     }
 
-    public void setProducttitleimagefileid(Integer producttitleimagefileid) {
-        this.producttitleimagefileid = producttitleimagefileid;
+    public void setProductTitleImageFileid(Integer productTitleImageFileid) {
+        this.productTitleImageFileid = productTitleImageFileid;
     }
 
-    public String getProductcontentimagesfileid() {
-        return productcontentimagesfileid;
+    public String getProductContentImagesFileid() {
+        return productContentImagesFileid;
     }
 
-    public void setProductcontentimagesfileid(String productcontentimagesfileid) {
-        this.productcontentimagesfileid = productcontentimagesfileid == null ? null : productcontentimagesfileid.trim();
+    public void setProductContentImagesFileid(String productContentImagesFileid) {
+        this.productContentImagesFileid = productContentImagesFileid == null ? null : productContentImagesFileid.trim();
     }
 
     public String getModel() {
@@ -107,12 +107,12 @@ public class Lamp {
         this.lumen = lumen;
     }
 
-    public String getPowerfactor() {
-        return powerfactor;
+    public String getPowerFactor() {
+        return powerFactor;
     }
 
-    public void setPowerfactor(String powerfactor) {
-        this.powerfactor = powerfactor == null ? null : powerfactor.trim();
+    public void setPowerFactor(String powerFactor) {
+        this.powerFactor = powerFactor == null ? null : powerFactor.trim();
     }
 
     public String getSize() {
@@ -155,12 +155,12 @@ public class Lamp {
         this.decription = decription == null ? null : decription.trim();
     }
 
-    public String getProducturl() {
-        return producturl;
+    public String getProductUrl() {
+        return productUrl;
     }
 
-    public void setProducturl(String producturl) {
-        this.producturl = producturl == null ? null : producturl.trim();
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl == null ? null : productUrl.trim();
     }
 
     public Integer getViews() {
@@ -171,52 +171,52 @@ public class Lamp {
         this.views = views;
     }
 
-    public Date getProductcreatetime() {
-        return productcreatetime;
+    public Date getProductCreateTime() {
+        return productCreateTime;
     }
 
-    public void setProductcreatetime(Date productcreatetime) {
-        this.productcreatetime = productcreatetime;
+    public void setProductCreateTime(Date productCreateTime) {
+        this.productCreateTime = productCreateTime;
     }
 
-    public Byte getProducttype() {
-        return producttype;
+    public Byte getProductType() {
+        return productType;
     }
 
-    public void setProducttype(Byte producttype) {
-        this.producttype = producttype;
+    public void setProductType(Byte productType) {
+        this.productType = productType;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatatime() {
-        return updatatime;
+    public Date getUpDataTime() {
+        return upDataTime;
     }
 
-    public void setUpdatatime(Date updatatime) {
-        this.updatatime = updatatime;
+    public void setUpDataTime(Date upDataTime) {
+        this.upDataTime = upDataTime;
     }
 
-    public Integer getCreateby() {
-        return createby;
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public void setCreateby(Integer createby) {
-        this.createby = createby;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
     }
 
-    public Integer getUpdataby() {
-        return updataby;
+    public Integer getUpDataBy() {
+        return upDataBy;
     }
 
-    public void setUpdataby(Integer updataby) {
-        this.updataby = updataby;
+    public void setUpDataBy(Integer upDataBy) {
+        this.upDataBy = upDataBy;
     }
 
     public String getRemark() {

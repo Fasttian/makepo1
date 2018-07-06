@@ -24,9 +24,8 @@ public interface NewsService {
 
     /**
      *
-     * @param multipartFile 上传的文件
      * @param newsEditPageModel 编辑框页面model
      * @param response  响应页面请求
      */
-    public void saveNews(MultipartFile multipartFile, NewsEditPageModel newsEditPageModel,HttpServletResponse response);
+    public void saveNews(NewsEditPageModel newsEditPageModel,HttpServletResponse response);
 }

@@ -1,7 +1,7 @@
 package com.catikco.makepo.oss.service.impl;
 
-import com.catikco.makepo.entity.Filestorage;
-import com.catikco.makepo.mapper.FilestorageMapper;
+import com.catikco.makepo.entity.FileStorage;
+import com.catikco.makepo.mapper.FileStorageMapper;
 import com.catikco.makepo.oss.FileUtils;
 import com.catikco.makepo.oss.ResponsnUtils;
 import com.catikco.makepo.oss.service.FileStorageService;
@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -28,20 +26,19 @@ public class FileStorageServiceImpl implements FileStorageService {
     private String uploadPath;
 
     @Autowired
-    private FilestorageMapper filestorageMapper;
+    private FileStorageMapper filestorageMapper;
 
     /**
      * 保存一次返回一个文件id
      * @param multipartFile 文件
-     * @param isRichTextImgage 标记是否为富文本上传图片，如果是，则把富文本中的多个文件id拼为一个字符串，用于存入产品/新闻的ContentImagesFileid
      * @param response
      * @return
      */
     @Override
-    public Map<String,Object> uploads(MultipartFile multipartFile, Boolean isRichTextImgage, HttpServletResponse response) {
+    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response) {
 
         StringBuffer result = new StringBuffer("");
-        Map<String,Object> fileIdAndIsRichTextImgage = new HashMap<>();
+        Integer fileId = null;
 
         if (null != multipartFile) {
             String tempFileName = null; //完整文件名
@@ -73,19 +70,21 @@ public class FileStorageServiceImpl implements FileStorageService {
                         e.printStackTrace();
                     }
                     //存文件表
-                    Filestorage filestorage = new Filestorage();
-                    filestorage.setFilepath(filePath);
-                    filestorage.setFilesuffix(fileSuffix);
-                    filestorage.setFileprefix(filePrefix);
-                    filestorage.setFilesize(multipartFile.getSize());
+                    FileStorage filestorage = new FileStorage();
+                    filestorage.setFilePath(filePath);
+                    filestorage.setFileSuffix(fileSuffix);
+                    filestorage.setFilePrefix(filePrefix);
+                    filestorage.setFileSize(multipartFile.getSize());
                     filestorage.setDeleted(false);
-                    filestorage.setCretetime(new Date());
-                    filestorage.setFilestatus((byte)1);       //文件状态：1，临时 2，正常 3，废弃
+                    filestorage.setCreteTime(new Date());
+                    filestorage.setFileStatus((byte)1);       //文件状态：1，临时 2，正常 3，废弃
                     filestorage.setRemark("临时文件");
 
                     filestorageMapper.insert(filestorage);      //插数据库
 
-                    result.append("{ \"url\":\"" +filestorage.getFilepath() + "\"},");
+                    fileId = filestorage.getId();               //给fileId赋值
+
+                    result.append("{ \"url\":\"" +filestorage.getFilePath() + "\"},");
                     //把文件id存入页面，然后再返回后台存入数据库（ContentImagesFileid）
                     result.append("{ \"fileId\":\"" +filestorage.getId() + "\"},");
 
@@ -94,7 +93,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             result.insert(0, "{\"result\":\"success\",\"list\":[").deleteCharAt(result.length() - 1).append("]}");
             System.out.println("json = " + result.toString());
             ResponsnUtils.print(response, result.toString());
-            return fileIdAndIsRichTextImgage;
+            return fileId;
 
         } else {
             ResponsnUtils.print(response, "J_NOT_FIND_FILE");
