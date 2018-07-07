@@ -13,19 +13,15 @@ public class NewsEditPageModel {
 
     private Integer id;                             //新闻id
 
-    private Integer newstitleimagefileid;           //新闻概要图片文件id
-
-    private String newscontentimagesfileid;         //新闻正文中图片文件id
-
     private String title;                           //新闻标题
 
     private String keywords;                        //新闻关键字
 
     private String decription;                      //新闻描述
 
-    private String newsresources;                   //新闻来源
+    private String newsResources;                   //新闻来源
 
-    private Date createtime;                        //新闻发布时间
+    private Date createTime;                        //新闻发布时间
 
     private String newsUrl;                         //新闻链接（预留属性：以后在后台新闻列表点击跳转到新闻页面功能的实现）
 
@@ -43,22 +39,6 @@ public class NewsEditPageModel {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getNewstitleimagefileid() {
-        return newstitleimagefileid;
-    }
-
-    public void setNewstitleimagefileid(Integer newstitleimagefileid) {
-        this.newstitleimagefileid = newstitleimagefileid;
-    }
-
-    public String getNewscontentimagesfileid() {
-        return newscontentimagesfileid;
-    }
-
-    public void setNewscontentimagesfileid(String newscontentimagesfileid) {
-        this.newscontentimagesfileid = newscontentimagesfileid;
     }
 
     public String getTitle() {
@@ -85,20 +65,20 @@ public class NewsEditPageModel {
         this.decription = decription;
     }
 
-    public String getNewsresources() {
-        return newsresources;
+    public String getNewsResources() {
+        return newsResources;
     }
 
-    public void setNewsresources(String newsresources) {
-        this.newsresources = newsresources;
+    public void setNewsResources(String newsResources) {
+        this.newsResources = newsResources;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getNewsUrl() {
