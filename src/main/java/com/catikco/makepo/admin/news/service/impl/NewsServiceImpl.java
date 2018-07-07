@@ -110,12 +110,10 @@ public class NewsServiceImpl implements NewsService {
             criteria.andIdEqualTo(fid);
 
             FileStorage filestorage = new FileStorage();
-            List<FileStorage> filestorageList = filestorageMapper.selectByExample(filestorageExample);
-            if (!filestorageList.isEmpty())
-            filestorage=filestorageList.get(0);
+            filestorage = filestorageMapper.selectByPrimaryKey(fid);
 
             filestorage.setFileStatus((byte)2);     //设置文件状态正常
-            filestorage.setRemark("不正常文件");
+            filestorage.setRemark("正常文件");
             filestorageMapper.updateByPrimaryKey(filestorage);
         }
 
@@ -165,12 +163,10 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setDecription(newsEditPageModel.getDecription());
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
         newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
-        newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
-        newsWithBLOBs.setNewsTitleImageFileid(newsTitleImageFileid);        //新闻概要图中的id
         newsWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         newsWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail
-        newsWithBLOBs.setNewsResources(newsEditPageModel.getNewsresources());
+        newsWithBLOBs.setNewsResources(newsEditPageModel.getNewsResources());
         newsWithBLOBs.setCreateTime(new Date());                            //新闻创建时间为用户指定时间
 
 
