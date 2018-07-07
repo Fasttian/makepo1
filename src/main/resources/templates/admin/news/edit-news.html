@@ -24,7 +24,7 @@
     <link href="admin/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="admin/plugins/switchery/switchery.min.css">
     <link href="admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link href="admin/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="admin/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet"/>
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -485,7 +485,14 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
-                            <h4 class="m-b-30 m-t-0 header-title"><b>编辑新闻</b></h4>
+                            <div class="col-sm-12 m-b-30 m-t-0">
+                                <h3 class="header-title pull-left"><b>编辑新闻</b></h3>
+                                <div class="pull-right">
+                                    <button class="btn btn-info inline-btn">清空</button>
+                                    <button class="btn btn-purple inline-btn">取消</button>
+                                    <button class="btn btn-success  inline-btn">提交</button>
+                                </div>
+                            </div>
                             <div class="row form-horizontal">
                                 <div class="form-group  col-md-6 col-sm-6">
                                     <label class="col-md-2 control-label">新闻标题</label>
@@ -551,7 +558,7 @@
                             </div>
                             <div style="margin-top: 1rem;">
                                 <div class="summernote col-md-12 col-sm-12">
-                                    <h3>Hello Summernote</h3>
+                                    <p>文章内容...</p>
                                 </div>
                             </div>
                         </div>
@@ -559,7 +566,7 @@
                 </div>
 
             </div> <!-- container -->
-
+p
         </div> <!-- content -->
 
         <footer class="footer text-right">
@@ -699,7 +706,7 @@
             dataType: "json",
             success: function (response) {
                 console.log(response);
-                $(el).summernote('editor.insertImage', response.list[0].url,  response.list[0].fileId);
+                $(el).summernote('editor.insertImage', response.list[0].url, response.list[0].fileId);
             },
             error: function () {
                 console.log("uploadError");
