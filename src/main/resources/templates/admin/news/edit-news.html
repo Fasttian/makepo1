@@ -490,74 +490,84 @@
                                 <div class="pull-right">
                                     <button class="btn btn-info inline-btn">清空</button>
                                     <button class="btn btn-purple inline-btn">取消</button>
-                                    <button class="btn btn-success  inline-btn">提交</button>
+                                    <button class="btn btn-success  inline-btn" onclick="javascript:submitNewsData()">提交</button>
                                 </div>
                             </div>
                             <div class="row form-horizontal">
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻标题</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">关键字</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="更容易搜索引擎抓取">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">描述</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="更容易搜索引擎抓取">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻来源</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">上传图片</label>
-                                    <div class="col-md-10">
-                                        <input type="file" class="filestyle" data-buttonname="btn-default">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">发布时间</label>
-                                    <div class="col-md-10">
-                                        <div>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy"
-                                                       id="datepicker-autoclose">
-                                                <span class="input-group-addon bg-custom b-0"><i
-                                                        class="mdi mdi-calendar text-white"></i></span>
-                                            </div><!-- input-group -->
+                                <form action="editNewsForm" id="editNewsForm">
+                                    <input type="text" id="id" name="id" style="display: none">
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">新闻标题</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="title" name="title" class="form-control" value="">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻类型</label>
-                                    <div class="col-md-10">
-                                        <select class="selectpicker" data-style="btn-custom">
-                                            <option>行业新闻</option>
-                                            <option>企业新闻</option>
-                                            <option>国内新闻</option>
-                                        </select>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">关键字</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="keywords" name="keywords" class="form-control"
+                                                   placeholder="更容易搜索引擎抓取">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">描述</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="decription" name="decription" class="form-control"
+                                                   placeholder="更容易搜索引擎抓取">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">新闻来源</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="newsResources" name="newsResources"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">上传图片</label>
+                                        <div class="col-md-10">
+                                            <input type="file" id="multipartFile" name="multipartFile" class="filestyle"
+                                                   data-buttonname="btn-default">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">发布时间</label>
+                                        <div class="col-md-10">
+                                            <div>
+                                                <div class="input-group">
+                                                    <input type="text" name="createTime" class="form-control"
+                                                           placeholder="mm/dd/yyyy"
+                                                           id="datepicker-autoclose">
+                                                    <span class="input-group-addon bg-custom b-0"><i
+                                                            class="mdi mdi-calendar text-white"></i></span>
+                                                </div><!-- input-group -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">新闻类型</label>
+                                        <div class="col-md-10">
+                                            <select id="newsType" name="newsType" class="selectpicker"
+                                                    data-style="btn-custom">
+                                                <option>行业新闻</option>
+                                                <option>企业新闻</option>
+                                                <option>国内新闻</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">摘要</label>
-                                    <div class="col-md-10">
-                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3"
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">摘要</label>
+                                        <div class="col-md-10">
+                                        <textarea id="textarea" name="digest" class="form-control" maxlength="225"
+                                                  rows="3"
                                                   placeholder="最多225个字符"></textarea>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div style="margin-top: 1rem;">
-                                <div class="summernote col-md-12 col-sm-12">
+                                <div class="summernote col-md-12 col-sm-12" id="content" name="content">
                                     <p>文章内容...</p>
                                 </div>
                             </div>
@@ -566,7 +576,6 @@
                 </div>
 
             </div> <!-- container -->
-p
         </div> <!-- content -->
 
         <footer class="footer text-right">
@@ -716,19 +725,34 @@ p
 
 
     //提交新闻
-    function submitNews() {
+    function submitNewsData(){
+        //FormData表单数据
+        var formdata = new FormData(document.getElementById("#editNewsForm"));
+
+        //富文本编辑器数据
+        var content = $('#content').summernote('code');
+        formdata.append("content",content);
+        console.log(formdata );
+
         $.ajax({
-            type: "GET",
-            url: "/save-news",
-            data: {username: $("#username").val(), content: $("#content").val()},
+            data: formdata,
+            type: "POST",
+            url: "save-news",
+            cache: false,
+            contentType: false,
+            processType: false,
             dataType: "json",
-            success: function (data) {
-
-                //保存成功回到新闻列表页面
-                location.href = "/news-list";
+            success: function () {
+                console.log("保存成功！");
+                //返回新闻列表页
+                location.href="news-list";
+            },
+            error: function () {
+                console.log("保存失败！");
             }
+        })
+        console.log("进去了");
 
-        });
     }
 
 
@@ -741,6 +765,8 @@ p
     //file upload
     $(":file").filestyle({input: true});
     $('.selectpicker').selectpicker();
+
+    //
 
 </script>
 
