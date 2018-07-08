@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import static com.catikco.makepo.common.StringUtils.cutContentFileId;
-import static com.catikco.makepo.common.StringUtils.mergeContentFileId;
+import static com.catikco.makepo.common.StringUtils.parseContentFileId;
 
 
 /**
@@ -43,7 +43,7 @@ public class NewsController {
     @RequestMapping("admin-init")
     public String adminInit(HttpServletResponse response){
         String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"1\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"2\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"3\" style=\"width: 974px;\">Hello Summernote</h3>";
-        String fileIds =  mergeContentFileId(htmlContent);
+        String fileIds =  parseContentFileId(htmlContent);
         List<Integer> fidList = cutContentFileId(fileIds);
         NewsEditPageModel newsEditPageModel = new NewsEditPageModel();
         newsEditPageModel.setContent(htmlContent);
