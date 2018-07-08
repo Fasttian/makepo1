@@ -13,14 +13,16 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import static com.catikco.makepo.common.StringUtils.cutContentFileId;
-import static com.catikco.makepo.common.StringUtils.mergeContentFileId;
+import static com.catikco.makepo.common.StringUtils.parseContentFileId;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -94,31 +96,86 @@ public class NewsServiceImpl implements NewsService {
      * @param newsEditPageModel 编辑框页面model
      * @param response  响应页面请求
      */
+    //@Transactional
     public void saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
-        //Integer newsTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getMultipartFile(), response);      //概要图片文件id
-        Integer newsTitleImageFileid = 24;
 
-        String newsContentImagesFileid = mergeContentFileId(newsEditPageModel.getContent());      //处理内容中的文件id(多个)
+        //修改时允许不选择概要图片
+        Integer newTitleImageFileid = null; //概要图片文件id
+        String newContentFileid = null;     //内容图片文件id
+        if(null != newsEditPageModel.getMultipartFile())
+            newTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getMultipartFile(), response);
 
-        NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newsTitleImageFileid, newsContentImagesFileid);
+        newContentFileid = parseContentFileId(newsEditPageModel.getContent());
 
-        //把文件状态改为正常
-        List<Integer> fileIdList = cutContentFileId(newsContentImagesFileid);
-        for(Integer fid:fileIdList){
-            FileStorageExample filestorageExample = new FileStorageExample();
-            FileStorageExample.Criteria criteria = filestorageExample.createCriteria();
-            criteria.andIdEqualTo(fid);
-
-            FileStorage filestorage = new FileStorage();
-            filestorage = filestorageMapper.selectByPrimaryKey(fid);
-
-            filestorage.setFileStatus((byte)2);     //设置文件状态正常
-            filestorage.setRemark("正常文件");
-            filestorageMapper.updateByPrimaryKey(filestorage);
+        NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newTitleImageFileid, newContentFileid);
+        //插数据库
+        if(null != newsEditPageModel.getId() && !"".equals(newsEditPageModel.getId())){
+            newsMapper.updateByPrimaryKey(newsWithBLOBs);
+        }else {
+            newsMapper.insert(newsWithBLOBs);
         }
 
-        //插数据库
-        newsMapper.insert(newsWithBLOBs);
+        /**************************************** 处理文件状态start *********************************************/
+      /*  String newFid = null;     //新文件id
+        if(! "".equals(newTitleImageFileid)){
+            if(!"".equals(newContentFileid)){
+                newFid = newTitleImageFileid + "," + newContentFileid;
+            }else {
+                newFid = newTitleImageFileid + "";
+            }
+        }else {
+            if(!"".equals(newContentFileid))
+                newFid = newContentFileid;
+        }
+        //转换fid为List<Integer>
+        List<Integer> newFidList = cutContentFileId(newFid);
+        //设置新文件状态
+
+        String oldFid = null;           //旧文件id
+        Integer oldTitleFid = null;      //旧概要图文件id
+        String oldContentFid = null;     //旧内容图文件id
+        News oldNews = null;
+        if( ! "".equals(newsEditPageModel.getId())){
+            oldNews = newsMapper.selectByPrimaryKey(newsEditPageModel.getId());
+            oldTitleFid = oldNews.getNewsTitleImageFileid();
+            oldContentFid = oldNews.getNewsContentImagesFileid();
+        }
+
+        if(null != oldNews){
+           if(!"".equals(oldTitleFid)){
+               if(!"".equals(oldContentFid)){
+                    oldFid = oldTitleFid +","+oldContentFid;
+               }else {
+                   oldFid = oldTitleFid + "";
+               }
+           }else {
+               if(!"".equals(oldContentFid))
+                   oldFid = oldContentFid;
+           }
+        }
+        //转换fid为List<Integer>
+        List<Integer> oldFidList = cutContentFileId(oldFid);
+
+        //处理文件状态
+        if(null != newsEditPageModel.getId() && !"".equals(newsEditPageModel.getId())){
+            if (newFidList.containsAll(oldFidList) && oldFidList.containsAll(newFidList)) {
+                return;
+            }
+            Iterator<Integer> newiterator = newFidList.iterator();
+            while (newiterator.hasNext()) {
+                Integer newId = newiterator.next();
+                Iterator<Integer> oldIterator = oldFidList.iterator();
+                while (oldIterator.hasNext()) {
+                    Integer oldId = oldIterator.next();
+                    if (newId == oldId || newId.equals(oldId)) {
+                        newiterator.remove();
+                        oldIterator.remove();
+                    }
+                }
+            }
+            //设置旧文件状态
+        }*/
+        /**************************************** 处理文件状态end *********************************************/
 
     }
 
@@ -163,6 +220,8 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setDecription(newsEditPageModel.getDecription());
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
         newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
+        newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
+        newsWithBLOBs.setNewsTitleImageFileid(newsTitleImageFileid);        //新闻概要图中的id
         newsWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         newsWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail

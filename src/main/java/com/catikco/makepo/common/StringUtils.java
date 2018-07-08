@@ -35,7 +35,7 @@ public class StringUtils {
      * @param htmlContent 富文本html代码
      * @return
      */
-    public static String mergeContentFileId(String htmlContent){
+    public static String parseContentFileId(String htmlContent){
         String newStr = "";
         List<Integer> fileIds = null;
 
