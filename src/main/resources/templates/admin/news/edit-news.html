@@ -488,46 +488,45 @@
                             <div class="col-sm-12 m-b-30 m-t-0">
                                 <h3 class="header-title pull-left"><b>编辑新闻</b></h3>
                                 <div class="pull-right">
-                                    <button class="btn btn-info inline-btn">清空</button>
-                                    <button class="btn btn-purple inline-btn">取消</button>
+                                    <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
+                                    <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消</button>
                                     <button class="btn btn-success  inline-btn" onclick="javascript:submitNewsData()">提交</button>
                                 </div>
                             </div>
                             <div class="row form-horizontal">
-                                <form action="editNewsForm" id="editNewsForm">
-                                    <input type="text" id="id" name="id" style="display: none">
-                                    <div class="form-group  col-md-6 col-sm-6">
+                                <form  id="editNewsForm">
+                                    <input type="text" id="id" name="id" value="${newsEditPageModel.id}" style="display: none">
+                                  <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">新闻标题</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="title" name="title" class="form-control" value="">
+                                            <input type="text" id="title" name="title" class="form-control" value="${newsEditPageModel.title}">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">关键字</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="keywords" name="keywords" class="form-control"
+                                            <input type="text" id="keywords" name="keywords" class="form-control" value="${newsEditPageModel.keywords}"
                                                    placeholder="更容易搜索引擎抓取">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">描述</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="decription" name="decription" class="form-control"
+                                            <input type="text" id="description" name="description" class="form-control" value="${newsEditPageModel.description}"
                                                    placeholder="更容易搜索引擎抓取">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">新闻来源</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources"
+                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
                                                    class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">上传图片</label>
+                                        <label class="col-md-2 control-label">新闻概要图片</label>
                                         <div class="col-md-10">
-                                            <input type="file" id="multipartFile" name="multipartFile" class="filestyle"
-                                                   data-buttonname="btn-default">
+                                            <input type="file" id="titImage" name="titImage" accept="image/jpeg,image/gif,image/png,image/bmp" class="filestyle" data-buttonname="btn-default">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -535,12 +534,10 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" name="createTime" class="form-control"
-                                                           placeholder="mm/dd/yyyy"
-                                                           id="datepicker-autoclose">
+                                                    <input type="text" name="newsCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(newsEditPageModel.newsCreateTime ? string('dd/mm/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
-                                                </div><!-- input-group -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -549,27 +546,26 @@
                                         <div class="col-md-10">
                                             <select id="newsType" name="newsType" class="selectpicker"
                                                     data-style="btn-custom">
-                                                <option>行业新闻</option>
-                                                <option>企业新闻</option>
-                                                <option>国内新闻</option>
+                                                <option value="1">行业新闻</option>
+                                                <option value="2">企业新闻</option>
+                                                <option value="3">国内新闻</option>
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">摘要</label>
                                         <div class="col-md-10">
-                                        <textarea id="textarea" name="digest" class="form-control" maxlength="225"
+                                        <textarea id="textarea" name="digest" data-filename="" class="form-control" maxlength="225"
                                                   rows="3"
-                                                  placeholder="最多225个字符"></textarea>
+                                                  placeholder="最多225个字符">${newsEditPageModel.digest}</textarea>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div style="margin-top: 1rem;">
-                                <div class="summernote col-md-12 col-sm-12" id="content" name="content">
-                                    <p>文章内容...</p>
-                                </div>
+                                <textarea class="summernote col-md-12 col-sm-12" id="content" name="content">
+                                   ${newsEditPageModel.content}
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -715,7 +711,7 @@
             dataType: "json",
             success: function (response) {
                 console.log(response);
-                $(el).summernote('editor.insertImage', response.list[0].url, response.list[0].fileId);
+                $(el).summernote('editor.insertImage', response.list[0].url, response.list[1].fileId);
             },
             error: function () {
                 console.log("uploadError");
@@ -725,36 +721,38 @@
 
 
     //提交新闻
-    function submitNewsData(){
+    function submitNewsData(formData){
         //FormData表单数据
-        var formdata = new FormData(document.getElementById("#editNewsForm"));
-
+        var formData = new FormData(document.getElementById("editNewsForm"));
         //富文本编辑器数据
         var content = $('#content').summernote('code');
-        formdata.append("content",content);
-        console.log(formdata );
+        formData.append("content",content);
 
         $.ajax({
-            data: formdata,
-            type: "POST",
-            url: "save-news",
-            cache: false,
-            contentType: false,
-            processType: false,
-            dataType: "json",
-            success: function () {
-                console.log("保存成功！");
+            type: 'POST',
+            url: '/save-news',
+            data: formData,
+            processData:false,
+            contentType:false,
+            dataType: 'json',
+            success: function (data) {
+               if(data.code == "succeed"){
+                    alert(data.data)
+               }
+               if(data.code == "error"){
+                   alert(data.data)
+                   return;
+               }
+
                 //返回新闻列表页
-                location.href="news-list";
+                location.href="/news-list";
             },
-            error: function () {
+            error: function (e) {
                 console.log("保存失败！");
             }
         })
-        console.log("进去了");
 
     }
-
 
     // Date Picker
     $('#datepicker-autoclose').datepicker({
@@ -766,7 +764,16 @@
     $(":file").filestyle({input: true});
     $('.selectpicker').selectpicker();
 
-    //
+    //返回列表
+    function backList() {
+        location.href="/news-list";
+    }
+    
+
+    //清空表单
+    function clearForm(){
+        $('#editNewsForm :input').val("");
+    }
 
 </script>
 

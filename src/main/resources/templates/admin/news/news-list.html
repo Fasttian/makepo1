@@ -646,9 +646,9 @@
                             "orderable": false, // 禁用排序
                             "sDefaultContent": '',
                             "sWidth": "10%",
-                            "render": function (data) {
-                                return data = '<button id="edit-news" onclick="editNews()" class="btn btn-success  btn-sm" data-id=\' + data + \'>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-news" onclick="deleteNews()" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
-
+                            "render": function (data, type,row) {
+                                var id = row.id;
+                                return data = '<button id="edit-news" onclick="editNews('+id+')" class="btn btn-success  btn-sm" data-id=' + data + '>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-news" onclick="deleteNews('+id+')" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
                             }
                         }
                     ],
@@ -722,12 +722,9 @@
             }
 
             //编辑新闻
-           function editNews() {
-                location.href="/edit-news";
+           function editNews(id) {
+                location.href="/edit-news?id="+id;
             }
-
-
-
 
 
         </script>

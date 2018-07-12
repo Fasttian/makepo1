@@ -37,12 +37,17 @@ public class StringUtils {
      */
     public static String parseContentFileId(String htmlContent){
         String newStr = "";
-        List<Integer> fileIds = null;
 
         //解析出html中的文件id
         StringBuffer stringBuffer = new StringBuffer("");
         if(!htmlContent.isEmpty()){
-            String[] fidStr = htmlContent.split("data-filename=\"");
+            String[] fidStr=null;
+            if(htmlContent.contains("data-filename")){
+                fidStr = htmlContent.split("data-filename=\"");
+            }else {
+                return null;        //如果没解析到图片就返回
+            }
+
             String fid=null;
             int index = 1;  //用index来过滤掉字符串数组的第一个元素，因为第一个是不包含文件id的
             for(String s:fidStr){
@@ -59,11 +64,12 @@ public class StringUtils {
                 if(!newStr.equals(""))
                 stringBuffer.append(newStr+",");
             }
+            //去掉最后一个逗号
+            newStr = stringBuffer.substring(0,stringBuffer.length()-1);
+            System.out.println(newStr);
         }
 
-        //去掉最后一个逗号
-        newStr = stringBuffer.substring(0,stringBuffer.length()-1);
-        System.out.println(newStr);
+
 
         return newStr;
     }
