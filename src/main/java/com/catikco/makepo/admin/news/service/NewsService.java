@@ -4,6 +4,7 @@ import com.catikco.makepo.admin.common.DatatablesResponsePageModel;
 import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
+import com.catikco.makepo.entity.NewsWithBLOBs;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -27,5 +28,12 @@ public interface NewsService {
      * @param newsEditPageModel 编辑框页面model
      * @param response  响应页面请求
      */
-    public void saveNews(NewsEditPageModel newsEditPageModel,HttpServletResponse response);
+    public int saveNews(NewsEditPageModel newsEditPageModel,HttpServletResponse response);
+
+    /**
+     * 加载新闻到编辑框
+     * @param id
+     * @return
+     */
+    public NewsEditPageModel loadNews(Integer id);
 }

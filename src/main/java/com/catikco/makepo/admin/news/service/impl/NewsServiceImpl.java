@@ -14,8 +14,10 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -37,9 +39,6 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private FileStorageService fileStorageService;
-
-    @Autowired
-    private FileStorageMapper filestorageMapper;
 
     /**
      * 加载新闻列表
@@ -77,10 +76,10 @@ public class NewsServiceImpl implements NewsService {
         PageHelper.startPage(currentPage,length);
 
         //根据条件从数据库查询出新闻
-        List<News> newsList = newsMapper.selectByExample(newsExample);
+        List<NewsWithBLOBs> newsList = newsMapper.selectByExampleWithBLOBs(newsExample);
 
         //让pageInfo对象进行分页的处理
-        PageInfo<News> pageInfo = new PageInfo<>(newsList);
+        PageInfo<NewsWithBLOBs> pageInfo = new PageInfo<>(newsList);
 
         datatablesResponsePageModel.setRecordsFiltered((int)pageInfo.getTotal());
         datatablesResponsePageModel.setRecordsTotal((int)pageInfo.getTotal());
@@ -97,22 +96,24 @@ public class NewsServiceImpl implements NewsService {
      * @param response  响应页面请求
      */
     //@Transactional
-    public void saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
+    public int saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
 
         //修改时允许不选择概要图片
         Integer newTitleImageFileid = null; //概要图片文件id
         String newContentFileid = null;     //内容图片文件id
-        if(null != newsEditPageModel.getMultipartFile())
-            newTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getMultipartFile(), response);
+        MultipartFile multipartFile = newsEditPageModel.getTitImage();
+        if(null != newsEditPageModel.getTitImage().getOriginalFilename())
+            newTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getTitImage(), response,true);
 
         newContentFileid = parseContentFileId(newsEditPageModel.getContent());
 
         NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newTitleImageFileid, newContentFileid);
         //插数据库
         if(null != newsEditPageModel.getId() && !"".equals(newsEditPageModel.getId())){
-            newsMapper.updateByPrimaryKey(newsWithBLOBs);
+            int iss = newsMapper.updateByPrimaryKeySelective(newsWithBLOBs);
+            return iss;
         }else {
-            newsMapper.insert(newsWithBLOBs);
+            return newsMapper.insert(newsWithBLOBs);
         }
 
         /**************************************** 处理文件状态start *********************************************/
@@ -179,26 +180,56 @@ public class NewsServiceImpl implements NewsService {
 
     }
 
+    /**
+     * 加载新闻到编辑框
+     * @param id
+     * @return
+     */
+    @Override
+    public NewsEditPageModel loadNews(Integer id) {
+        NewsWithBLOBs newsWithBLOBs = newsMapper.selectByPrimaryKey(id);
+        if(newsWithBLOBs!= null){
+           return changeToNewsEditPageModel(newsWithBLOBs);
+        }
+        return null;
+    }
 
     /******************************** 私有方法：转换新闻为页面视图model ************************************/
+
+    private NewsEditPageModel changeToNewsEditPageModel(NewsWithBLOBs newsWithBLOBs){
+        NewsEditPageModel newsEditPageModel = new NewsEditPageModel();
+        newsEditPageModel.setId(newsWithBLOBs.getId());
+        newsEditPageModel.setDigest(newsWithBLOBs.getDigest());
+        newsEditPageModel.setKeywords(newsWithBLOBs.getKeywords());
+        newsEditPageModel.setTitle(newsWithBLOBs.getTitle());
+        newsEditPageModel.setContent(newsWithBLOBs.getContent());
+        newsEditPageModel.setDescription(newsWithBLOBs.getDecription());
+        newsEditPageModel.setNewsCreateTime(newsWithBLOBs.getNewsCreateTime());
+        newsEditPageModel.setNewsResources(newsWithBLOBs.getNewsResources());
+        newsEditPageModel.setNewsType(newsWithBLOBs.getNewsType());
+
+        return newsEditPageModel;
+    }
+
 
     /**
      * 转换数据model为页面model
      * @param newsList
      * @return
      */
-    private List<NewsListPageModel> changeToNewsListPageModel(List<News> newsList){
+    private List<NewsListPageModel> changeToNewsListPageModel(List<NewsWithBLOBs> newsList){
 
         List<NewsListPageModel> newsListPageModelList = new ArrayList<>();
 
-        for(News news:newsList){
+        for(NewsWithBLOBs news:newsList){
             NewsListPageModel newsListPageModel = new NewsListPageModel();
-
+            newsListPageModel.setId(news.getId());
             newsListPageModel.setTitle(news.getTitle());
-            newsListPageModel.setKeywords(news.getKeywords());
-
+            newsListPageModel.setDigest(news.getDigest());
+            newsListPageModel.setNewsCreateTime(news.getNewsCreateTime());
+            newsListPageModel.setNewsType(news.getNewsType());
+            newsListPageModel.setNewsResources(news.getNewsResources());
             newsListPageModelList.add(newsListPageModel);
-
         }
 
         return newsListPageModelList;
@@ -217,7 +248,7 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setTitle(newsEditPageModel.getTitle());
         newsWithBLOBs.setDigest(newsEditPageModel.getDigest());
         newsWithBLOBs.setContent(newsEditPageModel.getContent());
-        newsWithBLOBs.setDecription(newsEditPageModel.getDecription());
+        newsWithBLOBs.setDecription(newsEditPageModel.getDescription());
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
         newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
         newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
@@ -227,6 +258,9 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail
         newsWithBLOBs.setNewsResources(newsEditPageModel.getNewsResources());
         newsWithBLOBs.setCreateTime(new Date());                            //新闻创建时间为用户指定时间
+        newsWithBLOBs.setNewsCreateTime(newsEditPageModel.getNewsCreateTime());  //新闻发布时间
+        newsWithBLOBs.setId(newsEditPageModel.getId());
+
 
 
         return newsWithBLOBs;

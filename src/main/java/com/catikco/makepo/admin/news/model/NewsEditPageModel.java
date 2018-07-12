@@ -17,15 +17,15 @@ public class NewsEditPageModel {
 
     private String keywords;                        //新闻关键字
 
-    private String decription;                      //新闻描述
+    private String description;                      //新闻描述
 
     private String newsResources;                   //新闻来源
 
-    private Date createTime;                        //新闻发布时间
+    private Date newsCreateTime;                     //新闻发布时间
 
     private String newsUrl;                         //新闻链接（预留属性：以后在后台新闻列表点击跳转到新闻页面功能的实现）
 
-    private MultipartFile multipartFile;            //新闻要图片
+    private MultipartFile titImage;                 //新闻概要图片
 
     private String digest;                          //新闻摘要
 
@@ -57,12 +57,12 @@ public class NewsEditPageModel {
         this.keywords = keywords;
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getNewsResources() {
@@ -73,12 +73,12 @@ public class NewsEditPageModel {
         this.newsResources = newsResources;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getNewsCreateTime() {
+        return newsCreateTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setNewsCreateTime(Date newsCreateTime) {
+        this.newsCreateTime = newsCreateTime;
     }
 
     public String getNewsUrl() {
@@ -89,12 +89,12 @@ public class NewsEditPageModel {
         this.newsUrl = newsUrl;
     }
 
-    public MultipartFile getMultipartFile() {
-        return multipartFile;
+    public MultipartFile getTitImage() {
+        return titImage;
     }
 
-    public void setMultipartFile(MultipartFile multipartFile) {
-        this.multipartFile = multipartFile;
+    public void setTitImage(MultipartFile titImage) {
+        this.titImage = titImage;
     }
 
     public String getDigest() {
