@@ -2,6 +2,7 @@ package com.catikco.makepo.oss;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -15,8 +16,11 @@ public class ResponsnUtils {
      */
     public static boolean print(HttpServletResponse response, String msg) {
         try {
+            response.reset();
             response.setHeader("Content-Type", "text/html; charset=UTF-8");
-            response.getWriter().print(msg);
+            PrintWriter out = response.getWriter();
+            out.print(msg);
+            out.flush();
             return true;
         } catch (IOException e) {
             e.printStackTrace();

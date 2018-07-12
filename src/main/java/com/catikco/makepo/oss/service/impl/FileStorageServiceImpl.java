@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Date;
 
 /**
@@ -30,17 +32,18 @@ public class FileStorageServiceImpl implements FileStorageService {
 
     /**
      * 保存一次返回一个文件id
-     * @param multipartFile 文件
+     * @param multipartFile
      * @param response
+     * @param isTitle
      * @return
      */
     @Override
-    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response) {
+    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle) {
 
         StringBuffer result = new StringBuffer("");
         Integer fileId = null;
 
-        if (null != multipartFile) {
+        if (null != multipartFile.getOriginalFilename()) {
             String tempFileName = null; //完整文件名
             String filePrefix = null;   //文件前缀
             String fileSuffix = null;   //文件后缀
@@ -51,21 +54,24 @@ public class FileStorageServiceImpl implements FileStorageService {
             FileUtils fu = new FileUtils();
 
                 tempFileName = multipartFile.getOriginalFilename();
+
+                if("".equals(tempFileName))
+                    return null;
                 //截取文件前缀并拼接时间戳
                 filePrefix = tempFileName.substring(0,tempFileName.lastIndexOf(".")) + System.currentTimeMillis();
 
                 if (null!=(filePrefix)) {
                     fileSuffix = FileUtils.getExt(tempFileName);
                     filePath = filePrefix+"."+fileSuffix;
-                    FileOutputStream fo;
+                    OutputStream out;
 
                     file = new File(uploadPath + filePath);
                     fu.createFile(file);
 
                     try {
-                        fo = new FileOutputStream(file);
-                        fo.write(multipartFile.getBytes());
-                        fo.close();
+                        out = new FileOutputStream(file);
+                        out.write(multipartFile.getBytes());
+                        out.close();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -81,17 +87,17 @@ public class FileStorageServiceImpl implements FileStorageService {
                     filestorage.setRemark("临时文件");
 
                     filestorageMapper.insert(filestorage);      //插数据库
-
+                    fileId = filestorage.getId();
                     result.append("{ \"url\":\"" +filestorage.getFilePath() + "\"},");
                     //把文件id存入页面，然后再返回后台存入数据库（ContentImagesFileid）
                     result.append("{ \"fileId\":\"" +filestorage.getId() + "\"},");
+                    result.insert(0, "{\"result\":\"success\",\"list\":[").deleteCharAt(result.length() - 1).append("]}");
+                    System.out.println("json = " + result.toString());
 
+                    if(!isTitle)
+                      ResponsnUtils.print(response, result.toString());
+                    return fileId;
                 }
-
-            result.insert(0, "{\"result\":\"success\",\"list\":[").deleteCharAt(result.length() - 1).append("]}");
-            System.out.println("json = " + result.toString());
-            ResponsnUtils.print(response, result.toString());
-            return fileId;
 
         } else {
             ResponsnUtils.print(response, "J_NOT_FIND_FILE");

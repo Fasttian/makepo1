@@ -5,16 +5,23 @@ import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
+import com.catikco.makepo.admin.news.service.impl.NewsServiceImpl;
+import com.catikco.makepo.model.CallResult;
 import com.catikco.makepo.oss.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.catikco.makepo.common.StringUtils.cutContentFileId;
 import static com.catikco.makepo.common.StringUtils.parseContentFileId;
@@ -36,23 +43,13 @@ public class NewsController {
     private FileStorageService fileStorageService;
 
 
+
     /**
      * 后台管理初始页
      * @return
      */
     @RequestMapping("admin-init")
     public String adminInit(HttpServletResponse response){
-        String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"1\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"2\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"3\" style=\"width: 974px;\">Hello Summernote</h3>";
-        String fileIds =  parseContentFileId(htmlContent);
-        List<Integer> fidList = cutContentFileId(fileIds);
-        NewsEditPageModel newsEditPageModel = new NewsEditPageModel();
-        newsEditPageModel.setContent(htmlContent);
-        newsEditPageModel.setTitle("新闻测试");
-        newsEditPageModel.setKeywords("关键字测试");
-        newsEditPageModel.setDigest("摘要测试");
-
-        newsService.saveNews(newsEditPageModel,response);
-
         return "admin/index";
     }
 
@@ -81,20 +78,35 @@ public class NewsController {
      * @return
      */
     @RequestMapping("edit-news")
-    public String edit(Integer id,HttpServletResponse response){
+    public String edit(Integer id, HttpServletRequest request){
+        NewsEditPageModel newsEditPageModel = null;
+        if(!"".equals(id))
+             newsEditPageModel = newsService.loadNews(id);
+        if(null != newsEditPageModel)
+             request.setAttribute("newsEditPageModel",newsEditPageModel);
+
         return "admin/news/edit-news";
     }
 
     /**
      *
      * @param newsEditPageModel 编辑页面model
-     * @param multipartFile 文件
      * @param response 响应页面请求
      */
-    @RequestMapping("save-news")
+    @RequestMapping(value = "/save-news", method = RequestMethod.POST)
     @ResponseBody
-    public void saveNews(NewsEditPageModel newsEditPageModel,@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
-        newsService.saveNews(newsEditPageModel,response);
+    public CallResult<String> saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response, HttpServletRequest request){
+        CallResult<String> result = new CallResult<>();
+        if(1 == newsService.saveNews(newsEditPageModel,response)){
+            result.setCode("succeed");
+            result.setData("保存成功");
+        }else {
+            result.setCode("error");
+            result.setData("保存失败");
+        }
+
+        return result;
+
     }
 
 
@@ -115,7 +127,7 @@ public class NewsController {
     @RequestMapping("/save-file")
     @ResponseBody
     public void saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
-       fileStorageService.uploads(multipartFile,response);
+       fileStorageService.uploads(multipartFile,response,false);
     }
 
 

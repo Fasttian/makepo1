@@ -16,10 +16,11 @@ public interface FileStorageService {
 
     /**
      * 保存一次返回一个文件id
-     * @param multipartFile 文件
+     * @param multipartFile
      * @param response
+     * @param isTitle
      * @return
      */
-    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response);
+    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle);
 
 }
