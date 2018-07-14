@@ -1,0 +1,52 @@
+<!-- pnotify js -->
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.desktop.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.buttons.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.confirm.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.callbacks.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.animate.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.history.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.mobile.js?v=1.0"></script>
+<script type="text/javascript" src="${basePath}/common/pnotify/js/pnotify.nonblock.js?v=1.0"></script>
+
+<script type="text/javascript">
+    /**
+     * 通知成功
+     * @param title
+     * @param text
+     */
+    function notify_sucess(title,text) {
+        if (null == title || title == '') {
+            title = "请求成功...";
+        }
+        if (null == text) {
+            text = '';
+        }
+        new PNotify({
+            title: title,
+            text: text,
+            icon: 'icofont icofont-check',
+            type: 'success'
+        });
+    }
+
+    /**
+     * 通知错误
+     * @param title
+     * @param text
+     */
+    function notify_error(title,text) {
+        if (null == title || title == '') {
+            title = "失败咯...";
+        }
+        if (null == text) {
+            text = '';
+        }
+        new PNotify({
+            title: title,
+            text: text,
+            icon: 'icofont icofont-close',
+            type: 'error'
+        });
+    }
+</script>
