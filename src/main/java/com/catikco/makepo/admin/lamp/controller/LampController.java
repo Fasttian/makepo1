@@ -1,18 +1,21 @@
 package com.catikco.makepo.admin.lamp.controller;
 
 import com.catikco.makepo.admin.common.DatatablesResponsePageModel;
-import com.catikco.makepo.admin.news.model.NewsEditPageModel;
-import com.catikco.makepo.admin.news.model.NewsListPageModel;
-import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
-import com.catikco.makepo.admin.news.service.NewsService;
+import com.catikco.makepo.admin.lamp.service.LampService;
+import com.catikco.makepo.admin.lamp.model.LampEditPageModel;
+import com.catikco.makepo.admin.lamp.model.LampListPageModel;
+import com.catikco.makepo.admin.lamp.model.LampRequestPageModel;
+import com.catikco.makepo.model.CallResult;
 import com.catikco.makepo.oss.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -24,98 +27,102 @@ import static com.catikco.makepo.common.StringUtils.parseContentFileId;
  * Time: 7/8/2018  14:19
  * Description：
  */
-@Controller
+@Controller(value = "admin.LampController")
 @RequestMapping
 public class LampController {
 
     @Autowired
-    private NewsService newsService;
+    private LampService lampService;
 
     @Autowired
     private FileStorageService fileStorageService;
 
 
+//    /**
+//     * 后台管理初始页
+//     * @return
+//     */
+//    @RequestMapping("admin-init")
+//    public String adminInit(HttpServletResponse response){
+//        return "admin/index";😀
+//    } 
+
     /**
-     * 后台管理初始页
+     * 灯饰管理页面
      * @return
      */
-    @RequestMapping("admin-init")
-    public String adminInit(HttpServletResponse response){
-        String  htmlContent = "<h3><img src=\"风景图片IMG_25511530805047509.JPG\" data-filename=\"1\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804855509.JPG\" data-filename=\"2\" style=\"width: 974px;\"><img src=\"风景图片IMG_25511530804860863.JPG\" data-filename=\"3\" style=\"width: 974px;\">Hello Summernote</h3>";
-        String fileIds =  parseContentFileId(htmlContent);
-        List<Integer> fidList = cutContentFileId(fileIds);
-        NewsEditPageModel newsEditPageModel = new NewsEditPageModel();
-        newsEditPageModel.setContent(htmlContent);
-        newsEditPageModel.setTitle("新闻测试");
-        newsEditPageModel.setKeywords("关键字测试");
-        newsEditPageModel.setDigest("摘要测试");
-
-        newsService.saveNews(newsEditPageModel,response);
-
-        return "admin/index";
+    @RequestMapping("lamp-list")
+    public String lampInit(){
+        return "admin/lamp/lamp-list";
     }
 
     /**
-     * 新闻管理页面
+     * 加载灯饰列表
      * @return
      */
-    @RequestMapping("news-list")
-    public String newsInit(){
-        return "admin/news/news-list";
-    }
-
-    /**
-     * 加载新闻列表
-     * @return
-     */
-    @RequestMapping("load-news-list")
+    @RequestMapping("load-lamp-list")
     @ResponseBody
-    public DatatablesResponsePageModel<NewsListPageModel> loadList(NewsRequestPageModel newsRequestPageModel){
-        return newsService.getNewsList(newsRequestPageModel);
+    public DatatablesResponsePageModel<LampListPageModel> loadList(LampRequestPageModel lampRequestPageModel){
+        return lampService.getLampList(lampRequestPageModel);
     }
 
-
-    /**
-     * 初始化新闻编辑/添加页面
-     * @return
-     */
-    @RequestMapping("edit-news")
-    public String edit(Integer id,HttpServletResponse response){
-        return "admin/news/edit-news";
-    }
-
-    /**
-     *
-     * @param newsEditPageModel 编辑页面model
-     * @param multipartFile 文件
-     * @param response 响应页面请求
-     */
-    @RequestMapping("save-news")
-    @ResponseBody
-    public void saveNews(NewsEditPageModel newsEditPageModel, @RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
-        newsService.saveNews(newsEditPageModel,response);
-    }
-
-
-    /**
-     * 根据id删除新闻
-     * @param id
-     */
-    @RequestMapping("delete-news")
-    public void deleteNews(Integer id){
-
-    }
-
-    /**
-     * 对富文本编辑器中的图片文件执行保存操作
-     * @param multipartFile
-     * @param response
-     */
-    @RequestMapping("/save-file")
-    @ResponseBody
-    public void saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
-        fileStorageService.uploads(multipartFile,response);
-    }
+//
+//    /**
+//     * 初始化灯饰编辑/添加页面
+//     * @return
+//     */
+//    @RequestMapping("edit-lamp")
+//    public String edit(Integer id, HttpServletRequest request){
+//        LampEditPageModel lampEditPageModel = null;
+//        if(!"".equals(id))
+//            lampEditPageModel = lampService.loadLamp(id);
+//        if(null != lampEditPageModel)
+//            request.setAttribute("lampEditPageModel",lampEditPageModel);
+//
+//        return "admin/lamp/edit-lamp";
+//    }
+//
+//    /**
+//     *
+//     * @param lampEditPageModel 编辑页面model
+//     * @param response 响应页面请求
+//     */
+//    @RequestMapping(value = "/save-lamp", method = RequestMethod.POST)
+//    @ResponseBody
+//    public CallResult<String> saveLamp(LampEditPageModel lampEditPageModel, HttpServletResponse response, HttpServletRequest request){
+//        CallResult<String> result = new CallResult<>();
+//        if(1 == lampService.saveLamp(lampEditPageModel,response)){
+//            result.setCode("succeed");
+//            result.setData("保存成功");
+//        }else {
+//            result.setCode("error");
+//            result.setData("保存失败");
+//        }
+//
+//        return result;
+//
+//    }
+//
+//
+//    /**
+//     * 根据id删除灯饰
+//     * @param id
+//     */
+//    @RequestMapping("delete-lamp")
+//    public void deleteLamp(Integer id){
+//
+//    }
+//
+//    /**
+//     * 对富文本编辑器中的图片文件执行保存操作
+//     * @param multipartFile
+//     * @param response
+//     */
+//    @RequestMapping("/save-file")
+//    @ResponseBody
+//    public void saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
+//        fileStorageService.uploads(multipartFile,response,false);
+//    }
 
 
 }
