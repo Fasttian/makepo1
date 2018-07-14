@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="admin/plugins/switchery/switchery.min.css">
     <link href="admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="admin/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet"/>
+    <!-- 引入layui弹层css-->
+    <link href="common/layui-v2.3.0/css/layui.css" rel="stylesheet"/>
+
+    <!-- 引入pnotify提示 -->
+    <#include "./common/css/nitify_css.html">
+
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -460,11 +466,10 @@
         <div class="content">
             <div class="container">
 
-
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">发布新闻</h4>
+                            <h4 class="page-title">编辑新闻</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="#">Zircos</a>
@@ -486,7 +491,6 @@
                     <div class="col-sm-12">
                         <div class="card-box">
                             <div class="col-sm-12 m-b-30 m-t-0">
-                                <h3 class="header-title pull-left"><b>编辑新闻</b></h3>
                                 <div class="pull-right">
                                     <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
                                     <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消</button>
@@ -524,7 +528,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">新闻概要图片</label>
+                                        <label class="col-md-2 control-label">新闻概要图</label>
                                         <div class="col-md-10">
                                             <input type="file" id="titImage" name="titImage" accept="image/jpeg,image/gif,image/png,image/bmp" class="filestyle" data-buttonname="btn-default">
                                         </div>
@@ -534,7 +538,7 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" name="newsCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(newsEditPageModel.newsCreateTime ? string('dd/mm/yyyy'))!''}">
+                                                    <input type="text" name="newsCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(newsEditPageModel.newsCreateTime ? string('MM/dd/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
                                                 </div>
@@ -544,11 +548,12 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">新闻类型</label>
                                         <div class="col-md-10">
+                                            <!-- 暂时使用页面存值方式，处理下拉选赋值问题  -->
+                                            <input type="hidden" id="newsTypeValue" value="${newsEditPageModel.newsType}">
                                             <select id="newsType" name="newsType" class="selectpicker"
-                                                    data-style="btn-custom">
+                                                    data-style="btn-custom" >
                                                 <option value="1">行业新闻</option>
-                                                <option value="2">企业新闻</option>
-                                                <option value="3">国内新闻</option>
+                                                <option value="2">媒体报道</option>
                                             </select>
                                         </div>
                                     </div>
@@ -675,10 +680,20 @@
 <script src="admin/assets/js/jquery.core.js"></script>
 <script src="admin/assets/js/jquery.app.js"></script>
 
+<!--引入lay弹层js-->
+<script src="common/layui-v2.3.0/layui.js"></script>
+<!-- 引入pnotify -->
+<#include "./common/js/nitify_js.html">
+
+
 
 <script>
 
     $(document).ready(function () {
+        //处理新闻类型下拉选（赋值问题）
+        var newsType = $('#newsTypeValue').val();
+        $("#newsType option[value='"+newsType+"']").attr("selected", "selected");
+
         //初始化文本编辑器
         $('.summernote').summernote({
             height: 700,                 // set editor height
@@ -693,6 +708,8 @@
                 }
             },
         });
+
+
     });
 
     function UploadFiles(file, el) {
@@ -719,11 +736,24 @@
         })
     }
 
+    //初始化layer
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+    });
 
     //提交新闻
     function submitNewsData(formData){
+        //表单验证
+        if($('#title').val() == ''){
+            notify_error("请填写新闻标题")
+            return;
+        }
+
+
         //FormData表单数据
         var formData = new FormData(document.getElementById("editNewsForm"));
+
         //富文本编辑器数据
         var content = $('#content').summernote('code');
         formData.append("content",content);
@@ -737,18 +767,19 @@
             dataType: 'json',
             success: function (data) {
                if(data.code == "succeed"){
-                    alert(data.data)
+                   notify_sucess(data.data);
                }
                if(data.code == "error"){
-                   alert(data.data)
+                   notify_error(data.data)
                    return;
                }
-
-                //返回新闻列表页
-                location.href="/news-list";
+                //返回新闻列表页(返回时延时1秒，让用户看到提示信息)
+                setTimeout(function () {
+                    backList();
+                },1000);
             },
             error: function (e) {
-                console.log("保存失败！");
+                notify_sucess("保存出错，请联系系统开发人员！");
             }
         })
 
@@ -768,7 +799,6 @@
     function backList() {
         location.href="/news-list";
     }
-    
 
     //清空表单
     function clearForm(){

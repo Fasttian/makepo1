@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.catikco.makepo.common.DateUtils.dateToString;
 import static com.catikco.makepo.common.StringUtils.cutContentFileId;
 import static com.catikco.makepo.common.StringUtils.parseContentFileId;
 
@@ -225,11 +226,12 @@ public class NewsServiceImpl implements NewsService {
             NewsListPageModel newsListPageModel = new NewsListPageModel();
             newsListPageModel.setId(news.getId());
             newsListPageModel.setTitle(news.getTitle());
-            newsListPageModel.setDigest(news.getDigest());
-            newsListPageModel.setNewsCreateTime(news.getNewsCreateTime());
+            newsListPageModel.setNewsCreateTime(dateToString(news.getNewsCreateTime()));
             newsListPageModel.setNewsType(news.getNewsType());
             newsListPageModel.setNewsResources(news.getNewsResources());
+            newsListPageModel.setKeywords(news.getKeywords());
             newsListPageModelList.add(newsListPageModel);
+
         }
 
         return newsListPageModelList;
