@@ -49,8 +49,6 @@ public class Lamp {
 
     private Boolean deleted;
 
-    private String description;
-
     public Integer getId() {
         return id;
     }
@@ -233,13 +231,5 @@ public class Lamp {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
     }
 }

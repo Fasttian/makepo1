@@ -5,8 +5,8 @@ import com.catikco.makepo.admin.lamp.model.LampEditPageModel;
 import com.catikco.makepo.admin.lamp.model.LampListPageModel;
 import com.catikco.makepo.admin.lamp.model.LampRequestPageModel;
 import com.catikco.makepo.admin.lamp.service.LampService;
-import com.catikco.makepo.entity.Lamp;
 import com.catikco.makepo.entity.LampExample;
+import com.catikco.makepo.entity.LampWithBLOBs;
 import com.catikco.makepo.mapper.LampMapper;
 import com.catikco.makepo.oss.service.FileStorageService;
 import com.github.pagehelper.PageHelper;
@@ -66,10 +66,10 @@ public class LampServiceImpl implements LampService {
         PageHelper.startPage(currentPage,length);
 
         //根据条件从数据库查询出新闻
-        List<Lamp> lampList = lampMapper.selectByExampleWithBLOBs(lampExample);
+        List<LampWithBLOBs> lampList = lampMapper.selectByExampleWithBLOBs(lampExample);
 
         //让pageInfo对象进行分页的处理
-        PageInfo<Lamp> pageInfo = new PageInfo<>(lampList);
+        PageInfo<LampWithBLOBs> pageInfo = new PageInfo<>(lampList);
 
         datatablesResponsePageModel.setRecordsFiltered((int)pageInfo.getTotal());
         datatablesResponsePageModel.setRecordsTotal((int)pageInfo.getTotal());
@@ -114,11 +114,11 @@ public class LampServiceImpl implements LampService {
      * @param lampList
      * @return
      */
-    private List<LampListPageModel> changeToLampListPageModel(List<Lamp> lampList){
+    private List<LampListPageModel> changeToLampListPageModel(List<LampWithBLOBs> lampList){
 
         List<LampListPageModel> lampListPageModelList = new ArrayList<>();
 
-        for(Lamp lamp:lampList){
+        for(LampWithBLOBs lamp:lampList){
             LampListPageModel lampListPageModel = new LampListPageModel();
             lampListPageModel.setId(lamp.getId());
             lampListPageModel.setTitle(lamp.getModel());

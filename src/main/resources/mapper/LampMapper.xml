@@ -26,8 +26,9 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.Lamp" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.LampWithBLOBs" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -93,7 +94,7 @@
     productType, createTime, upDataTime, createBy, upDataBy, remark, deleted
   </sql>
   <sql id="Blob_Column_List" >
-    description
+    description, content
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.LampExample" >
     select
@@ -143,7 +144,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.Lamp" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.catikco.makepo.entity.LampWithBLOBs" >
     insert into Lamp (id, productTitleImageFileid, productContentImagesFileid, 
       model, voltage, power, 
       lumen, powerFactor, size, 
@@ -151,8 +152,8 @@
       decription, productUrl, views, 
       productCreateTime, productType, createTime, 
       upDataTime, createBy, upDataBy, 
-      remark, deleted, description
-      )
+      remark, deleted, description, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{model,jdbcType=VARCHAR}, #{voltage,jdbcType=DOUBLE}, #{power,jdbcType=DOUBLE}, 
       #{lumen,jdbcType=DOUBLE}, #{powerFactor,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
@@ -160,10 +161,10 @@
       #{decription,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
       #{productCreateTime,jdbcType=DATE}, #{productType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, 
       #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
-      )
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Lamp" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.LampWithBLOBs" >
     insert into Lamp
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -238,6 +239,9 @@
       <if test="description != null" >
         description,
       </if>
+      <if test="content != null" >
+        content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -311,6 +315,9 @@
       </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -395,6 +402,9 @@
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -425,7 +435,8 @@
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
-      description = #{record.description,jdbcType=LONGVARCHAR}
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -459,7 +470,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.Lamp" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.LampWithBLOBs" >
     update Lamp
     <set >
       <if test="productTitleImageFileid != null" >
@@ -531,10 +542,13 @@
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.Lamp" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.LampWithBLOBs" >
     update Lamp
     set productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
@@ -558,7 +572,8 @@
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
-      description = #{description,jdbcType=LONGVARCHAR}
+      description = #{description,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Lamp" >

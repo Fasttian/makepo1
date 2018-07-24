@@ -2,6 +2,7 @@ package com.catikco.makepo.mapper;
 
 import com.catikco.makepo.entity.Lamp;
 import com.catikco.makepo.entity.LampExample;
+import com.catikco.makepo.entity.LampWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -14,25 +15,25 @@ public interface LampMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Lamp record);
+    int insert(LampWithBLOBs record);
 
-    int insertSelective(Lamp record);
+    int insertSelective(LampWithBLOBs record);
 
-    List<Lamp> selectByExampleWithBLOBs(LampExample example);
+    List<LampWithBLOBs> selectByExampleWithBLOBs(LampExample example);
 
     List<Lamp> selectByExample(LampExample example);
 
-    Lamp selectByPrimaryKey(Integer id);
+    LampWithBLOBs selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Lamp record, @Param("example") LampExample example);
+    int updateByExampleSelective(@Param("record") LampWithBLOBs record, @Param("example") LampExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Lamp record, @Param("example") LampExample example);
+    int updateByExampleWithBLOBs(@Param("record") LampWithBLOBs record, @Param("example") LampExample example);
 
     int updateByExample(@Param("record") Lamp record, @Param("example") LampExample example);
 
-    int updateByPrimaryKeySelective(Lamp record);
+    int updateByPrimaryKeySelective(LampWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(Lamp record);
+    int updateByPrimaryKeyWithBLOBs(LampWithBLOBs record);
 
     int updateByPrimaryKey(Lamp record);
 }
