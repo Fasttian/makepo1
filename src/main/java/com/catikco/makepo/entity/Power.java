@@ -43,7 +43,7 @@ public class Power {
 
     private Boolean deleted;
 
-    private String description;
+    private String model;
 
     public Integer getId() {
         return id;
@@ -205,11 +205,11 @@ public class Power {
         this.deleted = deleted;
     }
 
-    public String getDescription() {
-        return description;
+    public String getModel() {
+        return model;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setModel(String model) {
+        this.model = model == null ? null : model.trim();
     }
 }

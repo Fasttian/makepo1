@@ -4,8 +4,7 @@ import com.catikco.makepo.admin.common.DatatablesResponsePageModel;
 import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
-import com.catikco.makepo.entity.NewsWithBLOBs;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Time: 7/1/2018  14:18
  * Description：
  */
+
 public interface NewsService {
 
     /**

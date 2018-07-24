@@ -2,6 +2,7 @@ package com.catikco.makepo.mapper;
 
 import com.catikco.makepo.entity.Power;
 import com.catikco.makepo.entity.PowerExample;
+import com.catikco.makepo.entity.PowerWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -14,25 +15,25 @@ public interface PowerMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Power record);
+    int insert(PowerWithBLOBs record);
 
-    int insertSelective(Power record);
+    int insertSelective(PowerWithBLOBs record);
 
-    List<Power> selectByExampleWithBLOBs(PowerExample example);
+    List<PowerWithBLOBs> selectByExampleWithBLOBs(PowerExample example);
 
     List<Power> selectByExample(PowerExample example);
 
-    Power selectByPrimaryKey(Integer id);
+    PowerWithBLOBs selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Power record, @Param("example") PowerExample example);
+    int updateByExampleSelective(@Param("record") PowerWithBLOBs record, @Param("example") PowerExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Power record, @Param("example") PowerExample example);
+    int updateByExampleWithBLOBs(@Param("record") PowerWithBLOBs record, @Param("example") PowerExample example);
 
     int updateByExample(@Param("record") Power record, @Param("example") PowerExample example);
 
-    int updateByPrimaryKeySelective(Power record);
+    int updateByPrimaryKeySelective(PowerWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(Power record);
+    int updateByPrimaryKeyWithBLOBs(PowerWithBLOBs record);
 
     int updateByPrimaryKey(Power record);
 }

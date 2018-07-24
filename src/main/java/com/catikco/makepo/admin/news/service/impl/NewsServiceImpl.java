@@ -5,26 +5,22 @@ import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
-import com.catikco.makepo.entity.*;
-import com.catikco.makepo.mapper.FileStorageMapper;
+import com.catikco.makepo.entity.NewsExample;
+import com.catikco.makepo.entity.NewsWithBLOBs;
 import com.catikco.makepo.mapper.NewsMapper;
 import com.catikco.makepo.oss.service.FileStorageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import static com.catikco.makepo.common.DateUtils.dateToString;
-import static com.catikco.makepo.common.StringUtils.cutContentFileId;
 import static com.catikco.makepo.common.StringUtils.parseContentFileId;
 
 /**
