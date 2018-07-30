@@ -108,7 +108,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.FileStorage" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
     insert into FileStorage (id, fileSize, filePrefix, 
       fileSuffix, fileDesc, fileStatus, 
       filePath, creteTime, upDataTime, 
@@ -120,7 +120,7 @@
       #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.FileStorage" >
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
     insert into FileStorage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -11,7 +11,6 @@ public class PowerEditPageModel {
     private Double input;   //输入电压
     private Double output;  //输出电压
     private String size;    //尺寸
-    private String productDescription; //产品描述
     private String title;   //产品内容标题
     private String keywords;    //关键字
     private String description; //描述
@@ -56,14 +55,6 @@ public class PowerEditPageModel {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
     }
 
     public String getTitle() {

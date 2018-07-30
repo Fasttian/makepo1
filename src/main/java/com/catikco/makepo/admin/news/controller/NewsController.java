@@ -72,7 +72,7 @@ public class NewsController {
     @RequestMapping("edit-news")
     public String edit(Integer id, HttpServletRequest request){
         NewsEditPageModel newsEditPageModel = null;
-        if(!"".equals(id))
+        if(!"".equals(id) || null != id)
              newsEditPageModel = newsService.loadNews(id);
         if(null != newsEditPageModel)
              request.setAttribute("newsEditPageModel",newsEditPageModel);

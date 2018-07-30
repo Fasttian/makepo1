@@ -138,7 +138,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
+  <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News (id, newsTitleImageFileid, newsContentImagesFileid, 
       title, keywords, decription, 
       newsResources, views, newsUrl, 
@@ -154,7 +154,7 @@
       #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into News
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

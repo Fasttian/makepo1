@@ -454,7 +454,7 @@
                         <div class="row">
 							<div class="col-xs-12">
 								<div class="page-title-box">
-                                    <h4 class="page-title">新闻管理 </h4>
+                                    <h4 class="page-title">电源管理 </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="#">返回用户中心</a>
@@ -469,7 +469,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
-                                    <form id="newsForm">
+                                    <form id="editForm">
                                         <div class="input-group" style="margin-bottom: 10px;">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByTitle()"><i class="fa fa-search"></i></button>
@@ -714,7 +714,7 @@
             function initComplete(){
 
                 //删除用户按钮的HTMLDOM
-                var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addNews()" class="btn btn-success waves-effect w-md waves-light m-b-5 btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
+                var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addPower()" class="btn btn-success waves-effect w-md waves-light m-b-5 btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
 
                 $("#datatable_length").append(topPlugin);//在表格上方topPlugin DIV中追加HTML
 
@@ -723,28 +723,28 @@
         /******************************************** 新闻增，删，改，查 *******************************************************/
             //清空查询条件
             function clearQuery() {
-                $('#newsForm')[0].reset();
+                $('#editForm')[0].reset();
                 table.ajax.reload();
             }
 
             //按标题查询
-            function queryByTitle() {
+            function queryByModel() {
                 table.ajax.reload();
             }
 
-            //要据id删除新闻
-            function deleteNews(id){
+            //要据id删除
+            function deletePower(id){
                 alert("删除")
             }
 
-            //新增新闻
-            function addNews() {
-               location.href="/edit-news";
+            //新增
+            function addPower() {
+               location.href="/edit-power";
             }
 
-            //编辑新闻
-           function editNews() {
-                location.href="/edit-news";
+            //编辑
+           function editPower() {
+                location.href="/edit-power";
             }
 
 
