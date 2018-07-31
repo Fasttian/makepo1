@@ -8,9 +8,11 @@ import com.catikco.makepo.model.CallResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -38,6 +40,12 @@ public class PowerController {
         return  powerService.getPowerList(powerRequestPageModel);
     }
 
+    /**
+     * 加载编辑框
+     * @param request
+     * @param id
+     * @return
+     */
     @RequestMapping("/edit-power")
     public String edit(HttpServletRequest request,Integer id){
         PowerEditPageModel powerEditPageModel = null;
@@ -47,6 +55,20 @@ public class PowerController {
             request.setAttribute("powerEditPageModel",powerEditPageModel);
 
         return "admin/power/edit-power";
+    }
+
+    @RequestMapping(value = "save-power",method = RequestMethod.POST)
+    @ResponseBody
+    public CallResult<String> save(PowerEditPageModel powerEditPageModel, HttpServletResponse response){
+        CallResult<String> result = new CallResult<>();
+        if(1 == powerService.savePower(powerEditPageModel,response)){
+            result.setCode("succeed");
+            result.setData("保存成功，准备返回新闻列表！");
+        }else {
+            result.setCode("error");
+            result.setData("保存失败");
+        }
+        return result;
     }
 
 }

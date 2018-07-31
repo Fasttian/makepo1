@@ -1,5 +1,9 @@
 package com.catikco.makepo.admin.power.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
+
 /**
  * Create By: Cai Rong fei @Gui Yang
  * Time: 7/8/2018  14:26
@@ -7,6 +11,7 @@ package com.catikco.makepo.admin.power.model;
  */
 public class PowerEditPageModel {
     private Integer id;     //主键
+    private String model;   //型号
     private Double power;   //功率
     private Double input;   //输入电压
     private Double output;  //输出电压
@@ -16,6 +21,33 @@ public class PowerEditPageModel {
     private String description; //描述
     private String productUrl;  //产品链接
     private String remark;      // 备注
+    private MultipartFile titImage;                 //电源图片
+    private Date productCreateTime;                 //产品发布时间
+
+    public Date getProductCreateTime() {
+        return productCreateTime;
+    }
+
+    public void setProductCreateTime(Date productCreateTime) {
+        this.productCreateTime = productCreateTime;
+    }
+
+
+    public MultipartFile getTitImage() {
+        return titImage;
+    }
+
+    public void setTitImage(MultipartFile titImage) {
+        this.titImage = titImage;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
 
     public Integer getId() {
         return id;

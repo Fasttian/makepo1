@@ -6,6 +6,8 @@ import com.catikco.makepo.admin.power.model.PowerEditPageModel;
 import com.catikco.makepo.admin.power.model.PowerRequestPageModel;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Create By: Cai Rong fei @Gui Yang
  * Time: 7/8/2018  14:28
@@ -34,5 +36,7 @@ public interface PowerService {
      * @return
      */
     public Integer deletePower(Integer id);
+
+    public Integer savePower(PowerEditPageModel powerEditPageModel, HttpServletResponse response);
 
 }

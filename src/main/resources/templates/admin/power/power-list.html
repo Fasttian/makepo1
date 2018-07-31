@@ -472,7 +472,7 @@
                                     <form id="editForm">
                                         <div class="input-group" style="margin-bottom: 10px;">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByTitle()"><i class="fa fa-search"></i></button>
+                                                <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByModel()"><i class="fa fa-search"></i></button>
                                             </span>
                                             <input type="text" id="powerModel"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByModel(); return false;}" placeholder="请入型号查询...">
                                         </div>
@@ -667,9 +667,9 @@
                             "orderable": false, // 禁用排序
                             "sDefaultContent": '',
                             "sWidth": "10%",
-                            "render": function (data) {
-                                return data = '<button id="edit-power" onclick="editPower()" class="btn btn-success  btn-sm" data-id=\' + data + \'>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-power" onclick="deletePower()" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
-
+                            "render": function (data,type,row) {
+                                var id = row.id;
+                                return data = '<button id="edit-power" onclick="editPower('+id+')" class="btn btn-success  btn-sm" data-id=\' + data + \'>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-power" onclick="deletePower('+id+')" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
                             }
                         }
                     ],
@@ -703,10 +703,19 @@
                         case 1:
                             data.orderColumn = "power";//按功率排序
                             break;
+                        case 2:
+                            data.orderColumn = "input";//按输入电压排序
+                            break;
+                        case 3:
+                            data.orderColumn = "output";//按输出排序
+                            break;
+                        case 4:
+                            data.orderColumn = "size";//按size排序
+                            break;
                     }
                     //排序方式asc或者desc
                     data.orderDir = data.order[0].dir;
-                    data.title=$("#powerModel").val();
+                    data.model=$("#powerModel").val();      //型号查询
                 }
                 return data;
             }
@@ -732,7 +741,7 @@
                 table.ajax.reload();
             }
 
-            //要据id删除
+            //根据id删除
             function deletePower(id){
                 alert("删除")
             }
@@ -743,8 +752,8 @@
             }
 
             //编辑
-           function editPower() {
-                location.href="/edit-power";
+           function editPower(id) {
+                location.href="/edit-power?id="+id;
             }
 
 

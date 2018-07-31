@@ -9,11 +9,15 @@ import com.catikco.makepo.entity.Power;
 import com.catikco.makepo.entity.PowerExample;
 import com.catikco.makepo.entity.PowerWithBLOBs;
 import com.catikco.makepo.mapper.PowerMapper;
+import com.catikco.makepo.oss.service.FileStorageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +30,9 @@ public class PowerServiceImpl implements PowerService {
 
     @Autowired
     private PowerMapper powerMapper;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @Override
     public DatatablesResponsePageModel getPowerList(PowerRequestPageModel powerRequestPageModel) {
@@ -43,22 +50,22 @@ public class PowerServiceImpl implements PowerService {
 
         String model = powerRequestPageModel.getModel(); //按型号查询
 
-        if(!"".equals(sortName) && !"".equals(orderBy)){
+        if(sortName != null && !sortName.isEmpty()){
             powerExample.setOrderByClause(sortName + " " +orderBy);
         }
 
-        if(null != model){
+        if(!"".equals(model)){
             model = "%" + model +"%";
             criteria.andModelLike(model);
         }
 
-        PageHelper.offsetPage(length,currentPage);
+        PageHelper.offsetPage(currentPage,length);
         List<Power> powerList = powerMapper.selectByExample(powerExample);
         PageInfo<Power> powerPageInfo = new PageInfo<>(powerList);
 
-        datatablesResponsePageModel.setDraw(powerRequestPageModel.getDraw());
         datatablesResponsePageModel.setRecordsTotal((int)powerPageInfo.getTotal());
         datatablesResponsePageModel.setRecordsFiltered((int)powerPageInfo.getTotal());
+        datatablesResponsePageModel.setDraw(powerRequestPageModel.getDraw());
         datatablesResponsePageModel.setData(powerPageInfo.getList());
 
         return datatablesResponsePageModel;
@@ -76,7 +83,50 @@ public class PowerServiceImpl implements PowerService {
         return null;
     }
 
+    /**
+     * 保存
+     * @param powerEditPageModel
+     * @param response
+     * @return
+     */
+    @Override
+    public Integer savePower(PowerEditPageModel powerEditPageModel, HttpServletResponse response) {
+        Integer productTitleImageFileid = null; //产品图片文件id
+        MultipartFile multipartFile = powerEditPageModel.getTitImage();
+        if(null != powerEditPageModel.getTitImage().getOriginalFilename())
+            productTitleImageFileid = fileStorageService.uploads(multipartFile,response,true);
+
+        PowerWithBLOBs powerWithBLOBs =changeToPowerWithBLOBs(powerEditPageModel,productTitleImageFileid,null);
+        //插数据库
+        if(powerEditPageModel.getId() != null && !"".equals(powerEditPageModel.getId())){
+                return powerMapper.updateByPrimaryKey(powerWithBLOBs);
+        }else {
+            return powerMapper.insert(powerWithBLOBs);
+        }
+
+    }
+
     /************************** 私有方法******************************/
+
+
+    private PowerWithBLOBs changeToPowerWithBLOBs(PowerEditPageModel powerEditPageModel,Integer productTitleImageFileid,Integer contentFileid){
+        PowerWithBLOBs powerWithBLOBs = new PowerWithBLOBs();
+
+        powerWithBLOBs.setModel(powerEditPageModel.getModel());
+        powerWithBLOBs.setDescription(powerEditPageModel.getDescription());
+        powerWithBLOBs.setCreteTime(new Date());
+        powerWithBLOBs.setProductTitleImageFileid(productTitleImageFileid);
+        powerWithBLOBs.setId(powerEditPageModel.getId());
+        powerWithBLOBs.setInput(powerEditPageModel.getInput());
+        powerWithBLOBs.setOutput(powerEditPageModel.getOutput());
+        powerWithBLOBs.setKeywords(powerEditPageModel.getKeywords());
+        powerWithBLOBs.setProductUrl("/power-detail");
+        powerWithBLOBs.setProductCreateTime(powerEditPageModel.getProductCreateTime());
+        powerWithBLOBs.setPower(powerEditPageModel.getPower());
+        powerWithBLOBs.setSize(powerEditPageModel.getSize());
+
+        return powerWithBLOBs;
+    }
 
     /**
      * 转换数据为页面list model
@@ -97,6 +147,11 @@ public class PowerServiceImpl implements PowerService {
         return powerListPageModel;
     }
 
+    /**
+     * 转换数据为编辑框页面model
+     * @param powerWithBLOBs
+     * @return
+     */
     private PowerEditPageModel changeToPowerEditPageModel(PowerWithBLOBs powerWithBLOBs){
         PowerEditPageModel powerEditPageModel = new PowerEditPageModel();
         if(null != powerWithBLOBs){
@@ -108,8 +163,10 @@ public class PowerServiceImpl implements PowerService {
             powerEditPageModel.setPower(powerWithBLOBs.getPower());
             powerEditPageModel.setTitle(powerWithBLOBs.getTitle());
             powerEditPageModel.setRemark(powerWithBLOBs.getRemark());
+            powerEditPageModel.setModel(powerWithBLOBs.getModel());
             powerEditPageModel.setProductUrl("/power-detail");
             powerEditPageModel.setSize(powerWithBLOBs.getSize());
+            powerEditPageModel.setProductCreateTime(powerWithBLOBs.getProductCreateTime());
         }
         return powerEditPageModel;
     }

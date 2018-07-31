@@ -87,7 +87,7 @@ public class NewsController {
      */
     @RequestMapping(value = "/save-news", method = RequestMethod.POST)
     @ResponseBody
-    public CallResult<String> saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response, HttpServletRequest request){
+    public CallResult<String> saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
         CallResult<String> result = new CallResult<>();
         if(1 == newsService.saveNews(newsEditPageModel,response)){
             result.setCode("succeed");
