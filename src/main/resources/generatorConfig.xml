@@ -6,7 +6,7 @@
 
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="C:\Users\FlyCai\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" />
+    <classPathEntry location="C:\Users\lovezc\.m2\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar" />
     <context id="testTables" targetRuntime="MyBatis3">
 
         <commentGenerator>
@@ -52,7 +52,7 @@
 
 
         <!-- 指定数据库表 -->
-       <!-- <table schema="" tableName="Lamp"  domainObjectName="Lamp">
+        <table schema="" tableName="Lamp"  domainObjectName="Lamp">
              <property name="useActualColumnNames" value="true"/>
          </table>
          <table schema="" tableName="Power" domainObjectName="Power">
@@ -63,7 +63,7 @@
          </table>
          <table schema="" tableName="FileStorage" domainObjectName="FileStorage">
              <property name="useActualColumnNames" value="true"/>
-         </table>-->
+         </table>
 
     </context>
 

@@ -21,8 +21,6 @@ public class Power {
 
     private String keywords;
 
-    private String decription;
-
     private String productUrl;
 
     private Integer views;
@@ -115,14 +113,6 @@ public class Power {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords == null ? null : keywords.trim();
-    }
-
-    public String getDecription() {
-        return decription;
-    }
-
-    public void setDecription(String decription) {
-        this.decription = decription == null ? null : decription.trim();
     }
 
     public String getProductUrl() {

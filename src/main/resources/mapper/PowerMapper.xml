@@ -11,7 +11,6 @@
     <result column="size" property="size" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
-    <result column="decription" property="decription" jdbcType="VARCHAR" />
     <result column="productUrl" property="productUrl" jdbcType="VARCHAR" />
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="productCreateTime" property="productCreateTime" jdbcType="DATE" />
@@ -88,8 +87,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, power, input, output, size, 
-    title, keywords, decription, productUrl, views, productCreateTime, productType, creteTime, 
-    upDataTime, createBy, upDataBy, remark, deleted, model
+    title, keywords, productUrl, views, productCreateTime, productType, creteTime, upDataTime, 
+    createBy, upDataBy, remark, deleted, model
   </sql>
   <sql id="Blob_Column_List" >
     description, content
@@ -146,19 +145,19 @@
     insert into Power (id, productTitleImageFileid, productContentImagesFileid, 
       power, input, output, 
       size, title, keywords, 
-      decription, productUrl, views, 
-      productCreateTime, productType, creteTime, 
-      upDataTime, createBy, upDataBy, 
-      remark, deleted, model, 
-      description, content)
+      productUrl, views, productCreateTime, 
+      productType, creteTime, upDataTime, 
+      createBy, upDataBy, remark, 
+      deleted, model, description, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
       #{size,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
-      #{decription,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
-      #{productCreateTime,jdbcType=DATE}, #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, 
-      #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, 
-      #{description,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
+      #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
+      #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
+      #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into Power
@@ -189,9 +188,6 @@
       </if>
       <if test="keywords != null" >
         keywords,
-      </if>
-      <if test="decription != null" >
-        decription,
       </if>
       <if test="productUrl != null" >
         productUrl,
@@ -260,9 +256,6 @@
       </if>
       <if test="keywords != null" >
         #{keywords,jdbcType=VARCHAR},
-      </if>
-      <if test="decription != null" >
-        #{decription,jdbcType=VARCHAR},
       </if>
       <if test="productUrl != null" >
         #{productUrl,jdbcType=VARCHAR},
@@ -341,9 +334,6 @@
       <if test="record.keywords != null" >
         keywords = #{record.keywords,jdbcType=VARCHAR},
       </if>
-      <if test="record.decription != null" >
-        decription = #{record.decription,jdbcType=VARCHAR},
-      </if>
       <if test="record.productUrl != null" >
         productUrl = #{record.productUrl,jdbcType=VARCHAR},
       </if>
@@ -399,7 +389,6 @@
       size = #{record.size,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      decription = #{record.decription,jdbcType=VARCHAR},
       productUrl = #{record.productUrl,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productCreateTime,jdbcType=DATE},
@@ -428,7 +417,6 @@
       size = #{record.size,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      decription = #{record.decription,jdbcType=VARCHAR},
       productUrl = #{record.productUrl,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productCreateTime,jdbcType=DATE},
@@ -470,9 +458,6 @@
       </if>
       <if test="keywords != null" >
         keywords = #{keywords,jdbcType=VARCHAR},
-      </if>
-      <if test="decription != null" >
-        decription = #{decription,jdbcType=VARCHAR},
       </if>
       <if test="productUrl != null" >
         productUrl = #{productUrl,jdbcType=VARCHAR},
@@ -526,7 +511,6 @@
       size = #{size,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      decription = #{decription,jdbcType=VARCHAR},
       productUrl = #{productUrl,jdbcType=VARCHAR},
       views = #{views,jdbcType=INTEGER},
       productCreateTime = #{productCreateTime,jdbcType=DATE},
@@ -552,7 +536,6 @@
       size = #{size,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      decription = #{decription,jdbcType=VARCHAR},
       productUrl = #{productUrl,jdbcType=VARCHAR},
       views = #{views,jdbcType=INTEGER},
       productCreateTime = #{productCreateTime,jdbcType=DATE},
