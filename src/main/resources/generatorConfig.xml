@@ -52,7 +52,7 @@
 
 
         <!-- 指定数据库表 -->
-        <table schema="" tableName="Lamp"  domainObjectName="Lamp">
+      <!--  <table schema="" tableName="Lamp"  domainObjectName="Lamp">
              <property name="useActualColumnNames" value="true"/>
          </table>
          <table schema="" tableName="Power" domainObjectName="Power">
@@ -63,7 +63,7 @@
          </table>
          <table schema="" tableName="FileStorage" domainObjectName="FileStorage">
              <property name="useActualColumnNames" value="true"/>
-         </table>
+         </table>-->
 
     </context>
 
