@@ -743,13 +743,12 @@
     });
 
     //提交新闻
-    function submitNewsData(formData){
+    function submitNewsData(){
         //表单验证
         if($('#title').val() == ''){
             notify_error("请填写新闻标题")
             return;
         }
-
 
         //FormData表单数据
         var formData = new FormData(document.getElementById("editNewsForm"));
@@ -779,7 +778,7 @@
                 },1000);
             },
             error: function (e) {
-                notify_sucess("保存出错，请联系系统开发人员！");
+                notify_error("保存出错，请联系系统开发人员！");
             }
         })
 

@@ -469,7 +469,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">编辑新闻</h4>
+                            <h4 class="page-title">编辑电源</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="#">Zircos</a>
@@ -494,43 +494,43 @@
                                 <div class="pull-right">
                                     <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
                                     <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消</button>
-                                    <button class="btn btn-success  inline-btn" onclick="javascript:submitNewsData()">提交</button>
+                                    <button class="btn btn-success  inline-btn" onclick="javascript:submitPowerData()">提交</button>
                                 </div>
                             </div>
                             <div class="row form-horizontal">
-                                <form  id="editNewsForm">
-                                    <input type="text" id="id" name="id" value="${newsEditPageModel.id}" style="display: none">
+                                <form  id="editPowerForm">
+                                    <input type="text" id="id" name="id" value="${powerEditPageModel.id}" style="display: none">
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">电源型号</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="title" name="title" class="form-control" value="${newsEditPageModel.title}">
+                                            <input type="text" id="model" name="model" class="form-control" value="${powerEditPageModel.model}">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">功率</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                            <input type="text" id="power" name="power" value=" ${powerEditPageModel.power}"
                                                    class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">输入电压</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                            <input type="text" id="input" name="input" value=" ${powerEditPageModel.input}"
                                                    class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">输出电压</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                            <input type="text" id="output" name="output" value=" ${powerEditPageModel.output}"
                                                    class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">尺寸</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                            <input type="text" id="size" name="size" value=" ${powerEditPageModel.size}"
                                                    class="form-control">
                                         </div>
                                     </div>
@@ -544,14 +544,21 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">关键字</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="keywords" name="keywords" class="form-control" value="${newsEditPageModel.keywords}"
+                                            <input type="text" id="keywords" name="keywords" class="form-control" value="${powerEditPageModel.keywords}"
+                                                   placeholder="更容易搜索引擎抓取">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">产品内容标题</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="title" name="title" class="form-control" value="${powerEditPageModel.title}"
                                                    placeholder="更容易搜索引擎抓取">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">描述</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="description" name="description" class="form-control" value="${newsEditPageModel.description}"
+                                            <input type="text" id="description" name="description" class="form-control" value="${powerEditPageModel.description}"
                                                    placeholder="更容易搜索引擎抓取">
                                         </div>
                                     </div>
@@ -560,28 +567,20 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" name="newsCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(newsEditPageModel.newsCreateTime ? string('MM/dd/yyyy'))!''}">
+                                                    <input type="text" name="productCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(powerEditPageModel.productCreateTime ? string('MM/dd/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">产品摘要</label>
-                                        <div class="col-md-10">
-                                        <textarea id="textarea" name="digest" data-filename="" class="form-control" maxlength="225"
-                                                  rows="3"
-                                                  placeholder="最多225个字符">${newsEditPageModel.digest}</textarea>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
-                            <div style="margin-top: 1rem;">
+                         <!--   <div style="margin-top: 1rem;">
                                 <textarea class="summernote col-md-12 col-sm-12" id="content" name="content">
-                                   ${newsEditPageModel.content}
+                                   ${powerEditPageModel.content}
                                 </textarea>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -695,9 +694,8 @@
 <!-- 引入pnotify -->
 <#include "./common/js/nitify_js.html">
 
-
-
 <script>
+/*
 
     $(document).ready(function () {
         //处理新闻类型下拉选（赋值问题）
@@ -718,11 +716,10 @@
                 }
             },
         });
-
-
     });
+*/
 
-    function UploadFiles(file, el) {
+  /*  function UploadFiles(file, el) {
         console.log(110);
         //这里files是因为我设置了可上传多张图片，所以需要依次添加到formData中
         var formData = new FormData();
@@ -744,7 +741,7 @@
                 console.log("uploadError");
             }
         })
-    }
+    }*/
 
     //初始化layer
     layui.use(['layer', 'form'], function(){
@@ -753,24 +750,22 @@
     });
 
     //提交新闻
-    function submitNewsData(formData){
+    function submitPowerData(formData){
         //表单验证
-        if($('#title').val() == ''){
+       /* if($('#title').val() == ''){
             notify_error("请填写新闻标题")
             return;
-        }
-
+        }*/
 
         //FormData表单数据
-        var formData = new FormData(document.getElementById("editNewsForm"));
-
-        //富文本编辑器数据
+        var formData = new FormData(document.getElementById("editPowerForm"));
+    /*    //富文本编辑器数据
         var content = $('#content').summernote('code');
-        formData.append("content",content);
+        formData.append("content",content);*/
 
         $.ajax({
             type: 'POST',
-            url: '/save-news',
+            url: '/save-power',
             data: formData,
             processData:false,
             contentType:false,
@@ -789,7 +784,7 @@
                 },1000);
             },
             error: function (e) {
-                notify_sucess("保存出错，请联系系统开发人员！");
+                notify_error("保存出错，请联系系统开发人员！");
             }
         })
 
@@ -807,12 +802,12 @@
 
     //返回列表
     function backList() {
-        location.href="/news-list";
+        location.href="/power-list";
     }
 
     //清空表单
     function clearForm(){
-        $('#editNewsForm :input').val("");
+        $('#editPowerForm :input').val("");
     }
 
 </script>
