@@ -7,6 +7,7 @@ import com.catikco.makepo.admin.power.model.PowerRequestPageModel;
 import com.catikco.makepo.admin.power.service.PowerService;
 import com.catikco.makepo.entity.Power;
 import com.catikco.makepo.entity.PowerExample;
+import com.catikco.makepo.entity.PowerWithBLOBs;
 import com.catikco.makepo.mapper.PowerMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -65,7 +66,9 @@ public class PowerServiceImpl implements PowerService {
 
     @Override
     public PowerEditPageModel loadPower(Integer id) {
-        return null;
+        if(id==null)
+            return null;
+        return changeToPowerEditPageModel(powerMapper.selectByPrimaryKey(id));
     }
 
     @Override
@@ -92,5 +95,22 @@ public class PowerServiceImpl implements PowerService {
         powerListPageModel.setModel("型号");
 
         return powerListPageModel;
+    }
+
+    private PowerEditPageModel changeToPowerEditPageModel(PowerWithBLOBs powerWithBLOBs){
+        PowerEditPageModel powerEditPageModel = new PowerEditPageModel();
+        if(null != powerWithBLOBs){
+            powerEditPageModel.setDescription(powerWithBLOBs.getDescription());
+            powerEditPageModel.setId(powerWithBLOBs.getId());
+            powerEditPageModel.setInput(powerWithBLOBs.getInput());
+            powerEditPageModel.setKeywords(powerWithBLOBs.getKeywords());
+            powerEditPageModel.setOutput(powerWithBLOBs.getOutput());
+            powerEditPageModel.setPower(powerWithBLOBs.getPower());
+            powerEditPageModel.setTitle(powerWithBLOBs.getTitle());
+            powerEditPageModel.setRemark(powerWithBLOBs.getRemark());
+            powerEditPageModel.setProductUrl("/power-detail");
+            powerEditPageModel.setSize(powerWithBLOBs.getSize());
+        }
+        return powerEditPageModel;
     }
 }
