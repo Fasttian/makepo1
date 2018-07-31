@@ -501,9 +501,44 @@
                                 <form  id="editNewsForm">
                                     <input type="text" id="id" name="id" value="${newsEditPageModel.id}" style="display: none">
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">新闻标题</label>
+                                        <label class="col-md-2 control-label">电源型号</label>
                                         <div class="col-md-10">
                                             <input type="text" id="title" name="title" class="form-control" value="${newsEditPageModel.title}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">功率</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">输入电压</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">输出电压</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">尺寸</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">电源图片</label>
+                                        <div class="col-md-10">
+                                            <input type="file" id="titImage" name="titImage" accept="image/jpeg,image/gif,image/png,image/bmp" class="filestyle" data-buttonname="btn-default">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -521,19 +556,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">新闻来源</label>
-                                        <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
-                                                   class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">新闻概要图</label>
-                                        <div class="col-md-10">
-                                            <input type="file" id="titImage" name="titImage" accept="image/jpeg,image/gif,image/png,image/bmp" class="filestyle" data-buttonname="btn-default">
-                                        </div>
-                                    </div>
-                                    <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">发布时间</label>
                                         <div class="col-md-10">
                                             <div>
@@ -546,19 +568,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">新闻类型</label>
-                                        <div class="col-md-10">
-                                            <!-- 暂时使用页面存值方式，处理下拉选赋值问题  -->
-                                            <input type="hidden" id="newsTypeValue" value="${newsEditPageModel.newsType}">
-                                            <select id="newsType" name="newsType" class="selectpicker"
-                                                    data-style="btn-custom" >
-                                                <option value="1">行业新闻</option>
-                                                <option value="2">媒体报道</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">摘要</label>
+                                        <label class="col-md-2 control-label">产品摘要</label>
                                         <div class="col-md-10">
                                         <textarea id="textarea" name="digest" data-filename="" class="form-control" maxlength="225"
                                                   rows="3"
