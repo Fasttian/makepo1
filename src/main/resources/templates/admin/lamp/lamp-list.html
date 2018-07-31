@@ -474,14 +474,18 @@
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByTitle()"><i class="fa fa-search"></i></button>
                                             </span>
-                                            <input type="text" id="newsTitle"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入新闻标题查询">
+                                            <input type="text" id="model"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入新闻标题查询">
                                         </div>
                                     </form>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>灯饰名称</th>
+                                            <!--<th>序号</th>-->
+                                            <th>产品名称</th>
+                                            <th>功率</th>
+                                            <th>尺寸</th>
+                                            <th>标题</th>
+                                            <th>产品类型  </th>
                                             <th>操作</th>
                                         </tr>
                                         </thead>
@@ -629,25 +633,52 @@
                         }
                     },
 
-                    "aoColumns" : [{
-                        "mData" : "title",
-                        "orderable" : true, // 禁用排序
-                        "sDefaultContent" : "",
-                        "sWidth" : "6%",
-
-                    }, {
-                        "mData" : "keywords",
+                    "aoColumns" : [
+                        {
+                        "mData" : "model",
                         "orderable" : true, // 禁用排序
                         "sDefaultContent" : "",
                         "sWidth" : "10%"
                     },
+
+                        {
+                        "mData" : "power",
+                        "orderable" : true, // 禁用排序
+                        "sDefaultContent" : "",
+                        "sWidth" : "10%"
+                    },
+
+                        {
+                        "mData" : "size",
+                        "orderable" : true, // 禁用排序
+                        "sDefaultContent" : "",
+                        "sWidth" : "10%"
+                    },
+
+                        {
+                        "mData" : "title",
+                        "orderable" : true, // 禁用排序
+                        "sDefaultContent" : "",
+                        "sWidth" : "10%"
+                    },
+
+                        {
+                        "mData" : "productType",
+                        "orderable" : true, // 禁用排序
+                        "sDefaultContent" : "",
+                        "sWidth" : "10%"
+                    },
+
+
+
                         {
                             "mData": "id",
                             "orderable": false, // 禁用排序
                             "sDefaultContent": '',
                             "sWidth": "10%",
-                            "render": function (data) {
-                                return data = '<button id="edit-news" onclick="editNews()" class="btn btn-success  btn-sm" data-id=\' + data + \'>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-news" onclick="deleteNews()" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
+                            "render": function (data, type, row) {
+                                var id = row.id;
+                                return data = '<button id="edit-lamp" onclick="editLamp('+id+')" class="btn btn-success  btn-sm" data-id=' + data + '>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-lamp" onclick="deleteLamp('+id+')" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
 
                             }
                         }
@@ -677,7 +708,7 @@
                 if (data.order&&data.order.length&&data.order[0]) {
                     switch (data.order[0].column) {
                         case 0:
-                            data.orderColumn = "id";//数据库列名称
+                            data.orderColumn = "size";//数据库列名称
                             break;
                         case 1:
                             data.orderColumn = "model";//数据库列名称
@@ -685,7 +716,7 @@
                     }
                     //排序方式asc或者desc
                     data.orderDir = data.order[0].dir;
-                    data.title=$("#newsTitle").val();
+                    data.model=$("#model").val();
                 }
                 return data;
             }
@@ -693,7 +724,7 @@
             function initComplete(){
 
                 //删除用户按钮的HTMLDOM
-                var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addNews()" class="btn btn-success waves-effect w-md waves-light m-b-5 btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
+                var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addLamp()" class="btn btn-success waves-effect w-md waves-light m-b-5 btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
 
                 $("#datatable_length").append(topPlugin);//在表格上方topPlugin DIV中追加HTML
 
@@ -712,18 +743,18 @@
             }
 
             //要据id删除新闻
-            function deleteNews(id){
+            function deleteLamp(id){
                 alert("删除")
             }
 
             //新增新闻
-            function addNews() {
-               location.href="/edit-news";
+            function addLamp() {
+               location.href="/edit-lamp";
             }
 
             //编辑新闻
-           function editNews() {
-                location.href="/edit-news";
+           function editLamp(id) {
+                location.href="/edit-lamp?id="+id;
             }
 
 

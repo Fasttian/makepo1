@@ -24,7 +24,7 @@
     <link href="admin/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="admin/plugins/switchery/switchery.min.css">
     <link href="admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link href="admin/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="admin/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet"/>
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,7 +73,7 @@
                     </li>
                     <li class="hidden-xs">
                         <form role="search" class="app-search">
-                            <input type="text" placeholder="Search..."
+                            <input type="text" id="" name="" placeholder="Search..."
                                    class="form-control">
                             <a href=""><i class="fa fa-search"></i></a>
                         </form>
@@ -464,7 +464,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">发布新闻</h4>
+                            <h4 class="page-title">发布产品</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="#">Zircos</a>
@@ -485,74 +485,127 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
-                            <h4 class="m-b-30 m-t-0 header-title"><b>编辑新闻</b></h4>
-                            <div class="row form-horizontal">
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻标题</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">关键字</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="更容易搜索引擎抓取">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">描述</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="更容易搜索引擎抓取">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻来源</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">上传图片</label>
-                                    <div class="col-md-10">
-                                        <input type="file" class="filestyle" data-buttonname="btn-default">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">发布时间</label>
-                                    <div class="col-md-10">
-                                        <div>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy"
-                                                       id="datepicker-autoclose">
-                                                <span class="input-group-addon bg-custom b-0"><i
-                                                        class="mdi mdi-calendar text-white"></i></span>
-                                            </div><!-- input-group -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">新闻类型</label>
-                                    <div class="col-md-10">
-                                        <select class="selectpicker" data-style="btn-custom">
-                                            <option>行业新闻</option>
-                                            <option>企业新闻</option>
-                                            <option>国内新闻</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group  col-md-6 col-sm-6">
-                                    <label class="col-md-2 control-label">摘要</label>
-                                    <div class="col-md-10">
-                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                  placeholder="最多225个字符"></textarea>
-                                    </div>
+                            <div class="col-md-12 m-b-30 m-t-0">
+                                <h3 class="header-title pull-left"><b>编辑产品</b></h3>
+                                <div class="pull-right">
+                                    <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
+                                    <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消
+                                    </button>
+                                    <button class="btn btn-success  inline-btn" onclick="javascript:    submitEditData('editLampForm', '/save-lamp', '/lamp-list') ">
+                                        提交
+                                    </button>
                                 </div>
                             </div>
-                            <div style="margin-top: 1rem;">
-                                <div class="summernote col-md-12 col-sm-12">
-                                    <h3>Hello Summernote</h3>
-                                </div>
+                            <div class="row form-horizontal">
+                                <form id="editLampForm">
+                                    <input type="text" id="id" name="id" value="${lampEditPageModel.id}"
+                                           style="display: none">
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">产品名称</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="model" name="model" class="form-control"
+                                                   value="${lampEditPageModel.model}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">关键字</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="keyWords" name="keyWords" class="form-control"
+                                                   value="${lampEditPageModel.keyWords}" placeholder="更容易搜索引擎抓取">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">描述</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="decription" name="decription" class="form-control"
+                                                   value="${lampEditPageModel.decription}" placeholder="更容易搜索引擎抓取">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">功率</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="power" name="power" class="form-control"
+                                                   value="${lampEditPageModel.power}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">功率因素</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="powerFactor" name="powerFactor" class="form-control"
+                                                   value="${lampEditPageModel.powerFactor}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">电压</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="voltage" name="voltage" class="form-control"
+                                                   value="${lampEditPageModel.voltage}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">光通量</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="lumen" name="lumen" class="form-control"
+                                                   value="${lampEditPageModel.lumen}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">尺寸</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="size" name="size" class="form-control"
+                                                   value="${lampEditPageModel.size}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">材料</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="material" name="material" class="form-control"
+                                                   value="${lampEditPageModel.material}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">上传图片</label>
+                                        <div class="col-md-10">
+                                            <input type="file" class="filestyle" data-buttonname="btn-default">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">发布时间</label>
+                                        <div class="col-md-10">
+                                            <div>
+                                                <div class="input-group">
+                                                    <input type="text" name="productTitleImageFileid"
+                                                           class="form-control"
+                                                           value="${lampEditPageModel.productTitleImageFileid}"
+                                                           placeholder="mm/dd/yyyy"
+                                                           id="datepicker-autoclose">
+                                                    <span class="input-group-addon bg-custom b-0"><i
+                                                            class="mdi mdi-calendar text-white"></i></span>
+                                                </div><!-- input-group -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">产品类型</label>
+                                        <div class="col-md-10">
+                                            <select class="selectpicker" data-style="btn-custom"
+                                                    value="${lampEditPageModel.productType}">
+                                                <option>G4/G9</option>
+                                                <option>球泡灯</option>
+                                                <option>灯丝灯</option>
+                                                <option>面板灯</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">产品简介</label>
+                                        <div class="col-md-10">
+                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3"
+                                                  placeholder="最多225个字符">${lampEditPageModel.decription}</textarea>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -674,12 +727,12 @@
             maxHeight: null,             // set maximum height of editor
             focus: false,                 // set focus to editable area after initializing summernote
             callbacks: {
-                onImageUpload: function (files, editor, $editable) {
+                onImageUpload: function (files) {
                     for (var i = files.length - 1; i >= 0; i--) {
                         UploadFiles(files[i], this);
                     }
                 }
-            },
+            }
         });
     });
 
@@ -699,7 +752,7 @@
             dataType: "json",
             success: function (response) {
                 console.log(response);
-                $(el).summernote('editor.insertImage', response.list[0].url,  response.list[0].fileId);
+                $(el).summernote('editor.insertImage', response.list[0].url, response.list[0].fileId);
             },
             error: function () {
                 console.log("uploadError");
@@ -707,23 +760,41 @@
         })
     }
 
+    //提交编辑数据ajax公共调用函数
+    function submitEditData(formId, callUrl, refreshListUrl) {
+        //获取表单数据
+        var formData = new FormData($(formId));
 
-    //提交新闻
-    function submitNews() {
+        //获取富文本编辑器
+        var content = $('#content').summernote('code');
+        formData.append("content",content);
+
         $.ajax({
-            type: "GET",
-            url: "/save-news",
-            data: {username: $("#username").val(), content: $("#content").val()},
-            dataType: "json",
-            success: function (data) {
-
-                //保存成功回到新闻列表页面
-                location.href = "/news-list";
+            type: 'POST',
+             url: callUrl,
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(data) {
+                if(data.code == "succeed"){
+                    console.log(data.data);
+                };
+                if (data.code == "error") {
+                    console.log(data.data);
+                    return;
+                }
+                //保存成功返回产品列表
+                location.href = refreshListUrl;
+            },
+            error: function() {
+                console.log("数据保存失败！")
             }
-
-        });
+        })
     }
 
+    //调用 ajax 公共方法提交 lamp 数据
+//    submitEditData('editLampForm', '/lamp-edit', '/lamp-list');
 
     // Date Picker
     $('#datepicker-autoclose').datepicker({

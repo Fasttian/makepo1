@@ -13,10 +13,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.catikco.makepo.common.StringUtils.parseContentFileId;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -52,14 +55,14 @@ public class LampServiceImpl implements LampService {
         String model = lampRequestPageModel.getModel();         //按新闻标题查询
 
         // 设置排序方式
-        if (sortName != null && !sortName.isEmpty()) {
-            lampExample.setOrderByClause(sortName + " " + sort);
-        }
+//        if (sortName != null && !sortName.isEmpty()) {
+//            lampExample.setOrderByClause(sortName + " " + sort);
+//        }
 
         // 按新闻标题查询
         if (!"".equals(model)) {
             model = "%" + model + "%";
-            criteria.andTitleLike(model);
+            criteria.andModelLike(model);
         }
 
         //设置分页信息
@@ -83,31 +86,49 @@ public class LampServiceImpl implements LampService {
 
     @Override
     public int saveLamp(LampEditPageModel lampEditPageModel, HttpServletResponse response) {
-        return 0;
+        //修改时允许不选择概要图片
+        Integer lampTitleImageFileid = null; //概要图片文件id
+        String lampContentFileid = null;     //内容图片文件id
+        MultipartFile multipartFile = lampEditPageModel.getTitImage();
+        if (null != lampEditPageModel.getTitImage().getOriginalFilename())
+            lampTitleImageFileid = fileStorageService.uploads(lampEditPageModel.getTitImage(), response, true);
+
+//        lampContentFileid = parseContentFileId(lampEditPageModel.getContent());
+
+        Lamp lamp = this.changeToLamp(lampEditPageModel, lampTitleImageFileid, null);
+        //插数据库
+        if (null != lampEditPageModel.getId() && !"".equals(lampEditPageModel.getId())) {
+            int iss = lampMapper.updateByPrimaryKeySelective(lamp);
+            return iss;
+        } else {
+            return lampMapper.insert(lamp);
+
+        }
     }
 
     @Override
     public LampEditPageModel loadLamp(Integer id) {
+        Lamp lamp = lampMapper.selectByPrimaryKey(id);
+        if (lamp != null) {
+            return changeToLampEditPageModel(lamp);
+        }
         return null;
     }
 
-//    /**
-//     *
-//     * @param lampEditPageModel 编辑框页面model
-//     * @param response  响应页面请求
-//     */
-//    public int saveLamp(LampEditPageModel lampEditPageModel, HttpServletResponse response){
-//
-//    }
-//
-//    /**
-//     * 加载产品到编辑框
-//     * @param id
-//     * @return
-//     */
-//    public LampEditPageModel loadLamp(Integer id) {
-//
-//    }
+    /*************************** 私有方法： 转换灯具为页面视图 model ***********************************/
+
+    private LampEditPageModel changeToLampEditPageModel(Lamp lamp){
+        LampEditPageModel lampEditPageModel = new LampEditPageModel();
+        lampEditPageModel.setId(lamp.getId());
+        lampEditPageModel.setModel(lamp.getModel());
+        lampEditPageModel.setPower(lamp.getPower());
+        lampEditPageModel.setVoltage(lamp.getVoltage());
+        lampEditPageModel.setSize(lamp.getSize());
+        lampEditPageModel.setLumen(lamp.getLumen());
+        lampEditPageModel.setMaterial(lamp.getMaterial());
+
+        return lampEditPageModel;
+    }
 
     /**
      * 转换数据model为页面model
@@ -121,11 +142,30 @@ public class LampServiceImpl implements LampService {
         for(Lamp lamp:lampList){
             LampListPageModel lampListPageModel = new LampListPageModel();
             lampListPageModel.setId(lamp.getId());
-            lampListPageModel.setTitle(lamp.getModel());
+            lampListPageModel.setModel(lamp.getModel());
+            lampListPageModel.setSize(lamp.getSize());
+            lampListPageModel.setPower(lamp.getPower());
+            lampListPageModel.setTitle(lamp.getTitle());
+            lampListPageModel.setProductType(lamp.getProductType());
             lampListPageModelList.add(lampListPageModel);
         }
-
         return lampListPageModelList;
+    }
+
+    /**
+     * 转换页面 model 为数据 model
+     * @param lampEditPageModel 页面 model
+     * @param productTitleImageFileid 产品概要图片文件 id（一个）
+     * @param productContentImageFileid 产品详情页中可能有多张图片id（预览参数）
+     */
+    private Lamp changeToLamp(LampEditPageModel lampEditPageModel, Integer productTitleImageFileid, String productContentImageFileid){
+        Lamp lamp = new Lamp();
+
+        lamp.setId(lampEditPageModel.getId());
+        lamp.setProductTitleImageFileid(productTitleImageFileid);
+        lamp.setModel(lampEditPageModel.getModel());
+
+        return lamp;
     }
 
 }

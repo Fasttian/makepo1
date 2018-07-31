@@ -66,44 +66,44 @@ public class LampController {
         return lampService.getLampList(lampRequestPageModel);
     }
 
-//
-//    /**
-//     * 初始化灯饰编辑/添加页面
-//     * @return
-//     */
-//    @RequestMapping("edit-lamp")
-//    public String edit(Integer id, HttpServletRequest request){
-//        LampEditPageModel lampEditPageModel = null;
-//        if(!"".equals(id))
-//            lampEditPageModel = lampService.loadLamp(id);
-//        if(null != lampEditPageModel)
-//            request.setAttribute("lampEditPageModel",lampEditPageModel);
-//
-//        return "admin/lamp/edit-lamp";
-//    }
-//
-//    /**
-//     *
-//     * @param lampEditPageModel 编辑页面model
-//     * @param response 响应页面请求
-//     */
-//    @RequestMapping(value = "/save-lamp", method = RequestMethod.POST)
-//    @ResponseBody
-//    public CallResult<String> saveLamp(LampEditPageModel lampEditPageModel, HttpServletResponse response, HttpServletRequest request){
-//        CallResult<String> result = new CallResult<>();
-//        if(1 == lampService.saveLamp(lampEditPageModel,response)){
-//            result.setCode("succeed");
-//            result.setData("保存成功");
-//        }else {
-//            result.setCode("error");
-//            result.setData("保存失败");
-//        }
-//
-//        return result;
-//
-//    }
-//
-//
+
+    /**
+     * 初始化灯饰编辑/添加页面
+     * @return
+     */
+    @RequestMapping("edit-lamp")
+    public String edit(Integer id, HttpServletRequest request){
+        LampEditPageModel lampEditPageModel = null;
+        if(!"".equals(id))
+            lampEditPageModel = lampService.loadLamp(id);
+        if(null != lampEditPageModel)
+            request.setAttribute("lampEditPageModel",lampEditPageModel);
+
+        return "admin/lamp/edit-lamp";
+    }
+
+    /**
+     *
+     * @param lampEditPageModel 编辑页面model
+     * @param response 响应页面请求
+     */
+    @RequestMapping(value = "/save-lamp", method = RequestMethod.POST)
+    @ResponseBody
+    public CallResult<String> saveLamp(LampEditPageModel lampEditPageModel, HttpServletResponse response, HttpServletRequest request){
+        CallResult<String> result = new CallResult<>();
+        if(1 == lampService.saveLamp(lampEditPageModel,response)){
+            result.setCode("succeed");
+            result.setData("保存成功");
+        }else {
+            result.setCode("error");
+            result.setData("保存失败");
+        }
+
+        return result;
+
+    }
+
+
 //    /**
 //     * 根据id删除灯饰
 //     * @param id

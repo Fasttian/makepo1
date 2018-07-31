@@ -1,5 +1,7 @@
 package com.catikco.makepo.admin.lamp.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 /**
@@ -11,7 +13,7 @@ public class LampEditPageModel {
 
     private Integer id;
 
-    private Integer productTitleImageFileid;
+    private MultipartFile titImage;
 
     private String model;
 
@@ -47,12 +49,12 @@ public class LampEditPageModel {
         this.id = id;
     }
 
-    public Integer getProductTitleImageFileid() {
-        return productTitleImageFileid;
+    public MultipartFile getTitImage() {
+        return titImage;
     }
 
-    public void setProductTitleImageFileid(Integer productTitleImageFileid) {
-        this.productTitleImageFileid = productTitleImageFileid;
+    public void setTitImage(MultipartFile titImage) {
+        this.titImage = titImage;
     }
 
     public String getModel() {
