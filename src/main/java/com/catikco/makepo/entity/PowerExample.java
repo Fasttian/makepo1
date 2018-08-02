@@ -712,76 +712,6 @@ public class PowerExample {
             return (Criteria) this;
         }
 
-        public Criteria andDecriptionIsNull() {
-            addCriterion("decription is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionIsNotNull() {
-            addCriterion("decription is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionEqualTo(String value) {
-            addCriterion("decription =", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionNotEqualTo(String value) {
-            addCriterion("decription <>", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionGreaterThan(String value) {
-            addCriterion("decription >", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("decription >=", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionLessThan(String value) {
-            addCriterion("decription <", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionLessThanOrEqualTo(String value) {
-            addCriterion("decription <=", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionLike(String value) {
-            addCriterion("decription like", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionNotLike(String value) {
-            addCriterion("decription not like", value, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionIn(List<String> values) {
-            addCriterion("decription in", values, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionNotIn(List<String> values) {
-            addCriterion("decription not in", values, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionBetween(String value1, String value2) {
-            addCriterion("decription between", value1, value2, "decription");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecriptionNotBetween(String value1, String value2) {
-            addCriterion("decription not between", value1, value2, "decription");
-            return (Criteria) this;
-        }
-
         public Criteria andProductUrlIsNull() {
             addCriterion("productUrl is null");
             return (Criteria) this;
@@ -1399,6 +1329,76 @@ public class PowerExample {
 
         public Criteria andDeletedNotBetween(Boolean value1, Boolean value2) {
             addCriterion("deleted not between", value1, value2, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelIsNull() {
+            addCriterion("model is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelIsNotNull() {
+            addCriterion("model is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelEqualTo(String value) {
+            addCriterion("model =", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelNotEqualTo(String value) {
+            addCriterion("model <>", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelGreaterThan(String value) {
+            addCriterion("model >", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelGreaterThanOrEqualTo(String value) {
+            addCriterion("model >=", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelLessThan(String value) {
+            addCriterion("model <", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelLessThanOrEqualTo(String value) {
+            addCriterion("model <=", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelLike(String value) {
+            addCriterion("model like", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelNotLike(String value) {
+            addCriterion("model not like", value, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelIn(List<String> values) {
+            addCriterion("model in", values, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelNotIn(List<String> values) {
+            addCriterion("model not in", values, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelBetween(String value1, String value2) {
+            addCriterion("model between", value1, value2, "model");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelNotBetween(String value1, String value2) {
+            addCriterion("model not between", value1, value2, "model");
             return (Criteria) this;
         }
     }

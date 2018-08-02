@@ -5,7 +5,6 @@ import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
-import com.catikco.makepo.admin.news.service.impl.NewsServiceImpl;
 import com.catikco.makepo.model.CallResult;
 import com.catikco.makepo.oss.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.catikco.makepo.common.StringUtils.cutContentFileId;
-import static com.catikco.makepo.common.StringUtils.parseContentFileId;
 
 
 /**
@@ -80,7 +72,7 @@ public class NewsController {
     @RequestMapping("edit-news")
     public String edit(Integer id, HttpServletRequest request){
         NewsEditPageModel newsEditPageModel = null;
-        if(!"".equals(id))
+        if(!"".equals(id) || null != id)
              newsEditPageModel = newsService.loadNews(id);
         if(null != newsEditPageModel)
              request.setAttribute("newsEditPageModel",newsEditPageModel);
@@ -95,11 +87,11 @@ public class NewsController {
      */
     @RequestMapping(value = "/save-news", method = RequestMethod.POST)
     @ResponseBody
-    public CallResult<String> saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response, HttpServletRequest request){
+    public CallResult<String> saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
         CallResult<String> result = new CallResult<>();
         if(1 == newsService.saveNews(newsEditPageModel,response)){
             result.setCode("succeed");
-            result.setData("保存成功");
+            result.setData("保存成功，准备返回新闻列表！");
         }else {
             result.setCode("error");
             result.setData("保存失败");

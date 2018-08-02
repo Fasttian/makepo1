@@ -11,7 +11,6 @@
     <result column="size" property="size" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
-    <result column="decription" property="decription" jdbcType="VARCHAR" />
     <result column="productUrl" property="productUrl" jdbcType="VARCHAR" />
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="productCreateTime" property="productCreateTime" jdbcType="DATE" />
@@ -22,9 +21,11 @@
     <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.Power" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.PowerWithBLOBs" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -86,11 +87,11 @@
   </sql>
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, power, input, output, size, 
-    title, keywords, decription, productUrl, views, productCreateTime, productType, creteTime, 
-    upDataTime, createBy, upDataBy, remark, deleted
+    title, keywords, productUrl, views, productCreateTime, productType, creteTime, upDataTime, 
+    createBy, upDataBy, remark, deleted, model
   </sql>
   <sql id="Blob_Column_List" >
-    description
+    description, content
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.PowerExample" >
     select
@@ -140,25 +141,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.Power" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into Power (id, productTitleImageFileid, productContentImagesFileid, 
       power, input, output, 
       size, title, keywords, 
-      decription, productUrl, views, 
-      productCreateTime, productType, creteTime, 
-      upDataTime, createBy, upDataBy, 
-      remark, deleted, description
-      )
+      productUrl, views, productCreateTime, 
+      productType, creteTime, upDataTime, 
+      createBy, upDataBy, remark, 
+      deleted, model, description, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
       #{size,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
-      #{decription,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
-      #{productCreateTime,jdbcType=DATE}, #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, 
-      #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
-      )
+      #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
+      #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
+      #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Power" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into Power
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -187,9 +188,6 @@
       </if>
       <if test="keywords != null" >
         keywords,
-      </if>
-      <if test="decription != null" >
-        decription,
       </if>
       <if test="productUrl != null" >
         productUrl,
@@ -221,8 +219,14 @@
       <if test="deleted != null" >
         deleted,
       </if>
+      <if test="model != null" >
+        model,
+      </if>
       <if test="description != null" >
         description,
+      </if>
+      <if test="content != null" >
+        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -252,9 +256,6 @@
       </if>
       <if test="keywords != null" >
         #{keywords,jdbcType=VARCHAR},
-      </if>
-      <if test="decription != null" >
-        #{decription,jdbcType=VARCHAR},
       </if>
       <if test="productUrl != null" >
         #{productUrl,jdbcType=VARCHAR},
@@ -286,8 +287,14 @@
       <if test="deleted != null" >
         #{deleted,jdbcType=BIT},
       </if>
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -327,9 +334,6 @@
       <if test="record.keywords != null" >
         keywords = #{record.keywords,jdbcType=VARCHAR},
       </if>
-      <if test="record.decription != null" >
-        decription = #{record.decription,jdbcType=VARCHAR},
-      </if>
       <if test="record.productUrl != null" >
         productUrl = #{record.productUrl,jdbcType=VARCHAR},
       </if>
@@ -360,8 +364,14 @@
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
+      <if test="record.model != null" >
+        model = #{record.model,jdbcType=VARCHAR},
+      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -379,7 +389,6 @@
       size = #{record.size,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      decription = #{record.decription,jdbcType=VARCHAR},
       productUrl = #{record.productUrl,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productCreateTime,jdbcType=DATE},
@@ -390,7 +399,9 @@
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
-      description = #{record.description,jdbcType=LONGVARCHAR}
+      model = #{record.model,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -406,7 +417,6 @@
       size = #{record.size,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      decription = #{record.decription,jdbcType=VARCHAR},
       productUrl = #{record.productUrl,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productCreateTime,jdbcType=DATE},
@@ -416,12 +426,13 @@
       createBy = #{record.createBy,jdbcType=INTEGER},
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=BIT}
+      deleted = #{record.deleted,jdbcType=BIT},
+      model = #{record.model,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.Power" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" >
     update Power
     <set >
       <if test="productTitleImageFileid != null" >
@@ -447,9 +458,6 @@
       </if>
       <if test="keywords != null" >
         keywords = #{keywords,jdbcType=VARCHAR},
-      </if>
-      <if test="decription != null" >
-        decription = #{decription,jdbcType=VARCHAR},
       </if>
       <if test="productUrl != null" >
         productUrl = #{productUrl,jdbcType=VARCHAR},
@@ -481,13 +489,19 @@
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=BIT},
       </if>
+      <if test="model != null" >
+        model = #{model,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.Power" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" >
     update Power
     set productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
@@ -497,7 +511,6 @@
       size = #{size,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      decription = #{decription,jdbcType=VARCHAR},
       productUrl = #{productUrl,jdbcType=VARCHAR},
       views = #{views,jdbcType=INTEGER},
       productCreateTime = #{productCreateTime,jdbcType=DATE},
@@ -508,7 +521,9 @@
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
-      description = #{description,jdbcType=LONGVARCHAR}
+      model = #{model,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Power" >
@@ -521,7 +536,6 @@
       size = #{size,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      decription = #{decription,jdbcType=VARCHAR},
       productUrl = #{productUrl,jdbcType=VARCHAR},
       views = #{views,jdbcType=INTEGER},
       productCreateTime = #{productCreateTime,jdbcType=DATE},
@@ -531,7 +545,8 @@
       createBy = #{createBy,jdbcType=INTEGER},
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=BIT}
+      deleted = #{deleted,jdbcType=BIT},
+      model = #{model,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

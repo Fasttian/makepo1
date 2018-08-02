@@ -15,4 +15,13 @@ public class IndexController {
     public String VisitHomePage(){
         return "home/index";
     }
+
+    /**
+     * 借贵处宝地返回个页面，用完即删
+     * @return
+     */
+    @RequestMapping("/download")
+    public String VisitDownload(){
+        return "home/download";
+    }
 }

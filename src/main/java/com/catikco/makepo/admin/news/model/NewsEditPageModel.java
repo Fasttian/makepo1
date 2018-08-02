@@ -33,6 +33,7 @@ public class NewsEditPageModel {
 
     private Byte newsType;                          //新闻类型
 
+
     public Integer getId() {
         return id;
     }

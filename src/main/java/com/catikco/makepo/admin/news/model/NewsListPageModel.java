@@ -12,10 +12,18 @@ import java.util.Date;
 public class NewsListPageModel  {
     private Integer id;                             //新闻id
     private String title;                           //新闻标题
-    private String digest;                          //新闻摘要
-    private Date newsCreateTime;                    //新闻发布时间
+    private String newsCreateTime;                    //新闻发布时间
     private Byte newsType;                          //新闻类型
     private String newsResources;                   //新闻来源
+    private String keywords;                        //关键字
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
 
     public String getTitle() {
         return title;
@@ -25,19 +33,11 @@ public class NewsListPageModel  {
         this.title = title;
     }
 
-    public String getDigest() {
-        return digest;
-    }
-
-    public void setDigest(String digest) {
-        this.digest = digest;
-    }
-
-    public Date getNewsCreateTime() {
+    public String getNewsCreateTime() {
         return newsCreateTime;
     }
 
-    public void setNewsCreateTime(Date newsCreateTime) {
+    public void setNewsCreateTime(String newsCreateTime) {
         this.newsCreateTime = newsCreateTime;
     }
 

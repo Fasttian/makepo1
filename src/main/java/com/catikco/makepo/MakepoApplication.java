@@ -24,9 +24,9 @@ public class MakepoApplication {
 	public MultipartConfigElement multipartConfigElement() {
 		MultipartConfigFactory factory = new MultipartConfigFactory();
 		//单个文件最大
-		factory.setMaxFileSize("102400KB"); //KB,MB
+		factory.setMaxFileSize("4096MB"); //KB,MB
 		/// 设置总上传数据总大小
-		factory.setMaxRequestSize("1024000KB");
+		factory.setMaxRequestSize("40960MB");
 		return factory.createMultipartConfig();
 	}
 }
