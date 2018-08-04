@@ -43,6 +43,8 @@ public class Power {
 
     private String model;
 
+    private Byte type;
+
     public Integer getId() {
         return id;
     }
@@ -201,5 +203,13 @@ public class Power {
 
     public void setModel(String model) {
         this.model = model == null ? null : model.trim();
+    }
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
     }
 }

@@ -5,7 +5,6 @@ import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
-import com.catikco.makepo.entity.News;
 import com.catikco.makepo.entity.NewsExample;
 import com.catikco.makepo.entity.NewsWithBLOBs;
 import com.catikco.makepo.mapper.NewsMapper;
@@ -104,7 +103,7 @@ public class NewsServiceImpl implements NewsService {
         String newContentFileid = null;     //内容图片文件id
         MultipartFile multipartFile = newsEditPageModel.getTitImage();
         if(null != newsEditPageModel.getTitImage().getOriginalFilename())
-            newTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getTitImage(), response,true);
+            newTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getTitImage(), response,true,null);
 
         newContentFileid = parseContentFileId(newsEditPageModel.getContent());
 

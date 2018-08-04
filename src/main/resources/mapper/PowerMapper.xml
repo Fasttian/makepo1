@@ -22,6 +22,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
     <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.PowerWithBLOBs" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
@@ -88,7 +89,7 @@
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, power, input, output, size, 
     title, keywords, productUrl, views, productCreateTime, productType, creteTime, upDataTime, 
-    createBy, upDataBy, remark, deleted, model
+    createBy, upDataBy, remark, deleted, model, type
   </sql>
   <sql id="Blob_Column_List" >
     description, content
@@ -148,7 +149,7 @@
       productUrl, views, productCreateTime, 
       productType, creteTime, upDataTime, 
       createBy, upDataBy, remark, 
-      deleted, model, description, 
+      deleted, model, type, description, 
       content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
@@ -156,7 +157,7 @@
       #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
       #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
       #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{description,jdbcType=LONGVARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
@@ -221,6 +222,9 @@
       </if>
       <if test="model != null" >
         model,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="description != null" >
         description,
@@ -289,6 +293,9 @@
       </if>
       <if test="model != null" >
         #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
       </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
@@ -367,6 +374,9 @@
       <if test="record.model != null" >
         model = #{record.model,jdbcType=VARCHAR},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -400,6 +410,7 @@
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       model = #{record.model,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT},
       description = #{record.description,jdbcType=LONGVARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -427,7 +438,8 @@
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
-      model = #{record.model,jdbcType=VARCHAR}
+      model = #{record.model,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -492,6 +504,9 @@
       <if test="model != null" >
         model = #{model,jdbcType=VARCHAR},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -522,6 +537,7 @@
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
       model = #{model,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
       description = #{description,jdbcType=LONGVARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -546,7 +562,8 @@
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
-      model = #{model,jdbcType=VARCHAR}
+      model = #{model,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -21,6 +21,6 @@ public interface FileStorageService {
      * @param isTitle
      * @return
      */
-    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle);
+    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType);
 
 }

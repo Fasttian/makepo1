@@ -63,7 +63,10 @@
          </table>
          <table schema="" tableName="FileStorage" domainObjectName="FileStorage">
              <property name="useActualColumnNames" value="true"/>
-         </table>-->
+         </table>
+        <table schema="" tableName="Message" domainObjectName="Message">
+            <property name="useActualColumnNames" value="true"/>
+        </table>-->
 
     </context>
 

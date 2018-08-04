@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.catikco.makepo.common.StringUtils.parseContentFileId;
-
 /**
  * Create By: Cai Rong fei @Gui Yang
  * Time: 7/8/2018  14:23
@@ -93,7 +91,7 @@ public class LampServiceImpl implements LampService {
         String lampContentFileid = null;     //内容图片文件id
         MultipartFile multipartFile = lampEditPageModel.getTitImage();
         if (null != lampEditPageModel.getTitImage().getOriginalFilename())
-            lampTitleImageFileid = fileStorageService.uploads(lampEditPageModel.getTitImage(), response, true);
+            lampTitleImageFileid = fileStorageService.uploads(lampEditPageModel.getTitImage(), response, true,null);
 
 //        lampContentFileid = parseContentFileId(lampEditPageModel.getContent());
 
