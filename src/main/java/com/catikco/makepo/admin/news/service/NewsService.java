@@ -36,4 +36,6 @@ public interface NewsService {
      * @return
      */
     public NewsEditPageModel loadNews(Integer id);
+
+    public Integer deleteNews(Integer id);
 }

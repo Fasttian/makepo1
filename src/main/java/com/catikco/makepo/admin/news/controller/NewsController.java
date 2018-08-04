@@ -102,13 +102,20 @@ public class NewsController {
     }
 
 
-    /**
-     * 根据id删除新闻
-     * @param id
-     */
-    @RequestMapping("delete-news")
-    public void deleteNews(Integer id){
 
+    @RequestMapping(value = "delete-news", method = RequestMethod.POST)
+    @ResponseBody
+    public CallResult<String> delete(Integer id){
+        CallResult<String> result = new CallResult<>();
+        if(1 == newsService.deleteNews(id)){
+            result.setCode("succeed");
+            result.setData("删除成功！");
+        }else {
+            result.setCode("error");
+            result.setData("删除失败");
+        }
+
+        return result;
     }
 
     /**

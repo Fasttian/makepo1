@@ -59,6 +59,9 @@ public class PowerServiceImpl implements PowerService {
             criteria.andModelLike(model);
         }
 
+        //查询标记为未删除的
+        criteria.andDeletedEqualTo(false);
+
         PageHelper.offsetPage(currentPage,length);
         List<Power> powerList = powerMapper.selectByExample(powerExample);
         PageInfo<Power> powerPageInfo = new PageInfo<>(powerList);
@@ -80,6 +83,12 @@ public class PowerServiceImpl implements PowerService {
 
     @Override
     public Integer deletePower(Integer id) {
+        PowerWithBLOBs powerWithBLOBs = null;
+        if(null != id){
+            powerWithBLOBs = powerMapper.selectByPrimaryKey(id);
+            powerWithBLOBs.setDeleted(true);
+            return powerMapper.updateByPrimaryKey(powerWithBLOBs);
+        }
         return null;
     }
 
@@ -124,6 +133,8 @@ public class PowerServiceImpl implements PowerService {
         powerWithBLOBs.setProductCreateTime(powerEditPageModel.getProductCreateTime());
         powerWithBLOBs.setPower(powerEditPageModel.getPower());
         powerWithBLOBs.setSize(powerEditPageModel.getSize());
+        powerWithBLOBs.setDeleted(false);
+        powerWithBLOBs.setTitle(powerEditPageModel.getTitle());
 
         return powerWithBLOBs;
     }
@@ -167,6 +178,7 @@ public class PowerServiceImpl implements PowerService {
             powerEditPageModel.setProductUrl("/power-detail");
             powerEditPageModel.setSize(powerWithBLOBs.getSize());
             powerEditPageModel.setProductCreateTime(powerWithBLOBs.getProductCreateTime());
+
         }
         return powerEditPageModel;
     }
