@@ -40,7 +40,11 @@
         <![endif]-->
 
         <script src="admin/assets/js/modernizr.min.js"></script>
+        <!-- 引入layui弹层css-->
+        <link href="common/layer/theme/default/layer.css" rel="stylesheet"/>
 
+        <!-- 引入pnotify提示 -->
+        <#include "./common/css/nitify_css.html">
         <style>
         /*处理datatables列居中*/
         .dataTable th{
@@ -615,9 +619,12 @@
         <!-- App js -->
         <script src="admin/assets/js/jquery.core.js"></script>
         <script src="admin/assets/js/jquery.app.js"></script>
+        <!-- 引入pnotify -->
+        <#include "./common/js/nitify_js.html">
 
+        <!--引入lay弹层js-->
+        <script src="common/layer/layer.js"></script>
         <script>
-
             /******************************************** 新闻列表的初始化 *******************************************************/
             var table=null;
             $(document).ready(function () {
@@ -760,7 +767,39 @@
 
             //要据id删除新闻
             function deleteNews(id){
-                alert("删除")
+                layer.confirm('确认要删除吗？', {
+                    btn : [ '确定', '取消' ]//按钮
+                } ,function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type:'POST',
+                        url: '/delete-news',
+                        dataType:'json',
+                        data: {"id":id},
+                        async:false,
+                        cache:false,
+                        success: function (data) {
+                            if(data.code == "succeed"){
+                                notify_sucess(data.data);
+                            }
+                            if(data.code == "error"){
+                                notify_error(data.data)
+                                return;
+                            }
+                            //返回新闻列表页(返回时延时1秒，让用户看到提示信息)
+                            setTimeout(function () {
+                                backList();
+                            },100);
+                        },
+                    })
+                },function(index) {
+                    layer.close(index);
+                });
+            }
+
+            //返回列表
+            function backList() {
+                location.href="/news-list";
             }
 
             //新增新闻

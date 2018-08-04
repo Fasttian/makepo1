@@ -5,6 +5,7 @@ import com.catikco.makepo.admin.news.model.NewsEditPageModel;
 import com.catikco.makepo.admin.news.model.NewsListPageModel;
 import com.catikco.makepo.admin.news.model.NewsRequestPageModel;
 import com.catikco.makepo.admin.news.service.NewsService;
+import com.catikco.makepo.entity.News;
 import com.catikco.makepo.entity.NewsExample;
 import com.catikco.makepo.entity.NewsWithBLOBs;
 import com.catikco.makepo.mapper.NewsMapper;
@@ -68,6 +69,9 @@ public class NewsServiceImpl implements NewsService {
             title = "%" + title + "%";
             criteria.andTitleLike(title);
         }
+
+        //查询标记为未删除的
+        criteria.andDeletedEqualTo(false);
 
         //设置分页信息
         PageHelper.startPage(currentPage,length);
@@ -191,6 +195,17 @@ public class NewsServiceImpl implements NewsService {
         return null;
     }
 
+    @Override
+    public Integer deleteNews(Integer id) {
+        NewsWithBLOBs newsWithBLOBs =null;
+        if(null != id ){
+            newsWithBLOBs =  newsMapper.selectByPrimaryKey(id);
+            newsWithBLOBs.setDeleted(true);
+            return newsMapper.updateByPrimaryKey(newsWithBLOBs);
+        }
+        return null;
+    }
+
     /******************************** 私有方法：转换新闻为页面视图model ************************************/
 
     private NewsEditPageModel changeToNewsEditPageModel(NewsWithBLOBs newsWithBLOBs){
@@ -258,8 +273,6 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setCreateTime(new Date());                            //新闻创建时间为用户指定时间
         newsWithBLOBs.setNewsCreateTime(newsEditPageModel.getNewsCreateTime());  //新闻发布时间
         newsWithBLOBs.setId(newsEditPageModel.getId());
-
-
 
         return newsWithBLOBs;
 

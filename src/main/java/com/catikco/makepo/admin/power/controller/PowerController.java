@@ -71,4 +71,20 @@ public class PowerController {
         return result;
     }
 
+
+    @RequestMapping(value = "delete-power", method = RequestMethod.POST)
+    @ResponseBody
+    public CallResult<String> delete(Integer id){
+        CallResult<String> result = new CallResult<>();
+        if(1 == powerService.deletePower(id)){
+            result.setCode("succeed");
+            result.setData("删除成功！");
+        }else {
+            result.setCode("error");
+            result.setData("删除失败");
+        }
+
+        return result;
+    }
+
 }
