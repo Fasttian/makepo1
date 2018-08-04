@@ -25,6 +25,7 @@
     <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.LampWithBLOBs" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
@@ -91,7 +92,7 @@
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, model, voltage, power, lumen, 
     powerFactor, size, material, title, keywords, decription, productUrl, views, productCreateTime, 
-    productType, createTime, upDataTime, createBy, upDataBy, remark, deleted
+    productType, createTime, upDataTime, createBy, upDataBy, remark, deleted, type
   </sql>
   <sql id="Blob_Column_List" >
     description, content
@@ -152,8 +153,8 @@
       decription, productUrl, views, 
       productCreateTime, productType, createTime, 
       upDataTime, createBy, upDataBy, 
-      remark, deleted, description, 
-      content)
+      remark, deleted, type, 
+      description, content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{model,jdbcType=VARCHAR}, #{voltage,jdbcType=DOUBLE}, #{power,jdbcType=DOUBLE}, 
       #{lumen,jdbcType=DOUBLE}, #{powerFactor,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
@@ -161,8 +162,8 @@
       #{decription,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
       #{productCreateTime,jdbcType=DATE}, #{productType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, 
       #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{type,jdbcType=TINYINT}, 
+      #{description,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.LampWithBLOBs" useGeneratedKeys="true" keyProperty="id">
     insert into Lamp
@@ -235,6 +236,9 @@
       </if>
       <if test="deleted != null" >
         deleted,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="description != null" >
         description,
@@ -312,6 +316,9 @@
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=BIT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
       </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
@@ -399,6 +406,9 @@
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -435,6 +445,7 @@
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
+      type = #{record.type,jdbcType=TINYINT},
       description = #{record.description,jdbcType=LONGVARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -465,7 +476,8 @@
       createBy = #{record.createBy,jdbcType=INTEGER},
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=BIT}
+      deleted = #{record.deleted,jdbcType=BIT},
+      type = #{record.type,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -539,6 +551,9 @@
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=BIT},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -572,6 +587,7 @@
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
+      type = #{type,jdbcType=TINYINT},
       description = #{description,jdbcType=LONGVARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -599,7 +615,8 @@
       createBy = #{createBy,jdbcType=INTEGER},
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=BIT}
+      deleted = #{deleted,jdbcType=BIT},
+      type = #{type,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

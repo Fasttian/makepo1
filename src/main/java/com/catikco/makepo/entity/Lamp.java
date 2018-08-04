@@ -49,6 +49,8 @@ public class Lamp {
 
     private Boolean deleted;
 
+    private Byte type;
+
     public Integer getId() {
         return id;
     }
@@ -231,5 +233,13 @@ public class Lamp {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
     }
 }

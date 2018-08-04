@@ -29,6 +29,8 @@ public class FileStorage {
 
     private Boolean deleted;
 
+    private Byte fileType;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class FileStorage {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Byte getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(Byte fileType) {
+        this.fileType = fileType;
     }
 }

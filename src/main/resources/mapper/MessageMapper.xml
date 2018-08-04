@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.catikco.makepo.mapper.FileStorageMapper" >
-  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.FileStorage" >
+<mapper namespace="com.catikco.makepo.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.Message" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="fileSize" property="fileSize" jdbcType="BIGINT" />
-    <result column="filePrefix" property="filePrefix" jdbcType="VARCHAR" />
-    <result column="fileSuffix" property="fileSuffix" jdbcType="VARCHAR" />
-    <result column="fileDesc" property="fileDesc" jdbcType="VARCHAR" />
-    <result column="fileStatus" property="fileStatus" jdbcType="TINYINT" />
-    <result column="filePath" property="filePath" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
     <result column="creteTime" property="creteTime" jdbcType="DATE" />
     <result column="upDataTime" property="upDataTime" jdbcType="DATE" />
     <result column="createBy" property="createBy" jdbcType="INTEGER" />
     <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
-    <result column="fileType" property="fileType" jdbcType="TINYINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.Message" extends="BaseResultMap" >
+    <result column="moreInfo" property="moreInfo" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,16 +76,21 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, fileSize, filePrefix, fileSuffix, fileDesc, fileStatus, filePath, creteTime, 
-    upDataTime, createBy, upDataBy, remark, deleted, fileType
+    id, name, email, subject, creteTime, upDataTime, createBy, upDataBy, remark, deleted, 
+    phone
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FileStorageExample" >
+  <sql id="Blob_Column_List" >
+    moreInfo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.MessageExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from FileStorage
+    ,
+    <include refid="Blob_Column_List" />
+    from Message
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,57 +98,64 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.MessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from FileStorage
+    ,
+    <include refid="Blob_Column_List" />
+    from Message
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from FileStorage
+    delete from Message
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FileStorageExample" >
-    delete from FileStorage
+  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.MessageExample" >
+    delete from Message
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
-    insert into FileStorage (id, fileSize, filePrefix, 
-      fileSuffix, fileDesc, fileStatus, 
-      filePath, creteTime, upDataTime, 
+  <insert id="insert" parameterType="com.catikco.makepo.entity.Message" useGeneratedKeys="true" keyProperty="id">
+    insert into Message (id, name, email, 
+      subject, creteTime, upDataTime, 
       createBy, upDataBy, remark, 
-      deleted, fileType)
-    values (#{id,jdbcType=INTEGER}, #{fileSize,jdbcType=BIGINT}, #{filePrefix,jdbcType=VARCHAR}, 
-      #{fileSuffix,jdbcType=VARCHAR}, #{fileDesc,jdbcType=VARCHAR}, #{fileStatus,jdbcType=TINYINT}, 
-      #{filePath,jdbcType=VARCHAR}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
+      deleted, phone, moreInfo
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{subject,jdbcType=VARCHAR}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
       #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{fileType,jdbcType=TINYINT})
+      #{deleted,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{moreInfo,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
-    insert into FileStorage
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Message" useGeneratedKeys="true" keyProperty="id">
+    insert into Message
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="fileSize != null" >
-        fileSize,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="filePrefix != null" >
-        filePrefix,
+      <if test="email != null" >
+        email,
       </if>
-      <if test="fileSuffix != null" >
-        fileSuffix,
-      </if>
-      <if test="fileDesc != null" >
-        fileDesc,
-      </if>
-      <if test="fileStatus != null" >
-        fileStatus,
-      </if>
-      <if test="filePath != null" >
-        filePath,
+      <if test="subject != null" >
+        subject,
       </if>
       <if test="creteTime != null" >
         creteTime,
@@ -163,31 +175,25 @@
       <if test="deleted != null" >
         deleted,
       </if>
-      <if test="fileType != null" >
-        fileType,
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="moreInfo != null" >
+        moreInfo,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="fileSize != null" >
-        #{fileSize,jdbcType=BIGINT},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="filePrefix != null" >
-        #{filePrefix,jdbcType=VARCHAR},
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
       </if>
-      <if test="fileSuffix != null" >
-        #{fileSuffix,jdbcType=VARCHAR},
-      </if>
-      <if test="fileDesc != null" >
-        #{fileDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="fileStatus != null" >
-        #{fileStatus,jdbcType=TINYINT},
-      </if>
-      <if test="filePath != null" >
-        #{filePath,jdbcType=VARCHAR},
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
       </if>
       <if test="creteTime != null" >
         #{creteTime,jdbcType=DATE},
@@ -207,40 +213,34 @@
       <if test="deleted != null" >
         #{deleted,jdbcType=BIT},
       </if>
-      <if test="fileType != null" >
-        #{fileType,jdbcType=TINYINT},
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="moreInfo != null" >
+        #{moreInfo,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.catikco.makepo.entity.FileStorageExample" resultType="java.lang.Integer" >
-    select count(*) from FileStorage
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.MessageExample" resultType="java.lang.Integer" >
+    select count(*) from Message
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update FileStorage
+    update Message
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.fileSize != null" >
-        fileSize = #{record.fileSize,jdbcType=BIGINT},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.filePrefix != null" >
-        filePrefix = #{record.filePrefix,jdbcType=VARCHAR},
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.fileSuffix != null" >
-        fileSuffix = #{record.fileSuffix,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fileDesc != null" >
-        fileDesc = #{record.fileDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fileStatus != null" >
-        fileStatus = #{record.fileStatus,jdbcType=TINYINT},
-      </if>
-      <if test="record.filePath != null" >
-        filePath = #{record.filePath,jdbcType=VARCHAR},
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=VARCHAR},
       </if>
       <if test="record.creteTime != null" >
         creteTime = #{record.creteTime,jdbcType=DATE},
@@ -260,54 +260,63 @@
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
-      <if test="record.fileType != null" >
-        fileType = #{record.fileType,jdbcType=TINYINT},
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moreInfo != null" >
+        moreInfo = #{record.moreInfo,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
-    update FileStorage
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Message
     set id = #{record.id,jdbcType=INTEGER},
-      fileSize = #{record.fileSize,jdbcType=BIGINT},
-      filePrefix = #{record.filePrefix,jdbcType=VARCHAR},
-      fileSuffix = #{record.fileSuffix,jdbcType=VARCHAR},
-      fileDesc = #{record.fileDesc,jdbcType=VARCHAR},
-      fileStatus = #{record.fileStatus,jdbcType=TINYINT},
-      filePath = #{record.filePath,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
       creteTime = #{record.creteTime,jdbcType=DATE},
       upDataTime = #{record.upDataTime,jdbcType=DATE},
       createBy = #{record.createBy,jdbcType=INTEGER},
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
-      fileType = #{record.fileType,jdbcType=TINYINT}
+      phone = #{record.phone,jdbcType=VARCHAR},
+      moreInfo = #{record.moreInfo,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.FileStorage" >
-    update FileStorage
+  <update id="updateByExample" parameterType="map" >
+    update Message
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      creteTime = #{record.creteTime,jdbcType=DATE},
+      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      phone = #{record.phone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.Message" >
+    update Message
     <set >
-      <if test="fileSize != null" >
-        fileSize = #{fileSize,jdbcType=BIGINT},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="filePrefix != null" >
-        filePrefix = #{filePrefix,jdbcType=VARCHAR},
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="fileSuffix != null" >
-        fileSuffix = #{fileSuffix,jdbcType=VARCHAR},
-      </if>
-      <if test="fileDesc != null" >
-        fileDesc = #{fileDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="fileStatus != null" >
-        fileStatus = #{fileStatus,jdbcType=TINYINT},
-      </if>
-      <if test="filePath != null" >
-        filePath = #{filePath,jdbcType=VARCHAR},
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
       </if>
       <if test="creteTime != null" >
         creteTime = #{creteTime,jdbcType=DATE},
@@ -327,27 +336,42 @@
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=BIT},
       </if>
-      <if test="fileType != null" >
-        fileType = #{fileType,jdbcType=TINYINT},
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="moreInfo != null" >
+        moreInfo = #{moreInfo,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.FileStorage" >
-    update FileStorage
-    set fileSize = #{fileSize,jdbcType=BIGINT},
-      filePrefix = #{filePrefix,jdbcType=VARCHAR},
-      fileSuffix = #{fileSuffix,jdbcType=VARCHAR},
-      fileDesc = #{fileDesc,jdbcType=VARCHAR},
-      fileStatus = #{fileStatus,jdbcType=TINYINT},
-      filePath = #{filePath,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.Message" >
+    update Message
+    set name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
       creteTime = #{creteTime,jdbcType=DATE},
       upDataTime = #{upDataTime,jdbcType=DATE},
       createBy = #{createBy,jdbcType=INTEGER},
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
-      fileType = #{fileType,jdbcType=TINYINT}
+      phone = #{phone,jdbcType=VARCHAR},
+      moreInfo = #{moreInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Message" >
+    update Message
+    set name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      creteTime = #{creteTime,jdbcType=DATE},
+      upDataTime = #{upDataTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      phone = #{phone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

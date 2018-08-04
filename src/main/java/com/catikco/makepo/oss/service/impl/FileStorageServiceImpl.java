@@ -37,7 +37,7 @@ public class FileStorageServiceImpl implements FileStorageService {
      * @return
      */
     @Override
-    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle) {
+    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType) {
 
         StringBuffer result = new StringBuffer("");
         Integer fileId = null;
@@ -84,6 +84,9 @@ public class FileStorageServiceImpl implements FileStorageService {
                     filestorage.setCreteTime(new Date());
                     filestorage.setFileStatus((byte)1);       //文件状态：1，临时 2，正常 3，废弃
                     filestorage.setRemark("临时文件");
+
+                    if(null != fileType)        //如果
+                        filestorage.setFileType((byte)1);          //设置1标示为产品手册文件
 
                     filestorageMapper.insert(filestorage);      //插数据库
                     fileId = filestorage.getId();

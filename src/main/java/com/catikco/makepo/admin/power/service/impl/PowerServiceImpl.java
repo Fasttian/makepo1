@@ -103,7 +103,7 @@ public class PowerServiceImpl implements PowerService {
         Integer productTitleImageFileid = null; //产品图片文件id
         MultipartFile multipartFile = powerEditPageModel.getTitImage();
         if(null != powerEditPageModel.getTitImage().getOriginalFilename())
-            productTitleImageFileid = fileStorageService.uploads(multipartFile,response,true);
+            productTitleImageFileid = fileStorageService.uploads(multipartFile,response,true,null);
 
         PowerWithBLOBs powerWithBLOBs =changeToPowerWithBLOBs(powerEditPageModel,productTitleImageFileid,null);
         //插数据库
