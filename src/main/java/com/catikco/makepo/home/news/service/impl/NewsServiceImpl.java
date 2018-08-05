@@ -11,7 +11,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +35,24 @@ public class NewsServiceImpl implements NewsService {
         newsExample.setOrderByClause("newsCreateTime"+" "+"asc");
 
         //按新闻类型查询
-       // Integer newsType = (Integer) queryCriteria.get("newsType");
+        Integer newsType = null;
+        Integer pageNum = null;
+
+        if(queryCriteria != null){
+             newsType = (Integer) queryCriteria.get("newsType");
+             pageNum = (Integer) queryCriteria.get("pageNum");
+        }
+        Integer startPage = 0;
 
         //查询条件
-      /*  if(null != newsType){
+        if(null != newsType){
             criteria.andNewsTypeEqualTo((newsType.byteValue()));
-        }*/
+        }
+        if(null != pageNum)
+            startPage = pageNum;
+
         //设置分页信息
-        PageHelper.startPage(0,2);
+        PageHelper.startPage(startPage,2);
 
         List<NewsWithBLOBs> newsWithBLOBsList = newsMapper.selectByExampleWithBLOBs(newsExample);
         //让pageInfo对象进行分页的处理

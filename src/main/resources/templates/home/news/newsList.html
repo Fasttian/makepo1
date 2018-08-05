@@ -75,6 +75,7 @@
                         </div>
                         <!-- blog-option end -->
                     </div>
+                    <div id = "news-list-content">
                     <#if newsListPageModel ??>
                     <div class="row">
                         <!-- blog-item start -->
@@ -106,7 +107,7 @@
                     <ul class="shop-pagination box-shadow text-center ptblr-10-30">
                         <#if (newsListPageModel.currentPage = 1)>
                              <#else>
-                                 <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                                 <li><a href="javaScript:queryByPage(${newsListPageModel.prevPage})"><i class="zmdi zmdi-chevron-left"></i></a></li>
                          </#if>
                             <#list 1..newsListPageModel.count as i >
                                 <li <#if ( newsListPageModel.currentPage = i)> class="active" </#if>>
@@ -123,6 +124,7 @@
                     </ul>
               </#if>
             </#if>
+        </div>
                 </div>
             </div>
             <!-- BLOG SECTION END -->             
@@ -132,3 +134,17 @@
 <#include "./home/public/footer.html"/>
 
 
+<script>
+    function queryByPage(pageNum) {
+        $.ajax({
+            type:'GET',
+            url:'/newsListByPage?pageNum='+pageNum,
+            success: function (data) {
+                $("#news-list-content").html();
+                $("#news-list-content").html(data);
+            }
+        });
+
+    }
+
+</script>
