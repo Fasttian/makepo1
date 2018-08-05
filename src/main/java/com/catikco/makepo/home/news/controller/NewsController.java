@@ -1,7 +1,14 @@
 package com.catikco.makepo.home.news.controller;
 
+import com.catikco.makepo.home.news.service.NewsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Create By: TianJiaXing @Gui Yang
@@ -13,8 +20,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class NewsController {
 
+    @Autowired
+    private NewsService newsService;
+
+
     @RequestMapping("/newsList")
-    public String VisitNewsList(){
+    public String VisitNewsList(HttpServletRequest request,Integer newsType){
+        Map<String,Object> queryCriteria = new HashMap<>();
+        //queryCriteria.put("newsType",(Object) 1);
+
+        request.setAttribute("newsListPageModel",newsService.getNewsList(queryCriteria));
+
         return "home/newsList";
     }
 
