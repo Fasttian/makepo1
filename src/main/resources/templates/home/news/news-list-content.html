@@ -1,0 +1,48 @@
+<#if newsListPageModel ??>
+<div class="row">
+    <!-- blog-item start -->
+    <#list newsListPageModel.newsList as newsList>
+    <div class="col-sm-6 col-xs-12">
+        <div class="blog-item-2">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="blog-image">
+                        <a href="/newsDetail"><img src="home/img/blog/1.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="">
+                        <h5 class="blog-title-2"><a href="/newsDetail">${newsList.title}</a></h5>
+                        <p>${newsList.digest}</p>
+                        <div class="read-more">
+                            <a href="/newsDetail?id=" +${newsList.id}>更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </#list>
+    <!-- blog-item end -->
+</div>
+    <#if newsListPageModel.nextPage ??>
+<ul class="shop-pagination box-shadow text-center ptblr-10-30">
+                <#if (newsListPageModel.currentPage = 1)>
+                <#else>
+                <li><a href="javaScript:queryByPage(${newsListPageModel.prevPage})"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                </#if>
+            <#list 1..newsListPageModel.count as i >
+            <li <#if ( newsListPageModel.currentPage = i)> class="active" </#if>>
+                <a href="JavaScript:queryByPage(${i});">${i_index+1}</a>
+            </li>
+            </#list>
+
+            <#if (newsListPageModel.currentPage=newsListPageModel.count)>
+            <#else >
+            <li class="next">
+                <a href="javaScript:queryByPage(${newsListPageModel.nextPage})"><i class="zmdi zmdi-chevron-right"></i></a>
+            </li>
+            </#if>
+    </ul>
+    </#if>
+</#if>

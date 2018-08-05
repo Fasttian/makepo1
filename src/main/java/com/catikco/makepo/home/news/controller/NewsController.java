@@ -4,7 +4,6 @@ import com.catikco.makepo.home.news.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -25,18 +24,29 @@ public class NewsController {
 
 
     @RequestMapping("/newsList")
-    public String VisitNewsList(HttpServletRequest request,Integer newsType){
+    public String VisitNewsList(HttpServletRequest request){
+
+        request.setAttribute("newsListPageModel",newsService.getNewsList(null));
+
+        return "home/news/newsList";
+    }
+
+    //按分页条件查询
+    @RequestMapping("/newsListByPage")
+    public String newsListByPage(HttpServletRequest request,Integer pageNum){
         Map<String,Object> queryCriteria = new HashMap<>();
-        //queryCriteria.put("newsType",(Object) 1);
+        queryCriteria.put("pageNum",pageNum);
 
         request.setAttribute("newsListPageModel",newsService.getNewsList(queryCriteria));
+        return "home/news/news-list-content";
 
-        return "home/newsList";
     }
+
+
 
     @RequestMapping("/newsDetail")
     public String VisitNewsDetail(){
-        return "home/newsDetail";
+        return "home/news/newsDetail";
     }
 }
 

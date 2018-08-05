@@ -2,7 +2,6 @@ package com.catikco.makepo.home.news.model;
 
 import com.catikco.makepo.entity.NewsWithBLOBs;
 
-import java.util.Date;
 import java.util.List;
 
 /**
