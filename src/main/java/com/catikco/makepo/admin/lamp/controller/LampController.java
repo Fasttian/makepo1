@@ -93,7 +93,7 @@ public class LampController {
         CallResult<String> result = new CallResult<>();
         if(1 == lampService.saveLamp(lampEditPageModel,response)){
             result.setCode("succeed");
-            result.setData("保存成功");
+            result.setData("保存成功，准备返回新闻列表！");
         }else {
             result.setCode("error");
             result.setData("保存失败");

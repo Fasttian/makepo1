@@ -22,7 +22,6 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
     <result column="model" property="model" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.PowerWithBLOBs" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
@@ -89,7 +88,7 @@
   <sql id="Base_Column_List" >
     id, productTitleImageFileid, productContentImagesFileid, power, input, output, size, 
     title, keywords, productUrl, views, productCreateTime, productType, creteTime, upDataTime, 
-    createBy, upDataBy, remark, deleted, model, type
+    createBy, upDataBy, remark, deleted, model
   </sql>
   <sql id="Blob_Column_List" >
     description, content
@@ -102,7 +101,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from Power
+    from power
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -116,7 +115,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from Power
+    from power
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -129,27 +128,27 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from Power
+    from power
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from Power
+    delete from power
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.PowerExample" >
-    delete from Power
+    delete from power
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
-    insert into Power (id, productTitleImageFileid, productContentImagesFileid, 
+    insert into power (id, productTitleImageFileid, productContentImagesFileid, 
       power, input, output, 
       size, title, keywords, 
       productUrl, views, productCreateTime, 
       productType, creteTime, upDataTime, 
       createBy, upDataBy, remark, 
-      deleted, model, type, description, 
+      deleted, model, description, 
       content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
@@ -157,11 +156,11 @@
       #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
       #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
       #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{description,jdbcType=LONGVARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
-    insert into Power
+    insert into power
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -222,9 +221,6 @@
       </if>
       <if test="model != null" >
         model,
-      </if>
-      <if test="type != null" >
-        type,
       </if>
       <if test="description != null" >
         description,
@@ -294,9 +290,6 @@
       <if test="model != null" >
         #{model,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        #{type,jdbcType=TINYINT},
-      </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -306,13 +299,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.catikco.makepo.entity.PowerExample" resultType="java.lang.Integer" >
-    select count(*) from Power
+    select count(*) from power
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update Power
+    update power
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -374,9 +367,6 @@
       <if test="record.model != null" >
         model = #{record.model,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null" >
-        type = #{record.type,jdbcType=TINYINT},
-      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -389,7 +379,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update Power
+    update power
     set id = #{record.id,jdbcType=INTEGER},
       productTitleImageFileid = #{record.productTitleImageFileid,jdbcType=INTEGER},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
@@ -410,7 +400,6 @@
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       model = #{record.model,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=TINYINT},
       description = #{record.description,jdbcType=LONGVARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -418,7 +407,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update Power
+    update power
     set id = #{record.id,jdbcType=INTEGER},
       productTitleImageFileid = #{record.productTitleImageFileid,jdbcType=INTEGER},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
@@ -438,14 +427,13 @@
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
-      model = #{record.model,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=TINYINT}
+      model = #{record.model,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" >
-    update Power
+    update power
     <set >
       <if test="productTitleImageFileid != null" >
         productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
@@ -504,9 +492,6 @@
       <if test="model != null" >
         model = #{model,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=TINYINT},
-      </if>
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -517,7 +502,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" >
-    update Power
+    update power
     set productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       power = #{power,jdbcType=DOUBLE},
@@ -537,13 +522,12 @@
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
       model = #{model,jdbcType=VARCHAR},
-      type = #{type,jdbcType=TINYINT},
       description = #{description,jdbcType=LONGVARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Power" >
-    update Power
+    update power
     set productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       power = #{power,jdbcType=DOUBLE},
@@ -562,8 +546,7 @@
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
-      model = #{model,jdbcType=VARCHAR},
-      type = #{type,jdbcType=TINYINT}
+      model = #{model,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

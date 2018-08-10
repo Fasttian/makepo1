@@ -33,13 +33,15 @@ public class LampEditPageModel {
 
     private String keywords;
 
-    private String decription;
+    private String description;   //产品介绍
 
     private String productUrl;
 
     private Integer views;
 
     private Byte productType;
+
+    private Date productCreateTime;
 
     public Integer getId() {
         return id;
@@ -129,12 +131,12 @@ public class LampEditPageModel {
         this.keywords = keywords;
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getProductUrl() {
@@ -159,5 +161,13 @@ public class LampEditPageModel {
 
     public void setProductType(Byte productType) {
         this.productType = productType;
+    }
+
+    public Date getProductCreateTime() {
+        return productCreateTime;
+    }
+
+    public void setProductCreateTime(Date productCreateTime) {
+        this.productCreateTime = productCreateTime;
     }
 }

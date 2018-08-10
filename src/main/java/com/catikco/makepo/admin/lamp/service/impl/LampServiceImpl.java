@@ -5,7 +5,6 @@ import com.catikco.makepo.admin.lamp.model.LampEditPageModel;
 import com.catikco.makepo.admin.lamp.model.LampListPageModel;
 import com.catikco.makepo.admin.lamp.model.LampRequestPageModel;
 import com.catikco.makepo.admin.lamp.service.LampService;
-import com.catikco.makepo.entity.Lamp;
 import com.catikco.makepo.entity.LampExample;
 import com.catikco.makepo.entity.LampWithBLOBs;
 import com.catikco.makepo.mapper.LampMapper;
@@ -18,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,9 +54,9 @@ public class LampServiceImpl implements LampService {
         String model = lampRequestPageModel.getModel();         //按新闻标题查询
 
         // 设置排序方式
-//        if (sortName != null && !sortName.isEmpty()) {
-//            lampExample.setOrderByClause(sortName + " " + sort);
-//        }
+        if (sortName != null && !sortName.isEmpty()) {
+            lampExample.setOrderByClause(sortName + " " + sort);
+        }
 
         // 按新闻标题查询
         if (!"".equals(model)) {
@@ -98,9 +98,11 @@ public class LampServiceImpl implements LampService {
         LampWithBLOBs lampWithBLOBs = this.changeToLamp(lampEditPageModel, lampTitleImageFileid, null);
         //插数据库
         if (null != lampEditPageModel.getId() && !"".equals(lampEditPageModel.getId())) {
-            int iss = lampMapper.updateByPrimaryKeySelective(lampWithBLOBs);
+            lampWithBLOBs.setUpDataTime(new Date());
+            int iss = lampMapper.updateByPrimaryKeyWithBLOBs(lampWithBLOBs);
             return iss;
         } else {
+            lampWithBLOBs.setCreateTime(new Date());
             return lampMapper.insert(lampWithBLOBs);
 
         }
@@ -108,24 +110,30 @@ public class LampServiceImpl implements LampService {
 
     @Override
     public LampEditPageModel loadLamp(Integer id) {
-        Lamp lamp = lampMapper.selectByPrimaryKey(id);
-        if (lamp != null) {
-            return changeToLampEditPageModel(lamp);
-        }
+        LampWithBLOBs lampWithBLOBs = lampMapper.selectByPrimaryKey(id);
+        if (lampWithBLOBs != null)
+            return changeToLampEditPageModel(lampWithBLOBs);
+
         return null;
     }
 
     /*************************** 私有方法： 转换灯具为页面视图 model ***********************************/
 
-    private LampEditPageModel changeToLampEditPageModel(Lamp lamp){
+    private LampEditPageModel changeToLampEditPageModel(LampWithBLOBs lampWithBLOBs){
         LampEditPageModel lampEditPageModel = new LampEditPageModel();
-        lampEditPageModel.setId(lamp.getId());
-        lampEditPageModel.setModel(lamp.getModel());
-        lampEditPageModel.setPower(lamp.getPower());
-        lampEditPageModel.setVoltage(lamp.getVoltage());
-        lampEditPageModel.setSize(lamp.getSize());
-        lampEditPageModel.setLumen(lamp.getLumen());
-        lampEditPageModel.setMaterial(lamp.getMaterial());
+        lampEditPageModel.setId(lampWithBLOBs.getId());
+        lampEditPageModel.setModel(lampWithBLOBs.getModel());
+        lampEditPageModel.setPower(lampWithBLOBs.getPower());
+        lampEditPageModel.setVoltage(lampWithBLOBs.getVoltage());
+        lampEditPageModel.setSize(lampWithBLOBs.getSize());
+        lampEditPageModel.setLumen(lampWithBLOBs.getLumen());
+        lampEditPageModel.setMaterial(lampWithBLOBs.getMaterial());
+        lampEditPageModel.setProductCreateTime(lampWithBLOBs.getProductCreateTime());
+        lampEditPageModel.setProductType(lampWithBLOBs.getProductType());
+        lampEditPageModel.setKeywords(lampWithBLOBs.getKeywords());
+        lampEditPageModel.setPowerFactor(lampWithBLOBs.getPowerFactor());
+        lampEditPageModel.setDescription(lampWithBLOBs.getDescription());
+        lampEditPageModel.setTitle(lampWithBLOBs.getTitle());
 
         return lampEditPageModel;
     }
@@ -164,6 +172,13 @@ public class LampServiceImpl implements LampService {
         lampWithBLOBs.setId(lampEditPageModel.getId());
         lampWithBLOBs.setProductTitleImageFileid(productTitleImageFileid);
         lampWithBLOBs.setModel(lampEditPageModel.getModel());
+        lampWithBLOBs.setDescription(lampEditPageModel.getDescription());
+        lampWithBLOBs.setProductCreateTime(lampEditPageModel.getProductCreateTime());
+        lampWithBLOBs.setPower(lampEditPageModel.getPower());
+        lampWithBLOBs.setPowerFactor(lampEditPageModel.getPowerFactor());
+        lampWithBLOBs.setSize(lampEditPageModel.getSize());
+        lampWithBLOBs.setTitle(lampEditPageModel.getTitle());
+        lampWithBLOBs.setProductType(lampEditPageModel.getProductType());
 
         return lampWithBLOBs;
     }

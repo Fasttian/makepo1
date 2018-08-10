@@ -7,7 +7,7 @@
     <result column="newsContentImagesFileid" property="newsContentImagesFileid" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
-    <result column="decription" property="decription" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="newsResources" property="newsResources" jdbcType="VARCHAR" />
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="newsUrl" property="newsUrl" jdbcType="VARCHAR" />
@@ -83,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, newsTitleImageFileid, newsContentImagesFileid, title, keywords, decription, newsResources, 
-    views, newsUrl, newsCreateTime, newsType, createTime, upDataTime, createBy, upDataBy, 
-    remark, deleted
+    id, newsTitleImageFileid, newsContentImagesFileid, title, keywords, description, 
+    newsResources, views, newsUrl, newsCreateTime, newsType, createTime, upDataTime, 
+    createBy, upDataBy, remark, deleted
   </sql>
   <sql id="Blob_Column_List" >
     digest, content
@@ -98,7 +98,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from News
+    from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -112,7 +112,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from News
+    from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -125,29 +125,29 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from News
+    from news
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from News
+    delete from news
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.NewsExample" >
-    delete from News
+    delete from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
-    insert into News (id, newsTitleImageFileid, newsContentImagesFileid, 
-      title, keywords, decription, 
+    insert into news (id, newsTitleImageFileid, newsContentImagesFileid, 
+      title, keywords, description, 
       newsResources, views, newsUrl, 
       newsCreateTime, newsType, createTime, 
       upDataTime, createBy, upDataBy, 
       remark, deleted, digest, 
       content)
     values (#{id,jdbcType=INTEGER}, #{newsTitleImageFileid,jdbcType=INTEGER}, #{newsContentImagesFileid,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{decription,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{newsResources,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{newsUrl,jdbcType=VARCHAR}, 
       #{newsCreateTime,jdbcType=DATE}, #{newsType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, 
       #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
@@ -155,7 +155,7 @@
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" useGeneratedKeys="true" keyProperty="id">
-    insert into News
+    insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -172,8 +172,8 @@
       <if test="keywords != null" >
         keywords,
       </if>
-      <if test="decription != null" >
-        decription,
+      <if test="description != null" >
+        description,
       </if>
       <if test="newsResources != null" >
         newsResources,
@@ -231,8 +231,8 @@
       <if test="keywords != null" >
         #{keywords,jdbcType=VARCHAR},
       </if>
-      <if test="decription != null" >
-        #{decription,jdbcType=VARCHAR},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="newsResources != null" >
         #{newsResources,jdbcType=VARCHAR},
@@ -276,13 +276,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.catikco.makepo.entity.NewsExample" resultType="java.lang.Integer" >
-    select count(*) from News
+    select count(*) from news
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update News
+    update news
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -299,8 +299,8 @@
       <if test="record.keywords != null" >
         keywords = #{record.keywords,jdbcType=VARCHAR},
       </if>
-      <if test="record.decription != null" >
-        decription = #{record.decription,jdbcType=VARCHAR},
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.newsResources != null" >
         newsResources = #{record.newsResources,jdbcType=VARCHAR},
@@ -347,13 +347,13 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update News
+    update news
     set id = #{record.id,jdbcType=INTEGER},
       newsTitleImageFileid = #{record.newsTitleImageFileid,jdbcType=INTEGER},
       newsContentImagesFileid = #{record.newsContentImagesFileid,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      decription = #{record.decription,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       newsResources = #{record.newsResources,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       newsUrl = #{record.newsUrl,jdbcType=VARCHAR},
@@ -372,13 +372,13 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update News
+    update news
     set id = #{record.id,jdbcType=INTEGER},
       newsTitleImageFileid = #{record.newsTitleImageFileid,jdbcType=INTEGER},
       newsContentImagesFileid = #{record.newsContentImagesFileid,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      decription = #{record.decription,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       newsResources = #{record.newsResources,jdbcType=VARCHAR},
       views = #{record.views,jdbcType=INTEGER},
       newsUrl = #{record.newsUrl,jdbcType=VARCHAR},
@@ -395,7 +395,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
-    update News
+    update news
     <set >
       <if test="newsTitleImageFileid != null" >
         newsTitleImageFileid = #{newsTitleImageFileid,jdbcType=INTEGER},
@@ -409,8 +409,8 @@
       <if test="keywords != null" >
         keywords = #{keywords,jdbcType=VARCHAR},
       </if>
-      <if test="decription != null" >
-        decription = #{decription,jdbcType=VARCHAR},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="newsResources != null" >
         newsResources = #{newsResources,jdbcType=VARCHAR},
@@ -455,12 +455,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.NewsWithBLOBs" >
-    update News
+    update news
     set newsTitleImageFileid = #{newsTitleImageFileid,jdbcType=INTEGER},
       newsContentImagesFileid = #{newsContentImagesFileid,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      decription = #{decription,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       newsResources = #{newsResources,jdbcType=VARCHAR},
       views = #{views,jdbcType=INTEGER},
       newsUrl = #{newsUrl,jdbcType=VARCHAR},
@@ -477,12 +477,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.News" >
-    update News
+    update news
     set newsTitleImageFileid = #{newsTitleImageFileid,jdbcType=INTEGER},
       newsContentImagesFileid = #{newsContentImagesFileid,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
-      decription = #{decription,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       newsResources = #{newsResources,jdbcType=VARCHAR},
       views = #{views,jdbcType=INTEGER},
       newsUrl = #{newsUrl,jdbcType=VARCHAR},

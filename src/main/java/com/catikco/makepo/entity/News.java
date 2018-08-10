@@ -13,7 +13,7 @@ public class News {
 
     private String keywords;
 
-    private String decription;
+    private String description;
 
     private String newsResources;
 
@@ -77,12 +77,12 @@ public class News {
         this.keywords = keywords == null ? null : keywords.trim();
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription == null ? null : decription.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getNewsResources() {
