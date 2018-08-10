@@ -1,5 +1,4 @@
 <#include 'admin/common/header.html'/>
-
 <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
@@ -7,8 +6,6 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-
-
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
@@ -39,7 +36,7 @@
                                     <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
                                     <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消
                                     </button>
-                                    <button class="btn btn-success  inline-btn" onclick="javascript:    submitEditData('editLampForm', '/save-lamp', '/lamp-list') ">
+                                    <button class="btn btn-success  inline-btn" onclick="javascript:submitEditData() ">
                                         提交
                                     </button>
                                 </div>
@@ -56,24 +53,29 @@
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">产品型号</label>
+                                        <label class="col-md-2 control-label">产品类型</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="type" name="type" class="form-control"
-                                                   value="${lampEditPageModel.type}">
+                                            <select class="selectpicker" data-style="btn-custom"
+                                                    name="productType" value="${lampEditPageModel.productType}">
+                                                <option value="1">G4/G9</option>
+                                                <option value="2">球泡灯</option>
+                                                <option value="3">灯丝灯</option>
+                                                <option value="4">面板灯</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">产品标题</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="title" name="title" class="form-control"
+                                                   value="${lampEditPageModel.title}" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">关键字</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="keyWords" name="keyWords" class="form-control"
-                                                   value="${lampEditPageModel.keyWords}" placeholder="更容易搜索引擎抓取">
-                                        </div>
-                                    </div>
-                                    <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">描述</label>
-                                        <div class="col-md-10">
-                                            <input type="text" id="decription" name="decription" class="form-control"
-                                                   value="${lampEditPageModel.decription}" placeholder="更容易搜索引擎抓取">
+                                            <input type="text" id="keyWords" name="keywords" class="form-control"
+                                                   value="${lampEditPageModel.keywords}" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -121,7 +123,7 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">上传图片</label>
                                         <div class="col-md-10">
-                                            <input type="file" class="filestyle" data-buttonname="btn-default">
+                                            <input type="file" class="filestyle" name="titImage" data-buttonname="btn-default">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -129,35 +131,18 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" name="productTitleImageFileid"
-                                                           class="form-control"
-                                                           value="${lampEditPageModel.productTitleImageFileid}"
-                                                           placeholder="mm/dd/yyyy"
-                                                           id="datepicker-autoclose">
+                                                    <input type="text" name="productCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(lampEditPageModel.productCreateTime ? string('MM/dd/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
-                                                </div><!-- input-group -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">产品类型</label>
-                                        <div class="col-md-10">
-                                            <select class="selectpicker" data-style="btn-custom"
-                                                    value="${lampEditPageModel.productType}">
-                                                <option>G4/G9</option>
-                                                <option>球泡灯</option>
-                                                <option>灯丝灯</option>
-                                                <option>面板灯</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">产品简介</label>
                                         <div class="col-md-10">
-                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3"
-                                                  placeholder="最多225个字符">${lampEditPageModel.decription}</textarea>
+                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3" name="description"
+                                                  placeholder="最多225个字符">${lampEditPageModel.description}</textarea>
                                         </div>
                                     </div>
                                 </form>
@@ -270,7 +255,10 @@
 <!-- App js -->
 <script src="admin/assets/js/jquery.core.js"></script>
 <script src="admin/assets/js/jquery.app.js"></script>
-
+<!--引入lay弹层js-->
+<script src="common/layui-v2.3.0/layui.js"></script>
+<!-- 引入pnotify -->
+<#include "./common/js/nitify_js.html">
 
 <script>
 
@@ -316,36 +304,48 @@
     }
 
     //提交编辑数据ajax公共调用函数
-    function submitEditData(formId, callUrl, refreshListUrl) {
+    function submitEditData() {
         //获取表单数据
-        var formData = new FormData($(formId));
+        var formData = new FormData(document.getElementById("editLampForm"));
 
         //获取富文本编辑器
-        var content = $('#content').summernote('code');
-        formData.append("content",content);
+     /*   var content = $('#content').summernote('code');
+        formData.append("content",content);*/
 
         $.ajax({
             type: 'POST',
-             url: callUrl,
+             url: '/save-lamp',
             data: formData,
             processData: false,
             contentType: false,
             dataType: 'json',
             success: function(data) {
                 if(data.code == "succeed"){
-                    console.log(data.data);
-                };
-                if (data.code == "error") {
-                    console.log(data.data);
+                    notify_sucess(data.data);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
                     return;
                 }
-                //保存成功返回产品列表
-                location.href = refreshListUrl;
+                //返回新闻列表页(返回时延时1秒，让用户看到提示信息)
+                setTimeout(function () {
+                    backList();
+                },1000);
             },
             error: function() {
                 console.log("数据保存失败！")
             }
         })
+    }
+
+    //清空表单
+    function clearForm(){
+        $('#editLampForm :input').val("");
+    }
+
+    //返回列表
+    function backList() {
+        location.href="/lamp-list";
     }
 
     //调用 ajax 公共方法提交 lamp 数据

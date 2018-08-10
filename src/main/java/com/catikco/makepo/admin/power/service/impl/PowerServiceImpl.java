@@ -108,8 +108,10 @@ public class PowerServiceImpl implements PowerService {
         PowerWithBLOBs powerWithBLOBs =changeToPowerWithBLOBs(powerEditPageModel,productTitleImageFileid,null);
         //插数据库
         if(powerEditPageModel.getId() != null && !"".equals(powerEditPageModel.getId())){
-                return powerMapper.updateByPrimaryKey(powerWithBLOBs);
+                powerWithBLOBs.setUpDataTime(new Date());
+                return powerMapper.updateByPrimaryKeyWithBLOBs(powerWithBLOBs);
         }else {
+            powerWithBLOBs.setCreteTime(new Date());
             return powerMapper.insert(powerWithBLOBs);
         }
 
@@ -122,8 +124,6 @@ public class PowerServiceImpl implements PowerService {
         PowerWithBLOBs powerWithBLOBs = new PowerWithBLOBs();
 
         powerWithBLOBs.setModel(powerEditPageModel.getModel());
-        powerWithBLOBs.setDescription(powerEditPageModel.getDescription());
-        powerWithBLOBs.setCreteTime(new Date());
         powerWithBLOBs.setProductTitleImageFileid(productTitleImageFileid);
         powerWithBLOBs.setId(powerEditPageModel.getId());
         powerWithBLOBs.setInput(powerEditPageModel.getInput());
@@ -135,6 +135,8 @@ public class PowerServiceImpl implements PowerService {
         powerWithBLOBs.setSize(powerEditPageModel.getSize());
         powerWithBLOBs.setDeleted(false);
         powerWithBLOBs.setTitle(powerEditPageModel.getTitle());
+        powerWithBLOBs.setProductType(powerEditPageModel.getProductType());
+        powerWithBLOBs.setDescription(powerEditPageModel.getDescription());
 
         return powerWithBLOBs;
     }

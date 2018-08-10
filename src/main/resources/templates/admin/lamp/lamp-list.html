@@ -32,7 +32,7 @@
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByTitle()"><i class="fa fa-search"></i></button>
                                             </span>
-                                            <input type="text" id="model"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入新闻标题查询">
+                                            <input type="text" id="model"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入产品名称查询...">
                                         </div>
                                     </form>
                                     <table id="datatable" class="table table-striped table-bordered">
@@ -231,8 +231,6 @@
                         "sWidth" : "10%"
                     },
 
-
-
                         {
                             "mData": "id",
                             "orderable": false, // 禁用排序
@@ -270,14 +268,23 @@
                 if (data.order&&data.order.length&&data.order[0]) {
                     switch (data.order[0].column) {
                         case 0:
-                            data.orderColumn = "size";//数据库列名称
+                            data.orderColumn = "model";//按产品名排序
                             break;
                         case 1:
-                            data.orderColumn = "model";//数据库列名称
+                            data.orderColumn = "power";//按功率排序
+                            break;
+                        case 2:
+                            data.orderColumn = "size";//按size排序
+                            break;
+                        case 3:
+                            data.orderColumn = "title";//按产品标题排序
+                            break;
+                        case 4:
+                            data.orderColumn = "productType";//按产品类型排序
                             break;
                     }
                     //排序方式asc或者desc
-                    data.orderDir = data.order[0].dir;
+                    data.orderDir = data.order[0].dir;  //指定默认排序字段
                     data.model=$("#model").val();
                 }
                 return data;
@@ -319,12 +326,6 @@
                 location.href="/edit-lamp?id="+id;
             }
 
-
-
-
-
         </script>
-
-
     </body>
 </html>

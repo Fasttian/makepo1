@@ -27,8 +27,6 @@ public class Lamp {
 
     private String keywords;
 
-    private String decription;
-
     private String productUrl;
 
     private Integer views;
@@ -48,8 +46,6 @@ public class Lamp {
     private String remark;
 
     private Boolean deleted;
-
-    private Byte type;
 
     public Integer getId() {
         return id;
@@ -147,14 +143,6 @@ public class Lamp {
         this.keywords = keywords == null ? null : keywords.trim();
     }
 
-    public String getDecription() {
-        return decription;
-    }
-
-    public void setDecription(String decription) {
-        this.decription = decription == null ? null : decription.trim();
-    }
-
     public String getProductUrl() {
         return productUrl;
     }
@@ -233,13 +221,5 @@ public class Lamp {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public Byte getType() {
-        return type;
-    }
-
-    public void setType(Byte type) {
-        this.type = type;
     }
 }

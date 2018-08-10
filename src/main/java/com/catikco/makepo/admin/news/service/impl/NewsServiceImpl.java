@@ -110,9 +110,10 @@ public class NewsServiceImpl implements NewsService {
         NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newTitleImageFileid, newContentFileid);
         //插数据库
         if(null != newsEditPageModel.getId() && !"".equals(newsEditPageModel.getId())){
-            int iss = newsMapper.updateByPrimaryKeySelective(newsWithBLOBs);
-            return iss;
+            newsWithBLOBs.setUpDataTime(new Date());
+            return newsMapper.updateByPrimaryKeySelective(newsWithBLOBs);
         }else {
+            newsWithBLOBs.setCreateTime(new Date());
             return newsMapper.insert(newsWithBLOBs);
         }
 
@@ -214,7 +215,7 @@ public class NewsServiceImpl implements NewsService {
         newsEditPageModel.setKeywords(newsWithBLOBs.getKeywords());
         newsEditPageModel.setTitle(newsWithBLOBs.getTitle());
         newsEditPageModel.setContent(newsWithBLOBs.getContent());
-        newsEditPageModel.setDescription(newsWithBLOBs.getDecription());
+        newsEditPageModel.setDescription(newsWithBLOBs.getDescription());
         newsEditPageModel.setNewsCreateTime(newsWithBLOBs.getNewsCreateTime());
         newsEditPageModel.setNewsResources(newsWithBLOBs.getNewsResources());
         newsEditPageModel.setNewsType(newsWithBLOBs.getNewsType());
@@ -260,7 +261,7 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setTitle(newsEditPageModel.getTitle());
         newsWithBLOBs.setDigest(newsEditPageModel.getDigest());
         newsWithBLOBs.setContent(newsEditPageModel.getContent());
-        newsWithBLOBs.setDecription(newsEditPageModel.getDescription());
+        newsWithBLOBs.setDescription(newsEditPageModel.getDescription());
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
         newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
         newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
@@ -269,7 +270,6 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail
         newsWithBLOBs.setNewsResources(newsEditPageModel.getNewsResources());
-        newsWithBLOBs.setCreateTime(new Date());                            //新闻创建时间为用户指定时间
         newsWithBLOBs.setNewsCreateTime(newsEditPageModel.getNewsCreateTime());  //新闻发布时间
         newsWithBLOBs.setId(newsEditPageModel.getId());
 

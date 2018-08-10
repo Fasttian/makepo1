@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">编辑电源</h4>
+                            <h4 class="page-title">发布产品</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="#">Zircos</a>
@@ -32,6 +32,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
+                            <h3 class="header-title pull-left"><b>编辑产品</b></h3>
                             <div class="col-sm-12 m-b-30 m-t-0">
                                 <div class="pull-right">
                                     <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
@@ -49,9 +50,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">产品型号</label>
+                                        <label class="col-md-2 control-label">产品类型</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="type" name="type" class="form-control" value="${powerEditPageModel.type}">
+                                            <select class="selectpicker" data-style="btn-custom"
+                                                    name="productType" value="${lampEditPageModel.productType}">
+                                                <option value="1">G4/G9</option>
+                                                <option value="2">球泡灯</option>
+                                                <option value="3">灯丝灯</option>
+                                                <option value="4">面板灯</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -93,21 +100,21 @@
                                         <label class="col-md-2 control-label">关键字</label>
                                         <div class="col-md-10">
                                             <input type="text" id="keywords" name="keywords" class="form-control" value="${powerEditPageModel.keywords}"
-                                                   placeholder="更容易搜索引擎抓取">
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">产品内容标题</label>
                                         <div class="col-md-10">
                                             <input type="text" id="title" name="title" class="form-control" value="${powerEditPageModel.title}"
-                                                   placeholder="更容易搜索引擎抓取">
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
-                                        <label class="col-md-2 control-label">描述</label>
+                                        <label class="col-md-2 control-label">产品简介</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="description" name="description" class="form-control" value="${powerEditPageModel.description}"
-                                                   placeholder="更容易搜索引擎抓取">
+                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3" name="description"
+                                                  placeholder="最多225个字符">${powerEditPageModel.description}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">

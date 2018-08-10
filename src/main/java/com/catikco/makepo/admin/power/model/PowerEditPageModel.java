@@ -18,11 +18,20 @@ public class PowerEditPageModel {
     private String size;    //尺寸
     private String title;   //产品内容标题
     private String keywords;    //关键字
-    private String description; //描述
+    private String description; //产品介绍
     private String productUrl;  //产品链接
     private String remark;      // 备注
     private MultipartFile titImage;                 //电源图片
     private Date productCreateTime;                 //产品发布时间
+    private Byte productType;           //产品类型
+
+    public Byte getProductType() {
+        return productType;
+    }
+
+    public void setProductType(Byte productType) {
+        this.productType = productType;
+    }
 
     public Date getProductCreateTime() {
         return productCreateTime;
