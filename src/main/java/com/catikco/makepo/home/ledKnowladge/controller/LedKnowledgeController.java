@@ -15,11 +15,11 @@ public class LedKnowledgeController {
 
     @RequestMapping("/knowledge")
     public String VisitLedKnowledge() {
-        return ("home/ledKnowledge");
+        return ("home/knowledge/ledKnowledge");
     }
 
     @RequestMapping("/knowledgeDetail")
     public String VisitLedKnowledgeDetail(){
-        return ("/home/newsDetail");
+        return ("/home/news/newsDetail");
     }
 }

@@ -14,6 +14,6 @@ public class contactUsController {
 
     @RequestMapping("/contactUs")
     public String visitContactUs(){
-        return "home/contact";
+        return "home/contact/contact";
     }
 }
