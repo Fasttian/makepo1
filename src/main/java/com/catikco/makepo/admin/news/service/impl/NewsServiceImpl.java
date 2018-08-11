@@ -273,6 +273,7 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setNewsCreateTime(newsEditPageModel.getNewsCreateTime());  //新闻发布时间
         newsWithBLOBs.setId(newsEditPageModel.getId());
 
+
         return newsWithBLOBs;
 
     }

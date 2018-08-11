@@ -124,7 +124,6 @@ public class NewsController {
      * @param response
      */
     @RequestMapping("/save-file")
-    @ResponseBody
     public void saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
        fileStorageService.uploads(multipartFile,response,false,null);
     }
