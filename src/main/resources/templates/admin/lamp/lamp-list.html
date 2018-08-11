@@ -298,7 +298,7 @@
 
             }
 
-        /******************************************** 新闻增，删，改，查 *******************************************************/
+        /******************************************** 增，删，改，查 *******************************************************/
             //清空查询条件
             function clearQuery() {
                 $('#newsForm')[0].reset();
@@ -310,9 +310,41 @@
                 table.ajax.reload();
             }
 
-            //要据id删除新闻
+            //要据id删除
             function deleteLamp(id){
-                alert("删除")
+                layer.confirm('确认要删除吗？', {
+                    btn : [ '确定', '取消' ]//按钮
+                } ,function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type:'POST',
+                        url: '/delete-lamp',
+                        dataType:'json',
+                        data: {"id":id},
+                        async:false,
+                        cache:false,
+                        success: function (data) {
+                            if(data.code == "succeed"){
+                                notify_sucess(data.data);
+                            }
+                            if(data.code == "error"){
+                                notify_error(data.data)
+                                return;
+                            }
+                            //返回百科列表页(返回时延时1秒，让用户看到提示信息)
+                            setTimeout(function () {
+                                backList();
+                            },100);
+                        },
+                    })
+                },function(index) {
+                    layer.close(index);
+                });
+            }
+
+            //返回列表
+            function backList() {
+                location.href="/lamp-list";
             }
 
             //新增新闻

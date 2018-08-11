@@ -30,7 +30,7 @@ public class LampServiceImpl implements LampService {
         LampExample.Criteria criteria = lampExample.createCriteria();
 
         //产品按时间排序
-        lampExample.setOrderByClause("productCreateTime" + "" + "asc");
+        lampExample.setOrderByClause("productCreateTime" + " " + "asc");
 
         //产品类型查询
         Integer productType = null;

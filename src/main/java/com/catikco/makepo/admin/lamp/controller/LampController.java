@@ -37,16 +37,6 @@ public class LampController {
     @Autowired
     private FileStorageService fileStorageService;
 
-
-//    /**
-//     * 后台管理初始页
-//     * @return
-//     */
-//    @RequestMapping("admin-init")
-//    public String adminInit(HttpServletResponse response){
-//        return "admin/index";😀
-//    } 
-
     /**
      * 灯饰管理页面
      * @return
@@ -104,25 +94,20 @@ public class LampController {
     }
 
 
-//    /**
-//     * 根据id删除灯饰
-//     * @param id
-//     */
-//    @RequestMapping("delete-lamp")
-//    public void deleteLamp(Integer id){
-//
-//    }
-//
-//    /**
-//     * 对富文本编辑器中的图片文件执行保存操作
-//     * @param multipartFile
-//     * @param response
-//     */
-//    @RequestMapping("/save-file")
-//    @ResponseBody
-//    public void saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
-//        fileStorageService.uploads(multipartFile,response,false);
-//    }
+    @RequestMapping(value = "delete-lamp", method = RequestMethod.POST)
+    @ResponseBody
+    public CallResult<String> delete(Integer id){
+        CallResult<String> result = new CallResult<>();
+        if(1 == lampService.delete(id)){
+            result.setCode("succeed");
+            result.setData("删除成功！");
+        }else {
+            result.setCode("error");
+            result.setData("保存失败");
+        }
+        return result;
+    }
+
 
 
 }

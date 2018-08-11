@@ -33,4 +33,6 @@ public interface LampService  {
      * @return
      */
     public LampEditPageModel loadLamp(Integer id);
+
+    public Integer delete(Integer id);
 }
