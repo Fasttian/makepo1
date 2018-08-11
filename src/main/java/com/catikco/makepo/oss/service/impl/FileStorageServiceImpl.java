@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.Date;
 
 /**
@@ -106,4 +105,48 @@ public class FileStorageServiceImpl implements FileStorageService {
         }
         return null;
     }
+
+    @Override
+    public int delete(Integer id) {
+        if(null == id)
+            return 0;
+
+        return filestorageMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void download(Integer id,HttpServletResponse response) throws IOException {
+        //获取要下载的文件名
+        String fileName = null;
+        FileStorage fileStorage = null;
+        if(null != id){
+            fileStorage = filestorageMapper.selectByPrimaryKey(id);
+            fileName = fileStorage.getFilePath();
+        }
+
+        //获取文件在项目中路径
+        String filePath = uploadPath+File.separator+fileStorage.getFilePath();
+        //设置响应类型
+        response.setContentType("application/force-download");//应用程序强制下载
+        //读取文件
+        InputStream in = new FileInputStream(filePath);
+        //设置响应头，对文件进行url编码
+        fileName = URLEncoder.encode(fileName, "UTF-8");
+        response.setHeader("Content-Disposition", "attachment;filename="+fileName);
+        response.setContentLength(in.available());
+        response.setHeader("Content-Disposition", "attachment;filename="+new String(fileName.getBytes("GBK"),"ISO-8859-1"));
+
+        //开始copy
+        OutputStream out = response.getOutputStream();
+        byte[] b = new byte[1024];
+        int len = 0;
+        while((len = in.read(b))!=-1){
+            out.write(b, 0, len);
+        }
+        out.flush();
+        out.close();
+        in.close();
+    }
+
+
 }

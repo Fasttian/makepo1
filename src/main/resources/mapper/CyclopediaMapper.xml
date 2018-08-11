@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.catikco.makepo.mapper.CyclopediaMapper" >
+  <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.Cyclopedia" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cyclopediaTitleImageFileid" property="cyclopediaTitleImageFileid" jdbcType="INTEGER" />
+    <result column="cyclopediaContentImagesFileid" property="cyclopediaContentImagesFileid" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="cyclopediaResources" property="cyclopediaResources" jdbcType="VARCHAR" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="cyclopediaUrl" property="cyclopediaUrl" jdbcType="VARCHAR" />
+    <result column="cyclopediaCreateTime" property="cyclopediaCreateTime" jdbcType="DATE" />
+    <result column="cyclopediaType" property="cyclopediaType" jdbcType="TINYINT" />
+    <result column="createTime" property="createTime" jdbcType="DATE" />
+    <result column="upDataTime" property="upDataTime" jdbcType="DATE" />
+    <result column="createBy" property="createBy" jdbcType="INTEGER" />
+    <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.CyclopediaWithBLOBs" extends="BaseResultMap" >
+    <result column="digest" property="digest" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cyclopediaTitleImageFileid, cyclopediaContentImagesFileid, title, keywords, description, 
+    cyclopediaResources, views, cyclopediaUrl, cyclopediaCreateTime, cyclopediaType, 
+    createTime, upDataTime, createBy, upDataBy, remark, deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    digest, content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.CyclopediaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cyclopedia
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.CyclopediaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cyclopedia
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cyclopedia
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cyclopedia
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.CyclopediaExample" >
+    delete from cyclopedia
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.catikco.makepo.entity.CyclopediaWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+    insert into cyclopedia (id, cyclopediaTitleImageFileid, cyclopediaContentImagesFileid, 
+      title, keywords, description, 
+      cyclopediaResources, views, cyclopediaUrl, 
+      cyclopediaCreateTime, cyclopediaType, createTime, 
+      upDataTime, createBy, upDataBy, 
+      remark, deleted, digest, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{cyclopediaTitleImageFileid,jdbcType=INTEGER}, #{cyclopediaContentImagesFileid,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{cyclopediaResources,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{cyclopediaUrl,jdbcType=VARCHAR}, 
+      #{cyclopediaCreateTime,jdbcType=DATE}, #{cyclopediaType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, 
+      #{upDataTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{digest,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.catikco.makepo.entity.CyclopediaWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+    insert into cyclopedia
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cyclopediaTitleImageFileid != null" >
+        cyclopediaTitleImageFileid,
+      </if>
+      <if test="cyclopediaContentImagesFileid != null" >
+        cyclopediaContentImagesFileid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="cyclopediaResources != null" >
+        cyclopediaResources,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="cyclopediaUrl != null" >
+        cyclopediaUrl,
+      </if>
+      <if test="cyclopediaCreateTime != null" >
+        cyclopediaCreateTime,
+      </if>
+      <if test="cyclopediaType != null" >
+        cyclopediaType,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="upDataTime != null" >
+        upDataTime,
+      </if>
+      <if test="createBy != null" >
+        createBy,
+      </if>
+      <if test="upDataBy != null" >
+        upDataBy,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="digest != null" >
+        digest,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cyclopediaTitleImageFileid != null" >
+        #{cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      </if>
+      <if test="cyclopediaContentImagesFileid != null" >
+        #{cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cyclopediaResources != null" >
+        #{cyclopediaResources,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="cyclopediaUrl != null" >
+        #{cyclopediaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cyclopediaCreateTime != null" >
+        #{cyclopediaCreateTime,jdbcType=DATE},
+      </if>
+      <if test="cyclopediaType != null" >
+        #{cyclopediaType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="upDataTime != null" >
+        #{upDataTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="upDataBy != null" >
+        #{upDataBy,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="digest != null" >
+        #{digest,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.catikco.makepo.entity.CyclopediaExample" resultType="java.lang.Integer" >
+    select count(*) from cyclopedia
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cyclopedia
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cyclopediaTitleImageFileid != null" >
+        cyclopediaTitleImageFileid = #{record.cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cyclopediaContentImagesFileid != null" >
+        cyclopediaContentImagesFileid = #{record.cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywords != null" >
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyclopediaResources != null" >
+        cyclopediaResources = #{record.cyclopediaResources,jdbcType=VARCHAR},
+      </if>
+      <if test="record.views != null" >
+        views = #{record.views,jdbcType=INTEGER},
+      </if>
+      <if test="record.cyclopediaUrl != null" >
+        cyclopediaUrl = #{record.cyclopediaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyclopediaCreateTime != null" >
+        cyclopediaCreateTime = #{record.cyclopediaCreateTime,jdbcType=DATE},
+      </if>
+      <if test="record.cyclopediaType != null" >
+        cyclopediaType = #{record.cyclopediaType,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        createTime = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.upDataTime != null" >
+        upDataTime = #{record.upDataTime,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null" >
+        createBy = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.upDataBy != null" >
+        upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.digest != null" >
+        digest = #{record.digest,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cyclopedia
+    set id = #{record.id,jdbcType=INTEGER},
+      cyclopediaTitleImageFileid = #{record.cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      cyclopediaContentImagesFileid = #{record.cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      cyclopediaResources = #{record.cyclopediaResources,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      cyclopediaUrl = #{record.cyclopediaUrl,jdbcType=VARCHAR},
+      cyclopediaCreateTime = #{record.cyclopediaCreateTime,jdbcType=DATE},
+      cyclopediaType = #{record.cyclopediaType,jdbcType=TINYINT},
+      createTime = #{record.createTime,jdbcType=DATE},
+      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      digest = #{record.digest,jdbcType=LONGVARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cyclopedia
+    set id = #{record.id,jdbcType=INTEGER},
+      cyclopediaTitleImageFileid = #{record.cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      cyclopediaContentImagesFileid = #{record.cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      cyclopediaResources = #{record.cyclopediaResources,jdbcType=VARCHAR},
+      views = #{record.views,jdbcType=INTEGER},
+      cyclopediaUrl = #{record.cyclopediaUrl,jdbcType=VARCHAR},
+      cyclopediaCreateTime = #{record.cyclopediaCreateTime,jdbcType=DATE},
+      cyclopediaType = #{record.cyclopediaType,jdbcType=TINYINT},
+      createTime = #{record.createTime,jdbcType=DATE},
+      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.CyclopediaWithBLOBs" >
+    update cyclopedia
+    <set >
+      <if test="cyclopediaTitleImageFileid != null" >
+        cyclopediaTitleImageFileid = #{cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      </if>
+      <if test="cyclopediaContentImagesFileid != null" >
+        cyclopediaContentImagesFileid = #{cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cyclopediaResources != null" >
+        cyclopediaResources = #{cyclopediaResources,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="cyclopediaUrl != null" >
+        cyclopediaUrl = #{cyclopediaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cyclopediaCreateTime != null" >
+        cyclopediaCreateTime = #{cyclopediaCreateTime,jdbcType=DATE},
+      </if>
+      <if test="cyclopediaType != null" >
+        cyclopediaType = #{cyclopediaType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="upDataTime != null" >
+        upDataTime = #{upDataTime,jdbcType=DATE},
+      </if>
+      <if test="createBy != null" >
+        createBy = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="upDataBy != null" >
+        upDataBy = #{upDataBy,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="digest != null" >
+        digest = #{digest,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.CyclopediaWithBLOBs" >
+    update cyclopedia
+    set cyclopediaTitleImageFileid = #{cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      cyclopediaContentImagesFileid = #{cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      cyclopediaResources = #{cyclopediaResources,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      cyclopediaUrl = #{cyclopediaUrl,jdbcType=VARCHAR},
+      cyclopediaCreateTime = #{cyclopediaCreateTime,jdbcType=DATE},
+      cyclopediaType = #{cyclopediaType,jdbcType=TINYINT},
+      createTime = #{createTime,jdbcType=DATE},
+      upDataTime = #{upDataTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      digest = #{digest,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Cyclopedia" >
+    update cyclopedia
+    set cyclopediaTitleImageFileid = #{cyclopediaTitleImageFileid,jdbcType=INTEGER},
+      cyclopediaContentImagesFileid = #{cyclopediaContentImagesFileid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      cyclopediaResources = #{cyclopediaResources,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      cyclopediaUrl = #{cyclopediaUrl,jdbcType=VARCHAR},
+      cyclopediaCreateTime = #{cyclopediaCreateTime,jdbcType=DATE},
+      cyclopediaType = #{cyclopediaType,jdbcType=TINYINT},
+      createTime = #{createTime,jdbcType=DATE},
+      upDataTime = #{upDataTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

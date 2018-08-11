@@ -3,6 +3,7 @@ package com.catikco.makepo.oss.service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -22,5 +23,14 @@ public interface FileStorageService {
      * @return
      */
     public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType);
+
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    public int delete(Integer id);
+
+    public void download(Integer id,HttpServletResponse response) throws IOException;
 
 }
