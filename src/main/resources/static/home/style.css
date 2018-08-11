@@ -117,7 +117,7 @@
   right: 20px;
 }
 /* -------------------------------------
-    7.2 Featured product section
+    7.2 Featured lamp section
 ------------------------------------- */
 .product-item {
   margin-bottom: 30px;
@@ -194,7 +194,7 @@
   box-shadow: 0px 8px 13px rgba(0, 0, 0, 0.15);
 }
 /* -------------------------------------
-    7.3 Up comming product section
+    7.3 Up comming lamp section
 ------------------------------------- */
 .up-comming-pro {}
 .up-comming-pro-img {
@@ -581,7 +581,7 @@ transform: scale(1);
   padding-left: 5px;
 }
 /* -------------------------------------
-    8.4 Up comming product 2
+    8.4 Up comming lamp 2
 ------------------------------------- */
 .up-comming-pro-2 .up-comming-pro-img {
   width: 53.3%;
@@ -1014,7 +1014,7 @@ transform: scale(1);
   margin: 4px 20px 0 0;
 }
 /* -------------------------------------
-    9.11 Widget product
+    9.11 Widget lamp
 ------------------------------------- */
 .widget-product .product-item {
   overflow: hidden;
@@ -1053,9 +1053,14 @@ transform: scale(1);
 ------------------------------------- */
 .imgs-zoom-area {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 }
 .imgs-zoom-area img {
-  width: 100% !important;
+  width: 60% !important;
+  height:60%;
 }
 #gallery_01 img {
   width: 100%;
@@ -1074,7 +1079,7 @@ transform: scale(1);
   right: -3px;
 }
 /* -------------------------------------
-    10.2 Single product info
+    10.2 Single lamp info
 ------------------------------------- */
 .single-product-info h3 {
   font-weight: 500;
@@ -1114,7 +1119,7 @@ transform: scale(1);
   margin: auto 5px;
 }
 /* -------------------------------------
-    10.4 product color and rating
+    10.4 lamp color and rating
 ------------------------------------- */
 .color-title {
   color: #575757;
