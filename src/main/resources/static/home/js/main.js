@@ -30,7 +30,7 @@
     9. Price Slider
     10. Fancybox active
     11. Elevate Zoom active 
-    12. single-product-zoom-image carousel
+    12. single-lamp-zoom-image carousel
     13. Cart Plus Minus Button
     14. bootstrap accordion one open at a time
     15. Cart tab menu active
@@ -109,7 +109,7 @@
 	/*------------------------------------
 			4.3 Active Featured Product
 	----------------------------------- */  
-    $('.active-featured-product').slick({
+    $('.active-featured-lamp').slick({
         speed: 700,
         arrows: true,
         dots: false,
@@ -159,7 +159,7 @@
 	/*------------------------------------
 			4.6 Active Related Product
 	-------------------------------------- */
-    $('.active-related-product').slick({
+    $('.active-related-lamp').slick({
         speed: 700,
         arrows: false,
         dots: false,
@@ -272,7 +272,7 @@
     });
 
 	/* ********************************************
-		12. single-product-zoom-image carousel
+		12. single-lamp-zoom-image carousel
 	******************************************** */ 
     $('.carousel-btn').slick({
         speed: 700,
