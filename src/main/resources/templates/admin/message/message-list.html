@@ -31,20 +31,19 @@
                         <form id="cyclopediaForm">
                             <div class="input-group" style="margin-bottom: 10px;">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByTitle()"><i class="fa fa-search"></i></button>
+                                                <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByName()"><i class="fa fa-search"></i></button>
                                             </span>
-                                <input type="text" id="cyclopediaTitle"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入百科标题查询">
+                                <input type="text" id="userName"   class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByName(); return false;}" placeholder="请入姓名查询...">
                             </div>
                         </form>
                         <table id="datatable" class="dataTable table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>百科标题</th>
-                                <th>百科关键字</th>
-                                <th>百科来源</th>
-                                <th>百科类型</th>
-                                <th>发布时间</th>
-                                <th>操作</th>
+                                <th>姓名</th>
+                                <th>邮箱</th>
+                                <th>主题</th>
+                                <th>手机</th>
+                                <th>内容</th>
                             </tr>
                             </thead>
                         </table>
@@ -187,63 +186,44 @@
             "searching": false,
             //数据来源（包括处理分页，排序，过滤） ，即url，action，接口，等等
             ajax: {
-                url: '/load-cyclopedia-list',
+                url: '/load-message-list',
                 type: 'POST',
                 "data":function(d){
                     getQueryCondition(d);
                 }
             },
-
-            "aoColumns" : [{
-                "mData" : "title",
-                "orderable" : true, // 禁用排序
-                "sDefaultContent" : "",
-                "sWidth" : "15%",
-
-            },
-
+            "aoColumns" : [
                 {
-                    "mData" : "keywords",
+                    "mData" : "name",
                     "orderable" : true, // 禁用排序
                     "sDefaultContent" : "",
-                    "sWidth" : "15%"
-                },
-                {
-                    "mData" : "cyclopediaResources",
-                    "orderable" : true, // 禁用排序
-                    "sDefaultContent" : "",
-                    "sWidth" : "10%",
+                    "sWidth" : "15%",
 
                 },
                 {
-                    "mData" : "cyclopediaType",
+                    "mData" : "email",
+                    "orderable" : true, // 禁用排序
+                    "sDefaultContent" : "",
+                    "sWidth" : "10%"
+                },
+                {
+                    "mData" : "subject",
+                    "orderable" : true, // 禁用排序
+                    "sDefaultContent" : "",
+                    "sWidth" : "15%",
+
+                },
+                {
+                    "mData" : "phone",
                     "orderable" : true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "6%",
-                    "render": function (data, type,row) {
-                        if(row.cyclopediaType == '1')
-                            data = "led";
-                        if(row.cyclopediaType == '2')
-                            data = "电源";
-                        return data;
-                    }
                 },
-
                 {
-                    "mData" : "cyclopediaCreateTime",
+                    "mData" : "moreInfo",
                     "orderable" : true, // 禁用排序
                     "sDefaultContent" : "",
-                    "sWidth" : "5%",
-                },
-                {
-                    "mData": "id",
-                    "orderable": false, // 禁用排序
-                    "sDefaultContent": '',
-                    "sWidth": "10%",
-                    "render": function (data, type,row) {
-                        var id = row.id;
-                        return data = '<button id="edit-cyclopedia" onclick="editCyclopedia('+id+')" class="btn btn-success  btn-sm" data-id=' + data + '>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-cyclopedia" onclick="deleteCyclopedia('+id+')" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
-                    }
+                    "sWidth" : "20%",
                 }
             ],
             "oLanguage" : { // 国际化配置
@@ -271,30 +251,27 @@
         if (data.order&&data.order.length&&data.order[0]) {
             switch (data.order[0].column) {
                 case 0:
-                    data.orderColumn = "title";//数据库列名称
+                    data.orderColumn = "name";//数据库列名称
                     break;
                 case 1:
-                    data.orderColumn = "keywords";//数据库列名称
+                    data.orderColumn = "email";//数据库列名称
                     break;
                 case 2:
-                    data.orderColumn = "cyclopediaResources";
+                    data.orderColumn = "subject";
                 case 3:
-                    data.orderColumn = "cyclopediaType";
+                    data.orderColumn = "phone";
                 case 4:
-                    data.orderColumn = "cyclopediaCreateTime";
+                    data.orderColumn = "moreInfo";
             }
             //排序方式asc或者desc
             data.orderDir = data.order[0].dir;
-            data.title=$("#cyclopediaTitle").val(); //条件查询
+            data.name=$("#userName").val(); //条件查询
         }
         return data;
     }
 
     function initComplete(){
-
-        //删除用户按钮的HTMLDOM
-        var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addCyclopedia()" class="btn btn-success waves-effect w-md waves-light m-b-5 btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
-
+        var topPlugin=' <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
         $("#datatable_length").append(topPlugin);//在表格上方topPlugin DIV中追加HTML
 
     }
@@ -307,56 +284,10 @@
     }
 
     //按标题查询
-    function queryByTitle() {
+    function queryByName() {
         table.ajax.reload();
     }
 
-    //要据id删除百科
-    function deleteCyclopedia(id){
-        layer.confirm('确认要删除吗？', {
-            btn : [ '确定', '取消' ]//按钮
-        } ,function (index) {
-            layer.close(index);
-            $.ajax({
-                type:'POST',
-                url: '/delete-cyclopedia',
-                dataType:'json',
-                data: {"id":id},
-                async:false,
-                cache:false,
-                success: function (data) {
-                    if(data.code == "succeed"){
-                        notify_sucess(data.data);
-                    }
-                    if(data.code == "error"){
-                        notify_error(data.data)
-                        return;
-                    }
-                    //返回百科列表页(返回时延时1秒，让用户看到提示信息)
-                    setTimeout(function () {
-                        backList();
-                    },100);
-                },
-            })
-        },function(index) {
-            layer.close(index);
-        });
-    }
-
-    //返回列表
-    function backList() {
-        location.href="/cyclopedia-list";
-    }
-
-    //新增
-    function addCyclopedia() {
-        location.href="/edit-cyclopedia";
-    }
-
-    //编辑
-    function editCyclopedia(id) {
-        location.href="/edit-cyclopedia?id="+id;
-    }
 
 
 </script>
