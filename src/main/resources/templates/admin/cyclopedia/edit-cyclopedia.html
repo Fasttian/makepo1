@@ -1,0 +1,352 @@
+<#include 'admin/common/header.html'/>
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">编辑百科</h4>
+                        <ol class="breadcrumb p-0 m-0">
+                            <li>
+                                <a href="#">Zircos</a>
+                            </li>
+                            <li>
+                                <a href="#">Forms </a>
+                            </li>
+                            <li class="active">
+                                Summernote Editor
+                            </li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <div class="col-sm-12 m-b-30 m-t-0">
+                            <div class="pull-right">
+                                <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
+                                <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消</button>
+                                <button class="btn btn-success  inline-btn" onclick="javascript:submitCyclopediaData()">提交</button>
+                            </div>
+                        </div>
+                        <div class="row form-horizontal">
+                            <form  id="editCyclopediaForm">
+                                <input type="text" id="id" name="id" value="${cyclopediaEditPageModel.id}" style="display: none">
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">百科标题</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="title" name="title" class="form-control" value="${cyclopediaEditPageModel.title}">
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">关键字</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="keywords" name="keywords" class="form-control" value="${cyclopediaEditPageModel.keywords}"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">描述</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="description" name="description" class="form-control" value="${cyclopediaEditPageModel.description}"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">百科来源</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="cyclopediaResources" name="cyclopediaResources" value=" ${cyclopediaEditPageModel.cyclopediaResources}"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">百科概要图</label>
+                                    <div class="col-md-10">
+                                        <input type="file" id="titImage" name="titImage" accept="image/jpeg,image/gif,image/png,image/bmp" class="filestyle" data-buttonname="btn-default">
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">发布时间</label>
+                                    <div class="col-md-10">
+                                        <div>
+                                            <div class="input-group">
+                                                <input type="text" name="cyclopediaCreateTime" class="form-control" id="cyclopediaCreateTime" value=" ${(cyclopediaEditPageModel.cyclopediaCreateTime ? string('MM/dd/yyyy'))!''}">
+                                                <span class="input-group-addon bg-custom b-0"><i
+                                                        class="mdi mdi-calendar text-white"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">百科类型</label>
+                                    <div class="col-md-10">
+                                        <!-- 暂时使用页面存值方式，处理下拉选赋值问题  -->
+                                        <input type="hidden" id="cyclopediaTypeValue" value="${cyclopediaEditPageModel.cyclopediaType}">
+                                        <select id="cyclopediaType" name="cyclopediaType" class="selectpicker"
+                                                data-style="btn-custom" >
+                                            <option value="1">led</option>
+                                            <option value="2">电源</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-6 col-sm-6">
+                                    <label class="col-md-2 control-label">摘要</label>
+                                    <div class="col-md-10">
+                                        <textarea id="textarea" name="digest" data-filename="" class="form-control" maxlength="225"
+                                                  rows="3"
+                                                  placeholder="最多225个字符">${cyclopediaEditPageModel.digest}</textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                                <textarea class="summernote col-md-12 col-sm-12" id="content" name="content">
+                                   ${cyclopediaEditPageModel.content}
+                                </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- container -->
+    </div> <!-- content -->
+
+    <footer class="footer text-right">
+        2018 ©  by Catik.
+    </footer>
+
+</div>
+
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+
+<!-- Right Sidebar -->
+<div class="side-bar right-bar">
+    <a href="javascript:void(0);" class="right-bar-toggle">
+        <i class="mdi mdi-close-circle-outline"></i>
+    </a>
+    <h4 class="">Settings</h4>
+    <div class="setting-list nicescroll">
+        <div class="row m-t-20">
+            <div class="col-xs-8">
+                <h5 class="m-0">Notifications</h5>
+                <p class="text-muted m-b-0">
+                    <small>Do you need them?</small>
+                </p>
+            </div>
+            <div class="col-xs-4 text-right">
+                <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+            </div>
+        </div>
+
+        <div class="row m-t-20">
+            <div class="col-xs-8">
+                <h5 class="m-0">API Access</h5>
+                <p class="m-b-0 text-muted">
+                    <small>Enable/Disable access</small>
+                </p>
+            </div>
+            <div class="col-xs-4 text-right">
+                <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+            </div>
+        </div>
+
+        <div class="row m-t-20">
+            <div class="col-xs-8">
+                <h5 class="m-0">Auto Updates</h5>
+                <p class="m-b-0 text-muted">
+                    <small>Keep up to date</small>
+                </p>
+            </div>
+            <div class="col-xs-4 text-right">
+                <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+            </div>
+        </div>
+
+        <div class="row m-t-20">
+            <div class="col-xs-8">
+                <h5 class="m-0">Online Status</h5>
+                <p class="m-b-0 text-muted">
+                    <small>Show your status to all</small>
+                </p>
+            </div>
+            <div class="col-xs-4 text-right">
+                <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Right-bar -->
+
+</div>
+<!-- END wrapper -->
+
+
+<script>
+    var resizefunc = [];
+</script>
+
+<!-- jQuery  -->
+<script src="admin/assets/js/jquery.min.js"></script>
+<script src="admin/assets/js/bootstrap.min.js"></script>
+<script src="admin/assets/js/detect.js"></script>
+<script src="admin/assets/js/fastclick.js"></script>
+<script src="admin/assets/js/jquery.blockUI.js"></script>
+<script src="admin/assets/js/waves.js"></script>
+<script src="admin/assets/js/jquery.slimscroll.js"></script>
+<script src="admin/assets/js/jquery.scrollTo.min.js"></script>
+<script src="admin/plugins/switchery/switchery.min.js"></script>
+
+<!--Summernote js-->
+<script src="admin/plugins/summernote/summernote.min.js"></script>
+
+<script src="admin/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
+
+<script src="admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<script src="admin/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- App js -->
+<script src="admin/assets/js/jquery.core.js"></script>
+<script src="admin/assets/js/jquery.app.js"></script>
+
+<!--引入lay弹层js-->
+<script src="common/layui-v2.3.0/layui.js"></script>
+<!-- 引入pnotify -->
+<#include "./common/js/nitify_js.html">
+
+
+
+<script>
+
+    $(document).ready(function () {
+        //处理类型下拉选（赋值问题）
+        var cyclopediaType = $('#cyclopediaTypeValue').val();
+        $("#cyclopediaType option[value='"+cyclopediaType+"']").attr("selected", "selected");
+
+        //初始化文本编辑器
+        $('.summernote').summernote({
+            height: 700,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false,                 // set focus to editable area after initializing summernote
+            callbacks: {
+                onImageUpload: function (files, editor, $editable) {
+                    for (var i = files.length - 1; i >= 0; i--) {
+                        UploadFiles(files[i], this);
+                    }
+                }
+            },
+        });
+
+
+    });
+
+    function UploadFiles(file, el) {
+        console.log(110);
+        //这里files是因为我设置了可上传多张图片，所以需要依次添加到formData中
+        var formData = new FormData();
+        formData.append("file", file);
+        console.log(formData);
+        $.ajax({
+            data: formData,
+            type: "POST",
+            url: "/save-cyclopedia-file",
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $(el).summernote('editor.insertImage', response.list[0].url, response.list[1].fileId);
+            },
+            error: function () {
+                console.log("uploadError");
+            }
+        })
+    }
+
+    //初始化layer
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+    });
+
+    //提交
+    function submitCyclopediaData(){
+        //表单验证
+        if($('#title').val() == ''){
+            notify_error("请填写百科标题")
+            return;
+        }
+
+        //FormData表单数据
+        var formData = new FormData(document.getElementById("editCyclopediaForm"));
+
+        //富文本编辑器数据
+        var content = $('#content').summernote('code');
+        formData.append("content",content);
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-cyclopedia',
+            data: formData,
+            processData:false,
+            contentType:false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.code == "succeed"){
+                    notify_sucess(data.data);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
+                    return;
+                }
+                //返回列表页(返回时延时1秒，让用户看到提示信息)
+                setTimeout(function () {
+                    backList();
+                },1000);
+            },
+            error: function (e) {
+                notify_error("保存出错，请联系系统开发人员！");
+            }
+        })
+
+    }
+
+    // Date Picker
+    $('#cyclopediaCreateTime').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    //file upload
+    $(":file").filestyle({input: true});
+    $('.selectpicker').selectpicker();
+
+    //返回列表
+    function backList() {
+        location.href="/cyclopedia-list";
+    }
+
+    //清空表单
+    function clearForm(){
+        $('#editCyclopediaForm :input').val("");
+    }
+
+</script>
+
+</body>
+</html>

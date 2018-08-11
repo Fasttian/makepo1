@@ -52,19 +52,22 @@
 
 
         <!-- 指定数据库表 -->
-      <!--  <table schema="" tableName="Lamp"  domainObjectName="Lamp">
+       <!-- <table schema="" tableName="lamp"  domainObjectName="Lamp">
              <property name="useActualColumnNames" value="true"/>
          </table>
-         <table schema="" tableName="Power" domainObjectName="Power">
+         <table schema="" tableName="power" domainObjectName="Power">
              <property name="useActualColumnNames" value="true"/>
          </table>
-         <table schema="" tableName="News" domainObjectName="News">
+         <table schema="" tableName="news" domainObjectName="News">
              <property name="useActualColumnNames" value="true"/>
          </table>
-         <table schema="" tableName="FileStorage" domainObjectName="FileStorage">
+         <table schema="" tableName="fileStorage" domainObjectName="FileStorage">
              <property name="useActualColumnNames" value="true"/>
          </table>
-        <table schema="" tableName="Message" domainObjectName="Message">
+        <table schema="" tableName="message" domainObjectName="Message">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="" tableName="cyclopedia" domainObjectName="Cyclopedia">
             <property name="useActualColumnNames" value="true"/>
         </table>-->
 
