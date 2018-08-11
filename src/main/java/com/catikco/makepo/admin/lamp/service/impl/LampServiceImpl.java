@@ -117,6 +117,14 @@ public class LampServiceImpl implements LampService {
         return null;
     }
 
+    @Override
+    public Integer delete(Integer id) {
+        if(id == null)
+            return null;
+
+        return lampMapper.deleteByPrimaryKey(id);
+    }
+
     /*************************** 私有方法： 转换灯具为页面视图 model ***********************************/
 
     private LampEditPageModel changeToLampEditPageModel(LampWithBLOBs lampWithBLOBs){
@@ -179,6 +187,10 @@ public class LampServiceImpl implements LampService {
         lampWithBLOBs.setSize(lampEditPageModel.getSize());
         lampWithBLOBs.setTitle(lampEditPageModel.getTitle());
         lampWithBLOBs.setProductType(lampEditPageModel.getProductType());
+        lampWithBLOBs.setKeywords(lampEditPageModel.getKeywords());
+        lampWithBLOBs.setVoltage(lampEditPageModel.getVoltage());
+        lampWithBLOBs.setLumen(lampEditPageModel.getLumen());
+        lampWithBLOBs.setMaterial(lampEditPageModel.getMaterial());
 
         return lampWithBLOBs;
     }
