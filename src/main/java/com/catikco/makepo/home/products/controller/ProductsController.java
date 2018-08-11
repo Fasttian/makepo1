@@ -14,11 +14,11 @@ public class ProductsController {
 
     @RequestMapping ("/productsAll")
     public String VisitProductPage(){
-        return "home/products";
+        return "home/product/products";
     }
 
     @RequestMapping("/ProductPageDetail")
     public String VisitProductPageDetail(){
-        return "home/productDetail";
+        return "home/product/productDetail";
     }
 }

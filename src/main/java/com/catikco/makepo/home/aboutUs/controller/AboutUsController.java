@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AboutUsController {
     @RequestMapping("/aboutUs")
     public String VisitAboutUs (){
-        return "home/about";
+        return "home/about/about";
     }
 }

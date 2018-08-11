@@ -13,7 +13,7 @@ public class IndexController {
 
     @RequestMapping("")
     public String VisitHomePage(){
-        return "home/index";
+        return "home/index/index";
     }
 
     /**
@@ -22,6 +22,6 @@ public class IndexController {
      */
     @RequestMapping("/download")
     public String VisitDownload(){
-        return "home/download";
+        return "home/download/download";
     }
 }
