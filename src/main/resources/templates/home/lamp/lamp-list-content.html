@@ -1,10 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<#if lampListPageModel ??>
+    <div class="row">
 
-</body>
-</html>
+        <div class="col-md-12 col-sm-12">
+            <div class="shop-content">
+                <!-- shop-option start -->
+                <div class="shop-option box-shadow mb-30 clearfix">
+                    <!-- Nav tabs -->
+                    <ul class="shop-tab f-left" role="tablist">
+                        <li class="active">
+                            <a href="#grid-view" data-toggle="tab"><i class="zmdi zmdi-view-module"></i></a>
+                        </li>
+                        <li>
+                            <a href="#list-view" data-toggle="tab"><i
+                                    class="zmdi zmdi-view-list-alt"></i></a>
+                        </li>
+                    </ul>
+                    <!-- short-by -->
+                    <div class="short-by f-left text-center">
+                        <span>Sort by :</span>
+                        <select>
+                            <option value="volvo">全部</option>
+                            <option value="saab">G4/G9</option>
+                            <option value="mercedes">球泡灯</option>
+                            <option value="audi">灯丝灯</option>
+                            <option value="audi">面板灯</option>
+                        </select>
+                    </div>
+                    <!-- showing -->
+                    <div class="showing f-right text-right">
+                        <span>Showing : 01-09 of 17.</span>
+                    </div>
+                </div>
+                <!-- shop-option end -->
+                <!-- Tab Content start -->
+
+                <div class="tab-content">
+                    <!-- grid-view -->
+                    <div role="tabpanel" class="tab-pane active" id="grid-view">
+                        <div class="row">
+                            <#list lampListPageModel.lampList as lampList>
+                                <!-- lamp-item start -->
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="product-item">
+                                        <div class="product-img">
+                                            <a href="/ProductPageDetail">
+                                                <img src="home/img/product-2/2.jpg" alt=""/>
+                                            </a>
+                                        </div>
+                                        <div class="product-info">
+                                            <h6 class="product-title">
+                                                <a href="/ProductPageDetail?id="+${lampList.id}>${lampList.model}</a>
+                                            </h6>
+                                            <div class="pro-rating">
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                            </div>
+                                            <h3 class="pro-price">${lampList.productType}</h3>
+                                            <ul class="action-button">
+                                                <li>
+                                                    <a href="#" title="Wishlist"><i
+                                                            class="zmdi zmdi-favorite"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" data-toggle="modal"
+                                                       data-target="#productModal"
+                                                       title="Quickview"><i
+                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- lamp-item end -->
+                            </#list>
+
+                        </div>
+                    </div>
+                    <!-- list-view -->
+                    <!--<div role="tabpanel" class="tab-pane" id="list-view">-->
+                    <!--<div class="row">-->
+                    <!--&lt;!&ndash; lamp-item start &ndash;&gt;-->
+                    <!--<div class="col-md-12">-->
+                    <!--<div class="shop-list product-item">-->
+                    <!--<div class="product-img">-->
+                    <!--<a href="/ProductPageDetail">-->
+                    <!--<img src="home/img/product/7.jpg" alt=""/>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="product-info">-->
+                    <!--<div class="clearfix">-->
+                    <!--<h6 class="product-title f-left">-->
+                    <!--<a href="/ProductPageDetail">Dummy Product Name </a>-->
+                    <!--</h6>-->
+                    <!--<div class="pro-rating f-right">-->
+                    <!--<a href="#"><i class="zmdi zmdi-star"></i></a>-->
+                    <!--<a href="#"><i class="zmdi zmdi-star"></i></a>-->
+                    <!--<a href="#"><i class="zmdi zmdi-star"></i></a>-->
+                    <!--<a href="#"><i class="zmdi zmdi-star-half"></i></a>-->
+                    <!--<a href="#"><i class="zmdi zmdi-star-outline"></i></a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<h6 class="brand-name mb-30">Brand Name</h6>-->
+                    <!--<h3 class="pro-price">$ 869.00</h3>-->
+                    <!--<p>There are many variations of passages of Lorem Ipsum-->
+                    <!--available,-->
+                    <!--but-->
+                    <!--the majority have suffered alteration in some form, by-->
+                    <!--injected-->
+                    <!--humour, or randomised words which don't look even slightly-->
+                    <!--believable.</p>-->
+                    <!--<ul class="action-button">-->
+                    <!--<li>-->
+                    <!--<a href="#" title="Wishlist"><i-->
+                    <!--class="zmdi zmdi-favorite"></i></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="#" data-toggle="modal"-->
+                    <!--data-target="#productModal"-->
+                    <!--title="Quickview"><i-->
+                    <!--class="zmdi zmdi-zoom-in"></i></a>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; lamp-item end &ndash;&gt;-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+                <!-- Tab Content end -->
+                <!-- shop-pagination start -->
+                <#if lampListPageModel.nextPage ??>
+                    <ul class="shop-pagination box-shadow text-center ptblr-10-30">
+                        <#if (lampListPageModel.currentPage = 1)>
+                            <#else>
+                                <li><a href="javascript:queryByPage(${lampListPageModel.prevPage});"><i
+                                        class="zmdi zmdi-chevron-left"></i></a></li>
+                        </#if>
+                        <#list 1..lampListPageModel.count as i>
+                            <li
+                            <#if (lampListPageModel.currentPage = i)> class="active"</#if>
+                            >
+                            <a href="javascript:queryByPage(${i});">${i_index+1}</a>
+                            </li>
+                        </#list>
+                        <!--<li><a href="#">02</a></li>-->
+                        <!--<li><a href="#">03</a></li>-->
+                        <!--<li><a href="#">...</a></li>-->
+                        <!--<li><a href="#">05</a></li>-->
+                        <#if (lampListPageModel.currentPage = lampListPageModel.count)>
+                            <#else>
+                                <li class="next">
+                                    <a href="javascript:queryByPage(${lampListPageModel.nextPage})"><i
+                                            class="zmdi zmdi-chevron-right"></i></a>
+                                </li>
+                        </#if>
+                    </ul>
+                </#if>
+                <!-- shop-pagination end -->
+            </div>
+        </div>
+    </div>
+</#if>

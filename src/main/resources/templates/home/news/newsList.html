@@ -106,17 +106,17 @@
                 <#if newsListPageModel.nextPage ??>
                     <ul class="shop-pagination box-shadow text-center ptblr-10-30">
                         <#if (newsListPageModel.currentPage = 1)>
-                             <#else>
+                            <#else>
                                  <li><a href="javaScript:queryByPage(${newsListPageModel.prevPage})"><i class="zmdi zmdi-chevron-left"></i></a></li>
                          </#if>
                             <#list 1..newsListPageModel.count as i >
-                                <li <#if ( newsListPageModel.currentPage = i)> class="active" </#if>>
+                                <li <#if ( newsListPageModel.currentPage = i)> class="active" </#if> >
                                 <a href="JavaScript:queryByPage(${i});" >${i_index+1}</a>
                                 </li>
                             </#list>
 
                         <#if (newsListPageModel.currentPage=newsListPageModel.count)>
-                             <#else >
+                            <#else>
                                 <li class="next">
                                     <a href="javaScript:queryByPage(${newsListPageModel.nextPage})"><i class="zmdi zmdi-chevron-right"></i></a>
                                 </li>

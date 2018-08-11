@@ -24,7 +24,7 @@ public class ProductsController {
     public String VisitProductPage(HttpServletRequest request){
         request.setAttribute("lampListPageModel", lampService.getLampList(null));
 
-        return "home/lamp/lamp";
+        return "home/lamp/lamp-list";
     }
 
     //按分页条件查询
@@ -40,6 +40,6 @@ public class ProductsController {
 
     @RequestMapping("/ProductPageDetail")
     public String VisitProductPageDetail(){
-        return "home/lamp/productDetail";
+        return "home/lamp/lamp-detail";
     }
 }

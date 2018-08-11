@@ -15,10 +15,9 @@ public class LampListPageModel {
     private Integer prevPage;                       //prev跳转到page数
     private boolean nextShow;                       //next是否展示
     private Integer nextPage;                       //next跳转到page数
-    private List<LampWithBLOBs> newsList;           //灯饰列表
+    private List<LampWithBLOBs> lampList;           //灯饰列表
     private Integer count;                          //总页数
     private Integer currentPage;                    //当前页
-
 
     public boolean isPrevShow() {
         return prevShow;
@@ -52,12 +51,12 @@ public class LampListPageModel {
         this.nextPage = nextPage;
     }
 
-    public List<LampWithBLOBs> getNewsList() {
-        return newsList;
+    public List<LampWithBLOBs> getLampList() {
+        return lampList;
     }
 
-    public void setNewsList(List<LampWithBLOBs> newsList) {
-        this.newsList = newsList;
+    public void setLampList(List<LampWithBLOBs> lampList) {
+        this.lampList = lampList;
     }
 
     public Integer getCount() {
