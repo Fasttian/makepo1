@@ -279,10 +279,10 @@
     }
 
     //初始化layer
-    layui.use(['layer', 'form'], function(){
-        var layer = layui.layer
-            ,form = layui.form;
-    });
+//    layui.use(['layer', 'form'], function(){
+//        var layer = layui.layer
+//            ,form = layui.form;
+//    });
 
     //提交新闻
     function submitNewsData(){
@@ -329,7 +329,8 @@
     // Date Picker
     $('#datepicker-autoclose').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        format: 'yyyy/mm/dd'
     });
 
     //file upload

@@ -127,6 +127,34 @@
     var resizefunc = [];
 </script>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">上传</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label class="control-label">选择要上传的文件</label>
+                    <div class="mr-30">
+                        <input type="file" id="titImage" name="titImage" accept="" class="filestyle" data-buttonname="btn-default">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">完成</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- jQuery  -->
 <script src="admin/assets/js/jquery.min.js"></script>
 <script src="admin/assets/js/bootstrap.min.js"></script>
@@ -137,6 +165,7 @@
 <script src="admin/assets/js/jquery.slimscroll.js"></script>
 <script src="admin/assets/js/jquery.scrollTo.min.js"></script>
 <script src="admin/plugins/switchery/switchery.min.js"></script>
+<script src="admin/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
 
 <script src="admin/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="admin/plugins/datatables/dataTables.bootstrap.js"></script>
@@ -257,7 +286,7 @@
 
     function initComplete(){
 
-        var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addManual()" class="btn btn-success waves-effect w-md waves-light m-b-5 btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
+        var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="addManual()" class="btn btn-success waves-effect w-md waves-light btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
 
         $("#datatable_length").append(topPlugin);//在表格上方topPlugin DIV中追加HTML
 
@@ -313,7 +342,7 @@
 
     //新增
     function addManual() {
-        location.href="/add-manual";
+        $('#myModal').modal();
     }
     
     function download(id) {
