@@ -51,7 +51,7 @@ public class LampServiceImpl implements LampService {
         if (null != pageNum) stratPage = pageNum;
 
         //设置分页信息
-        PageHelper.startPage(stratPage, 4);
+        PageHelper.startPage(stratPage, 2);
 
         List<LampWithBLOBs> lampWithBLOBsList = lampMapper.selectByExampleWithBLOBs(lampExample);
         //让 pageInfo对象进行分页处理

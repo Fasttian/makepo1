@@ -14,13 +14,13 @@ import java.util.Map;
  * Time: 2018/6/26  下午6:51
  * Description：
  */
-@Controller
+@Controller(value = "home.lampController")
 @RequestMapping ("/")
-public class ProductsController {
+public class LampController {
     @Autowired
     private LampService lampService;
 
-    @RequestMapping ("/productsAll")
+    @RequestMapping ("/lampList")
     public String VisitProductPage(HttpServletRequest request){
         request.setAttribute("lampListPageModel", lampService.getLampList(null));
 
@@ -38,7 +38,7 @@ public class ProductsController {
         return "home/lamp/lamp-list-content";
     }
 
-    @RequestMapping("/ProductPageDetail")
+    @RequestMapping("/lampDetail")
     public String VisitProductPageDetail(){
         return "home/lamp/lamp-detail";
     }

@@ -28,7 +28,7 @@ public class NewsController {
 
         request.setAttribute("newsListPageModel",newsService.getNewsList(null));
 
-        return "home/news/newsList";
+        return "home/news/news-list";
     }
 
     //按分页条件查询
@@ -46,7 +46,7 @@ public class NewsController {
 
     @RequestMapping("/newsDetail")
     public String VisitNewsDetail(){
-        return "home/news/newsDetail";
+        return "home/news/news-detail";
     }
 }
 
