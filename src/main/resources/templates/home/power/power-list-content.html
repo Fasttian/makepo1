@@ -1,4 +1,4 @@
-<#if lampListPageModel ??>
+<#if powerListPageModel ??>
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="shop-content">
@@ -17,12 +17,12 @@
                 <!-- short-by -->
                 <div class="short-by f-left text-center">
                     <span>Sort by :</span>
-                    <select>
-                        <option value="volvo">全部</option>
-                        <option value="saab">G4/G9</option>
-                        <option value="mercedes">球泡灯</option>
-                        <option value="audi">灯丝灯</option>
-                        <option value="audi">面板灯</option>
+                    <select id="productType" onchange="queryByType()">
+                        <option value="0" >全部</option>
+                        <option value="1" >G4/G9</option>
+                        <option value="2" >球泡灯</option>
+                        <option value="3" >灯丝灯</option>
+                        <option value="4" >面板灯</option>
                     </select>
                 </div>
                 <!-- showing -->
@@ -37,18 +37,18 @@
                 <!-- grid-view -->
                 <div role="tabpanel" class="tab-pane active" id="grid-view">
                     <div class="row">
-                        <#list lampListPageModel.lampList as lampList>
+                        <#list powerListPageModel.powerList as powerList>
                         <!-- lamp-item start -->
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="product-item">
                                 <div class="product-img">
-                                    <a href="/lampDetail">
+                                    <a href="/powerDetail">
                                         <img src="home/img/product-2/2.jpg" alt=""/>
                                     </a>
                                 </div>
                                 <div class="product-info">
                                     <h6 class="product-title">
-                                        <a href="/lampDetail"+${lampList.id}>${lampList.model}</a>
+                                        <a href="/powerDetail"+${powerList.id}>${powerList.model}</a>
                                     </h6>
                                     <div class="pro-rating">
                                         <a href="#"><i class="zmdi zmdi-star"></i></a>
@@ -57,7 +57,7 @@
                                         <a href="#"><i class="zmdi zmdi-star-half"></i></a>
                                         <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
                                     </div>
-                                    <h3 class="pro-price">${lampList.productType}</h3>
+                                    <h3 class="pro-price">${powerList.productType}</h3>
                                     <ul class="action-button">
                                         <li>
                                             <a href="#" title="Wishlist"><i
@@ -79,22 +79,22 @@
             </div>
 
         </div>
-        <#if lampListPageModel.nextPage ??>
+        <#if powerListPageModel.nextPage ??>
         <ul class="shop-pagination box-shadow text-center ptblr-10-30">
-            <#if (lampListPageModel.currentPage = 1)>
+            <#if (powerListPageModel.currentPage = 1)>
             <#else>
-            <li><a href="javascript:queryByPage(${lampListPageModel.prevPage});"><i
+            <li><a href="javascript:queryByPage(${powerListPageModel.prevPage});"><i
                     class="zmdi zmdi-chevron-left"></i></a></li>
         </#if>
-        <#list 1..lampListPageModel.count as i>
-        <li <#if (lampListPageModel.currentPage = i)> class="active"</#if>>
+        <#list 1..powerListPageModel.count as i>
+        <li <#if (powerListPageModel.currentPage = i)> class="active"</#if>>
     <a href="javascript:queryByPage(${i});">${i_index+1}</a>
     </li>
 </#list>
-<#if (lampListPageModel.currentPage = lampListPageModel.count)>
+<#if (powerListPageModel.currentPage = powerListPageModel.count)>
 <#else>
 <li class="next">
-    <a href="javascript:queryByPage(${lampListPageModel.nextPage})"><i
+    <a href="javascript:queryByPage(${powerListPageModel.nextPage})"><i
             class="zmdi zmdi-chevron-right"></i></a>
 </li>
 </#if>

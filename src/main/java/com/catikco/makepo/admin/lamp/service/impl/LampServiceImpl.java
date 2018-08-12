@@ -191,6 +191,7 @@ public class LampServiceImpl implements LampService {
         lampWithBLOBs.setVoltage(lampEditPageModel.getVoltage());
         lampWithBLOBs.setLumen(lampEditPageModel.getLumen());
         lampWithBLOBs.setMaterial(lampEditPageModel.getMaterial());
+        lampWithBLOBs.setDeleted(false);
 
         return lampWithBLOBs;
     }
