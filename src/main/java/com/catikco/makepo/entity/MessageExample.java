@@ -841,6 +841,76 @@ public class MessageExample {
             addCriterion("phone not between", value1, value2, "phone");
             return (Criteria) this;
         }
+
+        public Criteria andMoreInfoIsNull() {
+            addCriterion("moreInfo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoIsNotNull() {
+            addCriterion("moreInfo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoEqualTo(String value) {
+            addCriterion("moreInfo =", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoNotEqualTo(String value) {
+            addCriterion("moreInfo <>", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoGreaterThan(String value) {
+            addCriterion("moreInfo >", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoGreaterThanOrEqualTo(String value) {
+            addCriterion("moreInfo >=", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoLessThan(String value) {
+            addCriterion("moreInfo <", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoLessThanOrEqualTo(String value) {
+            addCriterion("moreInfo <=", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoLike(String value) {
+            addCriterion("moreInfo like", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoNotLike(String value) {
+            addCriterion("moreInfo not like", value, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoIn(List<String> values) {
+            addCriterion("moreInfo in", values, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoNotIn(List<String> values) {
+            addCriterion("moreInfo not in", values, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoBetween(String value1, String value2) {
+            addCriterion("moreInfo between", value1, value2, "moreInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoreInfoNotBetween(String value1, String value2) {
+            addCriterion("moreInfo not between", value1, value2, "moreInfo");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

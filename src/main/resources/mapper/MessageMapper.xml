@@ -13,9 +13,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.catikco.makepo.entity.Message" extends="BaseResultMap" >
-    <result column="moreInfo" property="moreInfo" jdbcType="LONGVARCHAR" />
+    <result column="moreInfo" property="moreInfo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,27 +75,8 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, email, subject, creteTime, upDataTime, createBy, upDataBy, remark, deleted, 
-    phone
+    phone, moreInfo
   </sql>
-  <sql id="Blob_Column_List" >
-    moreInfo
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.catikco.makepo.entity.MessageExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from message
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.MessageExample" >
     select
     <if test="distinct" >
@@ -112,11 +91,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from message
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -139,7 +116,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{subject,jdbcType=VARCHAR}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
       #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{moreInfo,jdbcType=LONGVARCHAR}
+      #{deleted,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{moreInfo,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.Message" useGeneratedKeys="true" keyProperty="id">
@@ -217,7 +194,7 @@
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="moreInfo != null" >
-        #{moreInfo,jdbcType=LONGVARCHAR},
+        #{moreInfo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -264,27 +241,9 @@
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.moreInfo != null" >
-        moreInfo = #{record.moreInfo,jdbcType=LONGVARCHAR},
+        moreInfo = #{record.moreInfo,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update message
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      subject = #{record.subject,jdbcType=VARCHAR},
-      creteTime = #{record.creteTime,jdbcType=DATE},
-      upDataTime = #{record.upDataTime,jdbcType=DATE},
-      createBy = #{record.createBy,jdbcType=INTEGER},
-      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=BIT},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      moreInfo = #{record.moreInfo,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -301,7 +260,8 @@
       upDataBy = #{record.upDataBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
-      phone = #{record.phone,jdbcType=VARCHAR}
+      phone = #{record.phone,jdbcType=VARCHAR},
+      moreInfo = #{record.moreInfo,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -340,24 +300,9 @@
         phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="moreInfo != null" >
-        moreInfo = #{moreInfo,jdbcType=LONGVARCHAR},
+        moreInfo = #{moreInfo,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.Message" >
-    update message
-    set name = #{name,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      subject = #{subject,jdbcType=VARCHAR},
-      creteTime = #{creteTime,jdbcType=DATE},
-      upDataTime = #{upDataTime,jdbcType=DATE},
-      createBy = #{createBy,jdbcType=INTEGER},
-      upDataBy = #{upDataBy,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=BIT},
-      phone = #{phone,jdbcType=VARCHAR},
-      moreInfo = #{moreInfo,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Message" >
@@ -371,7 +316,8 @@
       upDataBy = #{upDataBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
-      phone = #{phone,jdbcType=VARCHAR}
+      phone = #{phone,jdbcType=VARCHAR},
+      moreInfo = #{moreInfo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

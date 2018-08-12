@@ -58,6 +58,9 @@ public class ManualServiceImpl implements ManualService {
         //查询标记为未删除的
         criteria.andDeletedEqualTo(false);
 
+        //文件类型为2是手册文件
+        criteria.andFileTypeEqualTo((byte)2);
+
         //设置分页信息
         PageHelper.startPage(currentPage,length);
 
