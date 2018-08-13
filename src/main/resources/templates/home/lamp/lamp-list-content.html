@@ -17,17 +17,19 @@
                 <!-- short-by -->
                 <div class="short-by f-left text-center">
                     <span>Sort by :</span>
-                    <select>
-                        <option value="volvo">全部</option>
-                        <option value="saab">G4/G9</option>
-                        <option value="mercedes">球泡灯</option>
-                        <option value="audi">灯丝灯</option>
-                        <option value="audi">面板灯</option>
+                    <!-- 勿删，用于处理灯饰分类 -->
+                    <input type="hidden" id="retrunProType" value="${productType}">
+                    <select id="productType" onchange="queryByType()">
+                        <option value="0">全部</option>
+                        <option value="1">G4/G9</option>
+                        <option value="2">球泡灯</option>
+                        <option value="3">灯丝灯</option>
+                        <option value="4">面板灯</option>
                     </select>
                 </div>
                 <!-- showing -->
                 <div class="showing f-right text-right">
-                    <span>Showing : 01-09 of 17.</span>
+                    <span>total : ${lampListPageModel.total}&nbsp;&nbsp;&nbsp; </span>
                 </div>
             </div>
             <!-- shop-option end -->

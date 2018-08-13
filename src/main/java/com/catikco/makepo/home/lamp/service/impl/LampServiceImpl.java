@@ -45,13 +45,14 @@ public class LampServiceImpl implements LampService {
 
         //查询条件
         if (null != productType){
-            criteria.andProductTypeEqualTo(productType.byteValue());
+            if((int)productType != 0)
+                criteria.andProductTypeEqualTo(productType.byteValue());
         }
 
         if (null != pageNum) stratPage = pageNum;
 
         //设置分页信息
-        PageHelper.startPage(stratPage, 2);
+        PageHelper.startPage(stratPage, 8);
 
         List<LampWithBLOBs> lampWithBLOBsList = lampMapper.selectByExampleWithBLOBs(lampExample);
         //让 pageInfo对象进行分页处理
@@ -66,7 +67,16 @@ public class LampServiceImpl implements LampService {
         lampListPageModel.setPrevPage(pageInfo.getPrePage());
         lampListPageModel.setNextShow(pageInfo.isHasNextPage());
         lampListPageModel.setPrevShow(pageInfo.isHasPreviousPage());
+        lampListPageModel.setTotal(pageInfo.getTotal());
 
         return lampListPageModel;
+    }
+
+    @Override
+    public LampWithBLOBs getById(Integer id) {
+        if(null == id)
+             return null;
+
+        return lampMapper.selectByPrimaryKey(id);
     }
 }

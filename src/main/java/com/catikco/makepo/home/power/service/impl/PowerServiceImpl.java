@@ -38,21 +38,21 @@ public class PowerServiceImpl implements PowerService {
 
 
         if (null != queryCriteria){
-            productType = (Integer) queryCriteria.get("productType");
+            //productType = (Integer) queryCriteria.get("productType");
             pageNum = (Integer) queryCriteria.get("pageNum");
         }
 
         Integer stratPage = 0;
 
         //查询条件
-        if (null != productType && productType != 0){
+       /* if (null != productType && productType != 0){
             criteria.andProductTypeEqualTo(productType.byteValue());
-        }
+        }*/
 
         if (null != pageNum) stratPage = pageNum;
 
         //设置分页信息
-        PageHelper.startPage(stratPage, 2);
+        PageHelper.startPage(stratPage, 8);
 
         List<PowerWithBLOBs> powerWithBLOBsList = powerMapper.selectByExampleWithBLOBs(powerExample);
         //让 pageInfo对象进行分页处理
@@ -67,7 +67,16 @@ public class PowerServiceImpl implements PowerService {
         powerListPageModel.setPrevPage(pageInfo.getPrePage());
         powerListPageModel.setNextShow(pageInfo.isHasNextPage());
         powerListPageModel.setPrevShow(pageInfo.isHasPreviousPage());
+        powerListPageModel.setTotal(pageInfo.getTotal());
 
         return powerListPageModel;
+    }
+
+    @Override
+    public PowerWithBLOBs getById(Integer id) {
+        if(null == id)
+            return null;
+
+        return powerMapper.selectByPrimaryKey(id);
     }
 }

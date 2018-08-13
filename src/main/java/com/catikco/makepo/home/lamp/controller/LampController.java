@@ -1,5 +1,6 @@
 package com.catikco.makepo.home.lamp.controller;
 
+import com.catikco.makepo.entity.LampWithBLOBs;
 import com.catikco.makepo.home.lamp.service.LampService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,17 +30,24 @@ public class LampController {
 
     //按分页条件查询
     @RequestMapping("/lampListByPage")
-    public String lampListByPage(HttpServletRequest request, Integer pageNum){
+    public String lampListByPage(HttpServletRequest request, Integer pageNum,Integer productType){
         Map<String,Object> queryCriteria = new HashMap<>();
         queryCriteria.put("pageNum", pageNum);
+        queryCriteria.put("productType", productType);
 
         request.setAttribute("lampListPageModel", lampService.getLampList(queryCriteria));
+        request.setAttribute("productType",productType);
 
         return "home/lamp/lamp-list-content";
     }
 
     @RequestMapping("/lampDetail")
-    public String VisitProductPageDetail(){
+    public String VisitProductPageDetail(HttpServletRequest request,Integer id){
+        LampWithBLOBs lampWithBLOBs = new LampWithBLOBs();
+        lampWithBLOBs = lampService.getById(id);
+
+        request.setAttribute("lampWithBLOBs",lampWithBLOBs);
+
         return "home/lamp/lamp-detail";
     }
 }

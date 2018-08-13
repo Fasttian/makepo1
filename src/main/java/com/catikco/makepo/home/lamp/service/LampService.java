@@ -1,5 +1,6 @@
 package com.catikco.makepo.home.lamp.service;
 
+import com.catikco.makepo.entity.LampWithBLOBs;
 import com.catikco.makepo.home.lamp.model.LampListPageModel;
 
 import java.util.Map;
@@ -18,4 +19,11 @@ public interface LampService {
      */
 
     public LampListPageModel getLampList(Map<String, Object> queryCriteria);
+
+    /**
+     * 根据id获取灯饰
+     * @param id
+     * @return
+     */
+    public LampWithBLOBs getById(Integer id);
 }

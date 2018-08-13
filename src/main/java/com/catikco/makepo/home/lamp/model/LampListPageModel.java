@@ -18,6 +18,15 @@ public class LampListPageModel {
     private List<LampWithBLOBs> lampList;           //灯饰列表
     private Integer count;                          //总页数
     private Integer currentPage;                    //当前页
+    private Long total;                          //总条数
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
 
     public boolean isPrevShow() {
         return prevShow;
