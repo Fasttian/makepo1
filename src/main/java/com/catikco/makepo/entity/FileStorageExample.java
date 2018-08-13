@@ -592,123 +592,123 @@ public class FileStorageExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeIsNull() {
-            addCriterion("creteTime is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("createTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeIsNotNull() {
-            addCriterion("creteTime is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("createTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("creteTime =", value, "creteTime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("creteTime <>", value, "creteTime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("creteTime >", value, "creteTime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("createTime >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("creteTime >=", value, "creteTime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeLessThan(Date value) {
-            addCriterionForJDBCDate("creteTime <", value, "creteTime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterionForJDBCDate("createTime <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("creteTime <=", value, "creteTime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("creteTime in", values, "creteTime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterionForJDBCDate("createTime in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("creteTime not in", values, "creteTime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("createTime not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("creteTime between", value1, value2, "creteTime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("createTime between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreteTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("creteTime not between", value1, value2, "creteTime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("createTime not between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeIsNull() {
-            addCriterion("upDataTime is null");
+        public Criteria andUpdateTimeIsNull() {
+            addCriterion("updateTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeIsNotNull() {
-            addCriterion("upDataTime is not null");
+        public Criteria andUpdateTimeIsNotNull() {
+            addCriterion("updateTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime =", value, "upDataTime");
+        public Criteria andUpdateTimeEqualTo(Date value) {
+            addCriterionForJDBCDate("updateTime =", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime <>", value, "upDataTime");
+        public Criteria andUpdateTimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("updateTime <>", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("upDataTime >", value, "upDataTime");
+        public Criteria andUpdateTimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("updateTime >", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime >=", value, "upDataTime");
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("updateTime >=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeLessThan(Date value) {
-            addCriterionForJDBCDate("upDataTime <", value, "upDataTime");
+        public Criteria andUpdateTimeLessThan(Date value) {
+            addCriterionForJDBCDate("updateTime <", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("upDataTime <=", value, "upDataTime");
+        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("updateTime <=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("upDataTime in", values, "upDataTime");
+        public Criteria andUpdateTimeIn(List<Date> values) {
+            addCriterionForJDBCDate("updateTime in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("upDataTime not in", values, "upDataTime");
+        public Criteria andUpdateTimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("updateTime not in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("upDataTime between", value1, value2, "upDataTime");
+        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("updateTime between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("upDataTime not between", value1, value2, "upDataTime");
+        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("updateTime not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
@@ -772,63 +772,63 @@ public class FileStorageExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByIsNull() {
-            addCriterion("upDataBy is null");
+        public Criteria andUpdateByIsNull() {
+            addCriterion("updateBy is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByIsNotNull() {
-            addCriterion("upDataBy is not null");
+        public Criteria andUpdateByIsNotNull() {
+            addCriterion("updateBy is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByEqualTo(Integer value) {
-            addCriterion("upDataBy =", value, "upDataBy");
+        public Criteria andUpdateByEqualTo(Integer value) {
+            addCriterion("updateBy =", value, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByNotEqualTo(Integer value) {
-            addCriterion("upDataBy <>", value, "upDataBy");
+        public Criteria andUpdateByNotEqualTo(Integer value) {
+            addCriterion("updateBy <>", value, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByGreaterThan(Integer value) {
-            addCriterion("upDataBy >", value, "upDataBy");
+        public Criteria andUpdateByGreaterThan(Integer value) {
+            addCriterion("updateBy >", value, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByGreaterThanOrEqualTo(Integer value) {
-            addCriterion("upDataBy >=", value, "upDataBy");
+        public Criteria andUpdateByGreaterThanOrEqualTo(Integer value) {
+            addCriterion("updateBy >=", value, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByLessThan(Integer value) {
-            addCriterion("upDataBy <", value, "upDataBy");
+        public Criteria andUpdateByLessThan(Integer value) {
+            addCriterion("updateBy <", value, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByLessThanOrEqualTo(Integer value) {
-            addCriterion("upDataBy <=", value, "upDataBy");
+        public Criteria andUpdateByLessThanOrEqualTo(Integer value) {
+            addCriterion("updateBy <=", value, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByIn(List<Integer> values) {
-            addCriterion("upDataBy in", values, "upDataBy");
+        public Criteria andUpdateByIn(List<Integer> values) {
+            addCriterion("updateBy in", values, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByNotIn(List<Integer> values) {
-            addCriterion("upDataBy not in", values, "upDataBy");
+        public Criteria andUpdateByNotIn(List<Integer> values) {
+            addCriterion("updateBy not in", values, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByBetween(Integer value1, Integer value2) {
-            addCriterion("upDataBy between", value1, value2, "upDataBy");
+        public Criteria andUpdateByBetween(Integer value1, Integer value2) {
+            addCriterion("updateBy between", value1, value2, "updateBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpDataByNotBetween(Integer value1, Integer value2) {
-            addCriterion("upDataBy not between", value1, value2, "upDataBy");
+        public Criteria andUpdateByNotBetween(Integer value1, Integer value2) {
+            addCriterion("updateBy not between", value1, value2, "updateBy");
             return (Criteria) this;
         }
 

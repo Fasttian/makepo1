@@ -99,18 +99,18 @@ public class NewsServiceImpl implements NewsService {
     public int saveNews(NewsEditPageModel newsEditPageModel, HttpServletResponse response){
 
         //修改时允许不选择概要图片
-        Integer newTitleImageFileid = null; //概要图片文件id
+        String newTitleImage = null; //概要图片文件id
         String newContentFileid = null;     //内容图片文件id
         MultipartFile multipartFile = newsEditPageModel.getTitImage();
         if(null != newsEditPageModel.getTitImage().getOriginalFilename())
-            newTitleImageFileid = fileStorageService.uploads(newsEditPageModel.getTitImage(), response,true,null);
+            newTitleImage = fileStorageService.uploads(newsEditPageModel.getTitImage(), response,true,null);
 
         newContentFileid = parseContentFileId(newsEditPageModel.getContent());
 
-        NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newTitleImageFileid, newContentFileid);
+        NewsWithBLOBs newsWithBLOBs = this.changeToNewsWithBLOBs(newsEditPageModel, newTitleImage, newContentFileid);
         //插数据库
         if(null != newsEditPageModel.getId() && !"".equals(newsEditPageModel.getId())){
-            newsWithBLOBs.setUpDataTime(new Date());
+            newsWithBLOBs.setUpdateTime(new Date());
             return newsMapper.updateByPrimaryKeySelective(newsWithBLOBs);
         }else {
             newsWithBLOBs.setCreateTime(new Date());
@@ -251,11 +251,11 @@ public class NewsServiceImpl implements NewsService {
     /**
      * 转换页面model为数据model
      * @param newsEditPageModel  页面model
-     * @param newsTitleImageFileid 新闻概要图片文件id（一个）
+     * @param newTitleImage 新闻概要图片文件id（一个）
      * @param newsContentImagesFileid 新内容正中的图片id(多个)
      * @return
      */
-    private NewsWithBLOBs changeToNewsWithBLOBs(NewsEditPageModel newsEditPageModel, Integer newsTitleImageFileid, String newsContentImagesFileid){
+    private NewsWithBLOBs changeToNewsWithBLOBs(NewsEditPageModel newsEditPageModel, String newTitleImage, String newsContentImagesFileid){
         NewsWithBLOBs newsWithBLOBs = new NewsWithBLOBs();
 
         newsWithBLOBs.setTitle(newsEditPageModel.getTitle());
@@ -265,7 +265,7 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
         newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
         newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
-        newsWithBLOBs.setNewsTitleImageFileid(newsTitleImageFileid);        //新闻概要图中的id
+        newsWithBLOBs.setNewsTitleImage(newTitleImage);        //新闻概要图中的id
         newsWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         newsWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail

@@ -72,7 +72,7 @@
                                                     <div class="product-item">
                                                         <div class="product-img">
                                                             <a href="/lampDetail">
-                                                                <img src="home/img/product-2/2.jpg" alt=""/>
+                                                                <img src="${lampList.productTitleImage}" alt=""/>
                                                             </a>
                                                         </div>
                                                         <div class="product-info">
@@ -86,7 +86,23 @@
                                                                 <a href="#"><i class="zmdi zmdi-star-half"></i></a>
                                                                 <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
                                                             </div>
-                                                            <h3 class="pro-price">${lampList.productType}</h3>
+                                                            <h3 class="pro-price">
+                                                                <#if (lampList.productType = 1)>
+                                                                G4/G9
+                                                            </#if>
+
+                                                            <#if (lampList.productType = 2)>
+                                                            球泡灯
+                                                        </#if>
+
+                                                        <#if (lampList.productType = 3)>
+                                                        灯丝灯
+                                                    </#if>
+
+                                                    <#if (lampList.productType = 4 )>
+                                                    面板灯
+                                                </#if>
+                                            </h3>
                                                             <ul class="action-button">
                                                                 <li>
                                                                     <a href="#" title="Wishlist"><i

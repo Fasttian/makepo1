@@ -5,7 +5,7 @@ import java.util.Date;
 public class News {
     private Integer id;
 
-    private Integer newsTitleImageFileid;
+    private String newsTitleImage;
 
     private String newsContentImagesFileid;
 
@@ -27,11 +27,11 @@ public class News {
 
     private Date createTime;
 
-    private Date upDataTime;
+    private Date updateTime;
 
     private Integer createBy;
 
-    private Integer upDataBy;
+    private Integer updateBy;
 
     private String remark;
 
@@ -45,12 +45,12 @@ public class News {
         this.id = id;
     }
 
-    public Integer getNewsTitleImageFileid() {
-        return newsTitleImageFileid;
+    public String getNewsTitleImage() {
+        return newsTitleImage;
     }
 
-    public void setNewsTitleImageFileid(Integer newsTitleImageFileid) {
-        this.newsTitleImageFileid = newsTitleImageFileid;
+    public void setNewsTitleImage(String newsTitleImage) {
+        this.newsTitleImage = newsTitleImage == null ? null : newsTitleImage.trim();
     }
 
     public String getNewsContentImagesFileid() {
@@ -133,12 +133,12 @@ public class News {
         this.createTime = createTime;
     }
 
-    public Date getUpDataTime() {
-        return upDataTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpDataTime(Date upDataTime) {
-        this.upDataTime = upDataTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Integer getCreateBy() {
@@ -149,12 +149,12 @@ public class News {
         this.createBy = createBy;
     }
 
-    public Integer getUpDataBy() {
-        return upDataBy;
+    public Integer getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpDataBy(Integer upDataBy) {
-        this.upDataBy = upDataBy;
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
     }
 
     public String getRemark() {

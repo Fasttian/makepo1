@@ -3,7 +3,7 @@
 <mapper namespace="com.catikco.makepo.mapper.PowerMapper" >
   <resultMap id="BaseResultMap" type="com.catikco.makepo.entity.Power" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="productTitleImageFileid" property="productTitleImageFileid" jdbcType="INTEGER" />
+    <result column="productTitleImage" property="productTitleImage" jdbcType="VARCHAR" />
     <result column="productContentImagesFileid" property="productContentImagesFileid" jdbcType="VARCHAR" />
     <result column="power" property="power" jdbcType="DOUBLE" />
     <result column="input" property="input" jdbcType="DOUBLE" />
@@ -15,10 +15,10 @@
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="productCreateTime" property="productCreateTime" jdbcType="DATE" />
     <result column="productType" property="productType" jdbcType="TINYINT" />
-    <result column="creteTime" property="creteTime" jdbcType="DATE" />
-    <result column="upDataTime" property="upDataTime" jdbcType="DATE" />
+    <result column="createTime" property="createTime" jdbcType="DATE" />
+    <result column="updateTime" property="updateTime" jdbcType="DATE" />
     <result column="createBy" property="createBy" jdbcType="INTEGER" />
-    <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
+    <result column="updateBy" property="updateBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
     <result column="model" property="model" jdbcType="VARCHAR" />
@@ -86,9 +86,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, productTitleImageFileid, productContentImagesFileid, power, input, output, size, 
-    title, keywords, productUrl, views, productCreateTime, productType, creteTime, upDataTime, 
-    createBy, upDataBy, remark, deleted, model
+    id, productTitleImage, productContentImagesFileid, power, input, output, size, title, 
+    keywords, productUrl, views, productCreateTime, productType, createTime, updateTime, 
+    createBy, updateBy, remark, deleted, model
   </sql>
   <sql id="Blob_Column_List" >
     description, content
@@ -142,20 +142,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" useGeneratedKeys="true" keyProperty="id">
-    insert into power (id, productTitleImageFileid, productContentImagesFileid, 
+    insert into power (id, productTitleImage, productContentImagesFileid, 
       power, input, output, 
       size, title, keywords, 
       productUrl, views, productCreateTime, 
-      productType, creteTime, upDataTime, 
-      createBy, upDataBy, remark, 
+      productType, createTime, updateTime, 
+      createBy, updateBy, remark, 
       deleted, model, description, 
       content)
-    values (#{id,jdbcType=INTEGER}, #{productTitleImageFileid,jdbcType=INTEGER}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{productTitleImage,jdbcType=VARCHAR}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
       #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
       #{size,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
       #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
-      #{productType,jdbcType=TINYINT}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
-      #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{createBy,jdbcType=INTEGER}, #{updateBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT}, #{model,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
@@ -165,8 +165,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="productTitleImageFileid != null" >
-        productTitleImageFileid,
+      <if test="productTitleImage != null" >
+        productTitleImage,
       </if>
       <if test="productContentImagesFileid != null" >
         productContentImagesFileid,
@@ -201,17 +201,17 @@
       <if test="productType != null" >
         productType,
       </if>
-      <if test="creteTime != null" >
-        creteTime,
+      <if test="createTime != null" >
+        createTime,
       </if>
-      <if test="upDataTime != null" >
-        upDataTime,
+      <if test="updateTime != null" >
+        updateTime,
       </if>
       <if test="createBy != null" >
         createBy,
       </if>
-      <if test="upDataBy != null" >
-        upDataBy,
+      <if test="updateBy != null" >
+        updateBy,
       </if>
       <if test="remark != null" >
         remark,
@@ -233,8 +233,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="productTitleImageFileid != null" >
-        #{productTitleImageFileid,jdbcType=INTEGER},
+      <if test="productTitleImage != null" >
+        #{productTitleImage,jdbcType=VARCHAR},
       </if>
       <if test="productContentImagesFileid != null" >
         #{productContentImagesFileid,jdbcType=VARCHAR},
@@ -269,17 +269,17 @@
       <if test="productType != null" >
         #{productType,jdbcType=TINYINT},
       </if>
-      <if test="creteTime != null" >
-        #{creteTime,jdbcType=DATE},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
       </if>
-      <if test="upDataTime != null" >
-        #{upDataTime,jdbcType=DATE},
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
       </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="upDataBy != null" >
-        #{upDataBy,jdbcType=INTEGER},
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -310,8 +310,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.productTitleImageFileid != null" >
-        productTitleImageFileid = #{record.productTitleImageFileid,jdbcType=INTEGER},
+      <if test="record.productTitleImage != null" >
+        productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       </if>
       <if test="record.productContentImagesFileid != null" >
         productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
@@ -346,17 +346,17 @@
       <if test="record.productType != null" >
         productType = #{record.productType,jdbcType=TINYINT},
       </if>
-      <if test="record.creteTime != null" >
-        creteTime = #{record.creteTime,jdbcType=DATE},
+      <if test="record.createTime != null" >
+        createTime = #{record.createTime,jdbcType=DATE},
       </if>
-      <if test="record.upDataTime != null" >
-        upDataTime = #{record.upDataTime,jdbcType=DATE},
+      <if test="record.updateTime != null" >
+        updateTime = #{record.updateTime,jdbcType=DATE},
       </if>
       <if test="record.createBy != null" >
         createBy = #{record.createBy,jdbcType=INTEGER},
       </if>
-      <if test="record.upDataBy != null" >
-        upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      <if test="record.updateBy != null" >
+        updateBy = #{record.updateBy,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -381,7 +381,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update power
     set id = #{record.id,jdbcType=INTEGER},
-      productTitleImageFileid = #{record.productTitleImageFileid,jdbcType=INTEGER},
+      productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
       power = #{record.power,jdbcType=DOUBLE},
       input = #{record.input,jdbcType=DOUBLE},
@@ -393,10 +393,10 @@
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productCreateTime,jdbcType=DATE},
       productType = #{record.productType,jdbcType=TINYINT},
-      creteTime = #{record.creteTime,jdbcType=DATE},
-      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createTime = #{record.createTime,jdbcType=DATE},
+      updateTime = #{record.updateTime,jdbcType=DATE},
       createBy = #{record.createBy,jdbcType=INTEGER},
-      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      updateBy = #{record.updateBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       model = #{record.model,jdbcType=VARCHAR},
@@ -409,7 +409,7 @@
   <update id="updateByExample" parameterType="map" >
     update power
     set id = #{record.id,jdbcType=INTEGER},
-      productTitleImageFileid = #{record.productTitleImageFileid,jdbcType=INTEGER},
+      productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
       power = #{record.power,jdbcType=DOUBLE},
       input = #{record.input,jdbcType=DOUBLE},
@@ -421,10 +421,10 @@
       views = #{record.views,jdbcType=INTEGER},
       productCreateTime = #{record.productCreateTime,jdbcType=DATE},
       productType = #{record.productType,jdbcType=TINYINT},
-      creteTime = #{record.creteTime,jdbcType=DATE},
-      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createTime = #{record.createTime,jdbcType=DATE},
+      updateTime = #{record.updateTime,jdbcType=DATE},
       createBy = #{record.createBy,jdbcType=INTEGER},
-      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      updateBy = #{record.updateBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       model = #{record.model,jdbcType=VARCHAR}
@@ -435,8 +435,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" >
     update power
     <set >
-      <if test="productTitleImageFileid != null" >
-        productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
+      <if test="productTitleImage != null" >
+        productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       </if>
       <if test="productContentImagesFileid != null" >
         productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
@@ -471,17 +471,17 @@
       <if test="productType != null" >
         productType = #{productType,jdbcType=TINYINT},
       </if>
-      <if test="creteTime != null" >
-        creteTime = #{creteTime,jdbcType=DATE},
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=DATE},
       </if>
-      <if test="upDataTime != null" >
-        upDataTime = #{upDataTime,jdbcType=DATE},
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=DATE},
       </if>
       <if test="createBy != null" >
         createBy = #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="upDataBy != null" >
-        upDataBy = #{upDataBy,jdbcType=INTEGER},
+      <if test="updateBy != null" >
+        updateBy = #{updateBy,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -503,7 +503,7 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.catikco.makepo.entity.PowerWithBLOBs" >
     update power
-    set productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
+    set productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       power = #{power,jdbcType=DOUBLE},
       input = #{input,jdbcType=DOUBLE},
@@ -515,10 +515,10 @@
       views = #{views,jdbcType=INTEGER},
       productCreateTime = #{productCreateTime,jdbcType=DATE},
       productType = #{productType,jdbcType=TINYINT},
-      creteTime = #{creteTime,jdbcType=DATE},
-      upDataTime = #{upDataTime,jdbcType=DATE},
+      createTime = #{createTime,jdbcType=DATE},
+      updateTime = #{updateTime,jdbcType=DATE},
       createBy = #{createBy,jdbcType=INTEGER},
-      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      updateBy = #{updateBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
       model = #{model,jdbcType=VARCHAR},
@@ -528,7 +528,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.Power" >
     update power
-    set productTitleImageFileid = #{productTitleImageFileid,jdbcType=INTEGER},
+    set productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       power = #{power,jdbcType=DOUBLE},
       input = #{input,jdbcType=DOUBLE},
@@ -540,10 +540,10 @@
       views = #{views,jdbcType=INTEGER},
       productCreateTime = #{productCreateTime,jdbcType=DATE},
       productType = #{productType,jdbcType=TINYINT},
-      creteTime = #{creteTime,jdbcType=DATE},
-      upDataTime = #{upDataTime,jdbcType=DATE},
+      createTime = #{createTime,jdbcType=DATE},
+      updateTime = #{updateTime,jdbcType=DATE},
       createBy = #{createBy,jdbcType=INTEGER},
-      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      updateBy = #{updateBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
       model = #{model,jdbcType=VARCHAR}
