@@ -355,7 +355,21 @@
 
             //编辑新闻
            function editNews(id) {
-                location.href="/edit-news?id="+id;
+
+            $.ajax({
+                url:"/edit-news?id="+id,
+                type:"GET",
+                success: function(data) {
+                    //处理新闻类型下拉选（赋值问题）
+                    location.href="/edit-news?id="+id;
+                    var newsType = $('#newsTypeValue').val();
+                    $("#newstype option[value='"+newsType+"']").attr("selected", "selected");
+                },
+                error: function(){
+                    alert('请求失败！');
+                }
+            })
+
             }
 
 
