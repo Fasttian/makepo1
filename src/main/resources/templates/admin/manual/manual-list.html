@@ -138,16 +138,17 @@
                 <h4 class="modal-title" id="myModalLabel">上传</h4>
             </div>
             <div class="modal-body">
-
-                <div class="form-group">
-                    <label class="control-label">选择要上传的文件</label>
-                    <div class="mr-30">
-                        <input type="file" id="titImage" name="titImage" accept="" class="filestyle" data-buttonname="btn-default">
+                <form id="manualForm">
+                    <div class="form-group">
+                        <label class="control-label">选择要上传的文件</label>
+                        <div class="mr-30">
+                            <input type="file" id="titImage" name="titImage" accept="" class="filestyle" data-buttonname="btn-default">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">完成</button>
+                <button type="button" class="btn btn-default" onclick="javascript:uploadFile()" data-dismiss="modal">完成</button>
             </div>
         </div>
     </div>
@@ -346,10 +347,41 @@
     }
     
     function download(id) {
-        window.open("download-manual?id="+id);
+        window.open("download-file?id="+id);
     }
+    
+    function uploadFile() {
 
+        var formData = new FormData(document.getElementById("manualForm"));
+        formData.append("titImage",document.getElementById("titImage"))
 
+        $.ajax({
+            type: 'POST',
+            url: '/save-manual-file',
+            data: formData,
+            cache: false,
+            processData:false,
+            contentType:false,
+            dataType: 'json',
+            success: function (data) {
+                if(data.code == "succeed"){
+                    notify_sucess(data.data);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
+                    return;
+                }
+                //返回新闻列表页(返回时延时1秒，让用户看到提示信息)
+                setTimeout(function () {
+                    backList();
+                },1000);
+            },
+            error: function (e) {
+                notify_error("保存出错，请联系系统开发人员！");
+            }
+        })
+        
+    }
 
 </script>
 

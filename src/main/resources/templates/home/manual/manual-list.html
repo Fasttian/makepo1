@@ -62,19 +62,24 @@
                 </div>
                 <!-- blog-option end -->
             </div>
-            <div class="row" style="min-height: 200px;">
+            <!----------------------------start------------------------>
+
+        <div id = "manual-list-content">
+            <#if manualListPageModel ??>
+            <#list manualListPageModel.manualList as manualList>
+            <div class="row" style="min-height: 50px;">
                 <div class="col-md-12">
                     <div class="shop-list product-item">
                         <div class="product-info" style="width: 100%; padding: 10px 40px;">
                             <div class="clearfix">
-                                <h6 class="product-title f-left mt-15" style="font-size: 20px;font-weight: 500;"><i class="zmdi zmdi-file-text mr-30"></i>Dummy Product Name</h6>
+                                <h6 class="product-title f-left mt-15" style="font-size: 20px;font-weight: 500;"><i class="zmdi zmdi-file-text mr-30"></i>${manualList.filePrefix}</h6>
                                 <div class="pro-rating f-right mt-10">
                                     <ul class="action-button">
                                         <!--<li>-->
                                             <!--<a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>-->
                                         <!--</li>-->
                                         <li>
-                                            <a href="#" title="Add to cart"><i class="zmdi zmdi-download"></i></a>
+                                            <a href="javascript:download(${manualList.id})" title="Add to cart"><i class="zmdi zmdi-download"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -83,15 +88,35 @@
                     </div>
                 </div>
             </div>
+        </#list>
+        <#if manualListPageModel.nextPage ??>
             <ul class="shop-pagination box-shadow text-center ptblr-10-30">
-                <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
-                <li><a href="#">01</a></li>
-                <li><a href="#">02</a></li>
-                <li><a href="#">03</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">05</a></li>
-                <li class="active"><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                <#if (manualListPageModel.currentPage = 1)>
+                <#else>
+                <li><a href="javaScript:queryByPage(${manualListPageModel.prevPage})"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                </#if>
+
+                <#list 1..manualListPageModel.count as i >
+                    <li <#if ( manualListPageModel.currentPage = i)> class="active" </#if>>
+                    <a href="JavaScript:queryByPage(${i});">${i_index+1}</a>
+                    </li>
+                 </#list>
+
+                    <#if (manualListPageModel.currentPage=manualListPageModel.count)>
+                    <#else >
+                    <li class="next">
+                        <a href="javaScript:queryByPage(${manualListPageModel.nextPage})"><i class="zmdi zmdi-chevron-right"></i></a>
+                    </li>
+                    </#if>
             </ul>
+        </#if>
+
+    </#if>
+</div>
+<!----------------------------end------------------------>
+        </div>
+
+
         </div>
     </div>
     <!-- BLOG SECTION END -->
@@ -101,3 +126,24 @@
 <#include "./home/public/footer.html"/>
 
 
+<script>
+    //ajax 访问后台提取数据
+    function queryByPage(pageNum) {
+        $.ajax({
+            type: 'GET',
+            url:'/manualListByPage?pageNum='+ pageNum,
+            success: function(data) {
+                $('#manual-list-content').html();
+                $('#manual-list-content').html(data);
+            },
+            error: function(){
+                alert('保存失败！');
+            }
+        })
+    }
+
+    function download(id) {
+        window.open("download-manual?id="+id);
+    }
+
+</script>

@@ -84,8 +84,9 @@ public class FileStorageServiceImpl implements FileStorageService {
                     filestorage.setFileStatus((byte)1);       //文件状态：1，临时 2，正常 3，废弃
                     filestorage.setRemark("临时文件");
 
+
                     if(null != fileType)        //如果
-                        filestorage.setFileType((byte)1);          //设置1标示为产品手册文件
+                        filestorage.setFileType((byte)2);          //设置2标示为产品手册文件
 
                     filestorageMapper.insert(filestorage);      //插数据库
                     fileId = filestorage.getId();
