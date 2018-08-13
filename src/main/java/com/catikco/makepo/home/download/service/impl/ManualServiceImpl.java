@@ -33,7 +33,7 @@ public class ManualServiceImpl implements ManualService {
         FileStorageExample.Criteria criteria = fileStorageExample.createCriteria();
 
         //产品按时间排序
-        fileStorageExample.setOrderByClause("creteTime" + " " + "asc");
+        fileStorageExample.setOrderByClause("createTime" + " " + "asc");
 
         Integer pageNum = null;
 
