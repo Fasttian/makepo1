@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * Date: 2018-08-11 16:09
  * Description：
  */
-@Controller(value = "admin.CyclopediaController")
+@Controller(value = "admin.cyclopedia")
 @RequestMapping
 public class CyclopediaController {
 

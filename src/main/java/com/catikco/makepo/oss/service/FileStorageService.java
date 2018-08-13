@@ -22,7 +22,7 @@ public interface FileStorageService {
      * @param isTitle
      * @return
      */
-    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType);
+    public String uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType);
 
     /**
      * 根据id删除

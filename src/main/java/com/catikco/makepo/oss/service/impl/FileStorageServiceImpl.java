@@ -36,7 +36,7 @@ public class FileStorageServiceImpl implements FileStorageService {
      * @return
      */
     @Override
-    public Integer uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType) {
+    public String uploads(MultipartFile multipartFile,HttpServletResponse response,Boolean isTitle,Integer fileType) {
 
         StringBuffer result = new StringBuffer("");
         Integer fileId = null;
@@ -80,7 +80,7 @@ public class FileStorageServiceImpl implements FileStorageService {
                     filestorage.setFilePrefix(filePrefix);
                     filestorage.setFileSize(multipartFile.getSize());
                     filestorage.setDeleted(false);
-                    filestorage.setCreteTime(new Date());
+                    filestorage.setCreateTime(new Date());
                     filestorage.setFileStatus((byte)1);       //文件状态：1，临时 2，正常 3，废弃
                     filestorage.setRemark("临时文件");
 
@@ -98,7 +98,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 
                     if(!isTitle)
                       ResponsnUtils.print(response, result.toString());
-                    return fileId;
+                    return filestorage.getFilePath();
                 }
 
         } else {

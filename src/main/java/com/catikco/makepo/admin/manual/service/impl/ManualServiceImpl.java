@@ -87,7 +87,7 @@ public class ManualServiceImpl implements ManualService {
             ManualListPageModel manualListPageModel = new ManualListPageModel();
             manualListPageModel.setId(file.getId());
             manualListPageModel.setFilePrefix(file.getFilePrefix());
-            manualListPageModel.setCreteTime(dateToString(file.getCreteTime()));
+            manualListPageModel.setCreteTime(dateToString(file.getCreateTime()));
 
             manualListPageModelList.add(manualListPageModel);
 

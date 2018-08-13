@@ -5,7 +5,7 @@ import java.util.Date;
 public class Cyclopedia {
     private Integer id;
 
-    private Integer cyclopediaTitleImageFileid;
+    private String cyclopediaTitleImage;
 
     private String cyclopediaContentImagesFileid;
 
@@ -27,11 +27,11 @@ public class Cyclopedia {
 
     private Date createTime;
 
-    private Date upDataTime;
+    private Date updateTime;
 
     private Integer createBy;
 
-    private Integer upDataBy;
+    private Integer updateBy;
 
     private String remark;
 
@@ -45,12 +45,12 @@ public class Cyclopedia {
         this.id = id;
     }
 
-    public Integer getCyclopediaTitleImageFileid() {
-        return cyclopediaTitleImageFileid;
+    public String getCyclopediaTitleImage() {
+        return cyclopediaTitleImage;
     }
 
-    public void setCyclopediaTitleImageFileid(Integer cyclopediaTitleImageFileid) {
-        this.cyclopediaTitleImageFileid = cyclopediaTitleImageFileid;
+    public void setCyclopediaTitleImage(String cyclopediaTitleImage) {
+        this.cyclopediaTitleImage = cyclopediaTitleImage == null ? null : cyclopediaTitleImage.trim();
     }
 
     public String getCyclopediaContentImagesFileid() {
@@ -133,12 +133,12 @@ public class Cyclopedia {
         this.createTime = createTime;
     }
 
-    public Date getUpDataTime() {
-        return upDataTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpDataTime(Date upDataTime) {
-        this.upDataTime = upDataTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Integer getCreateBy() {
@@ -149,12 +149,12 @@ public class Cyclopedia {
         this.createBy = createBy;
     }
 
-    public Integer getUpDataBy() {
-        return upDataBy;
+    public Integer getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpDataBy(Integer upDataBy) {
-        this.upDataBy = upDataBy;
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
     }
 
     public String getRemark() {

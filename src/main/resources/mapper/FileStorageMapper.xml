@@ -9,10 +9,10 @@
     <result column="fileDesc" property="fileDesc" jdbcType="VARCHAR" />
     <result column="fileStatus" property="fileStatus" jdbcType="TINYINT" />
     <result column="filePath" property="filePath" jdbcType="VARCHAR" />
-    <result column="creteTime" property="creteTime" jdbcType="DATE" />
-    <result column="upDataTime" property="upDataTime" jdbcType="DATE" />
+    <result column="createTime" property="createTime" jdbcType="DATE" />
+    <result column="updateTime" property="updateTime" jdbcType="DATE" />
     <result column="createBy" property="createBy" jdbcType="INTEGER" />
-    <result column="upDataBy" property="upDataBy" jdbcType="INTEGER" />
+    <result column="updateBy" property="updateBy" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="BIT" />
     <result column="fileType" property="fileType" jdbcType="TINYINT" />
@@ -76,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, fileSize, filePrefix, fileSuffix, fileDesc, fileStatus, filePath, creteTime, 
-    upDataTime, createBy, upDataBy, remark, deleted, fileType
+    id, fileSize, filePrefix, fileSuffix, fileDesc, fileStatus, filePath, createTime, 
+    updateTime, createBy, updateBy, remark, deleted, fileType
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.FileStorageExample" >
     select
@@ -112,13 +112,13 @@
   <insert id="insert" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
     insert into filestorage (id, fileSize, filePrefix, 
       fileSuffix, fileDesc, fileStatus, 
-      filePath, creteTime, upDataTime, 
-      createBy, upDataBy, remark, 
+      filePath, createTime, updateTime, 
+      createBy, updateBy, remark, 
       deleted, fileType)
     values (#{id,jdbcType=INTEGER}, #{fileSize,jdbcType=BIGINT}, #{filePrefix,jdbcType=VARCHAR}, 
       #{fileSuffix,jdbcType=VARCHAR}, #{fileDesc,jdbcType=VARCHAR}, #{fileStatus,jdbcType=TINYINT}, 
-      #{filePath,jdbcType=VARCHAR}, #{creteTime,jdbcType=DATE}, #{upDataTime,jdbcType=DATE}, 
-      #{createBy,jdbcType=INTEGER}, #{upDataBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{filePath,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{createBy,jdbcType=INTEGER}, #{updateBy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT}, #{fileType,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
@@ -145,17 +145,17 @@
       <if test="filePath != null" >
         filePath,
       </if>
-      <if test="creteTime != null" >
-        creteTime,
+      <if test="createTime != null" >
+        createTime,
       </if>
-      <if test="upDataTime != null" >
-        upDataTime,
+      <if test="updateTime != null" >
+        updateTime,
       </if>
       <if test="createBy != null" >
         createBy,
       </if>
-      <if test="upDataBy != null" >
-        upDataBy,
+      <if test="updateBy != null" >
+        updateBy,
       </if>
       <if test="remark != null" >
         remark,
@@ -189,17 +189,17 @@
       <if test="filePath != null" >
         #{filePath,jdbcType=VARCHAR},
       </if>
-      <if test="creteTime != null" >
-        #{creteTime,jdbcType=DATE},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
       </if>
-      <if test="upDataTime != null" >
-        #{upDataTime,jdbcType=DATE},
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
       </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="upDataBy != null" >
-        #{upDataBy,jdbcType=INTEGER},
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -242,17 +242,17 @@
       <if test="record.filePath != null" >
         filePath = #{record.filePath,jdbcType=VARCHAR},
       </if>
-      <if test="record.creteTime != null" >
-        creteTime = #{record.creteTime,jdbcType=DATE},
+      <if test="record.createTime != null" >
+        createTime = #{record.createTime,jdbcType=DATE},
       </if>
-      <if test="record.upDataTime != null" >
-        upDataTime = #{record.upDataTime,jdbcType=DATE},
+      <if test="record.updateTime != null" >
+        updateTime = #{record.updateTime,jdbcType=DATE},
       </if>
       <if test="record.createBy != null" >
         createBy = #{record.createBy,jdbcType=INTEGER},
       </if>
-      <if test="record.upDataBy != null" >
-        upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      <if test="record.updateBy != null" >
+        updateBy = #{record.updateBy,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -277,10 +277,10 @@
       fileDesc = #{record.fileDesc,jdbcType=VARCHAR},
       fileStatus = #{record.fileStatus,jdbcType=TINYINT},
       filePath = #{record.filePath,jdbcType=VARCHAR},
-      creteTime = #{record.creteTime,jdbcType=DATE},
-      upDataTime = #{record.upDataTime,jdbcType=DATE},
+      createTime = #{record.createTime,jdbcType=DATE},
+      updateTime = #{record.updateTime,jdbcType=DATE},
       createBy = #{record.createBy,jdbcType=INTEGER},
-      upDataBy = #{record.upDataBy,jdbcType=INTEGER},
+      updateBy = #{record.updateBy,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       fileType = #{record.fileType,jdbcType=TINYINT}
@@ -309,17 +309,17 @@
       <if test="filePath != null" >
         filePath = #{filePath,jdbcType=VARCHAR},
       </if>
-      <if test="creteTime != null" >
-        creteTime = #{creteTime,jdbcType=DATE},
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=DATE},
       </if>
-      <if test="upDataTime != null" >
-        upDataTime = #{upDataTime,jdbcType=DATE},
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=DATE},
       </if>
       <if test="createBy != null" >
         createBy = #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="upDataBy != null" >
-        upDataBy = #{upDataBy,jdbcType=INTEGER},
+      <if test="updateBy != null" >
+        updateBy = #{updateBy,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -341,10 +341,10 @@
       fileDesc = #{fileDesc,jdbcType=VARCHAR},
       fileStatus = #{fileStatus,jdbcType=TINYINT},
       filePath = #{filePath,jdbcType=VARCHAR},
-      creteTime = #{creteTime,jdbcType=DATE},
-      upDataTime = #{upDataTime,jdbcType=DATE},
+      createTime = #{createTime,jdbcType=DATE},
+      updateTime = #{updateTime,jdbcType=DATE},
       createBy = #{createBy,jdbcType=INTEGER},
-      upDataBy = #{upDataBy,jdbcType=INTEGER},
+      updateBy = #{updateBy,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
       fileType = #{fileType,jdbcType=TINYINT}

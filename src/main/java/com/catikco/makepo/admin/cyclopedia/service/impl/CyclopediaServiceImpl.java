@@ -28,7 +28,7 @@ import static com.catikco.makepo.common.StringUtils.parseContentFileId;
  * Date: 2018-08-11 16:09
  * Description：
  */
-@Service
+@Service(value = "admin.cyclopediaService")
 public class CyclopediaServiceImpl implements CyclopediaService {
 
     @Autowired
@@ -99,18 +99,18 @@ public class CyclopediaServiceImpl implements CyclopediaService {
     public int saveCyclopedia(CyclopediaEditPageModel cyclopediaEditPageModel, HttpServletResponse response){
 
         //修改时允许不选择概要图片
-        Integer cyclopediaTitleImageFileid = null; //概要图片文件id
+        String cyclopediaTitleImage = null; //概要图片文件id
         String cyclopediaContentFileid = null;     //内容图片文件id
         MultipartFile multipartFile = cyclopediaEditPageModel.getTitImage();
         if(null != cyclopediaEditPageModel.getTitImage().getOriginalFilename())
-            cyclopediaTitleImageFileid = fileStorageService.uploads(cyclopediaEditPageModel.getTitImage(), response,true,null);
+            cyclopediaTitleImage = fileStorageService.uploads(cyclopediaEditPageModel.getTitImage(), response,true,null);
 
         cyclopediaContentFileid = parseContentFileId(cyclopediaEditPageModel.getContent());
 
-        CyclopediaWithBLOBs cyclopediaWithBLOBs = this.changeToCyclopediaWithBLOBs(cyclopediaEditPageModel, cyclopediaTitleImageFileid, cyclopediaContentFileid);
+        CyclopediaWithBLOBs cyclopediaWithBLOBs = this.changeToCyclopediaWithBLOBs(cyclopediaEditPageModel, cyclopediaTitleImage, cyclopediaContentFileid);
         //插数据库
         if(null != cyclopediaEditPageModel.getId() && !"".equals(cyclopediaEditPageModel.getId())){
-            cyclopediaWithBLOBs.setUpDataTime(new Date());
+            cyclopediaWithBLOBs.setUpdateTime(new Date());
             return cyclopediaMapper.updateByPrimaryKeySelective(cyclopediaWithBLOBs);
         }else {
             cyclopediaWithBLOBs.setCreateTime(new Date());
@@ -188,11 +188,11 @@ public class CyclopediaServiceImpl implements CyclopediaService {
     /**
      * 转换页面model为数据model
      * @param cyclopediaEditPageModel  页面model
-     * @param cyclopediaTitleImageFileid 新闻概要图片文件id（一个）
+     * @param cyclopediaTitleImage 新闻概要图片文件id（一个）
      * @param cyclopediaContentImagesFileid 新内容正中的图片id(多个)
      * @return
      */
-    private CyclopediaWithBLOBs changeToCyclopediaWithBLOBs(CyclopediaEditPageModel cyclopediaEditPageModel, Integer cyclopediaTitleImageFileid, String cyclopediaContentImagesFileid){
+    private CyclopediaWithBLOBs changeToCyclopediaWithBLOBs(CyclopediaEditPageModel cyclopediaEditPageModel, String cyclopediaTitleImage, String cyclopediaContentImagesFileid){
         CyclopediaWithBLOBs cyclopediaWithBLOBs = new CyclopediaWithBLOBs();
 
         cyclopediaWithBLOBs.setTitle(cyclopediaEditPageModel.getTitle());
@@ -202,7 +202,7 @@ public class CyclopediaServiceImpl implements CyclopediaService {
         cyclopediaWithBLOBs.setKeywords(cyclopediaEditPageModel.getKeywords());
         cyclopediaWithBLOBs.setCyclopediaType(cyclopediaEditPageModel.getCyclopediaType());         //新闻类型
         cyclopediaWithBLOBs.setCyclopediaContentImagesFileid(cyclopediaContentImagesFileid);  //新闻内容中的图片id
-        cyclopediaWithBLOBs.setCyclopediaTitleImageFileid(cyclopediaTitleImageFileid);        //新闻概要图中的id
+        cyclopediaWithBLOBs.setCyclopediaTitleImage(cyclopediaTitleImage);        //新闻概要图中的id
         cyclopediaWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         cyclopediaWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         cyclopediaWithBLOBs.setCyclopediaUrl("/cyclopedia-detail");                           //新闻链接默认为cyclopedia-detail

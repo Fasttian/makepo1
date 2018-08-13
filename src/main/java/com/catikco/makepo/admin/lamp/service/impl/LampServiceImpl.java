@@ -87,18 +87,18 @@ public class LampServiceImpl implements LampService {
     @Override
     public int saveLamp(LampEditPageModel lampEditPageModel, HttpServletResponse response) {
         //修改时允许不选择概要图片
-        Integer lampTitleImageFileid = null; //概要图片文件id
+        String lampTitleImage = null; //概要图片文件id
         String lampContentFileid = null;     //内容图片文件id
         MultipartFile multipartFile = lampEditPageModel.getTitImage();
         if (null != lampEditPageModel.getTitImage().getOriginalFilename())
-            lampTitleImageFileid = fileStorageService.uploads(lampEditPageModel.getTitImage(), response, true,null);
+            lampTitleImage = fileStorageService.uploads(lampEditPageModel.getTitImage(), response, true,null);
 
 //        lampContentFileid = parseContentFileId(lampEditPageModel.getContent());
 
-        LampWithBLOBs lampWithBLOBs = this.changeToLamp(lampEditPageModel, lampTitleImageFileid, null);
+        LampWithBLOBs lampWithBLOBs = this.changeToLamp(lampEditPageModel, lampTitleImage, null);
         //插数据库
         if (null != lampEditPageModel.getId() && !"".equals(lampEditPageModel.getId())) {
-            lampWithBLOBs.setUpDataTime(new Date());
+            lampWithBLOBs.setUpdateTime(new Date());
             int iss = lampMapper.updateByPrimaryKeyWithBLOBs(lampWithBLOBs);
             return iss;
         } else {
@@ -171,14 +171,14 @@ public class LampServiceImpl implements LampService {
     /**
      * 转换页面 model 为数据 model
      * @param lampEditPageModel 页面 model
-     * @param productTitleImageFileid 产品概要图片文件 id（一个）
+     * @param lampTitleImage 产品概要图片文件 id（一个）
      * @param productContentImageFileid 产品详情页中可能有多张图片id（预览参数）
      */
-    private LampWithBLOBs changeToLamp(LampEditPageModel lampEditPageModel, Integer productTitleImageFileid, String productContentImageFileid){
+    private LampWithBLOBs changeToLamp(LampEditPageModel lampEditPageModel, String lampTitleImage, String productContentImageFileid){
         LampWithBLOBs lampWithBLOBs = new LampWithBLOBs();
 
         lampWithBLOBs.setId(lampEditPageModel.getId());
-        lampWithBLOBs.setProductTitleImageFileid(productTitleImageFileid);
+        lampWithBLOBs.setProductTitleImage(lampTitleImage);
         lampWithBLOBs.setModel(lampEditPageModel.getModel());
         lampWithBLOBs.setDescription(lampEditPageModel.getDescription());
         lampWithBLOBs.setProductCreateTime(lampEditPageModel.getProductCreateTime());

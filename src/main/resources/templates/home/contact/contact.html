@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="message-box box-shadow white-bg">
-                                <form id="contact-form" action="mail.php" method="post">
+                                <form id="contact-form" >
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h4 class="blog-section-title border-left mb-30">get in touch</h4>
@@ -87,8 +87,8 @@
                                             <input type="text" name="phone" placeholder="Your phone here">
                                         </div>
                                         <div class="col-md-12">
-                                            <textarea class="custom-textarea" name="message" placeholder="Message"></textarea>
-                                            <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">submit message</button>
+                                            <textarea class="custom-textarea" name="moreInfo" placeholder="Message"></textarea>
+                                            <button  class="submit-btn-1 mt-20 btn-hover-1" onclick="sumbitMessage()" >submit message</button>
                                         </div>
                                     </div>
                                 </form>
@@ -103,3 +103,30 @@
         <!-- End page content -->
 
 <#include "./home/public/footer.html"/>
+<script>
+    function sumbitMessage() {
+
+        var data = $("#contact-form")
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-contactus',
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                if(data.code == "succeed"){
+                    notify_sucess(data.data);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
+                    return;
+                }
+            },
+            error: function (e) {
+                notify_error("提交出错，请重试！");
+            }
+        })
+        
+    }
+
+</script>

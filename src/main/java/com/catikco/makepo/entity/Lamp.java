@@ -5,7 +5,7 @@ import java.util.Date;
 public class Lamp {
     private Integer id;
 
-    private Integer productTitleImageFileid;
+    private String productTitleImage;
 
     private String productContentImagesFileid;
 
@@ -37,11 +37,11 @@ public class Lamp {
 
     private Date createTime;
 
-    private Date upDataTime;
+    private Date updateTime;
 
     private Integer createBy;
 
-    private Integer upDataBy;
+    private Integer updateBy;
 
     private String remark;
 
@@ -55,12 +55,12 @@ public class Lamp {
         this.id = id;
     }
 
-    public Integer getProductTitleImageFileid() {
-        return productTitleImageFileid;
+    public String getProductTitleImage() {
+        return productTitleImage;
     }
 
-    public void setProductTitleImageFileid(Integer productTitleImageFileid) {
-        this.productTitleImageFileid = productTitleImageFileid;
+    public void setProductTitleImage(String productTitleImage) {
+        this.productTitleImage = productTitleImage == null ? null : productTitleImage.trim();
     }
 
     public String getProductContentImagesFileid() {
@@ -183,12 +183,12 @@ public class Lamp {
         this.createTime = createTime;
     }
 
-    public Date getUpDataTime() {
-        return upDataTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpDataTime(Date upDataTime) {
-        this.upDataTime = upDataTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Integer getCreateBy() {
@@ -199,12 +199,12 @@ public class Lamp {
         this.createBy = createBy;
     }
 
-    public Integer getUpDataBy() {
-        return upDataBy;
+    public Integer getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpDataBy(Integer upDataBy) {
-        this.upDataBy = upDataBy;
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
     }
 
     public String getRemark() {

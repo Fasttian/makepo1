@@ -100,18 +100,18 @@ public class PowerServiceImpl implements PowerService {
      */
     @Override
     public Integer savePower(PowerEditPageModel powerEditPageModel, HttpServletResponse response) {
-        Integer productTitleImageFileid = null; //产品图片文件id
+        String productTitleImage = null; //产品图片文件id
         MultipartFile multipartFile = powerEditPageModel.getTitImage();
         if(null != powerEditPageModel.getTitImage().getOriginalFilename())
-            productTitleImageFileid = fileStorageService.uploads(multipartFile,response,true,null);
+            productTitleImage = fileStorageService.uploads(multipartFile,response,true,null);
 
-        PowerWithBLOBs powerWithBLOBs =changeToPowerWithBLOBs(powerEditPageModel,productTitleImageFileid,null);
+        PowerWithBLOBs powerWithBLOBs =changeToPowerWithBLOBs(powerEditPageModel,productTitleImage,null);
         //插数据库
         if(powerEditPageModel.getId() != null && !"".equals(powerEditPageModel.getId())){
-                powerWithBLOBs.setUpDataTime(new Date());
+                powerWithBLOBs.setUpdateTime(new Date());
                 return powerMapper.updateByPrimaryKeyWithBLOBs(powerWithBLOBs);
         }else {
-            powerWithBLOBs.setCreteTime(new Date());
+            powerWithBLOBs.setCreateTime(new Date());
             return powerMapper.insert(powerWithBLOBs);
         }
 
@@ -120,11 +120,11 @@ public class PowerServiceImpl implements PowerService {
     /************************** 私有方法******************************/
 
 
-    private PowerWithBLOBs changeToPowerWithBLOBs(PowerEditPageModel powerEditPageModel,Integer productTitleImageFileid,Integer contentFileid){
+    private PowerWithBLOBs changeToPowerWithBLOBs(PowerEditPageModel powerEditPageModel,String productTitleImage,Integer contentFileid){
         PowerWithBLOBs powerWithBLOBs = new PowerWithBLOBs();
 
         powerWithBLOBs.setModel(powerEditPageModel.getModel());
-        powerWithBLOBs.setProductTitleImageFileid(productTitleImageFileid);
+        powerWithBLOBs.setProductTitleImage(productTitleImage);
         powerWithBLOBs.setId(powerEditPageModel.getId());
         powerWithBLOBs.setInput(powerEditPageModel.getInput());
         powerWithBLOBs.setOutput(powerEditPageModel.getOutput());

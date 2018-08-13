@@ -11,13 +11,13 @@ public class Message {
 
     private String subject;
 
-    private Date creteTime;
+    private Date createTime;
 
-    private Date upDataTime;
+    private Date updateTime;
 
     private Integer createBy;
 
-    private Integer upDataBy;
+    private Integer updateBy;
 
     private String remark;
 
@@ -59,20 +59,20 @@ public class Message {
         this.subject = subject == null ? null : subject.trim();
     }
 
-    public Date getCreteTime() {
-        return creteTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreteTime(Date creteTime) {
-        this.creteTime = creteTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpDataTime() {
-        return upDataTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpDataTime(Date upDataTime) {
-        this.upDataTime = upDataTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Integer getCreateBy() {
@@ -83,12 +83,12 @@ public class Message {
         this.createBy = createBy;
     }
 
-    public Integer getUpDataBy() {
-        return upDataBy;
+    public Integer getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpDataBy(Integer upDataBy) {
-        this.upDataBy = upDataBy;
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
     }
 
     public String getRemark() {
