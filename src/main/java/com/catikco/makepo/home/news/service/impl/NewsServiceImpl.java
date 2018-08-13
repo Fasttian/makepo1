@@ -52,7 +52,7 @@ public class NewsServiceImpl implements NewsService {
             startPage = pageNum;
 
         //设置分页信息
-        PageHelper.startPage(startPage,2);
+        PageHelper.startPage(startPage,8);
 
         List<NewsWithBLOBs> newsWithBLOBsList = newsMapper.selectByExampleWithBLOBs(newsExample);
         //让pageInfo对象进行分页的处理
@@ -66,8 +66,17 @@ public class NewsServiceImpl implements NewsService {
         newsListPageModel.setPrevPage(pageInfo.getPrePage());
         newsListPageModel.setNextShow(pageInfo.isHasNextPage());
         newsListPageModel.setPrevShow(pageInfo.isHasPreviousPage());
+        newsListPageModel.setTotal(pageInfo.getTotal());
 
         return newsListPageModel;
+    }
+
+    @Override
+    public NewsWithBLOBs getById(Integer id) {
+        if(null == id)
+            return null;
+
+        return newsMapper.selectByPrimaryKey(id);
     }
 
     /********************************** 私有方法 *******************************************/

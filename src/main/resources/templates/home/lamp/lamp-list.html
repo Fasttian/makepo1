@@ -46,17 +46,19 @@
                                     <!-- short-by -->
                                     <div class="short-by f-left text-center">
                                         <span>Sort by :</span>
-                                        <select>
-                                            <option value="volvo">全部</option>
-                                            <option value="saab">G4/G9</option>
-                                            <option value="mercedes">球泡灯</option>
-                                            <option value="audi">灯丝灯</option>
-                                            <option value="audi">面板灯</option>
+                                        <!-- 勿删，用于处理灯饰分类 -->
+                                        <input type="hidden" id="retrunProType" value="${productType}">
+                                        <select id="productType" onchange="queryByType()">
+                                            <option value="0">全部</option>
+                                            <option value="1">G4/G9</option>
+                                            <option value="2">球泡灯</option>
+                                            <option value="3">灯丝灯</option>
+                                            <option value="4">面板灯</option>
                                         </select>
                                     </div>
                                     <!-- showing -->
                                     <div class="showing f-right text-right">
-                                        <span>Showing : 01-09 of 17.</span>
+                                        <span>total : ${lampListPageModel.total}&nbsp;&nbsp;&nbsp; </span>
                                     </div>
                                 </div>
                                 <!-- shop-option end -->
@@ -71,7 +73,7 @@
                                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                                     <div class="product-item">
                                                         <div class="product-img">
-                                                            <a href="/lampDetail">
+                                                            <a href="javascript:detail(${lampList.id})">
                                                                 <img src="${lampList.productTitleImage}" alt=""/>
                                                             </a>
                                                         </div>
@@ -164,18 +166,66 @@
 <script>
     //ajax 访问后台提取数据
     function queryByPage(pageNum) {
+
+        var options=$("#productType option:selected");
+        var productType = options.val();
+
+       // var productType = $("#retrunProType").val()
+
         $.ajax({
             type: 'GET',
-            url:'/lampListByPage?pageNum='+ pageNum,
+            url:'/lampListByPage?pageNum='+ pageNum + '&productType=' + productType,
             success: function(data) {
                 $('#lamp-list-content').html();
                 $('#lamp-list-content').html(data);
+                $("#retrunProType").val(productType)
+
+                var newProType =  $("#retrunProType").val(productType)
+
+                $("#productType option[value='"+productType+"']").attr("selected", "selected");
             },
             error: function(){
-                alert('保存失败！');
+                alert('请求失败！');
             }
         })
 
     }
 
+    function detail(id) {
+        $.ajax({
+            type: 'GET',
+            url:'/lampDetail?id='+ id,
+            success: function(data) {
+                window.location.href='/lampDetail?id='+id;
+
+            },
+            error: function(){
+                alert('请求出错!');
+            }
+        })
+    }
+
+
+    function queryByType() {
+        var options=$("#productType option:selected");
+        var productType = options.val();
+
+        //$("#retrunProType").val(productType)
+
+        $.ajax({
+            type: 'GET',
+            url:'/lampListByPage?productType='+ productType,
+            success: function(data) {
+
+                $('#lamp-list-content').html();
+                $('#lamp-list-content').html(data);
+                $("#productType option[value='"+productType+"']").attr("selected", "selected");
+
+            },
+            error: function(){
+                alert('请求出错，请重试！');
+            }
+        })
+
+    }
 </script>

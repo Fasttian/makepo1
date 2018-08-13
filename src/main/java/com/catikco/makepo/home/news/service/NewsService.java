@@ -1,5 +1,7 @@
 package com.catikco.makepo.home.news.service;
 
+import com.catikco.makepo.entity.NewsWithBLOBs;
+import com.catikco.makepo.entity.PowerWithBLOBs;
 import com.catikco.makepo.home.news.model.NewsListPageModel;
 
 import java.util.Map;
@@ -18,5 +20,7 @@ public interface NewsService {
      * @return
      */
     public NewsListPageModel getNewsList(Map<String,Object> queryCriteria);
+
+    public NewsWithBLOBs getById(Integer id);
 
 }
