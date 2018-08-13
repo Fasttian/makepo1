@@ -38,14 +38,15 @@ public class ManualController {
     }
 
     @RequestMapping("/save-manual-file")
-    public CallResult<String> saveFiles(@RequestParam("file")MultipartFile multipartFile, HttpServletResponse response){
+    @ResponseBody
+    public CallResult<String> saveFiles(MultipartFile titImage, HttpServletResponse response){
         CallResult<String> result = new CallResult<>();
-        if(null != fileStorageService.uploads(multipartFile,response,false,null)){
+        if(null != fileStorageService.uploads(titImage,response,true,2)){
             result.setCode("succeed");
-            result.setData("保存成功，准备返回列表！");
+            result.setData("上传成功，准备刷新列表列表！");
         }else {
             result.setCode("error");
-            result.setData("保存失败");
+            result.setData("上传失败，请重试！");
         }
         return result;
 
@@ -76,7 +77,7 @@ public class ManualController {
      * @param id
      * @param response
      */
-    @RequestMapping("download-manual")
+    @RequestMapping("download-file")
     public void download(Integer id,HttpServletResponse response) throws IOException {
         fileStorageService.download(id,response);
     }
