@@ -170,8 +170,6 @@
         var options=$("#productType option:selected");
         var productType = options.val();
 
-       // var productType = $("#retrunProType").val()
-
         $.ajax({
             type: 'GET',
             url:'/lampListByPage?pageNum='+ pageNum + '&productType=' + productType,
@@ -179,8 +177,6 @@
                 $('#lamp-list-content').html();
                 $('#lamp-list-content').html(data);
                 $("#retrunProType").val(productType)
-
-                var newProType =  $("#retrunProType").val(productType)
 
                 $("#productType option[value='"+productType+"']").attr("selected", "selected");
             },
@@ -209,8 +205,6 @@
     function queryByType() {
         var options=$("#productType option:selected");
         var productType = options.val();
-
-        //$("#retrunProType").val(productType)
 
         $.ajax({
             type: 'GET',

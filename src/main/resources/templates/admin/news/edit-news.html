@@ -52,14 +52,14 @@
                                         <label class="col-md-2 control-label">关键字</label>
                                         <div class="col-md-10">
                                             <input type="text" id="keywords" name="keywords" class="form-control" value="${newsEditPageModel.keywords}"
-                                                   placeholder="更容易搜索引擎抓取">
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">描述</label>
                                         <div class="col-md-10">
                                             <input type="text" id="description" name="description" class="form-control" value="${newsEditPageModel.description}"
-                                                   placeholder="更容易搜索引擎抓取">
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -80,7 +80,7 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" name="newsCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(newsEditPageModel.newsCreateTime ? string('MM/dd/yyyy'))!''}">
+                                                    <input type="text" id="newsCreateTime" name="newsCreateTime" class="form-control"  value=" ${(newsEditPageModel.newsCreateTime ? string('MM/dd/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
                                                 </div>
@@ -92,8 +92,7 @@
                                         <div class="col-md-10">
                                             <!-- 暂时使用页面存值方式，处理下拉选赋值问题  -->
                                             <input type="hidden" id="newsTypeValue" value="${newsEditPageModel.newsType}">
-                                            <select id="newsType" name="newsType" class="selectpicker"
-                                                    data-style="btn-custom" >
+                                            <select id="newsType" name="newsType" class="selectpicker" data-style="btn-custom" >
                                                 <option value="1">行业新闻</option>
                                                 <option value="2">国内新闻</option>
                                                 <option value="3">国外新闻</option>
@@ -233,9 +232,6 @@
 <script>
 
     $(document).ready(function () {
-        //处理新闻类型下拉选（赋值问题）
-        var newsType = $('#newsTypeValue').val();
-        $("#newsType option[value='"+newsType+"']").attr("selected", "selected");
 
         //初始化文本编辑器
         $('.summernote').summernote({
@@ -282,16 +278,49 @@
     //提交新闻
     function submitNewsData(){
         //表单验证
-        if($('#title').val() == ''){
+        var title = $('#title').val();
+        var keywords = $('#keywords').val();
+        var description = $('#description').val();
+        var newsResources = $('#newsResources').val();
+        var newsCreateTime = $('#newsCreateTime').val();
+        var digest = $('#digest').val();
+        //富文本编辑器数据
+        var content = $('#content').summernote('code');
+
+        if(title == '' || title == undefined || title == null){
             notify_error("请填写新闻标题")
+            return;
+        }
+        if(keywords == '' || keywords == undefined || keywords == null){
+            notify_error("请填写关键字")
+            return;
+        }
+        if(description == '' || description ==undefined || description == null){
+            notify_error("请填写描述")
+            return;
+        }
+
+        if(newsResources == '' || newsResources ==undefined || newsResources == null){
+            notify_error("请填写来源")
+            return;
+        }
+        if(newsCreateTime == '' || newsCreateTime ==undefined || newsCreateTime == null){
+            notify_error("请填写发布时间")
+            return;
+        }
+
+        if(content == '' || content ==undefined || content == null){
+            notify_error("请填写摘要")
+            return;
+        }
+        if(content == '' || content ==undefined || content == null){
+            notify_error("请填写内容")
             return;
         }
 
         //FormData表单数据
         var formData = new FormData(document.getElementById("editNewsForm"));
 
-        //富文本编辑器数据
-        var content = $('#content').summernote('code');
         formData.append("content",content);
 
         $.ajax({
@@ -321,8 +350,12 @@
 
     }
 
+    //下拉选赋值
+
+
+
     // Date Picker
-    $('#datepicker-autoclose').datepicker({
+    $('#newsCreateTime').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: 'yyyy/mm/dd'
