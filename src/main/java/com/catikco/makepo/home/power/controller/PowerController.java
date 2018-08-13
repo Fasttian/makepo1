@@ -1,5 +1,6 @@
 package com.catikco.makepo.home.power.controller;
 
+import com.catikco.makepo.entity.PowerWithBLOBs;
 import com.catikco.makepo.home.power.service.PowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,12 @@ public class PowerController {
     }
 
     @RequestMapping("/powerDetail")
-    public String VisitProductPageDetail(){
+    public String VisitProductPageDetail(HttpServletRequest request,Integer id){
+        PowerWithBLOBs powerWithBLOBs = new PowerWithBLOBs();
+        powerWithBLOBs = powerService.getById(id);
+
+        request.setAttribute("powerWithBLOBs",powerWithBLOBs);
+
         return "home/power/power-detail";
     }
 }

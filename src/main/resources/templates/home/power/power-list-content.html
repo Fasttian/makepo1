@@ -15,7 +15,7 @@
                     </li>
                 </ul>
                 <!-- short-by -->
-                <div class="short-by f-left text-center">
+               <!-- <div class="short-by f-left text-center">
                     <span>Sort by :</span>
                     <select id="productType" onchange="queryByType()">
                         <option value="0" >全部</option>
@@ -24,10 +24,10 @@
                         <option value="3" >灯丝灯</option>
                         <option value="4" >面板灯</option>
                     </select>
-                </div>
+                </div>-->
                 <!-- showing -->
                 <div class="showing f-right text-right">
-                    <span>Showing : 01-09 of 17.</span>
+                    <span>total : ${powerListPageModel.total}&nbsp;&nbsp;&nbsp; </span>
                 </div>
             </div>
             <!-- shop-option end -->
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="product-info">
                                     <h6 class="product-title">
-                                        <a href="/powerDetail"+${powerList.id}>${powerList.model}</a>
+                                        <a href="javascript:detail(${powerList.id})">${powerList.model}</a>
                                     </h6>
                                     <div class="pro-rating">
                                         <a href="#"><i class="zmdi zmdi-star"></i></a>

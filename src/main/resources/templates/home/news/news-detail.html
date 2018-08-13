@@ -32,7 +32,7 @@
                             <div class="blog-details-area">
                                 <!-- blog-details-photo -->
                                 <div class="blog-details-photo bg-img-1 p-20 mb-30">
-                                    <img src="home/img/blog/10.jpg" alt="">
+                                    <img src="${newsWithBLOBs.newsTitleImage}" alt="">
                                     <div class="today-date bg-img-1">
                                         <span class="meta-date">30</span>
                                         <span class="meta-month">June</span>
@@ -48,18 +48,10 @@
                                     </li>
                                 </ul>
                                 <!-- blog-details-title -->
-                                <h3 class="blog-details-title mb-30">Dumm`y single blog name</h3>
+                                <h3 class="blog-details-title mb-30">${newsWithBLOBs.title}</h3>
                                 <!-- blog-description -->
                                 <div class="blog-description mb-60">
-                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of plea sure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belon gs to those who fail in their duty through weakness of will, which is the same as saying through shrink ing from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour.</p>
-
-                                    <div class="quote-author pl-30">
-                                        <p class="quote-border pl-30">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charm of pleas ure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will</p>
-                                    </div>
-
-                                    <p>Which is the same as saying through shrink ing from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour. One the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of plea sure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belong to those who fail in their duty through weakness of will, which is the same as saying through shrink ing from toil and pain. These cases are perfectly simple and easy to distinguish.</p>
-
-                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of plea sure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belon gs to those who fail in their duty through weakness of will, which is the same as saying through shrink ing from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour.</p>    
+                                    ${newsWithBLOBs.content}
                                 </div>
                                 <!-- blog-share-tags -->
                                 <div class="blog-share-tags box-shadow clearfix mb-60">
@@ -97,9 +89,9 @@
                                 <h6 class="widget-title border-left mb-20">Categories</h6>
                                 <div id="cat-treeview" class="product-cat">
                                     <ul>
-                                        <li class="closed"><a href="#">分类一</a></li>
-                                        <li class="closed"><a href="#">分类二</a></li>
-                                        <li class="closed"><a href="#">分类三</a></li>
+                                        <li class="closed"><a href="/newsList?newsType=1">行业新闻</a></li>
+                                        <li class="closed"><a href="/newsList?newsType=2">国内新闻</a></li>
+                                        <li class="closed"><a href="/newsList?newsType=3">国外新闻</a></li>
                                     </ul>
                                 </div>
                             </aside>

@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.catikco.makepo.common.DateUtils.dateToString;
+
 /**
  * Author: Cai Rong fei
  * Date: 2018-08-11 21:19
@@ -60,7 +62,7 @@ public class MessageServiceImpl implements MessageService {
         PageHelper.startPage(currentPage,length);
 
         //根据条件从数据库查询出新闻
-        List<Message> messageList = messageMapper.selectByExample(messageExample);
+        List<Message> messageList = messageMapper.selectByExampleWithBLOBs(messageExample);
 
         //让pageInfo对象进行分页的处理
         PageInfo<Message> pageInfo = new PageInfo<>(messageList);
@@ -86,7 +88,7 @@ public class MessageServiceImpl implements MessageService {
             messageListPageModel.setName(message.getName());
             messageListPageModel.setSubject(message.getSubject());
             messageListPageModel.setPhone(message.getPhone());
-
+            messageListPageModel.setCreateTime(dateToString(message.getCreateTime()));
             messageListPageModelList.add(messageListPageModel);
 
         }

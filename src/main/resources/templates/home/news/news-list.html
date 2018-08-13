@@ -31,24 +31,25 @@
                         <!-- blog-option start -->
                         <div class="col-md-12">
                             <div class="blog-option box-shadow mb-30  clearfix">
-                                <!-- categories -->
+
                                 <div class="dropdown f-left">
                                     <button class="option-btn">
-                                        Categories
-                                        <i class="zmdi zmdi-chevron-down"></i>
+                                        <#if (newsType = 1)>
+                                            行业新闻
+                                         </#if>
+
+                                        <#if (newsType = 2)>
+                                            国内新闻
+                                        </#if>
+
+                                        <#if (newsType = 3)>
+                                            国外新闻
+                                        </#if>
+
                                     </button>
-                                    <div class="dropdown-menu dropdown-width mt-30">
-                                        <aside class="widget widget-categories box-shadow">
-                                            <h6 class="widget-title border-left mb-20">Categories</h6>
-                                            <div id="cat-treeview" class="product-cat">
-                                                <ul>
-                                                    <li class=""><a href="#">分类一</a></li>
-                                                    <li class=""><a href="#">分类二</a></li>
-                                                    <li class=""><a href="#">分类三</a></li>
-                                                </ul>
-                                            </div>
-                                        </aside>
-                                    </div>
+                                </div>
+                                <div class="showing f-right text-right">
+                                    <span>total : ${newsListPageModel.total} &nbsp;&nbsp;&nbsp; </span>
                                 </div>
                                 <!-- Tags -->
                                 <!--<div class="dropdown f-left">-->
@@ -81,11 +82,14 @@
                         <!-- blog-item start -->
                         <#list newsListPageModel.newsList as newsList>
                         <div class="col-sm-6 col-xs-12">
+
                             <div class="blog-item-2">
                                 <div class="row">
+                                    <!-- 勿删，用于处理新闻分类 -->
+                                    <input type="hidden" id="newsType" value="${newsType}">
                                     <div class="col-md-6 col-xs-12">
                                         <div class="blog-image">
-                                            <a href="/newsDetail"><img src="home/img/blog/1.jpg" alt=""></a>
+                                            <a href="javascript:detail(${newsList.id})"><img src="${newsList.newsTitleImage}" alt=""></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-xs-12">
@@ -136,15 +140,31 @@
 
 <script>
     function queryByPage(pageNum) {
+        var newsType = $("#newsType").val();
+
         $.ajax({
             type:'GET',
-            url:'/newsListByPage?pageNum='+pageNum,
+            url:'/newsListByPage?pageNum='+pageNum + '&newsType=' + newsType,
             success: function (data) {
                 $("#news-list-content").html();
                 $("#news-list-content").html(data);
             }
         });
 
+    }
+
+    function detail(id) {
+        $.ajax({
+            type: 'GET',
+            url:'/newsDetail?id='+ id,
+            success: function(data) {
+                window.location.href='/newsDetail?id='+id;
+
+            },
+            error: function(){
+                alert('请求出错!');
+            }
+        })
     }
 
 </script>

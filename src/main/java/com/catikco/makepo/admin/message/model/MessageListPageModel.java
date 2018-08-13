@@ -13,6 +13,7 @@ public class MessageListPageModel {
     private String subject;
     private String phone;
     private String moreInfo;
+    private String createTime;
 
     public Integer getId() {
         return id;
@@ -60,5 +61,13 @@ public class MessageListPageModel {
 
     public void setMoreInfo(String moreInfo) {
         this.moreInfo = moreInfo;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

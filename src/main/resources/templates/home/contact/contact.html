@@ -106,12 +106,12 @@
 <script>
     function sumbitMessage() {
 
-        var data = $("#contact-form")
+        var formData = $("#contact-form").serialize()
 
         $.ajax({
             type: 'POST',
             url: '/save-contactus',
-            data: data,
+            data: formData,
             dataType: 'json',
             success: function (data) {
                 if(data.code == "succeed"){
