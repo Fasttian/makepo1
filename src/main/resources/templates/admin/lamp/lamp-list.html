@@ -43,6 +43,7 @@
                                             <th>尺寸</th>
                                             <th>标题</th>
                                             <th>产品类型  </th>
+                                            <th>发布时间  </th>
                                             <th>操作</th>
                                         </tr>
                                         </thead>
@@ -227,8 +228,25 @@
                         "mData" : "productType",
                         "orderable" : true, // 禁用排序
                         "sDefaultContent" : "",
-                        "sWidth" : "10%"
+                        "sWidth" : "10%",
+                        "render": function (data, type, row) {
+                            if(row.productType == '1')
+                                data = "G4/G9";
+                            if(row.productType == '2')
+                                data = "球泡灯";
+                            if(row.productType == '3 ')
+                                data = "灯丝灯";
+                            if(row.productType == '4 ')
+                                data = "面板灯";
+                            return data;
+                        }
                     },
+                        {
+                            "mData" : "productCreateTime",
+                            "orderable" : true, // 禁用排序
+                            "sDefaultContent" : "",
+                            "sWidth" : "10%"
+                        },
 
                         {
                             "mData": "id",
