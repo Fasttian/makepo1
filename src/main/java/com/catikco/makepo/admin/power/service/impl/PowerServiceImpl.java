@@ -17,8 +17,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.catikco.makepo.common.DateUtils.dateToString;
 
 /**
  * Create By: Cai Rong fei @Gui Yang
@@ -63,13 +66,13 @@ public class PowerServiceImpl implements PowerService {
         criteria.andDeletedEqualTo(false);
 
         PageHelper.offsetPage(currentPage,length);
-        List<Power> powerList = powerMapper.selectByExample(powerExample);
-        PageInfo<Power> powerPageInfo = new PageInfo<>(powerList);
+        List<PowerWithBLOBs> powerList = powerMapper.selectByExampleWithBLOBs(powerExample);
+        PageInfo<PowerWithBLOBs> powerPageInfo = new PageInfo<>(powerList);
 
         datatablesResponsePageModel.setRecordsTotal((int)powerPageInfo.getTotal());
         datatablesResponsePageModel.setRecordsFiltered((int)powerPageInfo.getTotal());
         datatablesResponsePageModel.setDraw(powerRequestPageModel.getDraw());
-        datatablesResponsePageModel.setData(powerPageInfo.getList());
+        datatablesResponsePageModel.setData(this.changeToPowerListPageModel(powerList));
 
         return datatablesResponsePageModel;
     }
@@ -121,10 +124,16 @@ public class PowerServiceImpl implements PowerService {
 
 
     private PowerWithBLOBs changeToPowerWithBLOBs(PowerEditPageModel powerEditPageModel,String productTitleImage,Integer contentFileid){
-        PowerWithBLOBs powerWithBLOBs = new PowerWithBLOBs();
+        PowerWithBLOBs powerWithBLOBs = null;
+        if(null != powerEditPageModel.getId())
+            powerWithBLOBs = powerMapper.selectByPrimaryKey(powerEditPageModel.getId());
+        else
+            powerWithBLOBs = new PowerWithBLOBs();
+
+        if(productTitleImage != null)
+            powerWithBLOBs.setProductTitleImage(productTitleImage);
 
         powerWithBLOBs.setModel(powerEditPageModel.getModel());
-        powerWithBLOBs.setProductTitleImage(productTitleImage);
         powerWithBLOBs.setId(powerEditPageModel.getId());
         powerWithBLOBs.setInput(powerEditPageModel.getInput());
         powerWithBLOBs.setOutput(powerEditPageModel.getOutput());
@@ -143,21 +152,26 @@ public class PowerServiceImpl implements PowerService {
 
     /**
      * 转换数据为页面list model
-     * @param power
+     * @param powerWithBLOBsList
      * @return
      */
-    private PowerListPageModel changeToPowerListPageModel(Power power){
-        PowerListPageModel powerListPageModel = new PowerListPageModel();
-        if(null == power)
-            return null;
+    private List<PowerListPageModel> changeToPowerListPageModel(List<PowerWithBLOBs> powerWithBLOBsList){
+        List<PowerListPageModel> powerListPageModelList = new ArrayList<>();
 
-        powerListPageModel.setId(power.getId());
-        powerListPageModel.setInput(power.getInput());
-        powerListPageModel.setOutput(power.getOutput());
-        powerListPageModel.setSize(power.getSize());
-        powerListPageModel.setModel("型号");
+        for(PowerWithBLOBs power:powerWithBLOBsList){
+            PowerListPageModel powerListPageModel = new PowerListPageModel();
+            powerListPageModel.setId(power.getId());
+            powerListPageModel.setInput(power.getInput());
+            powerListPageModel.setOutput(power.getOutput());
+            powerListPageModel.setSize(power.getSize());
+            powerListPageModel.setModel(power.getModel());
+            powerListPageModel.setPower(power.getPower());
+            powerListPageModel.setProductCreateTime(dateToString(power.getCreateTime()));
 
-        return powerListPageModel;
+            powerListPageModelList.add(powerListPageModel);
+        }
+
+        return powerListPageModelList;
     }
 
     /**

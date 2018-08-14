@@ -106,10 +106,12 @@
         ]
     });
     
-	/*------------------------------------
-			4.3 Active Featured Product
-	----------------------------------- */  
-    $('.active-featured-lamp').slick({
+
+
+    /*------------------------------------
+            4.3 Active Featured Product
+    ----------------------------------- */
+    $('.active-featured-product').slick({
         speed: 700,
         arrows: true,
         dots: false,
@@ -122,11 +124,12 @@
             {  breakpoint: 767,   settings: { slidesToShow: 1, }   },
             {  breakpoint: 479,   settings: { slidesToShow: 1, }   },
         ]
-    });    
+    });
 
-	/*----------------------------
-			4.4 Active Blog
-	------------------------------ */  
+
+    /*----------------------------
+            4.4 Active Blog
+    ------------------------------ */
     $('.active-blog').slick({
         speed: 700,
         arrows: false,

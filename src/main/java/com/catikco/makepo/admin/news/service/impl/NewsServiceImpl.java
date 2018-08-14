@@ -256,7 +256,14 @@ public class NewsServiceImpl implements NewsService {
      * @return
      */
     private NewsWithBLOBs changeToNewsWithBLOBs(NewsEditPageModel newsEditPageModel, String newTitleImage, String newsContentImagesFileid){
-        NewsWithBLOBs newsWithBLOBs = new NewsWithBLOBs();
+        NewsWithBLOBs newsWithBLOBs = null;
+        if(null != newsEditPageModel.getId())
+            newsWithBLOBs = newsMapper.selectByPrimaryKey(newsEditPageModel.getId());
+        else
+            newsWithBLOBs = new NewsWithBLOBs();
+
+        if(null != newTitleImage)
+            newsWithBLOBs.setNewsTitleImage(newTitleImage);        //新闻概要图中的id
 
         newsWithBLOBs.setTitle(newsEditPageModel.getTitle());
         newsWithBLOBs.setDigest(newsEditPageModel.getDigest());
@@ -265,7 +272,6 @@ public class NewsServiceImpl implements NewsService {
         newsWithBLOBs.setKeywords(newsEditPageModel.getKeywords());
         newsWithBLOBs.setNewsType(newsEditPageModel.getNewsType());         //新闻类型
         newsWithBLOBs.setNewsContentImagesFileid(newsContentImagesFileid);  //新闻内容中的图片id
-        newsWithBLOBs.setNewsTitleImage(newTitleImage);        //新闻概要图中的id
         newsWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         newsWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         newsWithBLOBs.setNewsUrl("/news-detail");                           //新闻链接默认为news-detail

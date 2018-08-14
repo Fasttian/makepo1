@@ -13,6 +13,15 @@ public class PowerListPageModel {
     private Double input;   //输入电压
     private Double output;  //输出电压
     private String size;    //尺寸
+    private String productCreateTime;   //发布时间
+
+    public String getProductCreateTime() {
+        return productCreateTime;
+    }
+
+    public void setProductCreateTime(String productCreateTime) {
+        this.productCreateTime = productCreateTime;
+    }
 
     public Integer getId() {
         return id;
