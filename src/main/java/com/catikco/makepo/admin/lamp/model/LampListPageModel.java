@@ -1,7 +1,5 @@
 package com.catikco.makepo.admin.lamp.model;
 
-import java.util.Date;
-
 /**
  * Create By: Cai Rong fei @Gui Yang
  * Time: 7/8/2018  14:21
@@ -20,7 +18,7 @@ public class LampListPageModel {
 
     private Byte productType;
 
-    private Date productCreateTime;
+    private String productCreateTime;
 
     public Integer getId() {
         return id;
@@ -70,11 +68,11 @@ public class LampListPageModel {
         this.productType = productType;
     }
 
-    public Date getProductCreateTime() {
+    public String getProductCreateTime() {
         return productCreateTime;
     }
 
-    public void setProductCreateTime(Date productCreateTime) {
+    public void setProductCreateTime(String productCreateTime) {
         this.productCreateTime = productCreateTime;
     }
 }

@@ -55,7 +55,8 @@
                 <div class="col-md-12">
                     <div class="section-title text-left ">
                         <h2 class="uppercase">Компания «КАТИК»</h2>
-                        <h6 class="mb-40">Компания «КАТИК» имеетмноголетнийпрофессиональный опыт  по производству светодиодной и электронной продукции </h6>
+                        <h6 class="mb-40">Компания «КАТИК» имеетмноголетнийпрофессиональный опыт по производству
+                            светодиодной и электронной продукции </h6>
                     </div>
                 </div>
             </div>
@@ -67,13 +68,25 @@
                 </div>
                 <div class="col-md-7">
                     <div class="about-description">
-                        <p>Компания «КАТИК» имеетмноголетнийпрофессиональный опыт  по производству светодиодной и электронной продукции  , а так же  в импортно – экспортной деятельности в других отраслях . Мощное финансирование компании , профессионализм , отличная репутация, оперативная команда , в течение 10 лет подряд  поддерживает импортно-экспортную  деятельность масштабом более 1 миллиарда долларов .</p>
+                        <p>Компания «КАТИК» имеетмноголетнийпрофессиональный опыт по производству светодиодной и
+                            электронной продукции , а так же в импортно – экспортной деятельности в других отраслях .
+                            Мощное финансирование компании , профессионализм , отличная репутация, оперативная команда ,
+                            в течение 10 лет подряд поддерживает импортно-экспортную деятельность масштабом более 1
+                            миллиарда долларов .</p>
 
-                        <p>Компания имеет собственные базы по переработке , производству и экспорту продукции в Европу, Америку, Австралию, Японию, Ближний  Восток , Россию и бывшие страны  СНГ , а так же  Южную  Америку. Компания специализируется на производстве и продаже LED продукции , светильников имеет  полный ассортимент, высокое качество продукции, новые модели , первоклассное обслуживание . </p>
+                        <p>Компания имеет собственные базы по переработке , производству и экспорту продукции в Европу,
+                            Америку, Австралию, Японию, Ближний Восток , Россию и бывшие страны СНГ , а так же Южную
+                            Америку. Компания специализируется на производстве и продаже LED продукции , светильников
+                            имеет полный ассортимент, высокое качество продукции, новые модели , первоклассное
+                            обслуживание . </p>
 
-                        <p>Для нашей компании репутация и качество нашей продукции на первом месте , мы стараемся придерживаться  лучшего сочетания цены и качества  нашей продукции на рынке . </p>
+                        <p>Для нашей компании репутация и качество нашей продукции на первом месте , мы стараемся
+                            придерживаться лучшего сочетания цены и качества нашей продукции на рынке . </p>
 
-                        <p>команда профессионалов подберет найлучшие  варианты   соотношения цены и качества и обеспечит высокоэффективными продуктами согласно требованиям рынка  разных стран и регионов . В то же время мы занимаемся независимыми научными исследованиями и разработками для продаж профессиональной  «Хит» продукции .  </p>
+                        <p>команда профессионалов подберет найлучшие варианты соотношения цены и качества и обеспечит
+                            высокоэффективными продуктами согласно требованиям рынка разных стран и регионов . В то же
+                            время мы занимаемся независимыми научными исследованиями и разработками для продаж
+                            профессиональной «Хит» продукции . </p>
                     </div>
                 </div>
             </div>
@@ -88,301 +101,66 @@
                 <div class="col-md-12">
                     <div class="section-title text-left mb-20">
                         <h2 class="uppercase">新产品</h2>
-                        <h6>上新描述：balabala</h6>
                     </div>
                 </div>
             </div>
             <div class="featured-product">
-                <div class="row active-featured-product slick-arrow-2 slick-initialized slick-slider"><button type="button" class="arrow-prev slick-arrow" style=""><i class="zmdi zmdi-long-arrow-left"></i></button>
+                <div class="row active-featured-product slick-arrow-2">
+                    <!-------------------- start ----------------------->
+                    <#if newLampList ??>
+                    <#assign x=0>
+                    <#list newLampList as lampList>
+                    <#assign x=x+1>
                     <!-- product-item start -->
-                    <div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 3159px; transform: translate3d(-972px, 0px, 0px);"><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 243px;">
+                    <div class="col-xs-12">
                         <div class="product-item product-item-2">
                             <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/2.jpg" alt="">
+                                <a href="javascript:detail(${lampList.id})">
+                                    <img src="${lampList.productTitleImage}" alt=""/>
                                 </a>
                             </div>
                             <div class="product-info">
                                 <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
+                                    <a href="javascript:detail(${lampList.id})">${lampList.model}</a>
                                 </h6>
-                                <h6 class="brand-name">型号</h6>
+                                <h6 class="brand-name">
+                                    <#if (lampList.productType = 1)>
+                                    G4/G9
+                                </#if>
+
+                                <#if (lampList.productType = 2)>
+                                球泡灯
+                            </#if>
+
+                            <#if (lampList.productType = 3)>
+                            灯丝灯
+                        </#if>
+
+                        <#if (lampList.productType = 4 )>
+                        面板灯
+                    </#if>
+
+
+                                </h6>
 
                             </div>
                             <ul class="action-button text-center">
                                 <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
+                                    <a href="#" data-toggle="modal"  data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                 </li>
                             </ul>
 
                         </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="0">
-                                    <img src="img/product-2/1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="0">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="0"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="0">
-                                    <img src="img/product-2/2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="0">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="0"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide02" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="0">
-                                    <img src="img/product-2/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="0">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="0"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide03" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="0">
-                                    <img src="img/product-2/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="0">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="0"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide" data-slick-index="4" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide04" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div><div class="col-xs-12 slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" tabindex="-1" style="width: 243px;">
-                        <div class="product-item product-item-2">
-                            <div class="product-img">
-                                <a href="single-product.html" tabindex="-1">
-                                    <img src="img/product-2/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">
-                                    <a href="single-product.html" tabindex="-1">产品名称</a>
-                                </h6>
-                                <h6 class="brand-name">型号</h6>
-
-                            </div>
-                            <ul class="action-button text-center">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="-1"><i class="zmdi zmdi-zoom-in"></i></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div></div></div>
+                    </div>
                     <!-- product-item end -->
-                    <!-- product-item start -->
 
-                    <!-- product-item end -->
-                    <!-- product-item start -->
-
-                    <!-- product-item end -->
-                    <!-- product-item start -->
-
-                    <!-- product-item end -->
-                    <!-- product-item start -->
-
-                    <!-- product-item end -->
-                    <button type="button" class="arrow-next slick-arrow" style=""><i class="zmdi zmdi-long-arrow-right"></i></button></div>
+                    <#if x == 8>
+                    <#break>
+                    </#if>
+            </#list>
+                    </#if>
+<!-------------------- end ----------------------->
+                </div>
             </div>
         </div>
     </div>
@@ -477,396 +255,119 @@
                     <!-- popular-lamp start -->
                     <div class="tab-pane active" id="popular-product">
                         <div class="row">
+                            <!--         start           -->
+                            <#if lampWithBLOBsList ??>
+                            <#assign x=0>
+                            <#list lampWithBLOBsList as lampList>
+                            <#assign x=x+1>
                             <!-- lamp-item start -->
+                            <#if (lampList.productType = 1)>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <div class="product-item product-item-2">
                                     <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/5.jpg" alt=""/>
+                                        <a href="javascript:detail(${lampList.id})">
+                                            <img src="${lampList.productTitleImage}" alt=""/>
                                         </a>
                                     </div>
                                     <div class="product-info">
                                         <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
+                                            <a href="/ProductPageDetail">${lampList.model}</a>
                                         </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <h6 class="brand-name">
+                                            <#if (lampList.productType = 1)>
+                                            G4/G9
+                                        </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/2.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <#if (lampList.productType = 2)>
+                                        球泡灯
+                                    </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/6.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                    <#if (lampList.productType = 3)>
+                                    灯丝灯
+                                </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/3.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                <#if (lampList.productType = 4 )>
+                                面板灯
+                            </#if>
+                            </h6>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/4.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                        </div>
+                        <ul class="action-button text-center">
+                            <li>
+                                <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                   title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- lamp-item end -->
+            </#if>
+            <#if x == 8>
+            <#break>
+        </#if>
+    </#list>
+</#if>
+<!--         end           -->
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/1.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/7.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/4.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
                         </div>
                     </div>
                     <!-- popular-lamp end -->
                     <!-- new-arrival start -->
                     <div class="tab-pane" id="new-arrival">
                         <div class="row">
+                            <!--         start           -->
+                            <#if lampWithBLOBsList ??>
+                            <#assign x=0>
+                            <#list lampWithBLOBsList as lampList>
+                                <#assign x=x+1>
                             <!-- lamp-item start -->
+                            <#if (lampList.productType = 2)>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <div class="product-item product-item-2">
                                     <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/7.jpg" alt=""/>
+                                        <a href="javascript:detail(${lampList.id})">
+                                            <img src="${lampList.productTitleImage}" alt=""/>
                                         </a>
                                     </div>
                                     <div class="product-info">
                                         <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
+                                            <a href="/ProductPageDetail">${lampList.model}</a>
                                         </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <h6 class="brand-name">
+                                            <#if (lampList.productType = 1)>
+                                                G4/G9
+                                            </#if>
+
+                                            <#if (lampList.productType = 2)>
+                                                球泡灯
+                                            </#if>
+
+                                            <#if (lampList.productType = 3)>
+                                                灯丝灯
+                                            </#if>
+
+                                            <#if (lampList.productType = 4 )>
+                                                面板灯
+                                            </#if>
+                                        </h6>
 
                                     </div>
                                     <ul class="action-button text-center">
                                         <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
+                                            <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
                                                title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/6.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/5.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/4.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/3.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/2.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/1.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/7.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
+                            </#if>
+                                <#if x == 8>
+                                    <#break>
+                                </#if>
+                        </#list>
+                    </#if>
+                    <!--         end           -->
                         </div>
                     </div>
                     <!-- new-arrival end -->
@@ -874,196 +375,59 @@
                     <div class="tab-pane" id="best-seller">
                         <div class="row">
                             <!-- lamp-item start -->
+                            <!--         start           -->
+                            <#if lampWithBLOBsList ??>
+                            <#assign x=0>
+                            <#list lampWithBLOBsList as lampList>
+                            <#assign x=x+1>
+                            <!-- lamp-item start -->
+                            <#if (lampList.productType = 3)>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <div class="product-item product-item-2">
                                     <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/1.jpg" alt=""/>
+                                        <a href="javascript:detail(${lampList.id})">
+                                            <img src="${lampList.productTitleImage}" alt=""/>
                                         </a>
                                     </div>
                                     <div class="product-info">
                                         <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
+                                            <a href="/ProductPageDetail">${lampList.model}</a>
                                         </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <h6 class="brand-name">
+                                            <#if (lampList.productType = 1)>
+                                            G4/G9
+                                        </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/4.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <#if (lampList.productType = 2)>
+                                        球泡灯
+                                    </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/7.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                    <#if (lampList.productType = 3)>
+                                    灯丝灯
+                                </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/5.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                <#if (lampList.productType = 4 )>
+                                面板灯
+                            </#if>
+                            </h6>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/6.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/2.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/3.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/4.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                        </div>
+                        <ul class="action-button text-center">
+                            <li>
+                                <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                   title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+</div>
+<!-- lamp-item end -->
+</#if>
+<#if x == 8>
+<#break>
+</#if>
+</#list>
+</#if>
+<!--         end           -->
                             <!-- lamp-item end -->
                         </div>
                     </div>
@@ -1072,196 +436,59 @@
                     <div class="tab-pane" id="special-offer">
                         <div class="row">
                             <!-- lamp-item start -->
+                            <!--         start           -->
+                            <#if lampWithBLOBsList ??>
+                            <#assign x=0>
+                            <#list lampWithBLOBsList as lampList>
+                            <#assign x=x+1>
+                            <!-- lamp-item start -->
+                            <#if (lampList.productType = 4)>
                             <div class="col-md-3 col-sm-4 col-xs-12">
                                 <div class="product-item product-item-2">
                                     <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/3.jpg" alt=""/>
+                                        <a href="javascript:detail(${lampList.id})">
+                                            <img src="${lampList.productTitleImage}" alt=""/>
                                         </a>
                                     </div>
                                     <div class="product-info">
                                         <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
+                                            <a href="/ProductPageDetail">${lampList.model}</a>
                                         </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <h6 class="brand-name">
+                                            <#if (lampList.productType = 1)>
+                                            G4/G9
+                                        </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/1.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                        <#if (lampList.productType = 2)>
+                                        球泡灯
+                                    </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/2.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                    <#if (lampList.productType = 3)>
+                                    灯丝灯
+                                </#if>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/4.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
+                                <#if (lampList.productType = 4 )>
+                                面板灯
+                            </#if>
+                            </h6>
 
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/5.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/6.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/7.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- lamp-item end -->
-                            <!-- lamp-item start -->
-                            <div class="col-md-3 hidden-sm col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="/ProductPageDetail">
-                                            <img src="home/img/product-2/3.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="/ProductPageDetail">产品名称</a>
-                                        </h6>
-                                        <h6 class="brand-name">型号</h6>
-
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#productModal"
-                                               title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                        </div>
+                        <ul class="action-button text-center">
+                            <li>
+                                <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                   title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+</div>
+<!-- lamp-item end -->
+</#if>
+<#if x == 8>
+<#break>
+</#if>
+</#list>
+</#if>
+<!--         end           -->
                             <!-- lamp-item end -->
                         </div>
                     </div>
@@ -1286,73 +513,37 @@
             <div class="blog">
                 <div class="row active-blog-2">
                     <!-- blog-item start -->
+                    <!----------------------------------start------------------------------------------>
+                    <#if newsWithBLOBsList??>
+                    <#assign x=0>
+                    <#list newsWithBLOBsList as newsList>
+                    <#assign x=x+1>
                     <div class="col-xs-12">
                         <div class="blog-item-2">
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
                                     <div class="blog-image">
-                                        <a href="/newsDetail"><img src="home/img/blog/1.jpg" alt=""></a>
+                                        <a href="javascript:newsDetail(${newsList.id})"><img src="${newsList.newsTitleImage}" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="blog-desc">
-                                        <h5 class="blog-title-2"><a href="/newsDetail">城市照明行业的四点发展趋势</a></h5>
-                                        <p>伴随着国内城镇化的推进以及随之而来的道路交通改造升级和城市市容市貌的改造，城市道路照明及城市景观照明行业快速的发展...</p>
+                                        <h5 class="blog-title-2"><a href="/newsDetail">${newsList.title}</a></h5>
+                                        <p>${newsList.digest}</p>
                                         <div class="read-more">
-                                            <a href="/newsDetail">Read more</a>
+                                            <a href="javascript:newsDetail(${newsList.id})">Read more</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- blog-item end -->
-                    <!-- blog-item start -->
-                    <div class="col-xs-12">
-                        <div class="blog-item-2">
-                            <div class="row">
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="blog-image">
-                                        <a href="/newsDetail"><img src="home/img/blog/2.jpg" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="blog-desc">
-                                        <h5 class="blog-title-2"><a href="/newsDetail">2018年智能照明行业分析</a></h5>
-                                        <p>
-                                            智能照明作为互联网时代照明领域智慧化的发展结晶，为城市和家庭智慧化的发展点亮方向。智能照明优势明显，主要体现在操作方便、节能、安全、降低成本等几个方面...</p>
-                                        <div class="read-more">
-                                            <a href="/newsDetail">Read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- blog-item end -->
-                    <!-- blog-item start -->
-                    <div class="col-xs-12">
-                        <div class="blog-item-2">
-                            <div class="row">
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="blog-image">
-                                        <a href="newsDetail.html"><img src="home/img/blog/4.jpg" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="blog-desc">
-                                        <h5 class="blog-title-2"><a href="#">dummy Blog name</a></h5>
-                                        <p>There are many variations of passages of in psum available, but the majority
-                                            have sufe ered on in some form...</p>
-                                        <div class="read-more">
-                                            <a href="#">Read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- blog-item end -->
+                    <#if x == 4>
+                    <#break>
+                </#if>
+                    </#list>
+                </#if>
+                   <!----------------------------------end------------------------------------------>
                 </div>
             </div>
         </div>
@@ -1553,6 +744,39 @@
 <script src="home/js/plugins.js"></script>
 <!-- Main js file that contents all jQuery plugins activation. -->
 <script src="home/js/main.js"></script>
+<script>
+    function newsDetail(id) {
+        $.ajax({
+            type: 'GET',
+            url:'/newsDetail?id='+ id,
+            success: function(data) {
+                window.location.href='/newsDetail?id='+id;
+
+            },
+            error: function(){
+                alert('请求出错!');
+            }
+        })
+    }
+
+    function detail(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/lampDetail?id=' + id,
+            success: function (data) {
+                window.location.href = '/lampDetail?id=' + id;
+
+            },
+            error: function () {
+                alert('请求出错!');
+            }
+        })
+    }
+
+
+
+
+</script>
 
 </body>
 

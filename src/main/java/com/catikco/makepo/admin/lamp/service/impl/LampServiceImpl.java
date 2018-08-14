@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.catikco.makepo.common.DateUtils.dateToString;
+
 /**
  * Create By: Cai Rong fei @Gui Yang
  * Time: 7/8/2018  14:23
@@ -164,6 +166,7 @@ public class LampServiceImpl implements LampService {
             lampListPageModel.setTitle(lamp.getTitle());
             lampListPageModel.setProductType(lamp.getProductType());
             lampListPageModelList.add(lampListPageModel);
+            lampListPageModel.setProductCreateTime(dateToString(lamp.getProductCreateTime()));
         }
         return lampListPageModelList;
     }
@@ -175,10 +178,18 @@ public class LampServiceImpl implements LampService {
      * @param productContentImageFileid 产品详情页中可能有多张图片id（预览参数）
      */
     private LampWithBLOBs changeToLamp(LampEditPageModel lampEditPageModel, String lampTitleImage, String productContentImageFileid){
-        LampWithBLOBs lampWithBLOBs = new LampWithBLOBs();
+        LampWithBLOBs lampWithBLOBs = null;
+
+        if(null != lampEditPageModel.getId()){
+            lampWithBLOBs = lampMapper.selectByPrimaryKey(lampEditPageModel.getId());
+        }else {
+            lampWithBLOBs = new LampWithBLOBs();
+        }
 
         lampWithBLOBs.setId(lampEditPageModel.getId());
-        lampWithBLOBs.setProductTitleImage(lampTitleImage);
+        if(null != lampTitleImage)
+            lampWithBLOBs.setProductTitleImage(lampTitleImage);
+
         lampWithBLOBs.setModel(lampEditPageModel.getModel());
         lampWithBLOBs.setDescription(lampEditPageModel.getDescription());
         lampWithBLOBs.setProductCreateTime(lampEditPageModel.getProductCreateTime());
