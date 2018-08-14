@@ -1,5 +1,6 @@
 package com.catikco.makepo.home.knowledge.service.impl;
 
+import com.catikco.makepo.entity.CyclopediaWithBLOBs;
 import com.catikco.makepo.home.knowledge.model.KnowledgeListPageModel;
 
 import java.util.Map;
@@ -18,4 +19,5 @@ public interface KnowledgeService {
      */
     public KnowledgeListPageModel getKnowledgeList(Map<String,Object> queryCriteria);
 
+    public CyclopediaWithBLOBs getById(Integer id);
 }

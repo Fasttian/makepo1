@@ -67,5 +67,11 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         return  knowledgeListPageModel;
     }
 
+    @Override
+    public CyclopediaWithBLOBs getById(Integer id){
+        if(null == id) return null;
+
+        return cyclopediaMapper.selectByPrimaryKey(id);
+    }
 
 }

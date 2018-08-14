@@ -193,7 +193,15 @@ public class CyclopediaServiceImpl implements CyclopediaService {
      * @return
      */
     private CyclopediaWithBLOBs changeToCyclopediaWithBLOBs(CyclopediaEditPageModel cyclopediaEditPageModel, String cyclopediaTitleImage, String cyclopediaContentImagesFileid){
-        CyclopediaWithBLOBs cyclopediaWithBLOBs = new CyclopediaWithBLOBs();
+        CyclopediaWithBLOBs cyclopediaWithBLOBs = null;
+        if(null != cyclopediaEditPageModel.getId())
+            cyclopediaWithBLOBs = cyclopediaMapper.selectByPrimaryKey(cyclopediaEditPageModel.getId());
+        else
+            cyclopediaWithBLOBs = new CyclopediaWithBLOBs();
+
+        if(cyclopediaTitleImage != null)
+            cyclopediaWithBLOBs.setCyclopediaTitleImage(cyclopediaTitleImage);        //新闻概要图
+
 
         cyclopediaWithBLOBs.setTitle(cyclopediaEditPageModel.getTitle());
         cyclopediaWithBLOBs.setDigest(cyclopediaEditPageModel.getDigest());
@@ -202,7 +210,6 @@ public class CyclopediaServiceImpl implements CyclopediaService {
         cyclopediaWithBLOBs.setKeywords(cyclopediaEditPageModel.getKeywords());
         cyclopediaWithBLOBs.setCyclopediaType(cyclopediaEditPageModel.getCyclopediaType());         //新闻类型
         cyclopediaWithBLOBs.setCyclopediaContentImagesFileid(cyclopediaContentImagesFileid);  //新闻内容中的图片id
-        cyclopediaWithBLOBs.setCyclopediaTitleImage(cyclopediaTitleImage);        //新闻概要图中的id
         cyclopediaWithBLOBs.setViews(null);                                       //浏览次数暂时不作处理
         cyclopediaWithBLOBs.setDeleted(false);                                    //新闻删除状态默认标记为未删除
         cyclopediaWithBLOBs.setCyclopediaUrl("/cyclopedia-detail");                           //新闻链接默认为cyclopedia-detail

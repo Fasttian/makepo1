@@ -1,5 +1,6 @@
 package com.catikco.makepo.home.knowledge.controller;
 
+import com.catikco.makepo.entity.CyclopediaWithBLOBs;
 import com.catikco.makepo.home.knowledge.service.impl.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,12 @@ public class KnowledgeController {
     }
 
     @RequestMapping("/knowledgeDetail")
-    public String VisitLedKnowledgeDetail() {
-        return ("/home/news/newsDetail");
+    public String VisitLedKnowledgeDetail(HttpServletRequest request, Integer id) {
+        CyclopediaWithBLOBs cyclopediaWithBLOBs = new CyclopediaWithBLOBs();
+        cyclopediaWithBLOBs = knowledgeService.getById(id);
+
+        request.setAttribute("cyclopediaWithBLOBs",cyclopediaWithBLOBs);
+
+        return ("/home/knowledge/knowledge-detail");
     }
 }
