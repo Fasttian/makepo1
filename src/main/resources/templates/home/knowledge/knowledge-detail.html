@@ -1,0 +1,156 @@
+<#include "./home/public/header.html"/>
+
+
+<!-- BREADCRUMBS SETCTION START -->
+<div class="breadcrumbs-section mb-80">
+    <div class="breadcrumbs overlay-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumbs-inner">
+                        <h1 class="breadcrumbs-title">newsDetail</h1>
+                        <ul class="breadcrumb-list">
+                            <li><a href="index.html">Home</a></li>
+                            <li>newsDetail</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMBS SETCTION END -->
+
+<!-- Start page content -->
+<section id="page-content" class="page-wrapper">
+
+    <!-- BLOG SECTION START -->
+    <div class="blog-section mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-xs-12">
+                    <div class="blog-details-area">
+                        <!-- blog-details-photo -->
+                        <div class="blog-details-photo bg-img-1 p-20 mb-30">
+                            <img src="${cyclopediaWithBLOBs.cyclopediaTitleImage}" alt="">
+                            <div class="today-date bg-img-1">
+                                <span class="meta-date">30</span>
+                                <span class="meta-month">June</span>
+                            </div>
+                        </div>
+                        <!-- blog-like-share -->
+                        <ul class="blog-like-share mb-20">
+                            <li>
+                                <a href="#"><i class="zmdi zmdi-favorite"></i>89 Like</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="zmdi zmdi-share"></i>29 Share</a>
+                            </li>
+                        </ul>
+                        <!-- blog-details-title -->
+                        <h3 class="blog-details-title mb-30">${cyclopediaWithBLOBs.title}</h3>
+                        <!-- blog-description -->
+                        <div class="blog-description mb-60">
+                            ${cyclopediaWithBLOBs.content}
+                        </div>
+                        <!-- blog-share-tags -->
+                        <div class="blog-share-tags box-shadow clearfix mb-60">
+                            <div class="blog-share f-left">
+                                <p class="share-tags-title f-left">share</p>
+                                <ul class="footer-social f-left">
+                                    <li>
+                                        <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="google-plus" href="" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="rss" href="" title="RSS"><i class="zmdi zmdi-rss"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<div class="blog-tags f-right">-->
+                            <!--<p class="share-tags-title f-left">Tags</p>-->
+                            <!--<ul class="blog-tags-list f-left">-->
+                            <!--<li><a href="#">Mobile</a></li>-->
+                            <!--<li><a href="#">IOS</a></li>-->
+                            <!--<li><a href="#">Windows</a></li>-->
+                            <!--<li><a href="#">Tab</a></li>-->
+                            <!--</ul>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <aside class="widget widget-categories box-shadow mb-30">
+                        <h6 class="widget-title border-left mb-20">Categories</h6>
+                        <div id="cat-treeview" class="product-cat">
+                            <ul>
+                                <li class="closed"><a href="/newsList?newsType=1">行业新闻</a></li>
+                                <li class="closed"><a href="/newsList?newsType=2">国内新闻</a></li>
+                                <li class="closed"><a href="/newsList?newsType=3">国外新闻</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <!-- widget-lamp -->
+                    <!--<aside class="widget widget-lamp box-shadow mb-30">-->
+                    <!--<h6 class="widget-title border-left mb-20">recent lamp</h6>-->
+                    <!--&lt;!&ndash; lamp-item start &ndash;&gt;-->
+                    <!--<div class="lamp-item">-->
+                    <!--<div class="lamp-img">-->
+                    <!--<a href="single-lamp.html">-->
+                    <!--<img src="home/img/lamp/4.jpg" alt=""/>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="lamp-info">-->
+                    <!--<h6 class="lamp-title">-->
+                    <!--<a href="single-lamp.html">Product Name</a>-->
+                    <!--</h6>-->
+                    <!--<h3 class="pro-price">$ 869.00</h3>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; lamp-item end &ndash;&gt;-->
+                    <!--&lt;!&ndash; lamp-item start &ndash;&gt;-->
+                    <!--<div class="lamp-item">-->
+                    <!--<div class="lamp-img">-->
+                    <!--<a href="single-lamp.html">-->
+                    <!--<img src="home/img/lamp/8.jpg" alt=""/>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="lamp-info">-->
+                    <!--<h6 class="lamp-title">-->
+                    <!--<a href="single-lamp.html">Product Name</a>-->
+                    <!--</h6>-->
+                    <!--<h3 class="pro-price">$ 869.00</h3>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; lamp-item end &ndash;&gt;-->
+                    <!--&lt;!&ndash; lamp-item start &ndash;&gt;-->
+                    <!--<div class="lamp-item">-->
+                    <!--<div class="lamp-img">-->
+                    <!--<a href="single-lamp.html">-->
+                    <!--<img src="home/img/lamp/12.jpg" alt=""/>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="lamp-info">-->
+                    <!--<h6 class="lamp-title">-->
+                    <!--<a href="single-lamp.html">Product Name</a>-->
+                    <!--</h6>-->
+                    <!--<h3 class="pro-price">$ 869.00</h3>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; lamp-item end &ndash;&gt;                               -->
+                    <!--</aside>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BLOG SECTION END -->
+
+</section>
+<!-- End page content -->
+
+<#include "./home/public/footer.html"/>

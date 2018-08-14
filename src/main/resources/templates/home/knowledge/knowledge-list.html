@@ -60,13 +60,13 @@
                         <#list knowledgeListPageModel.knowledgeList as knowledgeList>
                             <div class="col-md-4 hidden-sm col-xs-12">
                                 <div class="blog-item">
-                                    <img src="home/img/blog/8.jpg" alt="">
+                                    <img src="${knowledgeList.cyclopediaTitleImage}" alt="">
                                     <div class="blog-desc">
-                                        <h5 class="blog-title"><a href="/knowledgeDetail">${knowledgeList.title}</a>
+                                        <h5 class="blog-title"><a href="javascript:queryById(${knowledgeList.id})">${knowledgeList.title}</a>
                                         </h5>
                                         <p>${knowledgeList.description}</p>
                                         <div class="read-more">
-                                            <a href="/knowledgeDetail?id=${knowledgeList.id}">Read more</a>
+                                            <a href="/knowledgeDetail?id="+${knowledgeList.id}>Read more</a>
                                         </div>
                                         <!--<ul class="blog-meta pull-right">-->
                                             <!--<li>-->
@@ -127,5 +127,18 @@
             }
 
         });
+    }
+
+    function queryById(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/knowledgeDetail?id='+ id,
+            success: function(data){
+                window.location.href = '/knowledgeDetail?id='+ id;
+            },
+            error: function () {
+                alert('请求出错啦。。。')
+            }
+        })
     }
 </script>
