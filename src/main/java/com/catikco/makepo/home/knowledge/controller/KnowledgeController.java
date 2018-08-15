@@ -50,4 +50,9 @@ public class KnowledgeController {
 
         return ("/home/knowledge/knowledge-detail");
     }
+
+    @RequestMapping("/login")
+    public String Login(){
+        return ("admin/login/page-login");
+    }
 }

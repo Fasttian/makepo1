@@ -6,11 +6,11 @@
                 <div class="blog-item">
                     <img src="home/img/blog/8.jpg" alt="">
                     <div class="blog-desc">
-                        <h5 class="blog-title"><a href="/knowledgeDetail">${knowledgeList.title}</a>
+                        <h5 class="blog-title"><a href="javascript:queryById(${knowledgeList.id})">${knowledgeList.title}</a>
                         </h5>
                         <p>${knowledgeList.description}</p>
                         <div class="read-more">
-                            <a href="/knowledgeDetail?id=${knowledgeList.id}">Read more</a>
+                            <a href="javascript:queryById(${knowledgeList.id})">Read more</a>
                         </div>
                         <!--<ul class="blog-meta pull-right">-->
                             <!--<li>-->
