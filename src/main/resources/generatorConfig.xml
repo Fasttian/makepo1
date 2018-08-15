@@ -69,6 +69,9 @@
         </table>
         <table schema="" tableName="message" domainObjectName="Message">
             <property name="useActualColumnNames" value="true"/>
+        </table>
+         <table schema="" tableName="user" domainObjectName="User">
+            <property name="useActualColumnNames" value="true"/>
         </table>-->
 
 

@@ -21,7 +21,7 @@ import java.io.IOException;
  * Date: 2018-08-11 17:39
  * Description：
  */
-@Controller(value = "admin.ManualController")
+@Controller(value = "admin.manualController")
 @RequestMapping
 public class ManualController {
 
