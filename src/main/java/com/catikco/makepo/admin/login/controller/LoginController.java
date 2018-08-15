@@ -6,7 +6,9 @@ import com.catikco.makepo.security.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -39,8 +41,8 @@ public class LoginController {
         return "/admin/error/error";
     }
 
-    @GetMapping("/loginVerify")
-    public String loginVerify(String account,String password,HttpSession session){
+    @PostMapping("/loginVerify")
+    public String loginVerify(HttpServletRequest request,String account, String password, HttpSession session){
         User user = new User();
         user.setAccount(account);
         user.setPassword(password);
@@ -48,8 +50,10 @@ public class LoginController {
         boolean verify = loginService.verifyLogin(user);
         if (verify) {
             session.setAttribute(WebSecurityConfig.SESSION_KEY, account);
+            request.setAttribute("result","登录成功！");
             return "admin/lamp/lamp-list";
         } else {
+            request.setAttribute("result","登录失败！");
             return "redirect:/login";
         }
     }
