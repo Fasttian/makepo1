@@ -27,6 +27,9 @@ public class MakepoApplication {
 		factory.setMaxFileSize("4096MB"); //KB,MB
 		/// 设置总上传数据总大小
 		factory.setMaxRequestSize("40960MB");
+
+		factory.setLocation("/home/kaidifiles/");
+
 		return factory.createMultipartConfig();
 	}
 }

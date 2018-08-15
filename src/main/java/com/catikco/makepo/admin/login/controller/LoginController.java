@@ -53,7 +53,6 @@ public class LoginController {
             session.setAttribute(WebSecurityConfig.SESSION_KEY, account);
             request.setAttribute("result","登录成功！");
             request.setAttribute("user",loginService.findUserByAccount(account));
-
             return "admin/lamp/lamp-list";
         } else {
             request.setAttribute("result","登录失败！");

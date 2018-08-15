@@ -36,7 +36,7 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
         addInterceptor.excludePathPatterns("/error");
         addInterceptor.excludePathPatterns("/login");
         addInterceptor.excludePathPatterns("/logout");
-        addInterceptor.excludePathPatterns("/getUserInfo");
+//        addInterceptor.excludePathPatterns("/getUserInfo");
 
         //拦截(仅拦截list页面)
         addInterceptor.addPathPatterns("/cyclopedia-list");
@@ -46,7 +46,7 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
         addInterceptor.addPathPatterns("/news-list");
         addInterceptor.addPathPatterns("/power-list");
         addInterceptor.addPathPatterns("/news-list");
-        //addInterceptor.addPathPatterns("/getUserInfo");
+        addInterceptor.addPathPatterns("/getUserInfo");
     }
 
     private class SecurityInterceptor extends HandlerInterceptorAdapter{

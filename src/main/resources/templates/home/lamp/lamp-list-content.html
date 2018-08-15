@@ -44,13 +44,13 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="product-item">
                                 <div class="product-img">
-                                    <a href="/lampDetail">
+                                    <a href="javascript:detail(${lampList.id})">
                                         <img src="${lampList.productTitleImage}" alt=""/>
                                     </a>
                                 </div>
                                 <div class="product-info">
                                     <h6 class="product-title">
-                                        <a href="/lampDetail"+${lampList.id}>${lampList.model}</a>
+                                        <a href="javascript:detail(${lampList.id})">${lampList.model}</a>
                                     </h6>
                                     <div class="pro-rating">
                                         <a href="#"><i class="zmdi zmdi-star"></i></a>
