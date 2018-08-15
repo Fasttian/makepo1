@@ -15,4 +15,11 @@ public interface LoginService {
      */
     public boolean verifyLogin(User user);
 
+    /**
+     * 根据用户名查询用户信息
+     * @param account
+     * @return
+     */
+    public User findUserByAccount(String account);
+
 }

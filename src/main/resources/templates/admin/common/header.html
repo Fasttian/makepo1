@@ -117,15 +117,15 @@
     margin-right: 15px;
     text-align: center;
     vertical-align: middle;
-    width: 20px;"></i><span>用户名</span>
+    width: 20px;"></i><span>Hi,${user.username}</span>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                             <li>
-                                <h5>Hi, John</h5>
+                                <h5>Hi, ${user.username}</h5>
                             </li>
 
-                            <li><a href="javascript:void(0)"><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                            <li><a href="javascript:logout()"><i class="ti-power-off m-r-5"></i> Logout</a></li>
                         </ul>
                     </li>
 
@@ -184,3 +184,42 @@
 
     </div>
     <!-- Left Sidebar End -->
+</div>
+<script>
+    $(document).ready(function () {
+        getUser();
+    });
+
+
+    function logout() {
+        $.ajax({
+            type:"GET",
+            url:"/logout",
+            dataType:"String",
+            success: function() {
+
+            },
+            error: function(){
+
+            }
+        })
+    }
+
+    function getUser() {
+        $.ajax({
+            type:"GET",
+            url:"/getUserInfo",
+            dataType:"text",
+            success: function() {
+                //window.location.href='/login';
+
+            },
+            error: function(){
+
+            }
+        })
+    }
+
+
+
+</script>

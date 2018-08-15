@@ -17,7 +17,7 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class KnowledgeController {
 
     @Autowired
