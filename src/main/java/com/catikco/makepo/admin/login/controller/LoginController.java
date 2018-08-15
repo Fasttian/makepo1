@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,8 @@ public class LoginController {
         if (verify) {
             session.setAttribute(WebSecurityConfig.SESSION_KEY, account);
             request.setAttribute("result","登录成功！");
+            request.setAttribute("user",loginService.findUserByAccount(account));
+
             return "admin/lamp/lamp-list";
         } else {
             request.setAttribute("result","登录失败！");
@@ -62,6 +65,11 @@ public class LoginController {
     public String logout(HttpSession session){
         session.removeAttribute(WebSecurityConfig.SESSION_KEY);
         return "redirect:/login";
+    }
+
+    @RequestMapping("/getUserInfo")
+    public void getUserInfo(String account,HttpServletRequest request){
+        request.setAttribute("user",loginService.findUserByAccount(account));
     }
 
 }

@@ -1,5 +1,7 @@
 package com.catikco.makepo.security;
 
+import com.catikco.makepo.admin.login.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
@@ -33,6 +35,8 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
         //排除
         addInterceptor.excludePathPatterns("/error");
         addInterceptor.excludePathPatterns("/login");
+        addInterceptor.excludePathPatterns("/logout");
+        addInterceptor.excludePathPatterns("/getUserInfo");
 
         //拦截(仅拦截list页面)
         addInterceptor.addPathPatterns("/cyclopedia-list");
@@ -42,6 +46,7 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
         addInterceptor.addPathPatterns("/news-list");
         addInterceptor.addPathPatterns("/power-list");
         addInterceptor.addPathPatterns("/news-list");
+        //addInterceptor.addPathPatterns("/getUserInfo");
     }
 
     private class SecurityInterceptor extends HandlerInterceptorAdapter{

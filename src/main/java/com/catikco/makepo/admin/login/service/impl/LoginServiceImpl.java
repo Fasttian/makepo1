@@ -38,4 +38,23 @@ public class LoginServiceImpl implements LoginService {
 
         return false;
     }
+
+    @Override
+    public User findUserByAccount(String account) {
+        if(null == account)
+            return null;
+
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+
+        //查询条件
+        criteria.andAccountEqualTo(account);
+
+        List<User> userList = userMapper.selectByExample(userExample);
+
+        if(userList.size() > 0)
+            return userList.get(0);
+
+        return null;
+    }
 }
