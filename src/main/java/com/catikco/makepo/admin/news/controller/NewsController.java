@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * Time: 7/1/2018  14:16
  * Description：
  */
-@Controller(value = "admin.NewsController")
+@Controller(value = "admin.newsController")
 @RequestMapping
 public class NewsController {
 
@@ -33,17 +33,6 @@ public class NewsController {
 
     @Autowired
     private FileStorageService fileStorageService;
-
-
-
-    /**
-     * 后台管理初始页
-     * @return
-     */
-    @RequestMapping("admin-init")
-    public String adminInit(HttpServletResponse response){
-        return "admin/index";
-    }
 
     /**
      * 新闻管理页面

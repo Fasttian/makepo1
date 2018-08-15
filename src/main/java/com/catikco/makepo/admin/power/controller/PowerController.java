@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * Time: 7/8/2018  14:26
  * Description：
  */
-@Controller(value = "admin.power.powerconter")
+@Controller(value = "admin.powerController")
 @RequestMapping
 public class PowerController {
 

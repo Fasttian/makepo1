@@ -27,7 +27,7 @@ import static com.catikco.makepo.common.StringUtils.parseContentFileId;
  * Time: 7/8/2018  14:19
  * Description：
  */
-@Controller(value = "admin.LampController")
+@Controller(value = "admin.lampController")
 @RequestMapping
 public class LampController {
 

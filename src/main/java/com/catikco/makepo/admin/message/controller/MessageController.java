@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Description：
  */
 
-@Controller(value = "admin.MessageController")
+@Controller(value = "admin.messageController")
 @RequestMapping
 public class MessageController {
 
