@@ -342,52 +342,62 @@ public class PowerExample {
             return (Criteria) this;
         }
 
-        public Criteria andPowerEqualTo(Double value) {
+        public Criteria andPowerEqualTo(String value) {
             addCriterion("power =", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerNotEqualTo(Double value) {
+        public Criteria andPowerNotEqualTo(String value) {
             addCriterion("power <>", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerGreaterThan(Double value) {
+        public Criteria andPowerGreaterThan(String value) {
             addCriterion("power >", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerGreaterThanOrEqualTo(Double value) {
+        public Criteria andPowerGreaterThanOrEqualTo(String value) {
             addCriterion("power >=", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerLessThan(Double value) {
+        public Criteria andPowerLessThan(String value) {
             addCriterion("power <", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerLessThanOrEqualTo(Double value) {
+        public Criteria andPowerLessThanOrEqualTo(String value) {
             addCriterion("power <=", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerIn(List<Double> values) {
+        public Criteria andPowerLike(String value) {
+            addCriterion("power like", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotLike(String value) {
+            addCriterion("power not like", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIn(List<String> values) {
             addCriterion("power in", values, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerNotIn(List<Double> values) {
+        public Criteria andPowerNotIn(List<String> values) {
             addCriterion("power not in", values, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerBetween(Double value1, Double value2) {
+        public Criteria andPowerBetween(String value1, String value2) {
             addCriterion("power between", value1, value2, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerNotBetween(Double value1, Double value2) {
+        public Criteria andPowerNotBetween(String value1, String value2) {
             addCriterion("power not between", value1, value2, "power");
             return (Criteria) this;
         }
@@ -402,52 +412,62 @@ public class PowerExample {
             return (Criteria) this;
         }
 
-        public Criteria andInputEqualTo(Double value) {
+        public Criteria andInputEqualTo(String value) {
             addCriterion("input =", value, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputNotEqualTo(Double value) {
+        public Criteria andInputNotEqualTo(String value) {
             addCriterion("input <>", value, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputGreaterThan(Double value) {
+        public Criteria andInputGreaterThan(String value) {
             addCriterion("input >", value, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputGreaterThanOrEqualTo(Double value) {
+        public Criteria andInputGreaterThanOrEqualTo(String value) {
             addCriterion("input >=", value, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputLessThan(Double value) {
+        public Criteria andInputLessThan(String value) {
             addCriterion("input <", value, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputLessThanOrEqualTo(Double value) {
+        public Criteria andInputLessThanOrEqualTo(String value) {
             addCriterion("input <=", value, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputIn(List<Double> values) {
+        public Criteria andInputLike(String value) {
+            addCriterion("input like", value, "input");
+            return (Criteria) this;
+        }
+
+        public Criteria andInputNotLike(String value) {
+            addCriterion("input not like", value, "input");
+            return (Criteria) this;
+        }
+
+        public Criteria andInputIn(List<String> values) {
             addCriterion("input in", values, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputNotIn(List<Double> values) {
+        public Criteria andInputNotIn(List<String> values) {
             addCriterion("input not in", values, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputBetween(Double value1, Double value2) {
+        public Criteria andInputBetween(String value1, String value2) {
             addCriterion("input between", value1, value2, "input");
             return (Criteria) this;
         }
 
-        public Criteria andInputNotBetween(Double value1, Double value2) {
+        public Criteria andInputNotBetween(String value1, String value2) {
             addCriterion("input not between", value1, value2, "input");
             return (Criteria) this;
         }
@@ -462,52 +482,62 @@ public class PowerExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutputEqualTo(Double value) {
+        public Criteria andOutputEqualTo(String value) {
             addCriterion("output =", value, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputNotEqualTo(Double value) {
+        public Criteria andOutputNotEqualTo(String value) {
             addCriterion("output <>", value, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputGreaterThan(Double value) {
+        public Criteria andOutputGreaterThan(String value) {
             addCriterion("output >", value, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputGreaterThanOrEqualTo(Double value) {
+        public Criteria andOutputGreaterThanOrEqualTo(String value) {
             addCriterion("output >=", value, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputLessThan(Double value) {
+        public Criteria andOutputLessThan(String value) {
             addCriterion("output <", value, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputLessThanOrEqualTo(Double value) {
+        public Criteria andOutputLessThanOrEqualTo(String value) {
             addCriterion("output <=", value, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputIn(List<Double> values) {
+        public Criteria andOutputLike(String value) {
+            addCriterion("output like", value, "output");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutputNotLike(String value) {
+            addCriterion("output not like", value, "output");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutputIn(List<String> values) {
             addCriterion("output in", values, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputNotIn(List<Double> values) {
+        public Criteria andOutputNotIn(List<String> values) {
             addCriterion("output not in", values, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputBetween(Double value1, Double value2) {
+        public Criteria andOutputBetween(String value1, String value2) {
             addCriterion("output between", value1, value2, "output");
             return (Criteria) this;
         }
 
-        public Criteria andOutputNotBetween(Double value1, Double value2) {
+        public Criteria andOutputNotBetween(String value1, String value2) {
             addCriterion("output not between", value1, value2, "output");
             return (Criteria) this;
         }

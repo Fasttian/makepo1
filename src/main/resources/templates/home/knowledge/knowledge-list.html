@@ -55,57 +55,58 @@
             </div>
             <div id="knowledge-list-content">
                 <#if knowledgeListPageModel ??>
-                    <div class="row">
-                        <!-- blog-item start -->
-                        <#list knowledgeListPageModel.knowledgeList as knowledgeList>
-                            <div class="col-md-4 hidden-sm col-xs-12">
-                                <div class="blog-item">
-                                    <img src="${knowledgeList.cyclopediaTitleImage}" alt="">
-                                    <div class="blog-desc">
-                                        <h5 class="blog-title"><a href="javascript:queryById(${knowledgeList.id})">${knowledgeList.title}</a>
-                                        </h5>
-                                        <p>${knowledgeList.description}</p>
-                                        <div class="read-more">
-                                            <a href="javascript:queryById(${knowledgeList.id})">Read more</a>
-                                        </div>
-                                        <!--<ul class="blog-meta pull-right">-->
-                                            <!--<li>-->
-                                                <!--<a href="#"><i class="zmdi zmdi-favorite"></i>89 Like</a>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    </div>
+                <div class="row">
+                    <!-- blog-item start -->
+                    <#list knowledgeListPageModel.knowledgeList as knowledgeList>
+                    <div class="col-md-4 hidden-sm col-xs-12">
+                        <div class="blog-item">
+                            <img src="${knowledgeList.cyclopediaTitleImage}" alt="">
+                            <div class="blog-desc">
+                                <h5 class="blog-title"><a href="javascript:queryById(${knowledgeList.id})">${knowledgeList.title}</a>
+                                </h5>
+                                <p>${knowledgeList.description}</p>
+                                <div class="read-more">
+                                    <a href="javascript:queryById(${knowledgeList.id})">Read more</a>
                                 </div>
+                                <!--<ul class="blog-meta pull-right">-->
+                                <!--<li>-->
+                                <!--<a href="#"><i class="zmdi zmdi-favorite"></i>89 Like</a>-->
+                                <!--</li>-->
+                                <!--</ul>-->
                             </div>
-                        </#list>
-                        <!-- blog-item end -->
+                        </div>
                     </div>
-                    <#if knowledgeListPageModel.nextPage ??>
-                        <ul class="shop-pagination box-shadow text-center ptblr-10-30">
-                            <#if (knowledgeListPageModel.currentPage = 1)>
-                                <#else>
-                                    <li><a href="javaScript:queryByPage(${knowledgeListPageModel.prevPage})"><i
-                                            class="zmdi zmdi-chevron-left"></i></a></li>
-                            </#if>
-                            <#list 1..knowledgeListPageModel.count as i >
-                                <li
-                                <#if ( knowledgeListPageModel.currentPage = i)> class="active"</#if>
-                                >
-                                <a href="JavaScript:queryByPage(${i});">${i_index+1}</a>
-                                </li>
-                            </#list>
-
-                            <#if (knowledgeListPageModel.currentPage=knowledgeListPageModel.count)>
-                                <#else>
-                                    <li class="next">
-                                        <a href="javaScript:queryByPage(${knowledgeListPageModel.nextPage})"><i
-                                                class="zmdi zmdi-chevron-right"></i></a>
-                                    </li>
-                            </#if>
-                        </ul>
-                    </#if>
-
-                </#if>
+                </#list>
+                <!-- blog-item end -->
             </div>
+            <#if knowledgeListPageModel.nextPage ??>
+            <ul class="shop-pagination box-shadow text-center ptblr-10-30">
+                <#if (knowledgeListPageModel.currentPage = 1)>
+                <#else>
+                <li><a href="javaScript:queryByPage(${knowledgeListPageModel.prevPage})"><i
+                        class="zmdi zmdi-chevron-left"></i></a></li>
+            </#if>
+            <#list 1..knowledgeListPageModel.count as i >
+            <li
+            <#if ( knowledgeListPageModel.currentPage = i)> class="active"</#if>
+        >
+        <a href="JavaScript:queryByPage(${i});">${i_index+1}</a>
+        </li>
+    </#list>
+
+    <#if (knowledgeListPageModel.currentPage=knowledgeListPageModel.count)>
+    <#else>
+    <li class="next">
+        <a href="javaScript:queryByPage(${knowledgeListPageModel.nextPage})"><i
+                class="zmdi zmdi-chevron-right"></i></a>
+    </li>
+</#if>
+</ul>
+</#if>
+
+</#if>
+
+</div>
         </div>
     </div>
     <!-- BLOG SECTION END -->

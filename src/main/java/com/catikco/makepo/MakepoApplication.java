@@ -29,6 +29,7 @@ public class MakepoApplication {
 		factory.setMaxRequestSize("40960MB");
 
 		factory.setLocation("/home/kaidifiles/");
+//		factory.setLocation("/D:/makepo/upload/");
 
 		return factory.createMultipartConfig();
 	}

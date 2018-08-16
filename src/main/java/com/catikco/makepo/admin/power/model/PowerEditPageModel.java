@@ -12,9 +12,9 @@ import java.util.Date;
 public class PowerEditPageModel {
     private Integer id;     //主键
     private String model;   //型号
-    private Double power;   //功率
-    private Double input;   //输入电压
-    private Double output;  //输出电压
+    private String power;   //功率
+    private String input;   //输入电压
+    private String output;  //输出电压
     private String size;    //尺寸
     private String title;   //产品内容标题
     private String keywords;    //关键字
@@ -25,29 +25,12 @@ public class PowerEditPageModel {
     private Date productCreateTime;                 //产品发布时间
     private Byte productType;           //产品类型
 
-    public Byte getProductType() {
-        return productType;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductType(Byte productType) {
-        this.productType = productType;
-    }
-
-    public Date getProductCreateTime() {
-        return productCreateTime;
-    }
-
-    public void setProductCreateTime(Date productCreateTime) {
-        this.productCreateTime = productCreateTime;
-    }
-
-
-    public MultipartFile getTitImage() {
-        return titImage;
-    }
-
-    public void setTitImage(MultipartFile titImage) {
-        this.titImage = titImage;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getModel() {
@@ -58,35 +41,27 @@ public class PowerEditPageModel {
         this.model = model;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Double getPower() {
+    public String getPower() {
         return power;
     }
 
-    public void setPower(Double power) {
+    public void setPower(String power) {
         this.power = power;
     }
 
-    public Double getInput() {
+    public String getInput() {
         return input;
     }
 
-    public void setInput(Double input) {
+    public void setInput(String input) {
         this.input = input;
     }
 
-    public Double getOutput() {
+    public String getOutput() {
         return output;
     }
 
-    public void setOutput(Double output) {
+    public void setOutput(String output) {
         this.output = output;
     }
 
@@ -136,5 +111,29 @@ public class PowerEditPageModel {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public MultipartFile getTitImage() {
+        return titImage;
+    }
+
+    public void setTitImage(MultipartFile titImage) {
+        this.titImage = titImage;
+    }
+
+    public Date getProductCreateTime() {
+        return productCreateTime;
+    }
+
+    public void setProductCreateTime(Date productCreateTime) {
+        this.productCreateTime = productCreateTime;
+    }
+
+    public Byte getProductType() {
+        return productType;
+    }
+
+    public void setProductType(Byte productType) {
+        this.productType = productType;
     }
 }

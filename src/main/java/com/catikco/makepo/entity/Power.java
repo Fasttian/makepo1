@@ -9,11 +9,11 @@ public class Power {
 
     private String productContentImagesFileid;
 
-    private Double power;
+    private String power;
 
-    private Double input;
+    private String input;
 
-    private Double output;
+    private String output;
 
     private String size;
 
@@ -67,28 +67,28 @@ public class Power {
         this.productContentImagesFileid = productContentImagesFileid == null ? null : productContentImagesFileid.trim();
     }
 
-    public Double getPower() {
+    public String getPower() {
         return power;
     }
 
-    public void setPower(Double power) {
-        this.power = power;
+    public void setPower(String power) {
+        this.power = power == null ? null : power.trim();
     }
 
-    public Double getInput() {
+    public String getInput() {
         return input;
     }
 
-    public void setInput(Double input) {
-        this.input = input;
+    public void setInput(String input) {
+        this.input = input == null ? null : input.trim();
     }
 
-    public Double getOutput() {
+    public String getOutput() {
         return output;
     }
 
-    public void setOutput(Double output) {
-        this.output = output;
+    public void setOutput(String output) {
+        this.output = output == null ? null : output.trim();
     }
 
     public String getSize() {

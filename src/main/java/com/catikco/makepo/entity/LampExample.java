@@ -412,52 +412,62 @@ public class LampExample {
             return (Criteria) this;
         }
 
-        public Criteria andVoltageEqualTo(Double value) {
+        public Criteria andVoltageEqualTo(String value) {
             addCriterion("voltage =", value, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageNotEqualTo(Double value) {
+        public Criteria andVoltageNotEqualTo(String value) {
             addCriterion("voltage <>", value, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageGreaterThan(Double value) {
+        public Criteria andVoltageGreaterThan(String value) {
             addCriterion("voltage >", value, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageGreaterThanOrEqualTo(Double value) {
+        public Criteria andVoltageGreaterThanOrEqualTo(String value) {
             addCriterion("voltage >=", value, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageLessThan(Double value) {
+        public Criteria andVoltageLessThan(String value) {
             addCriterion("voltage <", value, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageLessThanOrEqualTo(Double value) {
+        public Criteria andVoltageLessThanOrEqualTo(String value) {
             addCriterion("voltage <=", value, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageIn(List<Double> values) {
+        public Criteria andVoltageLike(String value) {
+            addCriterion("voltage like", value, "voltage");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoltageNotLike(String value) {
+            addCriterion("voltage not like", value, "voltage");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoltageIn(List<String> values) {
             addCriterion("voltage in", values, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageNotIn(List<Double> values) {
+        public Criteria andVoltageNotIn(List<String> values) {
             addCriterion("voltage not in", values, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageBetween(Double value1, Double value2) {
+        public Criteria andVoltageBetween(String value1, String value2) {
             addCriterion("voltage between", value1, value2, "voltage");
             return (Criteria) this;
         }
 
-        public Criteria andVoltageNotBetween(Double value1, Double value2) {
+        public Criteria andVoltageNotBetween(String value1, String value2) {
             addCriterion("voltage not between", value1, value2, "voltage");
             return (Criteria) this;
         }
@@ -472,52 +482,62 @@ public class LampExample {
             return (Criteria) this;
         }
 
-        public Criteria andPowerEqualTo(Double value) {
+        public Criteria andPowerEqualTo(String value) {
             addCriterion("power =", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerNotEqualTo(Double value) {
+        public Criteria andPowerNotEqualTo(String value) {
             addCriterion("power <>", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerGreaterThan(Double value) {
+        public Criteria andPowerGreaterThan(String value) {
             addCriterion("power >", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerGreaterThanOrEqualTo(Double value) {
+        public Criteria andPowerGreaterThanOrEqualTo(String value) {
             addCriterion("power >=", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerLessThan(Double value) {
+        public Criteria andPowerLessThan(String value) {
             addCriterion("power <", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerLessThanOrEqualTo(Double value) {
+        public Criteria andPowerLessThanOrEqualTo(String value) {
             addCriterion("power <=", value, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerIn(List<Double> values) {
+        public Criteria andPowerLike(String value) {
+            addCriterion("power like", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotLike(String value) {
+            addCriterion("power not like", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIn(List<String> values) {
             addCriterion("power in", values, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerNotIn(List<Double> values) {
+        public Criteria andPowerNotIn(List<String> values) {
             addCriterion("power not in", values, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerBetween(Double value1, Double value2) {
+        public Criteria andPowerBetween(String value1, String value2) {
             addCriterion("power between", value1, value2, "power");
             return (Criteria) this;
         }
 
-        public Criteria andPowerNotBetween(Double value1, Double value2) {
+        public Criteria andPowerNotBetween(String value1, String value2) {
             addCriterion("power not between", value1, value2, "power");
             return (Criteria) this;
         }
@@ -532,52 +552,62 @@ public class LampExample {
             return (Criteria) this;
         }
 
-        public Criteria andLumenEqualTo(Double value) {
+        public Criteria andLumenEqualTo(String value) {
             addCriterion("lumen =", value, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenNotEqualTo(Double value) {
+        public Criteria andLumenNotEqualTo(String value) {
             addCriterion("lumen <>", value, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenGreaterThan(Double value) {
+        public Criteria andLumenGreaterThan(String value) {
             addCriterion("lumen >", value, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenGreaterThanOrEqualTo(Double value) {
+        public Criteria andLumenGreaterThanOrEqualTo(String value) {
             addCriterion("lumen >=", value, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenLessThan(Double value) {
+        public Criteria andLumenLessThan(String value) {
             addCriterion("lumen <", value, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenLessThanOrEqualTo(Double value) {
+        public Criteria andLumenLessThanOrEqualTo(String value) {
             addCriterion("lumen <=", value, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenIn(List<Double> values) {
+        public Criteria andLumenLike(String value) {
+            addCriterion("lumen like", value, "lumen");
+            return (Criteria) this;
+        }
+
+        public Criteria andLumenNotLike(String value) {
+            addCriterion("lumen not like", value, "lumen");
+            return (Criteria) this;
+        }
+
+        public Criteria andLumenIn(List<String> values) {
             addCriterion("lumen in", values, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenNotIn(List<Double> values) {
+        public Criteria andLumenNotIn(List<String> values) {
             addCriterion("lumen not in", values, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenBetween(Double value1, Double value2) {
+        public Criteria andLumenBetween(String value1, String value2) {
             addCriterion("lumen between", value1, value2, "lumen");
             return (Criteria) this;
         }
 
-        public Criteria andLumenNotBetween(Double value1, Double value2) {
+        public Criteria andLumenNotBetween(String value1, String value2) {
             addCriterion("lumen not between", value1, value2, "lumen");
             return (Criteria) this;
         }

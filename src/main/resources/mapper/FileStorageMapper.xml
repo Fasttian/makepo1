@@ -85,7 +85,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from filestorage
+    from file_storage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -96,21 +96,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from filestorage
+    from file_storage
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from filestorage
+    delete from file_storage
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.catikco.makepo.entity.FileStorageExample" >
-    delete from filestorage
+    delete from file_storage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
-    insert into filestorage (id, fileSize, filePrefix, 
+    insert into file_storage (id, fileSize, filePrefix, 
       fileSuffix, fileDesc, fileStatus, 
       filePath, createTime, updateTime, 
       createBy, updateBy, remark, 
@@ -122,7 +122,7 @@
       #{deleted,jdbcType=BIT}, #{fileType,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.FileStorage" useGeneratedKeys="true" keyProperty="id">
-    insert into filestorage
+    insert into file_storage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -213,13 +213,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.catikco.makepo.entity.FileStorageExample" resultType="java.lang.Integer" >
-    select count(*) from filestorage
+    select count(*) from file_storage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update filestorage
+    update file_storage
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -269,7 +269,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update filestorage
+    update file_storage
     set id = #{record.id,jdbcType=INTEGER},
       fileSize = #{record.fileSize,jdbcType=BIGINT},
       filePrefix = #{record.filePrefix,jdbcType=VARCHAR},
@@ -289,7 +289,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.catikco.makepo.entity.FileStorage" >
-    update filestorage
+    update file_storage
     <set >
       <if test="fileSize != null" >
         fileSize = #{fileSize,jdbcType=BIGINT},
@@ -334,7 +334,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.catikco.makepo.entity.FileStorage" >
-    update filestorage
+    update file_storage
     set fileSize = #{fileSize,jdbcType=BIGINT},
       filePrefix = #{filePrefix,jdbcType=VARCHAR},
       fileSuffix = #{fileSuffix,jdbcType=VARCHAR},

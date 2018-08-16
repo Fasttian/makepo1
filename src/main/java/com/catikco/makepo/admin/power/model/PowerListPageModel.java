@@ -9,19 +9,11 @@ public class PowerListPageModel {
 
     private Integer id;     //主键
     private String model;   //产品型号
-    private Double power;   //电源功率
-    private Double input;   //输入电压
-    private Double output;  //输出电压
+    private String power;   //电源功率
+    private String input;   //输入电压
+    private String output;  //输出电压
     private String size;    //尺寸
     private String productCreateTime;   //发布时间
-
-    public String getProductCreateTime() {
-        return productCreateTime;
-    }
-
-    public void setProductCreateTime(String productCreateTime) {
-        this.productCreateTime = productCreateTime;
-    }
 
     public Integer getId() {
         return id;
@@ -39,27 +31,27 @@ public class PowerListPageModel {
         this.model = model;
     }
 
-    public Double getPower() {
+    public String getPower() {
         return power;
     }
 
-    public void setPower(Double power) {
+    public void setPower(String power) {
         this.power = power;
     }
 
-    public Double getInput() {
+    public String getInput() {
         return input;
     }
 
-    public void setInput(Double input) {
+    public void setInput(String input) {
         this.input = input;
     }
 
-    public Double getOutput() {
+    public String getOutput() {
         return output;
     }
 
-    public void setOutput(Double output) {
+    public void setOutput(String output) {
         this.output = output;
     }
 
@@ -69,5 +61,13 @@ public class PowerListPageModel {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getProductCreateTime() {
+        return productCreateTime;
+    }
+
+    public void setProductCreateTime(String productCreateTime) {
+        this.productCreateTime = productCreateTime;
     }
 }
