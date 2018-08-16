@@ -6,9 +6,9 @@
     <result column="productTitleImage" property="productTitleImage" jdbcType="VARCHAR" />
     <result column="productContentImagesFileid" property="productContentImagesFileid" jdbcType="VARCHAR" />
     <result column="model" property="model" jdbcType="VARCHAR" />
-    <result column="voltage" property="voltage" jdbcType="DOUBLE" />
-    <result column="power" property="power" jdbcType="DOUBLE" />
-    <result column="lumen" property="lumen" jdbcType="DOUBLE" />
+    <result column="voltage" property="voltage" jdbcType="VARCHAR" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+    <result column="lumen" property="lumen" jdbcType="VARCHAR" />
     <result column="powerFactor" property="powerFactor" jdbcType="VARCHAR" />
     <result column="size" property="size" jdbcType="VARCHAR" />
     <result column="material" property="material" jdbcType="VARCHAR" />
@@ -154,8 +154,8 @@
       deleted, description, content
       )
     values (#{id,jdbcType=INTEGER}, #{productTitleImage,jdbcType=VARCHAR}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
-      #{model,jdbcType=VARCHAR}, #{voltage,jdbcType=DOUBLE}, #{power,jdbcType=DOUBLE}, 
-      #{lumen,jdbcType=DOUBLE}, #{powerFactor,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
+      #{model,jdbcType=VARCHAR}, #{voltage,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR}, 
+      #{lumen,jdbcType=VARCHAR}, #{powerFactor,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
       #{material,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
       #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
       #{productType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
@@ -253,13 +253,13 @@
         #{model,jdbcType=VARCHAR},
       </if>
       <if test="voltage != null" >
-        #{voltage,jdbcType=DOUBLE},
+        #{voltage,jdbcType=VARCHAR},
       </if>
       <if test="power != null" >
-        #{power,jdbcType=DOUBLE},
+        #{power,jdbcType=VARCHAR},
       </if>
       <if test="lumen != null" >
-        #{lumen,jdbcType=DOUBLE},
+        #{lumen,jdbcType=VARCHAR},
       </if>
       <if test="powerFactor != null" >
         #{powerFactor,jdbcType=VARCHAR},
@@ -336,13 +336,13 @@
         model = #{record.model,jdbcType=VARCHAR},
       </if>
       <if test="record.voltage != null" >
-        voltage = #{record.voltage,jdbcType=DOUBLE},
+        voltage = #{record.voltage,jdbcType=VARCHAR},
       </if>
       <if test="record.power != null" >
-        power = #{record.power,jdbcType=DOUBLE},
+        power = #{record.power,jdbcType=VARCHAR},
       </if>
       <if test="record.lumen != null" >
-        lumen = #{record.lumen,jdbcType=DOUBLE},
+        lumen = #{record.lumen,jdbcType=VARCHAR},
       </if>
       <if test="record.powerFactor != null" >
         powerFactor = #{record.powerFactor,jdbcType=VARCHAR},
@@ -406,9 +406,9 @@
       productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
       model = #{record.model,jdbcType=VARCHAR},
-      voltage = #{record.voltage,jdbcType=DOUBLE},
-      power = #{record.power,jdbcType=DOUBLE},
-      lumen = #{record.lumen,jdbcType=DOUBLE},
+      voltage = #{record.voltage,jdbcType=VARCHAR},
+      power = #{record.power,jdbcType=VARCHAR},
+      lumen = #{record.lumen,jdbcType=VARCHAR},
       powerFactor = #{record.powerFactor,jdbcType=VARCHAR},
       size = #{record.size,jdbcType=VARCHAR},
       material = #{record.material,jdbcType=VARCHAR},
@@ -436,9 +436,9 @@
       productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
       model = #{record.model,jdbcType=VARCHAR},
-      voltage = #{record.voltage,jdbcType=DOUBLE},
-      power = #{record.power,jdbcType=DOUBLE},
-      lumen = #{record.lumen,jdbcType=DOUBLE},
+      voltage = #{record.voltage,jdbcType=VARCHAR},
+      power = #{record.power,jdbcType=VARCHAR},
+      lumen = #{record.lumen,jdbcType=VARCHAR},
       powerFactor = #{record.powerFactor,jdbcType=VARCHAR},
       size = #{record.size,jdbcType=VARCHAR},
       material = #{record.material,jdbcType=VARCHAR},
@@ -471,13 +471,13 @@
         model = #{model,jdbcType=VARCHAR},
       </if>
       <if test="voltage != null" >
-        voltage = #{voltage,jdbcType=DOUBLE},
+        voltage = #{voltage,jdbcType=VARCHAR},
       </if>
       <if test="power != null" >
-        power = #{power,jdbcType=DOUBLE},
+        power = #{power,jdbcType=VARCHAR},
       </if>
       <if test="lumen != null" >
-        lumen = #{lumen,jdbcType=DOUBLE},
+        lumen = #{lumen,jdbcType=VARCHAR},
       </if>
       <if test="powerFactor != null" >
         powerFactor = #{powerFactor,jdbcType=VARCHAR},
@@ -538,9 +538,9 @@
     set productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       model = #{model,jdbcType=VARCHAR},
-      voltage = #{voltage,jdbcType=DOUBLE},
-      power = #{power,jdbcType=DOUBLE},
-      lumen = #{lumen,jdbcType=DOUBLE},
+      voltage = #{voltage,jdbcType=VARCHAR},
+      power = #{power,jdbcType=VARCHAR},
+      lumen = #{lumen,jdbcType=VARCHAR},
       powerFactor = #{powerFactor,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
       material = #{material,jdbcType=VARCHAR},
@@ -565,9 +565,9 @@
     set productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       model = #{model,jdbcType=VARCHAR},
-      voltage = #{voltage,jdbcType=DOUBLE},
-      power = #{power,jdbcType=DOUBLE},
-      lumen = #{lumen,jdbcType=DOUBLE},
+      voltage = #{voltage,jdbcType=VARCHAR},
+      power = #{power,jdbcType=VARCHAR},
+      lumen = #{lumen,jdbcType=VARCHAR},
       powerFactor = #{powerFactor,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
       material = #{material,jdbcType=VARCHAR},

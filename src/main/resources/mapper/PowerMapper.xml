@@ -5,9 +5,9 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="productTitleImage" property="productTitleImage" jdbcType="VARCHAR" />
     <result column="productContentImagesFileid" property="productContentImagesFileid" jdbcType="VARCHAR" />
-    <result column="power" property="power" jdbcType="DOUBLE" />
-    <result column="input" property="input" jdbcType="DOUBLE" />
-    <result column="output" property="output" jdbcType="DOUBLE" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+    <result column="input" property="input" jdbcType="VARCHAR" />
+    <result column="output" property="output" jdbcType="VARCHAR" />
     <result column="size" property="size" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
@@ -151,7 +151,7 @@
       deleted, model, description, 
       content)
     values (#{id,jdbcType=INTEGER}, #{productTitleImage,jdbcType=VARCHAR}, #{productContentImagesFileid,jdbcType=VARCHAR}, 
-      #{power,jdbcType=DOUBLE}, #{input,jdbcType=DOUBLE}, #{output,jdbcType=DOUBLE}, 
+      #{power,jdbcType=VARCHAR}, #{input,jdbcType=VARCHAR}, #{output,jdbcType=VARCHAR}, 
       #{size,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
       #{productUrl,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, #{productCreateTime,jdbcType=DATE}, 
       #{productType,jdbcType=TINYINT}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
@@ -240,13 +240,13 @@
         #{productContentImagesFileid,jdbcType=VARCHAR},
       </if>
       <if test="power != null" >
-        #{power,jdbcType=DOUBLE},
+        #{power,jdbcType=VARCHAR},
       </if>
       <if test="input != null" >
-        #{input,jdbcType=DOUBLE},
+        #{input,jdbcType=VARCHAR},
       </if>
       <if test="output != null" >
-        #{output,jdbcType=DOUBLE},
+        #{output,jdbcType=VARCHAR},
       </if>
       <if test="size != null" >
         #{size,jdbcType=VARCHAR},
@@ -317,13 +317,13 @@
         productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
       </if>
       <if test="record.power != null" >
-        power = #{record.power,jdbcType=DOUBLE},
+        power = #{record.power,jdbcType=VARCHAR},
       </if>
       <if test="record.input != null" >
-        input = #{record.input,jdbcType=DOUBLE},
+        input = #{record.input,jdbcType=VARCHAR},
       </if>
       <if test="record.output != null" >
-        output = #{record.output,jdbcType=DOUBLE},
+        output = #{record.output,jdbcType=VARCHAR},
       </if>
       <if test="record.size != null" >
         size = #{record.size,jdbcType=VARCHAR},
@@ -383,9 +383,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
-      power = #{record.power,jdbcType=DOUBLE},
-      input = #{record.input,jdbcType=DOUBLE},
-      output = #{record.output,jdbcType=DOUBLE},
+      power = #{record.power,jdbcType=VARCHAR},
+      input = #{record.input,jdbcType=VARCHAR},
+      output = #{record.output,jdbcType=VARCHAR},
       size = #{record.size,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
@@ -411,9 +411,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       productTitleImage = #{record.productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{record.productContentImagesFileid,jdbcType=VARCHAR},
-      power = #{record.power,jdbcType=DOUBLE},
-      input = #{record.input,jdbcType=DOUBLE},
-      output = #{record.output,jdbcType=DOUBLE},
+      power = #{record.power,jdbcType=VARCHAR},
+      input = #{record.input,jdbcType=VARCHAR},
+      output = #{record.output,jdbcType=VARCHAR},
       size = #{record.size,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       keywords = #{record.keywords,jdbcType=VARCHAR},
@@ -442,13 +442,13 @@
         productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
       </if>
       <if test="power != null" >
-        power = #{power,jdbcType=DOUBLE},
+        power = #{power,jdbcType=VARCHAR},
       </if>
       <if test="input != null" >
-        input = #{input,jdbcType=DOUBLE},
+        input = #{input,jdbcType=VARCHAR},
       </if>
       <if test="output != null" >
-        output = #{output,jdbcType=DOUBLE},
+        output = #{output,jdbcType=VARCHAR},
       </if>
       <if test="size != null" >
         size = #{size,jdbcType=VARCHAR},
@@ -505,9 +505,9 @@
     update power
     set productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
-      power = #{power,jdbcType=DOUBLE},
-      input = #{input,jdbcType=DOUBLE},
-      output = #{output,jdbcType=DOUBLE},
+      power = #{power,jdbcType=VARCHAR},
+      input = #{input,jdbcType=VARCHAR},
+      output = #{output,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
@@ -530,9 +530,9 @@
     update power
     set productTitleImage = #{productTitleImage,jdbcType=VARCHAR},
       productContentImagesFileid = #{productContentImagesFileid,jdbcType=VARCHAR},
-      power = #{power,jdbcType=DOUBLE},
-      input = #{input,jdbcType=DOUBLE},
-      output = #{output,jdbcType=DOUBLE},
+      power = #{power,jdbcType=VARCHAR},
+      input = #{input,jdbcType=VARCHAR},
+      output = #{output,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},

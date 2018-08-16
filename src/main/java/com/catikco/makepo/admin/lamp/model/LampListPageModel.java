@@ -10,7 +10,7 @@ public class LampListPageModel {
 
     private String model;
 
-    private Double power;
+    private String power;
 
     private String size;
 
@@ -36,11 +36,11 @@ public class LampListPageModel {
         this.model = model;
     }
 
-    public Double getPower() {
+    public String getPower() {
         return power;
     }
 
-    public void setPower(Double power) {
+    public void setPower(String power) {
         this.power = power;
     }
 

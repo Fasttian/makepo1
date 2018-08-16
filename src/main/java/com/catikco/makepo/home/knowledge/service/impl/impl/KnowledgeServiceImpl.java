@@ -25,7 +25,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     @Autowired
     private CyclopediaMapper cyclopediaMapper;
 
-    @Autowired
+    @Override
     public KnowledgeListPageModel getKnowledgeList(Map<String,Object> queryCriteria) {
 
         CyclopediaExample cyclopediaExample = new CyclopediaExample();

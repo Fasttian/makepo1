@@ -17,11 +17,11 @@ public class LampEditPageModel {
 
     private String model;
 
-    private Double voltage;
+    private String voltage;
 
-    private Double power;
+    private String power;
 
-    private Double lumen;
+    private String lumen;
 
     private String powerFactor;
 
@@ -67,27 +67,27 @@ public class LampEditPageModel {
         this.model = model;
     }
 
-    public Double getVoltage() {
+    public String getVoltage() {
         return voltage;
     }
 
-    public void setVoltage(Double voltage) {
+    public void setVoltage(String voltage) {
         this.voltage = voltage;
     }
 
-    public Double getPower() {
+    public String getPower() {
         return power;
     }
 
-    public void setPower(Double power) {
+    public void setPower(String power) {
         this.power = power;
     }
 
-    public Double getLumen() {
+    public String getLumen() {
         return lumen;
     }
 
-    public void setLumen(Double lumen) {
+    public void setLumen(String lumen) {
         this.lumen = lumen;
     }
 

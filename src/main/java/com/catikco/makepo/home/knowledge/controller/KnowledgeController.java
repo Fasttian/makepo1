@@ -23,12 +23,12 @@ public class KnowledgeController {
     @Autowired
     private KnowledgeService knowledgeService;
 
-    @RequestMapping("/knowledge")
+    @RequestMapping("/knowledge-list")
     public String VisitLedKnowledge(HttpServletRequest request) {
 
         request.setAttribute("knowledgeListPageModel", knowledgeService.getKnowledgeList(null));
 
-        return ("home/knowledge/Knowledge-list");
+        return ("home/knowledge/knowledge-list");
     }
 
     @RequestMapping("/knowledgeListByPage")

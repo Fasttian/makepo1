@@ -47,6 +47,7 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
         addInterceptor.addPathPatterns("/power-list");
         addInterceptor.addPathPatterns("/news-list");
         addInterceptor.addPathPatterns("/getUserInfo");
+        addInterceptor.addPathPatterns("/admin-init");
     }
 
     private class SecurityInterceptor extends HandlerInterceptorAdapter{

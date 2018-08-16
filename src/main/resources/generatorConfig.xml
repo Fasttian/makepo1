@@ -16,8 +16,8 @@
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/makepo" userId="root"
-                        password="root">
+                        connectionURL="jdbc:mysql://47.97.185.22:3306/makepo" userId="root"
+                        password="Zazaxin,2153">
         </jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
            NUMERIC 类型解析为java.math.BigDecimal -->
@@ -52,7 +52,7 @@
 
 
         <!-- 指定数据库表 -->
-       <!-- <table schema="" tableName="lamp"  domainObjectName="Lamp">
+      <!--  <table schema="" tableName="lamp"  domainObjectName="Lamp">
              <property name="useActualColumnNames" value="true"/>
          </table>
          <table schema="" tableName="power" domainObjectName="Power">
@@ -61,7 +61,7 @@
          <table schema="" tableName="news" domainObjectName="News">
              <property name="useActualColumnNames" value="true"/>
          </table>
-         <table schema="" tableName="fileStorage" domainObjectName="FileStorage">
+         <table schema="" tableName="file_storage" domainObjectName="FileStorage">
              <property name="useActualColumnNames" value="true"/>
          </table>
         <table schema="" tableName="cyclopedia" domainObjectName="Cyclopedia">
@@ -72,8 +72,8 @@
         </table>
          <table schema="" tableName="user" domainObjectName="User">
             <property name="useActualColumnNames" value="true"/>
-        </table>-->
-
+        </table>
+-->
 
     </context>
 

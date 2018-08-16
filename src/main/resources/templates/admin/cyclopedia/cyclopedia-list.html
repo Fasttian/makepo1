@@ -37,7 +37,6 @@
                                 <th>百科标题</th>
                                 <th>百科关键字</th>
                                 <th>百科来源</th>
-                                <th>百科类型</th>
                                 <th>发布时间</th>
                                 <th>操作</th>
                             </tr>
@@ -210,19 +209,6 @@
                     "sWidth" : "10%",
 
                 },
-                {
-                    "mData" : "cyclopediaType",
-                    "orderable" : true, // 禁用排序
-                    "sDefaultContent" : "",
-                    "sWidth" : "6%",
-                    "render": function (data, type,row) {
-                        if(row.cyclopediaType == '1')
-                            data = "led";
-                        if(row.cyclopediaType == '2')
-                            data = "电源";
-                        return data;
-                    }
-                },
 
                 {
                     "mData" : "cyclopediaCreateTime",
@@ -274,8 +260,6 @@
                 case 2:
                     data.orderColumn = "cyclopediaResources";
                 case 3:
-                    data.orderColumn = "cyclopediaType";
-                case 4:
                     data.orderColumn = "cyclopediaCreateTime";
             }
             //排序方式asc或者desc

@@ -24,7 +24,7 @@ public class LampServiceImpl implements LampService {
     @Autowired
     private LampMapper lampMapper;
 
-    @Autowired
+    @Override
     public LampListPageModel getLampList(Map<String, Object> queryCriteria) {
         LampExample lampExample = new LampExample();
         LampExample.Criteria criteria = lampExample.createCriteria();
