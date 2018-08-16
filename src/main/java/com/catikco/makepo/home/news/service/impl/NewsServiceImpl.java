@@ -34,6 +34,9 @@ public class NewsServiceImpl implements NewsService {
         //排序方式
         newsExample.setOrderByClause("newsCreateTime"+" "+"asc");
 
+        //仅查询未删除的
+        criteria.andDeletedEqualTo(false);
+
         //按新闻类型查询
         Integer newsType = null;
         Integer pageNum = null;

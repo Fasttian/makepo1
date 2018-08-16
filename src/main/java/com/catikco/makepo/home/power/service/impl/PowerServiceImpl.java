@@ -36,6 +36,8 @@ public class PowerServiceImpl implements PowerService {
         Integer productType = null;
         Integer pageNum = null;
 
+        //仅查询未删除的
+        criteria.andDeletedEqualTo(false);
 
         if (null != queryCriteria){
             //productType = (Integer) queryCriteria.get("productType");
