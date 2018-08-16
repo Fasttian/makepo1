@@ -55,8 +55,9 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">产品类型</label>
                                         <div class="col-md-10">
-                                            <select class="selectpicker" data-style="btn-custom"
-                                                    name="productType" value="${lampEditPageModel.productType}">
+                                            <input type="hidden" id="productTypeValue" value="${lampEditPageModel.productType}">
+                                            <select class="form-control" data-style="btn-custom" id="productType" name="productType" >
+                                                <option value="0">请选择产品类型</option>
                                                 <option value="1">G4/G9</option>
                                                 <option value="2">球泡灯</option>
                                                 <option value="3">灯丝灯</option>
@@ -123,7 +124,7 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">上传图片</label>
                                         <div class="col-md-10">
-                                            <input type="file" class="filestyle" name="titImage" data-buttonname="btn-default">
+                                            <input type="file" class="filestyle" id="titImage" name="titImage" data-buttonname="btn-default">
                                         </div>
                                     </div>
                                     <div class="form-group  col-md-6 col-sm-6">
@@ -131,7 +132,7 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" name="productCreateTime" class="form-control" id="datepicker-autoclose" value=" ${(lampEditPageModel.productCreateTime ? string('MM/dd/yyyy'))!''}">
+                                                    <input type="text" id="productCreateTime" name="productCreateTime" class="form-control"  value=" ${(lampEditPageModel.productCreateTime ? string('MM/dd/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
                                                 </div>
@@ -141,7 +142,7 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">产品简介</label>
                                         <div class="col-md-10">
-                                        <textarea id="textarea" class="form-control" maxlength="225" rows="3" name="description"
+                                        <textarea id="description" class="form-control" maxlength="225" rows="3" name="description"
                                                   placeholder="最多225个字符">${lampEditPageModel.description}</textarea>
                                         </div>
                                     </div>
@@ -263,6 +264,11 @@
 <script>
 
     $(document).ready(function () {
+        //下拉赋值
+        var productType = $("#productTypeValue").val();
+        $("#productType option[value='"+productType+"']").attr("selected", "selected");
+
+
         //初始化文本编辑器
         $('.summernote').summernote({
             height: 700,                 // set editor height
@@ -308,9 +314,68 @@
         //获取表单数据
         var formData = new FormData(document.getElementById("editLampForm"));
 
-        //获取富文本编辑器
-     /*   var content = $('#content').summernote('code');
-        formData.append("content",content);*/
+        //表单验证
+        var model = formData.get("model")
+        var productType = formData.get("productType");
+        var title = formData.get("title");
+        var keywords = formData.get("keywords");
+        var power = formData.get("power");
+        var powerFactor = formData.get("powerFactor");
+        var voltage = formData.get("voltage");
+        var lumen = formData.get("lumen");
+        var size = formData.get("size");
+        var material = formData.get("material");
+        var productCreateTime = formData.get("productCreateTime");
+        var description = formData.get("description");
+
+        if(model == null || model === "" || model === undefined){
+            notify_error("请填写产品名称")
+            return;
+        }
+        if(productType == 0){
+            notify_error("请选择产品型号！")
+            return;
+        }
+        if(title === "" || title == null || title === undefined){
+            notify_error("请填写产品标题！")
+            return;
+        }
+        if(keywords === "" || keywords == null || keywords === undefined){
+            notify_error("请填写关键字！")
+            return;
+        }
+        if(power === "" || power == null || power === undefined){
+            notify_error("请填写功率！")
+            return;
+        }
+        if(powerFactor === "" || powerFactor == null || powerFactor === undefined){
+            notify_error("请填写功率因素！")
+            return;
+        }
+        if(voltage === "" || voltage == null || voltage === undefined){
+            notify_error("请填写电压！")
+            return;
+        }
+        if(lumen === "" || lumen == null || lumen === undefined){
+            notify_error("请填写光通量！")
+            return;
+        }
+        if(size === "" || size == null || size === undefined){
+            notify_error("请填写尺寸！")
+            return;
+        }
+        if(material === "" || material == null || material === undefined){
+            notify_error("请填写材料！")
+            return;
+        }
+        if(productCreateTime === "" || productCreateTime == null || productCreateTime === undefined){
+            notify_error("请填写发布时间！")
+            return;
+        }
+        if(description === "" || description == null || description === undefined){
+            notify_error("请填写产品简介！")
+            return;
+        }
 
         $.ajax({
             type: 'POST',
@@ -333,7 +398,7 @@
                 },1000);
             },
             error: function() {
-                console.log("数据保存失败！")
+                notify_error("保存出错，请重试！");
             }
         })
     }
@@ -348,11 +413,8 @@
         location.href="/lamp-list";
     }
 
-    //调用 ajax 公共方法提交 lamp 数据
-//    submitEditData('editLampForm', '/lamp-edit', '/lamp-list');
-
     // Date Picker
-    $('#datepicker-autoclose').datepicker({
+    $('#productCreateTime').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: 'yyyy/mm/dd'

@@ -5,7 +5,6 @@ import com.catikco.makepo.admin.power.model.PowerEditPageModel;
 import com.catikco.makepo.admin.power.model.PowerListPageModel;
 import com.catikco.makepo.admin.power.model.PowerRequestPageModel;
 import com.catikco.makepo.admin.power.service.PowerService;
-import com.catikco.makepo.entity.Power;
 import com.catikco.makepo.entity.PowerExample;
 import com.catikco.makepo.entity.PowerWithBLOBs;
 import com.catikco.makepo.mapper.PowerMapper;

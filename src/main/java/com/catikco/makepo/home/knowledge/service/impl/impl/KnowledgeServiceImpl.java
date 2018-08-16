@@ -34,6 +34,9 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         //按时间排序
         cyclopediaExample.setOrderByClause("cyclopediaCreateTime"+" "+"asc" );
 
+        //仅查询未删除的
+        criteria.andDeletedEqualTo(false);
+
         //按分页信息查询
         Integer pageNum = null;
 

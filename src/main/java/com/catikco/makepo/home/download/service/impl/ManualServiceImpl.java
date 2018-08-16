@@ -41,6 +41,9 @@ public class ManualServiceImpl implements ManualService {
             pageNum = (Integer) queryCriteria.get("pageNum");
         }
 
+        //仅查询未删除的
+        criteria.andDeletedEqualTo(false);
+
         Integer stratPage = 0;
 
         if (null != pageNum) stratPage = pageNum;
