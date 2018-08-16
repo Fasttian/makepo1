@@ -12,17 +12,6 @@
                     <div class="col-xs-12">
                         <div class="page-title-box">
                             <h4 class="page-title">发布新闻</h4>
-                            <ol class="breadcrumb p-0 m-0">
-                                <li>
-                                    <a href="#">Zircos</a>
-                                </li>
-                                <li>
-                                    <a href="#">Forms </a>
-                                </li>
-                                <li class="active">
-                                    Summernote Editor
-                                </li>
-                            </ol>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -66,7 +55,7 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">新闻来源</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="newsResources" name="newsResources" value=" ${newsEditPageModel.newsResources}"
+                                            <input type="text" id="newsResources" name="newsResources" value="${newsEditPageModel.newsResources}"
                                                    class="form-control">
                                         </div>
                                     </div>
@@ -81,7 +70,7 @@
                                         <div class="col-md-10">
                                             <div>
                                                 <div class="input-group">
-                                                    <input type="text" id="newsCreateTime" name="newsCreateTime" class="form-control"  value=" ${(newsEditPageModel.newsCreateTime ? string('MM/dd/yyyy'))!''}">
+                                                    <input type="text" id="newsCreateTime" name="newsCreateTime" class="form-control"  value="${(newsEditPageModel.newsCreateTime ? string('MM/dd/yyyy'))!''}">
                                                     <span class="input-group-addon bg-custom b-0"><i
                                                             class="mdi mdi-calendar text-white"></i></span>
                                                 </div>
@@ -93,7 +82,8 @@
                                         <div class="col-md-10">
                                             <!-- 暂时使用页面存值方式，处理下拉选赋值问题  -->
                                             <input type="hidden" id="newsTypeValue" value="${newsEditPageModel.newsType}">
-                                            <select id="newsType" name="newsType" class="form-control" data-style="btn-custom" >
+                                            <select id="newsType" name="newsType"  class="form-control" data-style="btn-custom" >
+                                                <option value="0">选择新闻类型</option>
                                                 <option value="1">行业新闻</option>
                                                 <option value="2">国内新闻</option>
                                                 <option value="3">国外新闻</option>
@@ -103,7 +93,7 @@
                                     <div class="form-group  col-md-6 col-sm-6">
                                         <label class="col-md-2 control-label">摘要</label>
                                         <div class="col-md-10">
-                                        <textarea id="textarea" name="digest" data-filename="" class="form-control" maxlength="225"
+                                        <textarea id="digest" name="digest" data-filename="" class="form-control" maxlength="225"
                                                   rows="3"
                                                   placeholder="最多225个字符">${newsEditPageModel.digest}</textarea>
                                         </div>
@@ -249,6 +239,9 @@
             },
         });
 
+        //下拉选赋值
+        var newsType = $("#newsTypeValue").val();
+        $("#newsType option[value='"+newsType+"']").attr("selected","selected")
 
     });
 
@@ -285,6 +278,7 @@
         var newsResources = $('#newsResources').val();
         var newsCreateTime = $('#newsCreateTime').val();
         var digest = $('#digest').val();
+        var newsType = $("#newsType option:selected").val();
         //富文本编辑器数据
         var content = $('#content').summernote('code');
 
@@ -309,15 +303,18 @@
             notify_error("请填写发布时间")
             return;
         }
+        if(newsType == 0) {
+            notify_error("请选择新闻类型")
+            return;
+        }
 
-        if(content == '' || content ==undefined || content == null){
+        if(digest == '' || digest ==undefined || digest == null){
             notify_error("请填写摘要")
             return;
         }
-        if(content == '' || content ==undefined || content == null){
-            notify_error("请填写内容")
-            return;
-        }
+
+
+
 
         //FormData表单数据
         var formData = new FormData(document.getElementById("editNewsForm"));
