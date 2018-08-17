@@ -11,7 +11,7 @@ public class ManualListPageModel {
 
     private Integer id;
     private String filePrefix;                           //手册名
-    private String creteTime;                        //上传时间
+    private String createTime;                        //上传时间
 
     public Integer getId() {
         return id;
@@ -29,11 +29,11 @@ public class ManualListPageModel {
         this.filePrefix = filePrefix;
     }
 
-    public String getCreteTime() {
-        return creteTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreteTime(String creteTime) {
-        this.creteTime = creteTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

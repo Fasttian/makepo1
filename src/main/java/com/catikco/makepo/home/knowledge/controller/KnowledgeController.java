@@ -1,7 +1,7 @@
 package com.catikco.makepo.home.knowledge.controller;
 
 import com.catikco.makepo.entity.CyclopediaWithBLOBs;
-import com.catikco.makepo.home.knowledge.service.impl.KnowledgeService;
+import com.catikco.makepo.home.knowledge.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
