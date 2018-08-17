@@ -5,6 +5,8 @@ import com.catikco.makepo.home.lamp.service.LampService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -49,5 +51,17 @@ public class LampController {
         request.setAttribute("lampWithBLOBs",lampWithBLOBs);
 
         return "home/lamp/lamp-detail";
+    }
+
+    @RequestMapping("/lampDetailByModal")
+    @ResponseBody
+    public ModelAndView VisitProductPageDetailByModal(HttpServletRequest request, ModelAndView modelAndView,Integer id){
+        LampWithBLOBs lampWithBLOBs = new LampWithBLOBs();
+        lampWithBLOBs = lampService.getById(id);
+
+        modelAndView.addObject("lampWithBLOBs",lampWithBLOBs);
+
+        return modelAndView;
+
     }
 }

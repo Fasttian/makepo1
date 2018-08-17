@@ -55,6 +55,25 @@
 ======================================
 [ End table content ]
 ======================================*/
+/*************************
+  0.tian's style
+**************************/
+.param {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.param tr {
+  text-align: center !important;
+}
+
+.param thead tr th{
+  text-align: center !important;
+}
+
+.param tbody tr {
+  background-color: #f9f9f9;
+}
 
 /*************************
   1.General
