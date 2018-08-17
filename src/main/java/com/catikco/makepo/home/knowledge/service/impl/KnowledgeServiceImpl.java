@@ -1,9 +1,9 @@
-package com.catikco.makepo.home.knowledge.service.impl.impl;
+package com.catikco.makepo.home.knowledge.service.impl;
 
 import com.catikco.makepo.entity.CyclopediaExample;
 import com.catikco.makepo.entity.CyclopediaWithBLOBs;
 import com.catikco.makepo.home.knowledge.model.KnowledgeListPageModel;
-import com.catikco.makepo.home.knowledge.service.impl.KnowledgeService;
+import com.catikco.makepo.home.knowledge.service.KnowledgeService;
 import com.catikco.makepo.mapper.CyclopediaMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

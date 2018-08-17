@@ -1,0 +1,243 @@
+<#include 'admin/common/header.html'/>
+
+<!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="page-title-box">
+                            <h4 class="page-title">发布横幅</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <div class="col-sm-12 m-b-30 m-t-0">
+                                <h3 class="header-title pull-left"><b>编辑横幅</b></h3>
+                                <div class="pull-right">
+                                    <button class="btn btn-info inline-btn" onclick="javascript:clearForm()">清空</button>
+                                    <button class="btn btn-purple inline-btn" onclick="javascript:backList()">取消</button>
+                                    <button class="btn btn-success  inline-btn" onclick="javascript:submitBannerData()">提交</button>
+                                </div>
+                            </div>
+                            <div class="row form-horizontal">
+                                <form  id="editBannerForm">
+                                    <input type="text" id="id" name="id" value="${bannerEditPageModel.id}" style="display: none">
+                                  <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">标题</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="title" name="title" class="form-control" value="${bannerEditPageModel.title}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">发布时间</label>
+                                        <div class="col-md-10">
+                                            <div>
+                                                <div class="input-group">
+                                                    <input type="text" id="bannerCreateTime" name="bannerCreateTime" class="form-control"  value="${(bannerEditPageModel.bannerCreateTime ? string('MM/dd/yyyy'))!''}">
+                                                    <span class="input-group-addon bg-custom b-0"><i
+                                                            class="mdi mdi-calendar text-white"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">描述</label>
+                                        <div class="col-md-10">
+                                        <textarea id="description" name="description" data-filename="" class="form-control" maxlength="225"
+                                                  rows="3"
+                                                  placeholder="最多225个字符">${bannerEditPageModel.description}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group  col-md-6 col-sm-6">
+                                        <label class="col-md-2 control-label">横幅图片</label>
+                                        <div class="col-md-10">
+                                            <input type="file" id="multipartFile" name="multipartFile" accept="image/jpeg,image/gif,image/png,image/bmp" class="filestyle" data-buttonname="btn-default">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- container -->
+        </div> <!-- content -->
+
+        <footer class="footer text-right">
+            2018 ©  by Catik.
+        </footer>
+
+    </div>
+
+
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+
+
+    <!-- Right Sidebar -->
+    <div class="side-bar right-bar">
+        <a href="javascript:void(0);" class="right-bar-toggle">
+            <i class="mdi mdi-close-circle-outline"></i>
+        </a>
+        <h4 class="">Settings</h4>
+        <div class="setting-list nicescroll">
+            <div class="row m-t-20">
+                <div class="col-xs-8">
+                    <h5 class="m-0">Notifications</h5>
+                    <p class="text-muted m-b-0">
+                        <small>Do you need them?</small>
+                    </p>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                </div>
+            </div>
+
+            <div class="row m-t-20">
+                <div class="col-xs-8">
+                    <h5 class="m-0">API Access</h5>
+                    <p class="m-b-0 text-muted">
+                        <small>Enable/Disable access</small>
+                    </p>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                </div>
+            </div>
+
+            <div class="row m-t-20">
+                <div class="col-xs-8">
+                    <h5 class="m-0">Auto Updates</h5>
+                    <p class="m-b-0 text-muted">
+                        <small>Keep up to date</small>
+                    </p>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                </div>
+            </div>
+
+            <div class="row m-t-20">
+                <div class="col-xs-8">
+                    <h5 class="m-0">Online Status</h5>
+                    <p class="m-b-0 text-muted">
+                        <small>Show your status to all</small>
+                    </p>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Right-bar -->
+
+</div>
+<!-- END wrapper -->
+
+
+<script>
+    var resizefunc = [];
+</script>
+
+<!-- jQuery  -->
+<script src="admin/assets/js/jquery.min.js"></script>
+<script src="admin/assets/js/bootstrap.min.js"></script>
+<script src="admin/assets/js/detect.js"></script>
+<script src="admin/assets/js/fastclick.js"></script>
+<script src="admin/assets/js/jquery.blockUI.js"></script>
+<script src="admin/assets/js/waves.js"></script>
+<script src="admin/assets/js/jquery.slimscroll.js"></script>
+<script src="admin/assets/js/jquery.scrollTo.min.js"></script>
+<script src="admin/plugins/switchery/switchery.min.js"></script>
+
+<!--Summernote js-->
+<script src="admin/plugins/summernote/summernote.min.js"></script>
+
+<script src="admin/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
+
+<script src="admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<script src="admin/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- App js -->
+<script src="admin/assets/js/jquery.core.js"></script>
+<script src="admin/assets/js/jquery.app.js"></script>
+
+<!--引入lay弹层js-->
+<script src="common/layui-v2.3.0/layui.js"></script>
+<!-- 引入pnotify -->
+<#include "./common/js/nitify_js.html">
+
+
+
+<script>
+
+    //提交
+    function submitBannerData(){
+
+        //FormData表单数据
+        var formData = new FormData(document.getElementById("editBannerForm"));
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-banner',
+            data: formData,
+            processData:false,
+            contentType:false,
+            dataType: 'json',
+            success: function (data) {
+               if(data.code == "succeed"){
+                   notify_sucess(data.data);
+               }
+               if(data.code == "error"){
+                   notify_error(data.data)
+                   return;
+               }
+                //返回新闻列表页(返回时延时1秒，让用户看到提示信息)
+                setTimeout(function () {
+                    backList();
+                },1000);
+            },
+            error: function (e) {
+                notify_error("保存出错，请联系系统开发人员！");
+            }
+        })
+
+    }
+
+    // Date Picker
+    $('#bannerCreateTime').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy/mm/dd'
+    });
+
+    //file upload
+    $(":file").filestyle({input: true});
+    $('.selectpicker').selectpicker();
+
+    //返回列表
+    function backList() {
+        location.href="/banner-list";
+    }
+
+    //清空表单
+    function clearForm(){
+        $('#editBannerForm :input').val("");
+    }
+
+</script>
+
+</body>
+</html>

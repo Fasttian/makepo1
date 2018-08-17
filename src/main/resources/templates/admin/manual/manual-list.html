@@ -203,6 +203,7 @@
         table=$('#datatable').DataTable( {
             //开启服务器模式
             serverSide: true,
+            "order": [[ 1, "desc" ]],
             "info" : true,
             "paging": true,
             "processing":false,
@@ -225,7 +226,7 @@
             },
 
                 {
-                    "mData" : "creteTime",
+                    "mData" : "createTime",
                     "orderable" : true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "15%"
@@ -270,7 +271,7 @@
                     data.orderColumn = "filePrefix";//数据库列名称
                     break;
                 case 1:
-                    data.orderColumn = "creteTime";//数据库列名称
+                    data.orderColumn = "createTime";//数据库列名称
                     break;
             }
             //排序方式asc或者desc
