@@ -175,6 +175,7 @@
                 table=$('#datatable').DataTable( {
                     //开启服务器模式
                     serverSide: true,
+                    "order": [[ 5, "desc" ]],
                     "info" : true,
                     "paging": true,
                     "processing":false,
@@ -273,6 +274,9 @@
                             break;
                         case 4:
                             data.orderColumn = "size";//按size排序
+                            break;
+                        case 5:
+                            data.orderColumn = "productCreateTime";//按发布时间排序
                             break;
                     }
                     //排序方式asc或者desc

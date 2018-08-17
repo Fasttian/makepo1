@@ -10,27 +10,35 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="home/img/slider/slider-1/ba-light1.jpg" alt="...">
-            <div class="carousel-caption">
-                <h3 style="color: #fff;">标题1</h3>
-                <p style="color: #fff;">文字描述1...</p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="home/img/slider/slider-1/ba-light2.jpg" alt="...">
-            <div class="carousel-caption">
-                <h3 style="color: #fff;">标题2</h3>
-                <p style="color: #fff;">文字描述2...</p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="home/img/slider/slider-1/ba-light3.jpg" alt="...">
-            <div class="carousel-caption">
-                <h3 style="color: #fff;">标题3</h3>
-                <p style="color: #fff;">文字描述3...</p>
-            </div>
-        </div>
+        <!-------------------------------- start ----------------------------------->
+
+        <#if bannerListPageModelList ??>
+            <#assign x=0>
+            <#list bannerListPageModelList as bannerList>
+                <#if x == 0>
+                    <div class="item active">
+                        <img src="${bannerList.bannerImage}" alt="...">
+                        <div class="carousel-caption">
+                            <h3 style="color: #fff;">${bannerList.title}</h3>
+                            <p style="color: #fff;">${bannerList.description}</p>
+                        </div>
+                    </div>
+                    <#else>
+                        <div class="item">
+                            <img src="${bannerList.bannerImage}" alt="...">
+                            <div class="carousel-caption">
+                                <h3 style="color: #fff;">${bannerList.title}</h3>
+                                <p style="color: #fff;">${bannerList.description}</p>
+                            </div>
+                        </div>
+                </#if>
+            <#assign x=x+1>
+            <#if x == 3>
+                <#break>
+            </#if>
+            </#list>
+    </#if>
+<!-------------------------------- end ----------------------------------->
     </div>
 
     <!-- Controls -->

@@ -2,6 +2,7 @@ package com.catikco.makepo.home.index.service;
 
 import com.catikco.makepo.entity.LampWithBLOBs;
 import com.catikco.makepo.entity.NewsWithBLOBs;
+import com.catikco.makepo.home.index.model.BannerListPageModel;
 
 import java.util.List;
 
@@ -30,5 +31,11 @@ public interface IndexService {
      * @return
      */
     public List<NewsWithBLOBs> findNews();
+
+    /**
+     * banner展示
+     * @return
+     */
+    public List<BannerListPageModel> getList();
 
 }

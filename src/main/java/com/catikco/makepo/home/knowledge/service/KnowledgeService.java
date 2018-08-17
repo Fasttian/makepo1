@@ -1,4 +1,4 @@
-package com.catikco.makepo.home.knowledge.service.impl;
+package com.catikco.makepo.home.knowledge.service;
 
 import com.catikco.makepo.entity.CyclopediaWithBLOBs;
 import com.catikco.makepo.home.knowledge.model.KnowledgeListPageModel;

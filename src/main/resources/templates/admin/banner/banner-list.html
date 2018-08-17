@@ -11,7 +11,7 @@
                         <div class="row">
 							<div class="col-xs-12">
 								<div class="page-title-box">
-                                    <h4 class="page-title">新闻管理 </h4>
+                                    <h4 class="page-title">横幅管理 </h4>
                                     <div class="clearfix"></div>
                                 </div>
 							</div>
@@ -21,21 +21,19 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
-                                    <form id="newsForm">
+                                    <form id="bannerForm">
                                         <div class="input-group" style="margin-bottom: 10px;">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn waves-effect waves-light btn-primary" onclick="queryByTitle()"><i class="fa fa-search"></i></button>
                                             </span>
-                                            <input type="text" id="newsTitle"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入新闻标题查询">
+                                            <input type="text" id="bannerTitle"  name="example-input1-group2" class="form-control" onkeypress="javascript: if (event.keyCode == '13') { queryByTitle(); return false;}" placeholder="请入标题查询">
                                         </div>
                                     </form>
                                     <table id="datatable" class="dataTable table table-striped table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>新闻标题</th>
-                                            <th>新闻关键字</th>
-                                            <th>新闻来源</th>
-                                            <th>新闻类型</th>
+                                            <th>标题</th>
+                                            <th>描述</th>
                                             <th>发布时间</th>
                                             <th>操作</th>
                                         </tr>
@@ -174,14 +172,14 @@
                 table=$('#datatable').DataTable( {
                     //开启服务器模式
                     serverSide: true,
-                    "order": [[ 4, "desc" ]],
+                    "order": [[ 2, "desc" ]],
                     "info" : true,
                     "paging": true,
                     "processing":false,
                     "searching": false,
                     //数据来源（包括处理分页，排序，过滤） ，即url，action，接口，等等
                     ajax: {
-                        url: '/load-news-list',
+                        url: '/load-banner-list',
                         type: 'POST',
                         "data":function(d){
                             getQueryCondition(d);
@@ -197,39 +195,17 @@
                     },
 
                         {
-                        "mData" : "keywords",
+                        "mData" : "description",
                         "orderable" : true, // 禁用排序
                         "sDefaultContent" : "",
                         "sWidth" : "15%"
                     },
                         {
-                            "mData" : "newsResources",
+                            "mData" : "bannerCreateTime",
                             "orderable" : true, // 禁用排序
                             "sDefaultContent" : "",
                             "sWidth" : "10%",
 
-                        },
-                        {
-                            "mData" : "newsType",
-                            "orderable" : true, // 禁用排序
-                            "sDefaultContent" : "",
-                            "sWidth" : "6%",
-                            "render": function (data, type,row) {
-                                if(row.newsType == '1')
-                                    data = "行业新闻";
-                                 if(row.newsType == '2')
-                                     data = "国内新闻";
-                                if(row.newsType == '3 ')
-                                    data = "国外新闻";
-                                return data;
-                            }
-                        },
-
-                        {
-                            "mData" : "newsCreateTime",
-                            "orderable" : true, // 禁用排序
-                            "sDefaultContent" : "",
-                            "sWidth" : "5%",
                         },
                         {
                             "mData": "id",
@@ -238,7 +214,7 @@
                             "sWidth": "10%",
                             "render": function (data, type,row) {
                                 var id = row.id;
-                                return data = '<button id="edit-news" onclick="editNews('+id+')" class="btn btn-success  btn-sm" data-id=' + data + '>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete-news" onclick="deleteNews('+id+')" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
+                                return data = '<button  onclick="editBanner('+id+')" class="btn btn-success  btn-sm" data-id=' + data + '>编辑</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="deleteBanner('+id+')" class="btn btn-danger btn-sm" data-id=' + data + '>删 除</button>';
                             }
                         }
                     ],
@@ -270,18 +246,15 @@
                             data.orderColumn = "title";//数据库列名称
                             break;
                         case 1:
-                            data.orderColumn = "keywords";//数据库列名称
+                            data.orderColumn = "description";//数据库列名称
                             break;
                         case 2:
-                            data.orderColumn = "newsResources";
-                        case 3:
-                            data.orderColumn = "newsType";
-                        case 4:
-                            data.orderColumn = "newsCreateTime";
+                            data.orderColumn = "bannerCreateTime";
+
                     }
                     //排序方式asc或者desc
                     data.orderDir = data.order[0].dir;
-                    data.title=$("#newsTitle").val(); //条件查询
+                    data.title=$("#bannerTitle").val(); //条件查询
                 }
                 return data;
             }
@@ -289,7 +262,7 @@
             function initComplete(){
 
                 //删除用户按钮的HTMLDOM
-                var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addNews()" class="btn btn-success waves-effect w-md waves-light btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
+                var topPlugin=' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="addBanner()" class="btn btn-success waves-effect w-md waves-light btn-sm addBtn" >新 增</button>    <button onclick="clearQuery()" class="btn btn-warning btn-sm" >重置查询条件</button>' ;
 
                 $("#datatable_length").append(topPlugin);//在表格上方topPlugin DIV中追加HTML
 
@@ -298,7 +271,7 @@
         /******************************************** 新闻增，删，改，查 *******************************************************/
             //清空查询条件
             function clearQuery() {
-                $('#newsForm')[0].reset();
+                $('#bannerForm')[0].reset();
                 table.ajax.reload();
             }
 
@@ -308,14 +281,14 @@
             }
 
             //要据id删除新闻
-            function deleteNews(id){
+            function deleteBanner(id){
                 layer.confirm('确认要删除吗？', {
                     btn : [ '确定', '取消' ]//按钮
                 } ,function (index) {
                     layer.close(index);
                     $.ajax({
                         type:'POST',
-                        url: '/delete-news',
+                        url: '/delete-banner',
                         dataType:'json',
                         data: {"id":id},
                         async:false,
@@ -341,17 +314,17 @@
 
             //返回列表
             function backList() {
-                location.href="/news-list";
+                location.href="/banner-list";
             }
 
-            //新增新闻
-            function addNews() {
-               location.href="/edit-news";
+            //新增
+            function addBanner() {
+               location.href="/edit-banner";
             }
 
-            //编辑新闻
-           function editNews(id) {
-               location.href="/edit-news?id="+id;
+            //编辑
+           function editBanner(id) {
+               location.href="/edit-banner?id="+id;
             }
 
 
