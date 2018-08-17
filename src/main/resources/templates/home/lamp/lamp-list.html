@@ -28,130 +28,130 @@
         <div class="container">
             <div id="lamp-list-content">
                 <#if lampListPageModel ??>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="shop-content">
-                            <!-- shop-option start -->
-                            <div class="shop-option box-shadow mb-30 clearfix">
-                                <!-- Nav tabs -->
-                                <ul class="shop-tab f-left" role="tablist">
-                                    <li class="active">
-                                        <a href="#grid-view" data-toggle="tab"><i class="zmdi zmdi-view-module"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#list-view" data-toggle="tab"><i
-                                                class="zmdi zmdi-view-list-alt"></i></a>
-                                    </li>
-                                </ul>
-                                <!-- short-by -->
-                                <div class="short-by f-left text-center">
-                                    <span>Sort by :</span>
-                                    <!-- 勿删，用于处理灯饰分类 -->
-                                    <input type="hidden" id="retrunProType" value="${productType}">
-                                    <select id="productType" onchange="queryByType()">
-                                        <option value="0">全部</option>
-                                        <option value="1">G4/G9</option>
-                                        <option value="2">球泡灯</option>
-                                        <option value="3">灯丝灯</option>
-                                        <option value="4">面板灯</option>
-                                    </select>
-                                </div>
-                                <!-- showing -->
-                                <div class="showing f-right text-right">
-                                    <span>total : ${lampListPageModel.total}&nbsp;&nbsp;&nbsp; </span>
-                                </div>
-                            </div>
-                            <!-- shop-option end -->
-                            <!-- Tab Content start -->
-
-                            <div class="tab-content">
-                                <!-- grid-view -->
-                                <div role="tabpanel" class="tab-pane active" id="grid-view">
-                                    <div class="row">
-                                        <#list lampListPageModel.lampList as lampList>
-                                        <!-- lamp-item start -->
-                                        <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <div class="product-item">
-                                                <div class="product-img">
-                                                    <a href="javascript:detail(${lampList.id})">
-                                                        <img src="${lampList.productTitleImage}" alt=""/>
-                                                    </a>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h6 class="product-title">
-                                                        <a href="javascript:detail(${lampList.id})">${lampList.model}</a>
-                                                    </h6>
-                                                    <div class="pro-rating">
-                                                        <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                        <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                        <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                        <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                        <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                                    </div>
-                                                    <h3 class="pro-price">
-                                                        <#if (lampList.productType = 1)>
-                                                        G4/G9
-                                                    </#if>
-
-                                                    <#if (lampList.productType = 2)>
-                                                    球泡灯
-                                                </#if>
-
-                                                <#if (lampList.productType = 3)>
-                                                灯丝灯
-                                            </#if>
-
-                                            <#if (lampList.productType = 4 )>
-                                            面板灯
-                                        </#if>
-                                        </h3>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i
-                                                        class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="modal"
-                                                   data-target="#productModal"
-                                                   title="Quickview"><i
-                                                        class="zmdi zmdi-zoom-in"></i></a>
-                                            </li>
-                                        </ul>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="shop-content">
+                                <!-- shop-option start -->
+                                <div class="shop-option box-shadow mb-30 clearfix">
+                                    <!-- Nav tabs -->
+                                    <ul class="shop-tab f-left" role="tablist">
+                                        <li class="active">
+                                            <a href="#grid-view" data-toggle="tab"><i class="zmdi zmdi-view-module"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#list-view" data-toggle="tab"><i
+                                                    class="zmdi zmdi-view-list-alt"></i></a>
+                                        </li>
+                                    </ul>
+                                    <!-- short-by -->
+                                    <div class="short-by f-left text-center">
+                                        <span>Sort by :</span>
+                                        <!-- 勿删，用于处理灯饰分类 -->
+                                        <input type="hidden" id="retrunProType" value="${productType}">
+                                        <select id="productType" onchange="queryByType()">
+                                            <option value="0">全部</option>
+                                            <option value="1">G4/G9</option>
+                                            <option value="2">球泡灯</option>
+                                            <option value="3">灯丝灯</option>
+                                            <option value="4">面板灯</option>
+                                        </select>
+                                    </div>
+                                    <!-- showing -->
+                                    <div class="showing f-right text-right">
+                                        <span>total : ${lampListPageModel.total}&nbsp;&nbsp;&nbsp; </span>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- lamp-item end -->
-                        </#list>
-                    </div>
-                </div>
+                                <!-- shop-option end -->
+                                <!-- Tab Content start -->
 
+                                <div class="tab-content">
+                                    <!-- grid-view -->
+                                    <div role="tabpanel" class="tab-pane active" id="grid-view">
+                                        <div class="row">
+                                            <#list lampListPageModel.lampList as lampList>
+                                                <!-- lamp-item start -->
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <div class="product-item">
+                                                        <div class="product-img">
+                                                            <a href="javascript:detail(${lampList.id})">
+                                                                <img src="${lampList.productTitleImage}" alt=""/>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <h6 class="product-title">
+                                                                <a href="javascript:detail(${lampList.id})">${lampList.model}</a>
+                                                            </h6>
+                                                            <div class="pro-rating">
+                                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                                            </div>
+                                                            <h3 class="pro-price">
+                                                                <#if (lampList.productType = 1)>
+                                                                    G4/G9
+                                                                </#if>
+
+                                                                <#if (lampList.productType = 2)>
+                                                                    球泡灯
+                                                                </#if>
+
+                                                                <#if (lampList.productType = 3)>
+                                                                    灯丝灯
+                                                                </#if>
+
+                                                                <#if (lampList.productType = 4 )>
+                                                                    面板灯
+                                                                </#if>
+                                                            </h3>
+                                                            <ul class="action-button">
+                                                                <li>
+                                                                    <a href="#" title="Wishlist"><i
+                                                                            class="zmdi zmdi-favorite"></i></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:deltailByModal(${lampList.id})" title="Quickview"><i
+                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- lamp-item end -->
+                                            </#list>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <#if lampListPageModel.nextPage ??>
+                                    <ul class="shop-pagination box-shadow text-center ptblr-10-30">
+                                        <#if (lampListPageModel.currentPage = 1)>
+                                            <#else>
+                                                <li><a href="javascript:queryByPage(${lampListPageModel.prevPage});"><i
+                                                        class="zmdi zmdi-chevron-left"></i></a></li>
+                                        </#if>
+                                        <#list 1..lampListPageModel.count as i>
+                                            <li
+                                            <#if (lampListPageModel.currentPage = i)> class="active"</#if>
+                                            >
+                                            <a href="javascript:queryByPage(${i});">${i_index+1}</a>
+                                            </li>
+                                        </#list>
+                                        <#if (lampListPageModel.currentPage = lampListPageModel.count)>
+                                            <#else>
+                                                <li class="next">
+                                                    <a href="javascript:queryByPage(${lampListPageModel.nextPage})"><i
+                                                            class="zmdi zmdi-chevron-right"></i></a>
+                                                </li>
+                                        </#if>
+                                    </ul>
+                                </#if>
+                </#if>
+                <!-- shop-pagination end -->
             </div>
-            <#if lampListPageModel.nextPage ??>
-            <ul class="shop-pagination box-shadow text-center ptblr-10-30">
-                <#if (lampListPageModel.currentPage = 1)>
-                <#else>
-                <li><a href="javascript:queryByPage(${lampListPageModel.prevPage});"><i
-                        class="zmdi zmdi-chevron-left"></i></a></li>
-            </#if>
-            <#list 1..lampListPageModel.count as i>
-            <li <#if (lampListPageModel.currentPage = i)> class="active"</#if>>
-        <a href="javascript:queryByPage(${i});">${i_index+1}</a>
-        </li>
-    </#list>
-    <#if (lampListPageModel.currentPage = lampListPageModel.count)>
-    <#else>
-    <li class="next">
-        <a href="javascript:queryByPage(${lampListPageModel.nextPage})"><i
-                class="zmdi zmdi-chevron-right"></i></a>
-    </li>
-</#if>
-</ul>
-</#if>
-</#if>
-<!-- shop-pagination end -->
-</div>
-</div>
-</div>
+        </div>
+    </div>
 
 </div>
 </div>
@@ -161,26 +161,111 @@
 </div>
 <!-- End page content -->
 
+<!-- START QUICKVIEW PRODUCT -->
+<div id="quickview-wrapper">
+    <!-- Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-product clearfix">
+                        <div class="product-images">
+                            <div class="main-image images">
+                                <img alt="" src="home/img/product/quickview.jpg">
+                            </div>
+                        </div><!-- .lamp-images -->
+
+                        <div class="product-info">
+                            <h1>AC220V/12V G4-SMD-2.5W</h1>
+                            <div class="price-box-3">
+                                <div class="s-price-box">
+                                    <span class="new-price">G4-SMD-2.5W</span>
+                                </div>
+                            </div>
+                            <!--<div class="quick-add-to-cart">-->
+                            <!--<form method="post" class="cart">-->
+                            <!--<div class="numbers-row">-->
+                            <!--<input type="number" id="french-hens" value="3">-->
+                            <!--</div>-->
+                            <!--<button class="single_add_to_cart_button" type="submit">Add to cart</button>-->
+                            <!--</form>-->
+                            <!--</div>-->
+                            <div class="quick-desc">
+                                <p>Modal: <span>${lampWithBLOBs.model}</span></p>
+                                <p>Voltage(V): <span>DC12V</span></p>
+                                <p>Power(W): <span>2W±0.2W</span></p>
+                                <p>Lumen(Im): <span>150Im±30Im</span></p>
+                                <p>Lamp size: <span>10*32mm</span></p>
+                                <p>LED Quantity: <span>COB</span></p>
+                                <p>lamp Body Material: <span>Silica gel</span></p>
+                            </div>
+                            <a href="single-product-left-sidebar.html" class="see-all">See all features</a>
+                            <div class="social-sharing">
+                                <div class="widget widget_socialsharing_widget">
+                                    <h3 class="widget-title-modal">Share this product</h3>
+                                    <ul class="social-icons clearfix">
+                                        <li>
+                                            <a class="facebook" href="#" target="_blank" title="Facebook">
+                                                <i class="zmdi zmdi-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="google-plus" href="#" target="_blank" title="Google +">
+                                                <i class="zmdi zmdi-google-plus"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="twitter" href="#" target="_blank" title="Twitter">
+                                                <i class="zmdi zmdi-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="pinterest" href="#" target="_blank" title="Pinterest">
+                                                <i class="zmdi zmdi-pinterest"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="rss" href="#" target="_blank" title="RSS">
+                                                <i class="zmdi zmdi-rss"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .lamp-info -->
+                    </div><!-- .modal-lamp -->
+                </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+    </div>
+    <!-- END Modal -->
+</div>
+<!-- END QUICKVIEW PRODUCT -->
+
 <#include "./home/public/footer.html"/>
 
 <script>
     //ajax 访问后台提取数据
     function queryByPage(pageNum) {
 
-        var options=$("#productType option:selected");
+        var options = $("#productType option:selected");
         var productType = options.val();
 
         $.ajax({
             type: 'GET',
-            url:'/lampListByPage?pageNum='+ pageNum + '&productType=' + productType,
-            success: function(data) {
+            url: '/lampListByPage?pageNum=' + pageNum + '&productType=' + productType,
+            success: function (data) {
                 $('#lamp-list-content').html();
                 $('#lamp-list-content').html(data);
                 $("#retrunProType").val(productType)
 
-                $("#productType option[value='"+productType+"']").attr("selected", "selected");
+                $("#productType option[value='" + productType + "']").attr("selected", "selected");
             },
-            error: function(){
+            error: function () {
                 alert('请求失败！');
             }
         })
@@ -190,12 +275,12 @@
     function detail(id) {
         $.ajax({
             type: 'GET',
-            url:'/lampDetail?id='+ id,
-            success: function(data) {
-                window.location.href='/lampDetail?id='+id;
+            url: '/lampDetail?id=' + id,
+            success: function (data) {
+                window.location.href = '/lampDetail?id=' + id;
 
             },
-            error: function(){
+            error: function () {
                 alert('请求出错!');
             }
         })
@@ -203,23 +288,41 @@
 
 
     function queryByType() {
-        var options=$("#productType option:selected");
+        var options = $("#productType option:selected");
         var productType = options.val();
 
         $.ajax({
             type: 'GET',
-            url:'/lampListByPage?productType='+ productType,
-            success: function(data) {
+            url: '/lampListByPage?productType=' + productType,
+            success: function (data) {
 
                 $('#lamp-list-content').html();
                 $('#lamp-list-content').html(data);
-                $("#productType option[value='"+productType+"']").attr("selected", "selected");
+                $("#productType option[value='" + productType + "']").attr("selected", "selected");
 
             },
-            error: function(){
+            error: function () {
                 alert('请求出错，请重试！');
             }
         })
+    }
+    
+    function deltailByModal(id) {
+        console.log('id=' + id);
+        $.ajax({
+            type: 'GET',
+            url: '/lampDetailByModal?id=' +id,
+            dataType:'json',
+            success: function (data){
+                alert(data.model);
+                $('#productModal').modal();
+                $('#productModal').html();
+                $('#productModal').html(data);
 
+            },
+            error: function () {
+                console.log("获取数据失败！")
+            }
+        })
     }
 </script>
