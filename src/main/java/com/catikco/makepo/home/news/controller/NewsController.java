@@ -1,6 +1,5 @@
 package com.catikco.makepo.home.news.controller;
 
-import com.catikco.makepo.entity.LampWithBLOBs;
 import com.catikco.makepo.entity.NewsWithBLOBs;
 import com.catikco.makepo.home.news.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
