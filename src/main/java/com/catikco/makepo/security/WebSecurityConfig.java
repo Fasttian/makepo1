@@ -1,7 +1,5 @@
 package com.catikco.makepo.security;
 
-import com.catikco.makepo.admin.login.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
