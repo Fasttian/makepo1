@@ -12,6 +12,8 @@ public interface UserService {
 
     public int save(UserPageModel userPageModel);
 
-    public User getUser(String account);
+    public User getUser(Integer id);
+
+    public int chkPwd(String oldPwd,Integer id);
 
 }

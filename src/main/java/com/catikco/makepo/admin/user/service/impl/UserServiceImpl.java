@@ -28,17 +28,21 @@ public class UserServiceImpl implements UserService {
             return 0;
 
         User newUser = null;
-        if(userPageModel.getId() != null){
-            newUser = new User();
+        if(!"".equals(userPageModel.getId())){
+            newUser = userMapper.selectByPrimaryKey(userPageModel.getId());
             newUser.setUpdateTime(new Date());
             newUser.setUsername(userPageModel.getUsername());
             newUser.setPassword(userPageModel.getPassword());
+            if(userPageModel.getPassword().equals(""))
+                return 0;
             return userMapper.updateByPrimaryKey(newUser);
         }else{
             newUser = new User();
             newUser.setCreateTime(new Date());
             newUser.setAccount(userPageModel.getAccount());
             newUser.setUsername(userPageModel.getUsername());
+            if(userPageModel.getPassword().equals(""))
+                return 0;
             newUser.setPassword(userPageModel.getPassword());
             return userMapper.insert(newUser);
         }
@@ -46,18 +50,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String account) {
-        UserExample userExample = new UserExample();
-        UserExample.Criteria criteria = userExample.createCriteria();
+    public User getUser(Integer id) {
+        if("".equals(id))
+            return null;
 
-        if(!"".equals(account))
-            criteria.andAccountEqualTo(account);
+        return userMapper.selectByPrimaryKey(id);
+    }
 
-        List<User> userList = userMapper.selectByExample(userExample);
+    @Override
+    public int chkPwd(String oldPwd,Integer id) {
+        if("".equals(oldPwd)||"".equals(id))
+            return 0;
 
-        if(userList.size() > 0)
-            return userList.get(0);
+        User user = userMapper.selectByPrimaryKey(id);
 
-        return null;
+        if(user == null)
+            return 0;
+
+        if( !user.getPassword().equals(oldPwd))
+            return 0;
+
+        return 1;
+
     }
 }
