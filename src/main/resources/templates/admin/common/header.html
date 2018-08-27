@@ -186,20 +186,40 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">上传</h4>
+                <h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
             </div>
             <div class="modal-body">
-                <form id="manualForm">
+                <form id="userForm">
+                    <input type="text" id="userID" name="id" value="" style="display: none">
                     <div class="form-group">
-                        <label class="control-label">选择要上传的文件</label>
+                        <label class="control-label">用户名</label>
                         <div class="mr-30">
-                            <input type="file" id="titImage" name="titImage" accept="" class="filestyle" data-buttonname="btn-default">
+                            <input type="text" id="username" name="username"   class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">旧密码</label>
+                        <div class="mr-30">
+                            <input type="password" id="oldpwd" value="" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">新密码</label>
+                        <div class="mr-30">
+                            <input type="password" id="password" name="password"    class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">新确认密码</label>
+                        <div class="mr-30">
+                            <input type="password" id="repassword"  class="form-control">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="javascript:uploadFile()" data-dismiss="modal">完成</button>
+                <button type="button" class="btn btn-default" onclick="javascript:saveUser()" >提交</button>
             </div>
         </div>
     </div>
@@ -209,7 +229,6 @@
     $(document).ready(function () {
         getUser();
     });
-
 
     function logout() {
         $.ajax({
@@ -241,6 +260,82 @@
     
     function userInfo(id) {
         $('#userInfo').modal();
+        $.ajax({
+            type:"get",
+            url:"/userInfo?id="+id,
+            dataType:"json",
+            success: function (data){
+                $("#username").val(data.username);
+                $("#userID").val(data.id);
+            }
+        })
+    }
+    
+    function saveUser() {
+
+        //验证旧密码
+        var oldpwd = $("#oldpwd").val();
+        var oldID = $("#userID").val();
+
+        var status = chkOldPwd(oldpwd,oldID)
+        console.log(status);
+        if(status){
+        }else {
+            notify_error("旧密码输入不正确，请重新输入！")
+            return;
+        }
+        //验证密码
+        var newPassword = $("#repassword").val();
+        var password = $("#password").val();
+        if(password != newPassword || newPassword == "") {
+            notify_error("两次密码不一致，或密码为空，请重新输入！")
+            return;
+        }
+        var formData = new FormData(document.getElementById("userForm"));
+        $.ajax({
+            type:"post",
+            url:"/saveUser",
+            processData: false,
+            contentType: false,
+            data:formData,
+            dataType:"json",
+            success:function (data) {
+                if(data.code == "succeed"){
+                    notify_sucess(data.data);
+                    location.reload(true);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
+                    return;
+                }
+            }
+        })
+
+    }
+    
+    
+    function chkOldPwd(oldpwd,oldID) {
+        var status = false;
+        var formData = new FormData();
+        formData.append("id",oldID);
+        formData.append("oldPwd",oldpwd);
+        $.ajax({
+            type:"post",
+            url:"/chkPwd",
+            processData: false,
+            contentType: false,
+            data:formData,
+            dataType:"json",
+            async:false,
+            success:function (data) {
+                if(data.code == "succeed"){
+                    status = true;
+                }
+            }
+
+        })
+
+        return status;
     }
 
 
