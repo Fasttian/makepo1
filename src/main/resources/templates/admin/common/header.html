@@ -104,18 +104,17 @@
                     <li class="dropdown user-box" style="margin-top:7px;">
                         <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
                             <i class="ti-user m-r-5" style="    display: inline-block;
-    font-size: 18px;
-    line-height: 17px;
-    margin-left: 3px;
-    margin-right: 15px;
-    text-align: center;
-    vertical-align: middle;
-    width: 20px;"></i><span>Hi,${user.username}</span>
+                                font-size: 18px;
+                                line-height: 17px;
+                                margin-left: 3px;
+                                margin-right: 15px;
+                                text-align: center;
+                                vertical-align: middle; width: 20px;"></i><span>Hi,${user.username}</span>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                             <li>
-                                <h5>Hi, ${user.username}</h5>
+                                <h5><a href="javascript:userInfo(${user.id})">Hi, ${user.username}</a></h5>
                             </li>
 
                             <li><a href="javascript:logout()"><i class="ti-power-off m-r-5"></i> Logout</a></li>
@@ -180,6 +179,32 @@
     </div>
     <!-- Left Sidebar End -->
 </div>
+
+
+<div class="modal fade" id="userInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">上传</h4>
+            </div>
+            <div class="modal-body">
+                <form id="manualForm">
+                    <div class="form-group">
+                        <label class="control-label">选择要上传的文件</label>
+                        <div class="mr-30">
+                            <input type="file" id="titImage" name="titImage" accept="" class="filestyle" data-buttonname="btn-default">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="javascript:uploadFile()" data-dismiss="modal">完成</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         getUser();
@@ -190,9 +215,9 @@
         $.ajax({
             type:"GET",
             url:"/logout",
-            dataType:"String",
+            dataType:"text",
             success: function() {
-
+                window.location.href='/login';
             },
             error: function(){
 
@@ -206,13 +231,16 @@
             url:"/getUserInfo",
             dataType:"text",
             success: function() {
-                //window.location.href='/login';
 
             },
             error: function(){
 
             }
         })
+    }
+    
+    function userInfo(id) {
+        $('#userInfo').modal();
     }
 
 

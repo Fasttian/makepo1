@@ -6,12 +6,12 @@
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="user_img_file_id" property="user_img_file_id" jdbcType="INTEGER" />
-    <result column="last_login" property="last_login" jdbcType="DATE" />
-    <result column="create_time" property="create_time" jdbcType="DATE" />
-    <result column="update_time" property="update_time" jdbcType="DATE" />
-    <result column="create_by" property="create_by" jdbcType="INTEGER" />
-    <result column="update_by" property="update_by" jdbcType="INTEGER" />
+    <result column="userImgFileId" property="userImgFileId" jdbcType="INTEGER" />
+    <result column="lastLogin" property="lastLogin" jdbcType="DATE" />
+    <result column="createTime" property="createTime" jdbcType="DATE" />
+    <result column="updateTime" property="updateTime" jdbcType="DATE" />
+    <result column="createBy" property="createBy" jdbcType="INTEGER" />
+    <result column="updateBy" property="updateBy" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
@@ -74,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, account, username, password, user_img_file_id, last_login, create_time, update_time, 
-    create_by, update_by, status, remark
+    id, account, username, password, userImgFileId, lastLogin, createTime, updateTime, 
+    createBy, updateBy, status, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.catikco.makepo.entity.UserExample" >
     select
@@ -109,14 +109,14 @@
   </delete>
   <insert id="insert" parameterType="com.catikco.makepo.entity.User" useGeneratedKeys="true" keyProperty="id">
     insert into user (id, account, username, 
-      password, user_img_file_id, last_login, 
-      create_time, update_time, create_by, 
-      update_by, status, remark
+      password, userImgFileId, lastLogin, 
+      createTime, updateTime, createBy, 
+      updateBy, status, remark
       )
     values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{user_img_file_id,jdbcType=INTEGER}, #{last_login,jdbcType=DATE}, 
-      #{create_time,jdbcType=DATE}, #{update_time,jdbcType=DATE}, #{create_by,jdbcType=INTEGER}, 
-      #{update_by,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      #{password,jdbcType=VARCHAR}, #{userImgFileId,jdbcType=INTEGER}, #{lastLogin,jdbcType=DATE}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, 
+      #{updateBy,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.catikco.makepo.entity.User" useGeneratedKeys="true" keyProperty="id">
@@ -134,23 +134,23 @@
       <if test="password != null" >
         password,
       </if>
-      <if test="user_img_file_id != null" >
-        user_img_file_id,
+      <if test="userImgFileId != null" >
+        userImgFileId,
       </if>
-      <if test="last_login != null" >
-        last_login,
+      <if test="lastLogin != null" >
+        lastLogin,
       </if>
-      <if test="create_time != null" >
-        create_time,
+      <if test="createTime != null" >
+        createTime,
       </if>
-      <if test="update_time != null" >
-        update_time,
+      <if test="updateTime != null" >
+        updateTime,
       </if>
-      <if test="create_by != null" >
-        create_by,
+      <if test="createBy != null" >
+        createBy,
       </if>
-      <if test="update_by != null" >
-        update_by,
+      <if test="updateBy != null" >
+        updateBy,
       </if>
       <if test="status != null" >
         status,
@@ -172,23 +172,23 @@
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="user_img_file_id != null" >
-        #{user_img_file_id,jdbcType=INTEGER},
+      <if test="userImgFileId != null" >
+        #{userImgFileId,jdbcType=INTEGER},
       </if>
-      <if test="last_login != null" >
-        #{last_login,jdbcType=DATE},
+      <if test="lastLogin != null" >
+        #{lastLogin,jdbcType=DATE},
       </if>
-      <if test="create_time != null" >
-        #{create_time,jdbcType=DATE},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
       </if>
-      <if test="update_time != null" >
-        #{update_time,jdbcType=DATE},
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
       </if>
-      <if test="create_by != null" >
-        #{create_by,jdbcType=INTEGER},
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="update_by != null" >
-        #{update_by,jdbcType=INTEGER},
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -219,23 +219,23 @@
       <if test="record.password != null" >
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.user_img_file_id != null" >
-        user_img_file_id = #{record.user_img_file_id,jdbcType=INTEGER},
+      <if test="record.userImgFileId != null" >
+        userImgFileId = #{record.userImgFileId,jdbcType=INTEGER},
       </if>
-      <if test="record.last_login != null" >
-        last_login = #{record.last_login,jdbcType=DATE},
+      <if test="record.lastLogin != null" >
+        lastLogin = #{record.lastLogin,jdbcType=DATE},
       </if>
-      <if test="record.create_time != null" >
-        create_time = #{record.create_time,jdbcType=DATE},
+      <if test="record.createTime != null" >
+        createTime = #{record.createTime,jdbcType=DATE},
       </if>
-      <if test="record.update_time != null" >
-        update_time = #{record.update_time,jdbcType=DATE},
+      <if test="record.updateTime != null" >
+        updateTime = #{record.updateTime,jdbcType=DATE},
       </if>
-      <if test="record.create_by != null" >
-        create_by = #{record.create_by,jdbcType=INTEGER},
+      <if test="record.createBy != null" >
+        createBy = #{record.createBy,jdbcType=INTEGER},
       </if>
-      <if test="record.update_by != null" >
-        update_by = #{record.update_by,jdbcType=INTEGER},
+      <if test="record.updateBy != null" >
+        updateBy = #{record.updateBy,jdbcType=INTEGER},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
@@ -254,12 +254,12 @@
       account = #{record.account,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      user_img_file_id = #{record.user_img_file_id,jdbcType=INTEGER},
-      last_login = #{record.last_login,jdbcType=DATE},
-      create_time = #{record.create_time,jdbcType=DATE},
-      update_time = #{record.update_time,jdbcType=DATE},
-      create_by = #{record.create_by,jdbcType=INTEGER},
-      update_by = #{record.update_by,jdbcType=INTEGER},
+      userImgFileId = #{record.userImgFileId,jdbcType=INTEGER},
+      lastLogin = #{record.lastLogin,jdbcType=DATE},
+      createTime = #{record.createTime,jdbcType=DATE},
+      updateTime = #{record.updateTime,jdbcType=DATE},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      updateBy = #{record.updateBy,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -278,23 +278,23 @@
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="user_img_file_id != null" >
-        user_img_file_id = #{user_img_file_id,jdbcType=INTEGER},
+      <if test="userImgFileId != null" >
+        userImgFileId = #{userImgFileId,jdbcType=INTEGER},
       </if>
-      <if test="last_login != null" >
-        last_login = #{last_login,jdbcType=DATE},
+      <if test="lastLogin != null" >
+        lastLogin = #{lastLogin,jdbcType=DATE},
       </if>
-      <if test="create_time != null" >
-        create_time = #{create_time,jdbcType=DATE},
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=DATE},
       </if>
-      <if test="update_time != null" >
-        update_time = #{update_time,jdbcType=DATE},
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=DATE},
       </if>
-      <if test="create_by != null" >
-        create_by = #{create_by,jdbcType=INTEGER},
+      <if test="createBy != null" >
+        createBy = #{createBy,jdbcType=INTEGER},
       </if>
-      <if test="update_by != null" >
-        update_by = #{update_by,jdbcType=INTEGER},
+      <if test="updateBy != null" >
+        updateBy = #{updateBy,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
@@ -310,12 +310,12 @@
     set account = #{account,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      user_img_file_id = #{user_img_file_id,jdbcType=INTEGER},
-      last_login = #{last_login,jdbcType=DATE},
-      create_time = #{create_time,jdbcType=DATE},
-      update_time = #{update_time,jdbcType=DATE},
-      create_by = #{create_by,jdbcType=INTEGER},
-      update_by = #{update_by,jdbcType=INTEGER},
+      userImgFileId = #{userImgFileId,jdbcType=INTEGER},
+      lastLogin = #{lastLogin,jdbcType=DATE},
+      createTime = #{createTime,jdbcType=DATE},
+      updateTime = #{updateTime,jdbcType=DATE},
+      createBy = #{createBy,jdbcType=INTEGER},
+      updateBy = #{updateBy,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

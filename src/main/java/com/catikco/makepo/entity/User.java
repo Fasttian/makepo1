@@ -11,17 +11,17 @@ public class User {
 
     private String password;
 
-    private Integer user_img_file_id;
+    private Integer userImgFileId;
 
-    private Date last_login;
+    private Date lastLogin;
 
-    private Date create_time;
+    private Date createTime;
 
-    private Date update_time;
+    private Date updateTime;
 
-    private Integer create_by;
+    private Integer createBy;
 
-    private Integer update_by;
+    private Integer updateBy;
 
     private String status;
 
@@ -59,52 +59,52 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getUser_img_file_id() {
-        return user_img_file_id;
+    public Integer getUserImgFileId() {
+        return userImgFileId;
     }
 
-    public void setUser_img_file_id(Integer user_img_file_id) {
-        this.user_img_file_id = user_img_file_id;
+    public void setUserImgFileId(Integer userImgFileId) {
+        this.userImgFileId = userImgFileId;
     }
 
-    public Date getLast_login() {
-        return last_login;
+    public Date getLastLogin() {
+        return lastLogin;
     }
 
-    public void setLast_login(Date last_login) {
-        this.last_login = last_login;
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdate_time() {
-        return update_time;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public Integer getCreate_by() {
-        return create_by;
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public void setCreate_by(Integer create_by) {
-        this.create_by = create_by;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
     }
 
-    public Integer getUpdate_by() {
-        return update_by;
+    public Integer getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpdate_by(Integer update_by) {
-        this.update_by = update_by;
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
     }
 
     public String getStatus() {

@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public User findUserByAccount(String account) {
+    public User findUserByAccount(String account,String password) {
         if(null == account)
             return null;
 
@@ -49,6 +49,9 @@ public class LoginServiceImpl implements LoginService {
 
         //查询条件
         criteria.andAccountEqualTo(account);
+
+        if(!"".equals(password))
+            criteria.andPasswordEqualTo(password);
 
         List<User> userList = userMapper.selectByExample(userExample);
 
