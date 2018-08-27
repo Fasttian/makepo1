@@ -32,7 +32,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         CyclopediaExample.Criteria criteria = cyclopediaExample.createCriteria();
 
         //按时间排序
-        cyclopediaExample.setOrderByClause("cyclopediaCreateTime"+" "+"asc" );
+        cyclopediaExample.setOrderByClause("cyclopediaCreateTime"+" "+"desc" );
 
         //仅查询未删除的
         criteria.andDeletedEqualTo(false);

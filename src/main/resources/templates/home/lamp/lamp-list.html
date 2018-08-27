@@ -49,11 +49,12 @@
                                         <!-- 勿删，用于处理灯饰分类 -->
                                         <input type="hidden" id="retrunProType" value="${productType}">
                                         <select id="productType" onchange="queryByType()">
-                                            <option value="0">全部</option>
-                                            <option value="1">G4/G9</option>
-                                            <option value="2">球泡灯</option>
-                                            <option value="3">灯丝灯</option>
-                                            <option value="4">面板灯</option>
+                                            <option value="0">all</option>
+                                            <option value="1">Lighting sources</option>
+                                            <option value="2">Commercial lights</option>
+                                            <option value="3">Tri-proof fixtures</option>
+                                            <option value="4">LED Strip Lights</option>
+                                            <option value="5">Flood lamps</option>
                                         </select>
                                     </div>
                                     <!-- showing -->
@@ -90,20 +91,20 @@
                                                             </div>
                                                             <h3 class="pro-price">
                                                                 <#if (lampList.productType = 1)>
-                                                                    G4/G9
-                                                                </#if>
-
+                                                                Lighting  sources
+                                                            </#if>
                                                                 <#if (lampList.productType = 2)>
-                                                                    球泡灯
-                                                                </#if>
-
+                                                            Commercial lights
+                                                        </#if>
                                                                 <#if (lampList.productType = 3)>
-                                                                    灯丝灯
-                                                                </#if>
-
+                                                        Tri-proof fixtures
+                                                    </#if>
                                                                 <#if (lampList.productType = 4 )>
-                                                                    面板灯
-                                                                </#if>
+                                                    LED Strip Lights
+                                                </#if>
+                                            <#if (lampList.productType = 5 )>
+                                            Flood lamps
+                                        </#if>
                                                             </h3>
                                                             <ul class="action-button">
                                                                 <li>
@@ -111,8 +112,7 @@
                                                                             class="zmdi zmdi-favorite"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="javascript:deltailByModal(${lampList.id})" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" onclick="deltailByModal(${lampList.id})" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -175,15 +175,15 @@
                     <div class="modal-product clearfix">
                         <div class="product-images">
                             <div class="main-image images">
-                                <img alt="" src="home/img/product/quickview.jpg">
+                                <img alt="" id="productTitleImage-formodal" src="home/img/product/quickview.jpg">
                             </div>
                         </div><!-- .lamp-images -->
 
                         <div class="product-info">
-                            <h1>AC220V/12V G4-SMD-2.5W</h1>
+                            <h1 id="model-formodaltitle" ></h1>
                             <div class="price-box-3">
                                 <div class="s-price-box">
-                                    <span class="new-price">G4-SMD-2.5W</span>
+                                    <span class="new-price" id="productType-formodal"></span>
                                 </div>
                             </div>
                             <!--<div class="quick-add-to-cart">-->
@@ -195,15 +195,15 @@
                             <!--</form>-->
                             <!--</div>-->
                             <div class="quick-desc">
-                                <p>Modal: <span>${lampWithBLOBs.model}</span></p>
-                                <p>Voltage(V): <span>DC12V</span></p>
-                                <p>Power(W): <span>2W±0.2W</span></p>
-                                <p>Lumen(Im): <span>150Im±30Im</span></p>
-                                <p>Lamp size: <span>10*32mm</span></p>
-                                <p>LED Quantity: <span>COB</span></p>
-                                <p>lamp Body Material: <span>Silica gel</span></p>
+                                <p>Model: <span id="model-formodal"></span></p>
+                                <p>Voltage(V): <span id="voltage-formodal"></span></p>
+                                <p>Power(W): <span id="power-formodal"></span></p>
+                                <p>Lumen(Im): <span id="lumen-formodal"></span></p>
+                                <p>Lamp size: <span id="size-formadal"></span></p>
+                                <p>LED Quantity: <span id="quantity-formodal"></span></p>
+                                <p>lamp Body Material: <span id="material-formodal"></span></p>
                             </div>
-                            <a href="single-product-left-sidebar.html" class="see-all">See all features</a>
+                            <a href="" id="seeall" class="see-all">See all features</a>
                             <div class="social-sharing">
                                 <div class="widget widget_socialsharing_widget">
                                     <h3 class="widget-title-modal">Share this product</h3>
@@ -308,16 +308,37 @@
     }
     
     function deltailByModal(id) {
-        console.log('id=' + id);
         $.ajax({
             type: 'GET',
             url: '/lampDetailByModal?id=' +id,
             dataType:'json',
             success: function (data){
-                alert(data.model);
-                $('#productModal').modal();
-                $('#productModal').html();
-                $('#productModal').html(data);
+
+                $("#productTitleImage-formodal").attr("src",data.productTitleImage);
+                $("#model-formodaltitle").html(data.model)
+
+                if(data.productType == 1 ){
+                    $("#productType-formodal").html("Lighting  sources")
+                }else if(data.productType == 2){
+                    $("#productType-formodal").html("Commercial lights")
+                }else if(data.productType == 3){
+                    $("#productType-formodal").html("Tri-proof fixtures")
+                }else if(data.productType == 4){
+                    $("#productType-formodal").html("LED Strip Lights")
+                }else if(data.productType == 5){
+                    $("#productType-formodal").html("Flood lamps")
+                }
+
+
+                $("#model-formodal").html(data.model)
+                $("#voltage-formodal").html(data.voltage)
+                $("#power-formodal").html(data.power)
+                $("#lumen-formodal").html(data.lumen)
+                $("#size-formadal").html(data.size)
+                $("#quantity-formodal").html(data.quantity)
+                $("#material-formodal").html(data.material)
+                $("#seeall").attr("href","javascript:detail(" +data.id+ ")");
+
 
             },
             error: function () {
@@ -325,4 +346,7 @@
             }
         })
     }
+
+
+
 </script>

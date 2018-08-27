@@ -30,7 +30,7 @@ public class PowerServiceImpl implements PowerService {
         PowerExample.Criteria criteria = powerExample.createCriteria();
 
         //产品按时间排序
-        powerExample.setOrderByClause("productCreateTime" + " " + "asc");
+        powerExample.setOrderByClause("productCreateTime" + " " + "desc");
 
         //产品类型查询
         Integer productType = null;

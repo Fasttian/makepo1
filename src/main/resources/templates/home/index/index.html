@@ -133,28 +133,26 @@
                                 </h6>
                                 <h6 class="brand-name">
                                     <#if (lampList.productType = 1)>
-                                    G4/G9
+                                    Lighting  sources
                                 </#if>
-
                                 <#if (lampList.productType = 2)>
-                                球泡灯
+                                Commercial lights
                             </#if>
-
                             <#if (lampList.productType = 3)>
-                            灯丝灯
+                            Tri-proof fixtures
                         </#if>
-
                         <#if (lampList.productType = 4 )>
-                        面板灯
+                        LED Strip Lights
                     </#if>
-
-
+                    <#if (lampList.productType = 5 )>
+                    Flood lamps
+                </#if>
                                 </h6>
 
                             </div>
                             <ul class="action-button text-center">
                                 <li>
-                                    <a href="#" data-toggle="modal"  data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                                    <a href="#" data-toggle="modal"  onclick="deltailByModal(${lampList.id})" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                 </li>
                             </ul>
 
@@ -239,20 +237,21 @@
     <div class="product-tab-section section-bg-tb pt-80 pb-55">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-sm-12 col-xs-12">
                     <div class="section-title text-left mb-40">
                         <h2 class="uppercase">产品分类</h2>
                         <h6>我公司主要的产品分类，全部产品详细请参考产品手册</h6>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-sm-12 col-xs-12">
                     <div class="pro-tab-menu pro-tab-menu-2 text-right">
                         <!-- Nav tabs -->
                         <ul class="">
-                            <li class="active"><a href="#popular-product" data-toggle="tab">G4/G9</a></li>
-                            <li><a href="#new-arrival" data-toggle="tab">球泡灯</a></li>
-                            <li><a href="#best-seller" data-toggle="tab">灯丝灯</a></li>
-                            <li><a href="#special-offer" data-toggle="tab">面板灯</a></li>
+                            <li class="active"><a href="#popular-product" data-toggle="tab">Lighting sources</a></li>
+                            <li><a href="#new-arrival" data-toggle="tab">Commercial lights</a></li>
+                            <li><a href="#best-seller" data-toggle="tab">Tri-proof fixtures</a></li>
+                            <li><a href="#special-offer" data-toggle="tab">LED Strip Lights</a></li>
+                            <li><a href="#special-Flood" data-toggle="tab">Flood lamps</a></li>
                         </ul>
                     </div>
                 </div>
@@ -283,26 +282,26 @@
                                         </h6>
                                         <h6 class="brand-name">
                                             <#if (lampList.productType = 1)>
-                                            G4/G9
+                                            Lighting  sources
                                         </#if>
-
                                         <#if (lampList.productType = 2)>
-                                        球泡灯
+                                        Commercial lights
                                     </#if>
-
                                     <#if (lampList.productType = 3)>
-                                    灯丝灯
+                                    Tri-proof fixtures
                                 </#if>
-
                                 <#if (lampList.productType = 4 )>
-                                面板灯
+                                LED Strip Lights
                             </#if>
+                            <#if (lampList.productType = 5 )>
+                            Flood lamps
+                        </#if>
                             </h6>
 
                         </div>
                         <ul class="action-button text-center">
                             <li>
-                                <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                <a href="" onclick="deltailByModal(${lampList.id})"  data-toggle="modal" data-target="#productModal"
                                    title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                             </li>
                         </ul>
@@ -343,26 +342,26 @@
                                         </h6>
                                         <h6 class="brand-name">
                                             <#if (lampList.productType = 1)>
-                                                G4/G9
-                                            </#if>
-
-                                            <#if (lampList.productType = 2)>
-                                                球泡灯
-                                            </#if>
-
-                                            <#if (lampList.productType = 3)>
-                                                灯丝灯
-                                            </#if>
-
-                                            <#if (lampList.productType = 4 )>
-                                                面板灯
-                                            </#if>
+                                            Lighting  sources
+                                        </#if>
+                                        <#if (lampList.productType = 2)>
+                                        Commercial lights
+                                    </#if>
+                                    <#if (lampList.productType = 3)>
+                                    Tri-proof fixtures
+                                </#if>
+                                <#if (lampList.productType = 4 )>
+                                LED Strip Lights
+                            </#if>
+                            <#if (lampList.productType = 5 )>
+                            Flood lamps
+                        </#if>
                                         </h6>
 
                                     </div>
                                     <ul class="action-button text-center">
                                         <li>
-                                            <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                            <a href="" onclick="deltailByModal(${lampList.id})"  data-toggle="modal" data-target="#productModal"
                                                title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                         </li>
                                     </ul>
@@ -403,26 +402,26 @@
                                         </h6>
                                         <h6 class="brand-name">
                                             <#if (lampList.productType = 1)>
-                                            G4/G9
+                                            Lighting  sources
                                         </#if>
-
                                         <#if (lampList.productType = 2)>
-                                        球泡灯
+                                        Commercial lights
                                     </#if>
-
                                     <#if (lampList.productType = 3)>
-                                    灯丝灯
+                                    Tri-proof fixtures
                                 </#if>
-
                                 <#if (lampList.productType = 4 )>
-                                面板灯
+                                LED Strip Lights
                             </#if>
+                            <#if (lampList.productType = 5 )>
+                            Flood lamps
+                        </#if>
                             </h6>
 
                         </div>
                         <ul class="action-button text-center">
                             <li>
-                                <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                <a href="" onclick="deltailByModal(${lampList.id})"  data-toggle="modal" data-target="#productModal"
                                    title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                             </li>
                         </ul>
@@ -464,26 +463,26 @@
                                         </h6>
                                         <h6 class="brand-name">
                                             <#if (lampList.productType = 1)>
-                                            G4/G9
+                                            Lighting  sources
                                         </#if>
-
                                         <#if (lampList.productType = 2)>
-                                        球泡灯
+                                        Commercial lights
                                     </#if>
-
                                     <#if (lampList.productType = 3)>
-                                    灯丝灯
+                                    Tri-proof fixtures
                                 </#if>
-
                                 <#if (lampList.productType = 4 )>
-                                面板灯
+                                LED Strip Lights
                             </#if>
+                            <#if (lampList.productType = 5 )>
+                            Flood lamps
+                        </#if>
                             </h6>
 
                         </div>
                         <ul class="action-button text-center">
                             <li>
-                                <a href="javascript:detail(${lampList.id})" data-toggle="modal" data-target="#productModal"
+                                <a href=""  onclick="deltailByModal(${lampList.id})" data-toggle="modal" data-target="#productModal"
                                    title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                             </li>
                         </ul>
@@ -500,6 +499,65 @@
                             <!-- lamp-item end -->
                         </div>
                     </div>
+<div class="tab-pane" id="special-Flood">
+    <div class="row">
+        <!-- lamp-item start -->
+        <!--         start           -->
+        <#if lampWithBLOBsList ??>
+        <#assign x=0>
+        <#list lampWithBLOBsList as lampList>
+        <#assign x=x+1>
+        <!-- lamp-item start -->
+        <#if (lampList.productType = 5)>
+        <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="product-item product-item-2">
+                <div class="product-img">
+                    <a href="javascript:detail(${lampList.id})">
+                        <img src="${lampList.productTitleImage}" alt=""/>
+                    </a>
+                </div>
+                <div class="product-info">
+                    <h6 class="product-title">
+                        <a href="javascript:detail(${lampList.id})">${lampList.model}</a>
+                    </h6>
+                    <h6 class="brand-name">
+                        <#if (lampList.productType = 1)>
+                        Lighting  sources
+                    </#if>
+                    <#if (lampList.productType = 2)>
+                    Commercial lights
+                </#if>
+                <#if (lampList.productType = 3)>
+                Tri-proof fixtures
+            </#if>
+            <#if (lampList.productType = 4 )>
+            LED Strip Lights
+        </#if>
+        <#if (lampList.productType = 5 )>
+        Flood lamps
+    </#if>
+    </h6>
+
+</div>
+<ul class="action-button text-center">
+    <li>
+        <a href="" onclick="deltailByModal(${lampList.id})"  data-toggle="modal" data-target="#productModal"
+           title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+    </li>
+</ul>
+</div>
+</div>
+<!-- lamp-item end -->
+</#if>
+<#if x == 8>
+<#break>
+</#if>
+</#list>
+</#if>
+<!--         end           -->
+<!-- lamp-item end -->
+</div>
+</div>
                     <!-- special-offer end -->
                 </div>
             </div>
@@ -666,15 +724,15 @@
                     <div class="modal-product clearfix">
                         <div class="product-images">
                             <div class="main-image images">
-                                <img alt="" src="home/img/product/quickview.jpg">
+                                <img alt="" id="productTitleImage-formodal" src="">
                             </div>
                         </div><!-- .lamp-images -->
 
                         <div class="product-info">
-                            <h1>AC220V/12V G4-SMD-2.5W</h1>
+                            <h1 id="model-formodaltitle" ></h1>
                             <div class="price-box-3">
                                 <div class="s-price-box">
-                                    <span class="new-price">G4-SMD-2.5W</span>
+                                    <span class="new-price" id="productType-formodal"></span>
                                 </div>
                             </div>
                             <!--<div class="quick-add-to-cart">-->
@@ -686,15 +744,15 @@
                             <!--</form>-->
                             <!--</div>-->
                             <div class="quick-desc">
-                                <p>Modal: <span>AC220V/12V G4-SMD-2.5W</span></p>
-                                <p>Voltage(V): <span>DC12V</span></p>
-                                <p>Power(W): <span>2W±0.2W</span></p>
-                                <p>Lumen(Im): <span>150Im±30Im</span></p>
-                                <p>Lamp size: <span>10*32mm</span></p>
-                                <p>LED Quantity: <span>COB</span></p>
-                                <p>lamp Body Material: <span>Silica gel</span></p>
+                                <p>Model: <span id="model-formodal"></span></p>
+                                <p>Voltage(V): <span id="voltage-formodal"></span></p>
+                                <p>Power(W): <span id="power-formodal"></span></p>
+                                <p>Lumen(Im): <span id="lumen-formodal"></span></p>
+                                <p>Lamp size: <span id="size-formadal"></span></p>
+                                <p>LED Quantity: <span id="quantity-formodal"></span></p>
+                                <p>lamp Body Material: <span id="material-formodal"></span></p>
                             </div>
-                            <a href="productDetail.html" class="see-all">See all features</a>
+                            <a href="" id="seeall" class="see-all">See all features</a>
                             <div class="social-sharing">
                                 <div class="widget widget_socialsharing_widget">
                                     <h3 class="widget-title-modal">Share this product</h3>
@@ -781,7 +839,45 @@
         })
     }
 
+    function deltailByModal(id) {
+        console.log(id)
+        $.ajax({
+            type: 'GET',
+            url: '/lampDetailByModal?id=' +id,
+            dataType:'json',
+            success: function (data){
 
+                $("#productTitleImage-formodal").attr("src",data.productTitleImage);
+                $("#model-formodaltitle").html(data.model)
+
+                if(data.productType == 1 ){
+                    $("#productType-formodal").html("Lighting  sources")
+                }else if(data.productType == 2){
+                    $("#productType-formodal").html("Commercial lights")
+                }else if(data.productType == 3){
+                    $("#productType-formodal").html("Tri-proof fixtures")
+                }else if(data.productType == 4){
+                    $("#productType-formodal").html("LED Strip Lights")
+                }else if(data.productType == 5){
+                    $("#productType-formodal").html("Flood lamps")
+                }
+
+                $("#model-formodal").html(data.model)
+                $("#voltage-formodal").html(data.voltage)
+                $("#power-formodal").html(data.power)
+                $("#lumen-formodal").html(data.lumen)
+                $("#size-formadal").html(data.size)
+                $("#quantity-formodal").html(data.quantity)
+                $("#material-formodal").html(data.material)
+                $("#seeall").attr("href","javascript:detail(" +data.id+ ")");
+
+
+            },
+            error: function () {
+                console.log("获取数据失败！")
+            }
+        })
+    }
 
 
 </script>

@@ -44,21 +44,21 @@
                                 <div class="single-product-info">
                                     <h3 class="text-black-1">${lampWithBLOBs.model}</h3>
                                     <h6 class="brand-name-2">
-                                        <#if (lampWithBLOBs.productType = 1)>
-                                            G4/G9
-                                        </#if>
-
-                                        <#if (lampWithBLOBs.productType = 2)>
-                                            球泡灯
-                                        </#if>
-
-                                        <#if (lampWithBLOBs.productType = 3)>
-                                            灯丝灯
-                                        </#if>
-
-                                        <#if (lampWithBLOBs.productType = 4 )>
-                                            面板灯
-                                        </#if>
+                                        <#if (lampList.productType = 1)>
+                                        Lighting  sources
+                                    </#if>
+                                    <#if (lampList.productType = 2)>
+                                    Commercial lights
+                                </#if>
+                                <#if (lampList.productType = 3)>
+                                Tri-proof fixtures
+                            </#if>
+                            <#if (lampList.productType = 4 )>
+                            LED Strip Lights
+                        </#if>
+                        <#if (lampList.productType = 5 )>
+                        Flood lamps
+                    </#if>
                                     </h6>
                                     <!-- hr -->
                                     <hr>

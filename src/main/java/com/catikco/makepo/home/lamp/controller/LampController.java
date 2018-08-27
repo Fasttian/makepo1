@@ -55,13 +55,8 @@ public class LampController {
 
     @RequestMapping("/lampDetailByModal")
     @ResponseBody
-    public ModelAndView VisitProductPageDetailByModal(HttpServletRequest request, ModelAndView modelAndView,Integer id){
-        LampWithBLOBs lampWithBLOBs = new LampWithBLOBs();
-        lampWithBLOBs = lampService.getById(id);
-
-        modelAndView.addObject("lampWithBLOBs",lampWithBLOBs);
-
-        return modelAndView;
-
+    public LampWithBLOBs VisitProductPageDetailByModal(Integer id){
+        LampWithBLOBs  lampWithBLOBs = lampService.getById(id);
+        return lampWithBLOBs;
     }
 }

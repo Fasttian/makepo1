@@ -227,13 +227,15 @@
                         "sWidth" : "10%",
                         "render": function (data, type, row) {
                             if(row.productType == '1')
-                                data = "G4/G9";
+                                data = "Lighting  sources";
                             if(row.productType == '2')
-                                data = "球泡灯";
+                                data = "Commercial lights";
                             if(row.productType == '3 ')
-                                data = "灯丝灯";
+                                data = "Tri-proof fixtures";
                             if(row.productType == '4 ')
-                                data = "面板灯";
+                                data = "LED Strip Lights";
+                            if(row.productType == '5 ')
+                                data = "Flood lamps";
                             return data;
                         }
                     },
