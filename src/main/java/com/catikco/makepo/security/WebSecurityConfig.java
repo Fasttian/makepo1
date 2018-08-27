@@ -1,5 +1,7 @@
 package com.catikco.makepo.security;
 
+import com.catikco.makepo.admin.login.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
@@ -20,6 +22,9 @@ import java.io.IOException;
 @Configuration
 public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
 
+    @Autowired
+    private LoginService loginService;
+
     public final static String SESSION_KEY="account";
 
     @Bean
@@ -34,19 +39,27 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
         addInterceptor.excludePathPatterns("/error");
         addInterceptor.excludePathPatterns("/login");
         addInterceptor.excludePathPatterns("/logout");
-//        addInterceptor.excludePathPatterns("/getUserInfo");
 
         //拦截(仅拦截list页面)
         addInterceptor.addPathPatterns("/cyclopedia-list");
+        addInterceptor.addPathPatterns("/edit-cyclopedia");
+
         addInterceptor.addPathPatterns("/lamp-list");
+        addInterceptor.addPathPatterns("/edit-lamp");
+
+        addInterceptor.addPathPatterns("/power-list");
+        addInterceptor.addPathPatterns("/edit-power");
+
+        addInterceptor.addPathPatterns("/news-list");
+        addInterceptor.addPathPatterns("/edit-news");
+
         addInterceptor.addPathPatterns("/manual-list");
         addInterceptor.addPathPatterns("/message-list");
-        addInterceptor.addPathPatterns("/news-list");
-        addInterceptor.addPathPatterns("/power-list");
-        addInterceptor.addPathPatterns("/news-list");
-        addInterceptor.addPathPatterns("/getUserInfo");
+
         addInterceptor.addPathPatterns("/admin-init");
+
         addInterceptor.addPathPatterns("/banner-list");
+        addInterceptor.addPathPatterns("/edit-banner");
     }
 
     private class SecurityInterceptor extends HandlerInterceptorAdapter{
@@ -56,6 +69,10 @@ public class WebSecurityConfig  extends WebMvcConfigurerAdapter {
 
             //判断是否已有该用户登录的session
             if(session.getAttribute(SESSION_KEY) != null){
+                //每次切换后台管理页面需要重新获取管理员信息
+                String password = (String) session.getAttribute("password");
+                String account = (String) session.getAttribute("account");
+                request.setAttribute("user",loginService.findUserByAccount(account,password));
                 return true;
             }
 

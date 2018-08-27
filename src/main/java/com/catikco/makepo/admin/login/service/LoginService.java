@@ -20,6 +20,6 @@ public interface LoginService {
      * @param account
      * @return
      */
-    public User findUserByAccount(String account);
+    public User findUserByAccount(String account,String password);
 
 }

@@ -51,8 +51,9 @@ public class LoginController {
         boolean verify = loginService.verifyLogin(user);
         if (verify) {
             session.setAttribute(WebSecurityConfig.SESSION_KEY, account);
+            session.setAttribute("password", user.getPassword());
             request.setAttribute("result","登录成功！");
-            request.setAttribute("user",loginService.findUserByAccount(account));
+            request.setAttribute("user",loginService.findUserByAccount(account,password));
             return "admin/lamp/lamp-list";
         } else {
             request.setAttribute("result","登录失败！");
@@ -63,12 +64,13 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.removeAttribute(WebSecurityConfig.SESSION_KEY);
+        session.removeAttribute("password");
         return "redirect:/login";
     }
 
     @RequestMapping("/getUserInfo")
     public void getUserInfo(String account,HttpServletRequest request){
-        request.setAttribute("user",loginService.findUserByAccount(account));
+        request.setAttribute("user",loginService.findUserByAccount(account,null));
     }
 
 }
