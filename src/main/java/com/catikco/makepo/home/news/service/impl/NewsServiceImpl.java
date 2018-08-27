@@ -32,7 +32,7 @@ public class NewsServiceImpl implements NewsService {
         NewsExample.Criteria criteria = newsExample.createCriteria();
 
         //排序方式
-        newsExample.setOrderByClause("newsCreateTime"+" "+"asc");
+        newsExample.setOrderByClause("newsCreateTime"+" "+"desc");
 
         //仅查询未删除的
         criteria.andDeletedEqualTo(false);

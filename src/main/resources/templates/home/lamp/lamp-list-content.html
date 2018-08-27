@@ -20,11 +20,12 @@
                     <!-- 勿删，用于处理灯饰分类 -->
                     <input type="hidden" id="retrunProType" value="${productType}">
                     <select id="productType" onchange="queryByType()">
-                        <option value="0">全部</option>
-                        <option value="1">G4/G9</option>
-                        <option value="2">球泡灯</option>
-                        <option value="3">灯丝灯</option>
-                        <option value="4">面板灯</option>
+                        <option value="0">all</option>
+                        <option value="1">Lighting sources</option>
+                        <option value="2">Commercial lights</option>
+                        <option value="3">Tri-proof fixtures</option>
+                        <option value="4">LED Strip Lights</option>
+                        <option value="5">Flood lamps</option>
                     </select>
                 </div>
                 <!-- showing -->
@@ -61,20 +62,20 @@
                                     </div>
                                     <h3 class="pro-price">
                                         <#if (lampList.productType = 1)>
-                                        G4/G9
+                                        Lighting  sources
                                     </#if>
-
                                     <#if (lampList.productType = 2)>
-                                    球泡灯
+                                    Commercial lights
                                 </#if>
-
                                 <#if (lampList.productType = 3)>
-                                灯丝灯
+                                Tri-proof fixtures
                             </#if>
-
                             <#if (lampList.productType = 4 )>
-                            面板灯
+                            LED Strip Lights
                         </#if>
+                        <#if (lampList.productType = 5 )>
+                        Flood lamps
+                    </#if>
                         </h3>
                                     <ul class="action-button">
                                         <li>
@@ -82,7 +83,7 @@
                                                     class="zmdi zmdi-favorite"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#" data-toggle="modal"
+                                            <a href="#" data-toggle="modal" onclick="deltailByModal(${lampList.id})"
                                                data-target="#productModal"
                                                title="Quickview"><i
                                                     class="zmdi zmdi-zoom-in"></i></a>
