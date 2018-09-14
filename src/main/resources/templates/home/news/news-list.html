@@ -107,7 +107,7 @@
                         </#list>
                         <!-- blog-item end -->
                     </div>
-                <#if newsListPageModel.nextPage ??>
+                <#if newsListPageModel.total != 0>
                     <ul class="shop-pagination box-shadow text-center ptblr-10-30">
                         <#if (newsListPageModel.currentPage = 1)>
                             <#else>
@@ -126,6 +126,8 @@
                                 </li>
                         </#if>
                     </ul>
+                <#else>
+                暂无内容！
               </#if>
             </#if>
         </div>

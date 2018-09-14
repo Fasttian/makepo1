@@ -61,11 +61,11 @@
                             <div class="single-footer">
                                 <h4 class="footer-title border-left">Get in touch</h4>
                                 <div class="footer-message">
-                                    <form action="#">
+                                    <form id="contact-footer-form">
                                         <input type="text" name="name" placeholder="Your name here...">
                                         <input type="text" name="email" placeholder="Your email here...">
-                                        <textarea class="height-80" name="message" placeholder="Your messege here..."></textarea>
-                                        <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">submit message</button>
+                                        <textarea class="height-80" name="moreInfo" placeholder="Your messege here..."></textarea>
+                                        <button class="submit-btn-1 mt-20 btn-hover-1" onclick="sumbitMessage()" >submit message</button>
                                     </form>
                                 </div>
                             </div>
@@ -124,6 +124,36 @@
 <script src="home/js/plugins.js"></script>
 <!-- Main js file that contents all jQuery plugins activation. -->
 <script src="home/js/main.js"></script>
+
+<script>
+    function sumbitMessage() {
+
+        var formData = $("#contact-footer-form").serialize()
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-contactus',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if(data.code == "succeed"){
+                    notify_sucess(data.data);
+                    console.log(data.data);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
+                    return;
+                }
+            },
+            error: function (e) {
+                notify_error("提交出错，请重试！");
+            }
+        })
+
+    }
+
+</script>
+
 
 </body>
 

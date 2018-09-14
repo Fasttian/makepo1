@@ -108,7 +108,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-left mb-20">
-                        <h2 class="uppercase">新产品</h2>
+                        <h2 class="uppercase">新产品 </h2>
                     </div>
                 </div>
             </div>
@@ -163,8 +163,9 @@
                     <#if x == 8>
                     <#break>
                     </#if>
-            </#list>
-                    </#if>
+                </#list>
+            </#if>
+
 <!-------------------- end ----------------------->
                 </div>
             </div>
@@ -308,12 +309,17 @@
                     </div>
                 </div>
                 <!-- lamp-item end -->
-            </#if>
-            <#if x == 8>
+            <#else>
+            暂无内容！
+            <!--暂无内容，结束循环-->
             <#break>
-        </#if>
+                </#if>
+                <#if x == 8>
+                    <#break>
+                </#if>
     </#list>
 </#if>
+
 <!--         end           -->
 
                         </div>
@@ -368,12 +374,17 @@
                                 </div>
                             </div>
                             <!-- lamp-item end -->
+                        <#else>
+                        暂无内容！
+                        <!--暂无内容，结束循环-->
+                        <#break>
                             </#if>
                                 <#if x == 8>
                                     <#break>
                                 </#if>
                         </#list>
                     </#if>
+
                     <!--         end           -->
                         </div>
                     </div>
@@ -425,15 +436,20 @@
                                    title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                             </li>
                         </ul>
-                    </div>
-</div>
-<!-- lamp-item end -->
-</#if>
-<#if x == 8>
-<#break>
-</#if>
-</#list>
-</#if>
+                                    </div>
+                </div>
+                <!-- lamp-item end -->
+            <#else>
+            暂无内容！
+            <!--暂无内容，结束循环-->
+            <#break>
+                </#if>
+                <#if x == 8>
+                <#break>
+                </#if>
+                </#list>
+        </#if>
+
 <!--         end           -->
                             <!-- lamp-item end -->
                         </div>
@@ -487,14 +503,19 @@
                             </li>
                         </ul>
                     </div>
-</div>
-<!-- lamp-item end -->
-</#if>
-<#if x == 8>
-<#break>
-</#if>
-</#list>
-</#if>
+            </div>
+            <!-- lamp-item end -->
+        <#else>
+        暂无内容！
+        <!--暂无内容，结束循环-->
+        <#break>
+            </#if>
+            <#if x == 8>
+                <#break>
+            </#if>
+            </#list>
+        </#if>
+
 <!--         end           -->
                             <!-- lamp-item end -->
                         </div>
@@ -536,27 +557,31 @@
         <#if (lampList.productType = 5 )>
         Flood lamps
     </#if>
-    </h6>
+            </h6>
+        </div>
+            <ul class="action-button text-center">
+                <li>
+                    <a href="" onclick="deltailByModal(${lampList.id})"  data-toggle="modal" data-target="#productModal"
+                       title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
+                </li>
+            </ul>
+            </div>
+        </div>
+            <!-- lamp-item end -->
+        <#else>
+            暂无内容！
+            <!--暂无内容，结束循环-->
+            <#break>
+            </#if>
+                <#if x == 8>
+                    <#break>
+                </#if>
+            </#list>
+</#if>
 
-</div>
-<ul class="action-button text-center">
-    <li>
-        <a href="" onclick="deltailByModal(${lampList.id})"  data-toggle="modal" data-target="#productModal"
-           title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-    </li>
-</ul>
-</div>
-</div>
-<!-- lamp-item end -->
-</#if>
-<#if x == 8>
-<#break>
-</#if>
-</#list>
-</#if>
 <!--         end           -->
 <!-- lamp-item end -->
-</div>
+    </div>
 </div>
                     <!-- special-offer end -->
                 </div>
@@ -608,7 +633,10 @@
                     <#break>
                 </#if>
                     </#list>
+            <#else>
+            暂无内容！
                 </#if>
+
                    <!----------------------------------end------------------------------------------>
                 </div>
             </div>
@@ -628,9 +656,9 @@
                                 newsletter program.</p>
                         </div>
                         <div class="subcribe clearfix">
-                            <form action="#">
+                            <form id="contact-index-form">
                                 <input type="text" name="email" placeholder="Enter your email here..."/>
-                                <button class="submit-btn-2 btn-hover-2" type="submit">subcribe</button>
+                                <button class="submit-btn-2 btn-hover-2" onclick="sumbitMessage()"  type="submit">subcribe</button>
                             </form>
                         </div>
                     </div>
@@ -882,6 +910,7 @@
         })
     }
 
+
     //国际化部分
 
     var dict = {
@@ -925,6 +954,34 @@
     $("#py").click(function () {
         translator.lang("py");
     });
+
+    //提交用户信息
+    function sumbitMessage() {
+
+        var formData = $("#contact-index-form").serialize()
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-contactus',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if(data.code == "succeed"){
+                    notify_sucess(data.data);
+                }
+                if(data.code == "error"){
+                    notify_error(data.data)
+                    return;
+                }
+            },
+            error: function (e) {
+                notify_error("提交出错，请重试！");
+            }
+        })
+
+    }
+
+
 
 </script>
 

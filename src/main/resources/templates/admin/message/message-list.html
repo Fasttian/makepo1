@@ -176,6 +176,7 @@
         table=$('#datatable').DataTable( {
             //开启服务器模式
             serverSide: true,
+            "order": [[ 5, "desc" ]],
             "info" : true,
             "paging": true,
             "processing":false,
@@ -191,33 +192,33 @@
             "aoColumns" : [
                 {
                     "mData" : "name",
-                    "orderable" : true, // 禁用排序
+                    "orderable" :true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "15%",
 
                 },
                 {
                     "mData" : "email",
-                    "orderable" : true, // 禁用排序
+                    "orderable" :true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "10%"
                 },
                 {
                     "mData" : "subject",
-                    "orderable" : true, // 禁用排序
+                    "orderable" :true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "15%",
 
                 },
                 {
                     "mData" : "phone",
-                    "orderable" : true, // 禁用排序
+                    "orderable" :true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "6%",
                 },
                 {
                     "mData" : "moreInfo",
-                    "orderable" : true, // 禁用排序
+                    "orderable" :true, // 禁用排序
                     "sDefaultContent" : "",
                     "sWidth" : "20%",
                 },

@@ -27,7 +27,7 @@
     </#list>
     <!-- blog-item end -->
 </div>
-    <#if newsListPageModel.nextPage ??>
+    <#if newsListPageModel.total != 0>
 <ul class="shop-pagination box-shadow text-center ptblr-10-30">
             <#if (newsListPageModel.currentPage = 1)>
             <#else>
@@ -45,6 +45,8 @@
                 <a href="javaScript:queryByPage(${newsListPageModel.nextPage})"><i class="zmdi zmdi-chevron-right"></i></a>
             </li>
             </#if>
-    </ul>
+     </ul>
+    <#else>
+        暂无内容！
     </#if>
 </#if>

@@ -43,6 +43,9 @@ public class IndexController {
         request.setAttribute("lampWithBLOBsList",lampWithBLOBsList);
         request.setAttribute("newsWithBLOBsList",newsWithBLOBsList);
 
+        //设置菜单类别
+        request.setAttribute("menuType",1);
+
         return "home/index/index";
     }
 
