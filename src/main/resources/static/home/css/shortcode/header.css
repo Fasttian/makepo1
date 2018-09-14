@@ -521,7 +521,7 @@ NOTE: This is Header style file. All Header related style included in this file.
   transition: all 0.3s ease 0s;
 }
 .user-meta > li > a {
-  color: #999999;
+  color: #fff;
   display: block;
   font-size: 20px;
   line-height: 1;

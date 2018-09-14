@@ -808,9 +808,12 @@
 <script src="home/lib/js/jquery.nivo.slider.js"></script>
 <!-- All js plugins included in this file. -->
 <script src="home/js/plugins.js"></script>
+<!--e18n-->
+<script src="home/js/jquery.translate.js"></script>
 <!-- Main js file that contents all jQuery plugins activation. -->
 <script src="home/js/main.js"></script>
 <script>
+
     function newsDetail(id) {
         $.ajax({
             type: 'GET',
@@ -879,6 +882,49 @@
         })
     }
 
+    //国际化部分
+
+    var dict = {
+        "Главная" : {
+            py : "Главная",
+            en : "home"
+        },
+        "Каталог" : {
+            py : "Каталог",
+            en : "product"
+        },
+        "Новости" : {
+            py : "Новости",
+            en : "News"
+        },
+        "LED знание" : {
+            py : "LED знание",
+            en : "LED knowledge"
+        },
+        "КАТИК" : {
+            py : "КАТИК",
+            en : "About us"
+        },
+        "Контакты" : {
+            py : "Контакты",
+            en : "Contact us"
+        },
+        "Скачать" : {
+            py : "Скачать",
+            en : "Download"
+        }
+    };
+
+    var translator = $("body").translate({lang: "py", t: dict});
+
+
+    $("#en").click(function () {
+        translator.lang("en");
+    });
+
+    $("#py").click(function () {
+        translator.lang("py");
+    });
 
 </script>
 
