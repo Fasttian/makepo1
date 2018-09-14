@@ -96,7 +96,7 @@
                                     </div>
 
                                 </div>
-                                <#if powerListPageModel.nextPage ??>
+                                <#if powerListPageModel.total !=0>
                                     <ul class="shop-pagination box-shadow text-center ptblr-10-30">
                                         <#if (lampListPageModel.currentPage = 1)>
                                             <#else>
@@ -116,6 +116,8 @@
                                                 </li>
                                         </#if>
                                     </ul>
+                                <#else>
+                                暂无内容！
                                 </#if>
                             </#if>
                                 <!-- shop-pagination end -->
