@@ -70,10 +70,10 @@
         <table schema="" tableName="message" domainObjectName="Message">
             <property name="useActualColumnNames" value="true"/>
         </table>
-         <table schema="" tableName="user" domainObjectName="User">
+         <table schema="" tableName="banner" domainObjectName="Banner">
             <property name="useActualColumnNames" value="true"/>
         </table>
-         <table schema="" tableName="banner" domainObjectName="Banner">
+         <table schema="" tableName="user" domainObjectName="User">
             <property name="useActualColumnNames" value="true"/>
         </table>-->
 

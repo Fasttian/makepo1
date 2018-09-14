@@ -78,7 +78,7 @@
             </div>
 
         </div>
-        <#if powerListPageModel.nextPage ??>
+        <#if powerListPageModel.total != 0>
         <ul class="shop-pagination box-shadow text-center ptblr-10-30">
             <#if (powerListPageModel.currentPage = 1)>
             <#else>
@@ -87,16 +87,18 @@
         </#if>
         <#list 1..powerListPageModel.count as i>
         <li <#if (powerListPageModel.currentPage = i)> class="active"</#if>>
-    <a href="javascript:queryByPage(${i});">${i_index+1}</a>
-    </li>
-</#list>
-<#if (powerListPageModel.currentPage = powerListPageModel.count)>
-<#else>
-<li class="next">
-    <a href="javascript:queryByPage(${powerListPageModel.nextPage})"><i
-            class="zmdi zmdi-chevron-right"></i></a>
-</li>
-</#if>
-</ul>
-</#if>
+                <a href="javascript:queryByPage(${i});">${i_index+1}</a>
+                </li>
+            </#list>
+            <#if (powerListPageModel.currentPage = powerListPageModel.count)>
+            <#else>
+            <li class="next">
+                <a href="javascript:queryByPage(${powerListPageModel.nextPage})"><i
+                        class="zmdi zmdi-chevron-right"></i></a>
+            </li>
+            </#if>
+            </ul>
+        <#else>
+        暂无内容！
+        </#if>
 </#if>

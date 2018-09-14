@@ -124,7 +124,7 @@
                                     </div>
 
                                 </div>
-                                <#if lampListPageModel.nextPage ??>
+                                <#if lampListPageModel.total != 0>
                                     <ul class="shop-pagination box-shadow text-center ptblr-10-30">
                                         <#if (lampListPageModel.currentPage = 1)>
                                             <#else>
@@ -146,6 +146,8 @@
                                                 </li>
                                         </#if>
                                     </ul>
+                                <#else>
+                                    此分类无内容！
                                 </#if>
                 </#if>
                 <!-- shop-pagination end -->
